@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-10-14" view-index="0" gantt-divider-location="409" resource-divider-location="300" version="2.0" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-10-14" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
     <description/>
-    <view zooming-state="default:4" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="58" order="0"/>
-        <field id="tpd4" name="Date de début" width="22" order="1"/>
-        <field id="tpd5" name="Date de fin" width="19" order="2"/>
+    <view zooming-state="default:3" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="66" order="0"/>
+        <field id="tpd4" name="Date de début" width="16" order="1"/>
+        <field id="tpd5" name="Date de fin" width="17" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="56" order="0"/>
-        <field id="1" name="Rôle par défaut" width="43" order="1"/>
+        <field id="0" name="Nom" width="52" order="0"/>
+        <field id="1" name="Rôle par défaut" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -57,18 +58,52 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Diagramme Activité Technicien (UML)" color="#8cb6ce" meeting="false" start="2013-10-17" duration="1" complete="0" expand="true"/>
-        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="0" expand="true"/>
-        <task id="7" name="Rédiger cahier de développement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="0" expand="true"/>
-        <task id="9" name="Modéliser le système d'information" color="#8cb6ce" meeting="false" start="2013-11-07" duration="16" complete="0" expand="true"/>
-        <task id="5" name="Rédaction documents techniques" color="#8cb6ce" meeting="false" start="2013-11-07" duration="16" complete="0" expand="true"/>
+        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="49" expand="true"/>
+        <task id="5" name="Rédaction documents techniques" color="#8cb6ce" meeting="false" start="2013-11-07" duration="16" complete="0" expand="true">
+            <notes><![CDATA[-> jeux d'essai
+-> choix technique
+-> contrôles mis en place]]></notes>
+        </task>
         <task id="6" name="Rédiger guide utilisateur" color="#8cb6ce" meeting="false" start="2013-11-07" duration="16" complete="0" expand="true"/>
+        <task id="7" name="Rédiger cahier de développement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="0" expand="true">
+            <notes><![CDATA[généré par GIT
+-> ajouts
+-> modifications
+-> suppressions
+-> auteur
+-> date
+-> lignes modifiés]]></notes>
+        </task>
+        <task id="0" name="Diagramme Activité Technicien (UML)" color="#8cb6ce" meeting="false" start="2013-10-17" duration="1" complete="100" expand="true">
+            <depend id="20" type="2" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="20" name="Maquettes interfaces" color="#8cb6ce" meeting="false" start="2013-11-07" duration="1" complete="0" expand="true">
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="9" name="Modéliser le système d'information" color="#8cb6ce" meeting="false" start="2013-10-17" duration="15" complete="100" expand="true">
+            <notes><![CDATA[Déjà fait en classe en grande partie
+]]></notes>
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="14" name="Generation de la base MySQL" color="#8cb6ce" meeting="false" start="2013-11-08" duration="3" complete="0" expand="true">
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="28" name="developpement" color="#8cb6ce" meeting="false" start="2013-11-14" duration="15" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Benoit" function="Default:0" contacts="" phone=""/>
         <resource id="1" name="Kevin" function="Default:0" contacts="" phone=""/>
     </resources>
-    <allocations/>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="9" resource-id="0" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="14" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="28" resource-id="0" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="0" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="9" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="20" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="28" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
+    </allocations>
     <vacations>
         <vacation start="2013-10-19" end="2013-11-04" resourceid="0"/>
         <vacation start="2013-10-19" end="2013-11-04" resourceid="1"/>
@@ -83,9 +118,9 @@
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd8" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="235" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="90" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="80" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="298" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="75" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="78" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>
