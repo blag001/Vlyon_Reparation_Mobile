@@ -1,7 +1,7 @@
 -- ============================================================
 --   Nom de la base   :  REPARATION                            
 --   Nom de SGBD      :  ORACLE Version 7.x                    
---   Date de cr‚ation :  15/10/2013  14:29                     
+--   Date de cr‚ation :  05/11/2013  22:15                     
 -- ============================================================
 
 -- ============================================================
@@ -39,8 +39,9 @@ create table ETAT
 create table PRODUIT
 (
     Pdt_Code          CHAR(6)                not null,
-    Pdt_Roue          VARCHAR2(10)           null    ,
+    Pdt_Libelle       VARCHAR2(30)           null    ,
     Pdt_Poids         NUMBER(10)             null    ,
+    Pdt_PxCMUP        NUMBER(6,2)            null    ,
     Pdt_QteStk        NUMBER(10)             null    ,
     Pdt_NbVols        NUMBER(5)              null    ,
     Pdt_NbCasses      NUMBER(5)              null    ,
@@ -94,6 +95,33 @@ create index appartenir_FK on VELO (Vel_Type asc)
 /
 
 -- ============================================================
+--   Table : DEMANDEINTER                                      
+-- ============================================================
+create table DEMANDEINTER
+(
+    DemI_Num          CHAR(5)                not null,
+    Deml_Velo         CHAR(5)                not null,
+    DemI_Date         DATE                   null    ,
+    Deml_Technicien    CHAR(5)                not null,
+    Deml_Motif        VARCHAR2(50)           null    ,
+    Deml_Traite       CHAR(1)                null    ,
+    constraint PK_DEMANDEINTER primary key (DemI_Num)
+)
+/
+
+-- ============================================================
+--   Index : CORRESPONDRE_FK                                   
+-- ============================================================
+create index CORRESPONDRE_FK on DEMANDEINTER (Deml_Velo asc)
+/
+
+-- ============================================================
+--   Index : rediger_FK                                        
+-- ============================================================
+create index rediger_FK on DEMANDEINTER (Dem_Technicien asc)
+/
+
+-- ============================================================
 --   Table : BONINTERV                                         
 -- ============================================================
 create table BONINTERV
@@ -107,6 +135,7 @@ create table BONINTERV
     BI_Demande        CHAR(5)                null    ,
     BI_Technicien     CHAR(5)                not null,
     BI_SurPlace       CHAR(1)                null    ,
+    BI_Duree          NUMBER(5)              null    ,
     constraint PK_BONINTERV primary key (BI_Num)
 )
 /
@@ -129,39 +158,6 @@ create index EXECUTER_FK2 on BONINTERV (BI_Demande asc)
 create index realiser_FK on BONINTERV (BI_Technicien asc)
 /
 
--- ============================================================
---   Table : DEMANDEINTER                                      
--- ============================================================
-create table DEMANDEINTER
-(
-    DemI_Num          CHAR(5)                not null,
-    Dem_Velo          CHAR(5)                not null,
-    Dem_Date          DATE                   null    ,
-    Dem_BInterv       CHAR(10)               null    ,
-    Dem_Technicien    CHAR(5)                not null,
-    Dem_Motif         VARCHAR2(50)           null    ,
-    constraint PK_DEMANDEINTER primary key (DemI_Num)
-)
-/
-
--- ============================================================
---   Index : CORRESPONDRE_FK                                   
--- ============================================================
-create index CORRESPONDRE_FK on DEMANDEINTER (Dem_Velo asc)
-/
-
--- ============================================================
---   Index : REALISER_FK                                       
--- ============================================================
-create index REALISER_FK on DEMANDEINTER (Dem_BInterv asc)
-/
-
--- ============================================================
---   Index : rediger_FK                                        
--- ============================================================
-create index rediger_FK on DEMANDEINTER (Dem_Technicien asc)
-/
-
 alter table VELO
     add constraint FK_VELO_STATION foreign key  (Vel_Station)
        references STATION (Sta_Code)
@@ -177,33 +173,28 @@ alter table VELO
        references PRODUIT (Pdt_Code)
 /
 
+alter table DEMANDEINTER
+    add constraint FK_DEMANDEINTER_VELO foreign key  (Deml_Velo)
+       references VELO (Vel_Num)
+/
+
+alter table DEMANDEINTER
+    add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (Dem_Technicien)
+       references TECHNICIEN (Tec_Matricule)
+/
+
 alter table BONINTERV
-    add constraint FK_BONINTER_VELO foreign key  (BI_Velo)
+    add constraint FK_BONINTERV_VELO foreign key  (BI_Velo)
        references VELO (Vel_Num)
 /
 
 alter table BONINTERV
-    add constraint FK_BONINTER_DEMANDEI foreign key  (BI_Demande)
+    add constraint FK_BONINTERV_DEMANDEINTER foreign key  (BI_Demande)
        references DEMANDEINTER (DemI_Num)
 /
 
 alter table BONINTERV
-    add constraint FK_BONINTER_TECHNICI foreign key  (BI_Technicien)
-       references TECHNICIEN (Tec_Matricule)
-/
-
-alter table DEMANDEINTER
-    add constraint FK_DEMANDEINTERV_VELO foreign key  (Dem_Velo)
-       references VELO (Vel_Num)
-/
-
-alter table DEMANDEINTER
-    add constraint FK_DEMANDEINTERV_BONINTER foreign key  (Dem_BInterv)
-       references BONINTERV (BI_Num)
-/
-
-alter table DEMANDEINTER
-    add constraint FK_DEMANDEINTERV_TECHNICIEN foreign key  (Dem_Technicien)
+    add constraint FK_BONINTERV_TECHNICIEN foreign key  (BI_Technicien)
        references TECHNICIEN (Tec_Matricule)
 /
 

@@ -1,7 +1,7 @@
 -- ============================================================
 --   Nom de la base   :  ACHAT                                 
 --   Nom de SGBD      :  ORACLE Version 7.x                    
---   Date de cr‚ation :  15/10/2013  14:25                     
+--   Date de cr‚ation :  05/11/2013  22:17                     
 -- ============================================================
 
 -- ============================================================
@@ -10,8 +10,9 @@
 create table PRODUIT
 (
     Pdt_Code         CHAR(6)                not null,
-    Pdt_Roue         VARCHAR2(15)           null    ,
+    Pdt_Libelle      VARCHAR2(30)           null    ,
     Pdt_Poids        NUMBER(6,2)            null    ,
+    Pdt_PxCMUP       NUMBER(7,2)            null    ,
     Pdt_QteStk       NUMBER(10)             null    ,
     Pdt_NbVols       NUMBER(5)              null    ,
     Pdt_NbCasses     NUMBER(5)              null    ,
@@ -24,13 +25,13 @@ create table PRODUIT
 -- ============================================================
 create table FOURNISSEUR
 (
-    Fou_Code         CHAR(10)               not null,
-    Fou_Nom          CHAR(10)               null    ,
-    Fou_Rue          CHAR(10)               null    ,
-    Fou_Cp           CHAR(10)               null    ,
-    Fou_Ville        CHAR(10)               null    ,
-    Fou_Tel          CHAR(10)               null    ,
-    Fou_Mail         CHAR(10)               null    ,
+    Fou_Code         CHAR(5)                not null,
+    Fou_Nom          VARCHAR2(30)           null    ,
+    Fou_Rue          VARCHAR2(50)           null    ,
+    Fou_Cp           CHAR(5)                null    ,
+    Fou_Ville        VARCHAR2(30)           null    ,
+    Fou_Tel          VARCHAR2(15)           null    ,
+    Fou_Mail         VARCHAR2(30)           null    ,
     constraint PK_FOURNISSEUR primary key (Fou_Code)
 )
 /
@@ -53,9 +54,10 @@ create table RESPONSABLE
 create table COMMANDE
 (
     Cde_Num          NUMBER(3)              not null,
-    Cde_Fournisseur  CHAR(10)               not null,
+    Cde_Fournisseur  CHAR(5)                not null,
     Cde_Date         DATE                   null    ,
     Cde_Montant      NUMBER(6,2)            null    ,
+    Cde_Etat         VARCHAR2(20)           null    ,
     constraint PK_COMMANDE primary key (Cde_Num)
 )
 /

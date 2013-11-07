@@ -1,7 +1,7 @@
 -- ============================================================
 --   Nom de la base   :  LOCATION                              
 --   Nom de SGBD      :  ORACLE Version 7.x                    
---   Date de cr‚ation :  15/10/2013  14:35                     
+--   Date de cr‚ation :  05/11/2013  22:18                     
 -- ============================================================
 
 -- ============================================================
@@ -10,11 +10,11 @@
 create table ABONNEMENT
 (
     Abo_Code           CHAR(2)                not null,
-    Abo_Libelle        VARCHAR2(35)           null    ,
-    Abo_Duree          NUMBER(4)              null    ,
-    Abo_Px             NUMBER(5,2)            null    ,
-    Abo_PxDemiHr       NUMBER(4,2)            null    ,
-    Abo_PxMajore       NUMBER(5,2)            null    ,
+    Abo_Libelle        VARCHAR2(35)           default 'NULL' null    ,
+    Abo_Duree          NUMBER(4)              default 'NULL' null    ,
+    Abo_Px             NUMBER(5,2)            default 'NULL' null    ,
+    Abo_PxDemiHr       NUMBER(4,2)            default 'NULL' null    ,
+    Abo_PxMajore       NUMBER(5,2)            default 'NULL' null    ,
     constraint PK_ABONNEMENT primary key (Abo_Code)
 )
 /
@@ -36,10 +36,10 @@ create table ETAT
 create table STATION
 (
     Sta_Code           CHAR(5)                not null,
-    Sta_Nom            VARCHAR2(30)           null    ,
+    Sta_Nom            VARCHAR2(30)           default 'NULL' null    ,
     Sta_Rue            VARCHAR2(50)           null    ,
-    Sta_NbAttaches     NUMBER(2)              null    ,
-    Sta_NbVelos        NUMBER(2)              null    ,
+    Sta_NbAttaches     NUMBER(2)              default 'NULL' null    ,
+    Sta_NbVelos        NUMBER(2)              default 'NULL' null    ,
     Sta_NbAttacDispos  NUMBER(2)              null    ,
     Sta_NbTotLoc       NUMBER(10)             null    ,
     Sta_NbVols         NUMBER(5)              null    ,
@@ -54,8 +54,9 @@ create table STATION
 create table PRODUIT
 (
     Pdt_Code           CHAR(6)                not null,
-    Pdt_Roue           VARCHAR2(15)           null    ,
-    Pdt_Poids          NUMBER(6,2)            null    ,
+    Pdt_Libelle        VARCHAR2(30)           default 'NULL' null    ,
+    Pdt_Poids          NUMBER(6,2)            default 'NULL' null    ,
+    Pdt_PxCMUP         NUMBER(6,2)            null    ,
     Pdt_QteStk         NUMBER(10)             null    ,
     Pdt_NbVols         NUMBER(5)              null    ,
     Pdt_NbCasses       NUMBER(5)              null    ,
