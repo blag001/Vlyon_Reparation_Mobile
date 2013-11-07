@@ -1,0 +1,3465 @@
+/BEGIN_TABLE AMCHEAD
+NAME A30
+VERS A8
+USER A30
+/BEGIN_DATA AMCHEAD
+AMC*Designor/MPD
+5.0.0
+
+/END_TABLE AMCHEAD
+
+/BEGIN_TABLE AMCMODL
+@       N5
+OID     N8
+MODL    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+OPTS    TXT
+DBMS    A80
+FILE    A80
+HEAD    TXT
+FOOT    TXT
+POID    N8
+PNAM    A80
+PCOD    A80
+USER    A80
+VERS    A8
+CDAT    N12
+MDAT    N12
+EDAT    N12
+ACCS    N5
+NUMR    N8
+/BEGIN_DATA AMCMODL
+3
+10
+10
+ACHAT
+ACHAT
+
+
+
+
+ORACLE Version 7.x
+oracle7.def
+
+
+0
+
+
+
+
+1377965504
+1383686290
+0
+0
+10
+/END_TABLE AMCMODL
+
+/BEGIN_TABLE AMCDOMN
+@       N5
+OID     N8
+DOMN    N8
+NAME    A80
+CODE    A80
+DESC    TXT
+NOTE    TXT
+LABL    A80
+DTTP    A30
+MLEN    N8
+PREC    N2
+IDNT    N1
+WDEF    N1
+MAND    N2
+UNIT    A8
+FRMT    A20
+LVAL    A20
+HVAL    A20
+DVAL    A30
+UPPR    N1
+LOWR    N1
+NMDF    N1
+VALS    TXT
+CRUL    TXT
+SRUL    TXT
+SOID    N8
+/BEGIN_DATA AMCDOMN
+/END_TABLE AMCDOMN
+
+/BEGIN_TABLE AMCTABL
+@       N5
+OID     N8
+TABL    N8
+MODL    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+NBRC    N8
+SOID    N8
+TOBJ    N5
+COBJ    A80
+OPTS    TXT
+PKOP    TXT
+CRUL    TXT
+SRUL    TXT
+PKCN    A30
+CKCN    A30
+NUMR    N8
+/BEGIN_DATA AMCTABL
+3
+1
+1
+10
+PRODUIT
+PRODUIT
+
+
+
+0
+74
+4
+PRODUIT
+
+
+
+
+
+
+1
+3
+8
+8
+10
+FOURNISSEUR
+FOURNISSEUR
+
+
+
+0
+150
+4
+FOURNISSEUR
+
+
+
+
+
+
+2
+3
+15
+15
+10
+COMMANDE
+COMMANDE
+
+
+
+0
+151
+4
+COMMANDE
+
+
+
+
+
+
+3
+3
+70
+70
+10
+DEMANDE
+DEMANDE
+
+
+
+0
+249
+4
+DEMANDE
+
+
+
+
+
+
+4
+3
+132
+132
+10
+RESPONSABLE
+RESPONSABLE
+
+
+
+0
+322
+4
+RESPONSABLE
+
+
+
+
+
+
+5
+3
+139
+139
+10
+LigneCde
+LigneCde
+
+
+
+0
+264
+5
+LigneCde
+
+
+
+
+
+
+6
+/END_TABLE AMCTABL
+
+/BEGIN_TABLE AMCCOLN
+@       N5
+OID     N8
+COLN    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+TABL    N8
+DOMN    N8
+DTTP    A30
+MLEN    N8
+PREC    N2
+IDNT    N1
+WDEF    N1
+UNIT    A8
+FRMT    A20
+LVAL    A20
+HVAL    A20
+DVAL    A30
+UPPR    N1
+LOWR    N1
+NMDF    N1
+VALS    TXT
+CRUL    TXT
+SRUL    TXT
+PRIM    N1
+FORN    N1
+MAND    N1
+DISP    N1
+SOID    N8
+TOBJ    N5
+COBJ    A80
+CKCN    A30
+NUMR    N8
+/BEGIN_DATA AMCCOLN
+3
+2
+2
+Pdt_Code
+Pdt_Code
+
+
+
+1
+0
+CHAR(6)
+6
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+0
+1
+1
+76
+8
+Pdt_Code
+
+1
+3
+3
+3
+Pdt_Libelle
+Pdt_Libelle
+
+
+
+1
+0
+VARCHAR2(30)
+30
+0
+0
+0
+
+
+
+
+NULL
+0
+0
+0
+
+
+
+0
+0
+0
+1
+78
+8
+Pdt_Libelle
+
+2
+3
+4
+4
+Pdt_Poids
+Pdt_Poids
+
+
+
+1
+0
+NUMBER(6,2)
+6
+2
+0
+0
+
+
+
+
+NULL
+0
+0
+0
+
+
+
+0
+0
+0
+1
+80
+8
+TVel_Poids
+
+3
+3
+193
+193
+Pdt_PxCMUP
+Pdt_PxCMUP
+
+
+
+1
+0
+NUMBER(7,2)
+7
+2
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+372
+8
+Pdt_PxCMUP
+
+4
+3
+5
+5
+Pdt_QteStk
+Pdt_QteStk
+
+
+
+1
+0
+NUMBER(10)
+10
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+218
+8
+Pdt_QteStk
+
+5
+3
+6
+6
+Pdt_NbVols
+Pdt_NbVols
+
+
+
+1
+0
+NUMBER(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+220
+8
+Pdt_NbVols
+
+6
+3
+7
+7
+Pdt_NbCasses
+Pdt_NbCasses
+
+
+
+1
+0
+NUMBER(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+222
+8
+Pdt_NbCasses
+
+7
+3
+9
+9
+Fou_Code
+Fou_Code
+
+
+
+8
+0
+CHAR(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+0
+1
+1
+153
+8
+Fou_Code
+
+1
+3
+10
+10
+Fou_Nom
+Fou_Nom
+
+
+
+8
+0
+VARCHAR2(30)
+30
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+155
+8
+Fou_Nom
+
+2
+3
+11
+11
+Fou_Rue
+Fou_Rue
+
+
+
+8
+0
+VARCHAR2(50)
+50
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+157
+8
+Fou_Rue
+
+3
+3
+12
+12
+Fou_Cp
+Fou_Cp
+
+
+
+8
+0
+CHAR(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+159
+8
+Fou_Cp
+
+4
+3
+13
+13
+Fou_Ville
+Fou_Ville
+
+
+
+8
+0
+VARCHAR2(30)
+30
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+161
+8
+Fou_Ville
+
+5
+3
+14
+14
+Fou_Tel
+Fou_Tel
+
+
+
+8
+0
+VARCHAR2(15)
+15
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+163
+8
+Fou_Tel
+
+6
+3
+121
+121
+Fou_Mail
+Fou_Mail
+
+
+
+8
+0
+VARCHAR2(30)
+30
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+316
+8
+Fou_Mail
+
+7
+3
+16
+16
+Cde_Num
+Cde_Num
+
+
+
+15
+0
+NUMBER(3)
+3
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+0
+1
+1
+165
+8
+Cde_Num
+
+1
+3
+26
+26
+Cde_Fournisseur
+Cde_Fournisseur
+
+
+
+15
+0
+CHAR(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+1
+1
+1
+153
+8
+Fou_Code
+
+2
+3
+17
+17
+Cde_Date
+Cde_Date
+
+
+
+15
+0
+DATE
+0
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+167
+8
+Cde_Date
+
+4
+3
+125
+125
+Cde_Montant
+Cde_Montant
+
+
+
+15
+0
+NUMBER(6,2)
+6
+2
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+314
+8
+Cde_Montant
+
+5
+3
+209
+209
+Cde_Etat
+Cde_Etat
+
+
+
+15
+0
+VARCHAR2(20)
+20
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+370
+8
+Cde_Etat
+
+6
+3
+71
+71
+Dem_Num
+Dem_Num
+
+
+
+70
+0
+CHAR(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+0
+1
+1
+251
+8
+Dem_Num
+
+1
+3
+82
+82
+Dem_Produit
+Dem_Produit
+
+
+
+70
+0
+CHAR(6)
+6
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+1
+1
+1
+76
+8
+Pdt_Code
+
+2
+3
+85
+85
+Dem_Commande
+Dem_Commande
+
+
+
+70
+0
+NUMBER(3)
+3
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+1
+0
+1
+165
+8
+Cde_Num
+
+3
+3
+72
+72
+Dem_Date
+Dem_Date
+
+
+
+70
+0
+DATE
+0
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+253
+8
+Dem_Date
+
+4
+3
+73
+73
+Dem_Qte
+Dem_Qte
+
+
+
+70
+0
+NUMBER(2)
+2
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+255
+8
+Dem_Qte
+
+5
+3
+74
+74
+Dem_Valide
+Dem_Valide
+
+
+
+70
+0
+CHAR(1)
+1
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+263
+8
+Dem_Valide
+
+6
+3
+161
+161
+Dem_Responsab
+Dem_Responsab
+
+
+
+70
+0
+CHAR(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+1
+1
+1
+323
+8
+Res_Matricule
+
+7
+3
+131
+131
+Dem_Motif
+Dem_Motif
+
+
+
+70
+0
+VARCHAR2(50)
+50
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+318
+8
+Dem_Motif
+
+8
+3
+133
+133
+Res_Matricule
+Res_Matricule
+
+
+
+132
+0
+CHAR(5)
+5
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+0
+1
+1
+323
+8
+Res_Matricule
+
+1
+3
+134
+134
+Res_Nom
+Res_Nom
+
+
+
+132
+0
+VARCHAR2(35)
+35
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+324
+8
+Res_Nom
+
+2
+3
+135
+135
+Res_Prenom
+Res_Prenom
+
+
+
+132
+0
+VARCHAR2(35)
+35
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+325
+8
+Res_Prenom
+
+3
+3
+155
+155
+LigC_Commande
+LigC_Commande
+
+
+
+139
+0
+NUMBER(3)
+3
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+1
+1
+1
+165
+8
+Cde_Num
+
+1
+3
+158
+158
+LigC_Produit
+LigC_Produit
+
+
+
+139
+0
+CHAR(6)
+6
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+1
+1
+1
+1
+76
+8
+Pdt_Code
+
+2
+3
+140
+140
+LigC_QteCdee
+Lig_QteCdee
+
+
+
+139
+0
+NUMBER(2)
+2
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+308
+9
+Lig_QteCdee
+
+3
+3
+141
+141
+LigC_Prix
+LigC_Prix
+
+
+
+139
+0
+NUMBER(5,2)
+5
+2
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+310
+9
+LigC_Prix
+
+4
+3
+142
+142
+LigC_QteLivree
+LigC_QteLivree
+
+
+
+139
+0
+NUMBER(2)
+2
+0
+0
+0
+
+
+
+
+
+0
+0
+0
+
+
+
+0
+0
+0
+1
+312
+9
+LigC_QteLivree
+
+5
+/END_TABLE AMCCOLN
+
+/BEGIN_TABLE AMCREFR
+@       N5
+OID     N8
+REFR    N8
+NAME    A80
+CODE    A80
+DESC    TXT
+NOTE    TXT
+TABL1   N8
+TABL2   N8
+URUL    N1
+DRUL    N1
+MAND    N1
+CPRT    N1
+SOID    N8
+TOBJ    N5
+COBJ    A80
+FKCN    A30
+NUMR    N8
+/BEGIN_DATA AMCREFR
+3
+19
+19
+envoyer
+ENVOYER
+
+
+8
+15
+1
+1
+1
+1
+171
+6
+LIEN_171
+
+1
+3
+76
+76
+concerner
+concerner
+
+
+1
+70
+1
+1
+1
+1
+258
+6
+LIEN_258
+
+2
+3
+77
+77
+regrouper
+regrouper
+
+
+15
+70
+1
+1
+0
+1
+261
+6
+LIEN_261
+
+3
+3
+143
+143
+lien_265
+LIEN_265
+
+
+15
+139
+1
+1
+1
+1
+265
+6
+LIEN_265
+
+4
+3
+144
+144
+lien_266
+LIEN_266
+
+
+1
+139
+1
+1
+1
+1
+266
+6
+LIEN_266
+
+5
+3
+145
+145
+rediger
+rediger
+
+
+132
+70
+1
+1
+1
+1
+327
+6
+LIEN_327
+
+6
+/END_TABLE AMCREFR
+
+/BEGIN_TABLE AMCCCOL
+@       N5
+OID     N8
+CCOL    N8
+COLN1   N8
+COLN2   N8
+/BEGIN_DATA AMCCCOL
+1
+231
+231
+9
+26
+1
+234
+234
+2
+82
+1
+237
+237
+16
+85
+1
+240
+240
+16
+155
+1
+243
+243
+2
+158
+1
+246
+246
+133
+161
+/END_TABLE AMCCCOL
+
+/BEGIN_TABLE AMCCREF
+@       N5
+OID     N8
+CREF    N8
+REFR    N8
+CCOL    N8
+NUMR    N8
+/BEGIN_DATA AMCCREF
+3
+232
+232
+19
+231
+1
+3
+235
+235
+76
+234
+1
+3
+238
+238
+77
+237
+1
+3
+241
+241
+143
+240
+1
+3
+244
+244
+144
+243
+1
+3
+247
+247
+145
+246
+1
+/END_TABLE AMCCREF
+
+/BEGIN_TABLE AMCINDX
+@       N5
+OID     N8
+INDX    N8
+CODE    A80
+TABL    N8
+PRIM    N1
+FORN    N1
+UNIQ    N1
+CLUS    N1
+OPTS    TXT
+COBJ    A80
+NUMR    N8
+/BEGIN_DATA AMCINDX
+3
+35
+35
+TYPEVELO_PK
+1
+1
+0
+1
+0
+
+PK
+1
+3
+37
+37
+FOURNISSEUR_PK
+8
+1
+0
+1
+0
+
+PK
+2
+3
+39
+39
+COMMANDE_PK
+15
+1
+0
+1
+0
+
+PK
+3
+3
+41
+41
+ENVOYER_FK
+15
+0
+1
+0
+0
+
+FK19
+4
+3
+101
+101
+DEMANDE_PK
+70
+1
+0
+1
+0
+
+PK
+5
+3
+103
+103
+concerner_FK
+70
+0
+1
+0
+0
+
+FK76
+6
+3
+105
+105
+regrouper_FK
+70
+0
+1
+0
+0
+
+FK77
+7
+3
+178
+178
+rediger_FK
+70
+0
+1
+0
+0
+
+FK145
+8
+3
+180
+180
+RESPONSABLE_PK
+132
+1
+0
+1
+0
+
+PK
+9
+3
+182
+182
+LigneCde_PK
+139
+1
+0
+1
+0
+
+PK
+10
+3
+185
+185
+LIEN_265_FK
+139
+0
+1
+0
+0
+
+FK143
+11
+3
+187
+187
+LIEN_266_FK
+139
+0
+1
+0
+0
+
+FK144
+12
+/END_TABLE AMCINDX
+
+/BEGIN_TABLE AMCCIDX
+@       N5
+OID     N8
+CIDX    N8
+INDX    N8
+COLN    N8
+ASCD    N1
+NUMR    N8
+/BEGIN_DATA AMCCIDX
+3
+249
+249
+35
+2
+1
+1
+3
+251
+251
+37
+9
+1
+1
+3
+253
+253
+39
+16
+1
+1
+3
+255
+255
+41
+26
+1
+1
+3
+257
+257
+101
+71
+1
+1
+3
+259
+259
+103
+82
+1
+1
+3
+261
+261
+105
+85
+1
+1
+3
+263
+263
+178
+161
+1
+1
+3
+265
+265
+180
+133
+1
+1
+3
+267
+267
+182
+155
+1
+1
+3
+268
+268
+182
+158
+1
+2
+3
+270
+270
+185
+155
+1
+1
+3
+272
+272
+187
+158
+1
+1
+/END_TABLE AMCCIDX
+
+/BEGIN_TABLE AMCAKEY
+@       N5
+OID     N8
+AKEY    N8
+NAME    A80
+CODE    A80
+TABL    N8
+OPTS    TXT
+AKCN    A30
+NUMR    N8
+/BEGIN_DATA AMCAKEY
+/END_TABLE AMCAKEY
+
+/BEGIN_TABLE AMCCKEY
+@       N5
+OID     N8
+CKEY    N8
+AKEY    N8
+COLN    N8
+NUMR    N8
+/BEGIN_DATA AMCCKEY
+/END_TABLE AMCCKEY
+
+/BEGIN_TABLE AMCTRGR
+@       N5
+TEMP    A80
+TEXT    TXT
+NAME    A80
+TABL    N8
+ALWS    N1
+/BEGIN_DATA AMCTRGR
+/END_TABLE AMCTRGR
+
+/BEGIN_TABLE AMCPROC
+@       N5
+OID     N8
+PROC    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+TEXT    TXT
+FUNC    N1
+NUMR    N8
+/BEGIN_DATA AMCPROC
+/END_TABLE AMCPROC
+
+/BEGIN_TABLE AMCVIEW
+@       N5
+OID     N8
+VIEW    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+CUST    N1
+LOBJ    TXT
+QURY    TXT
+UPDT    N1
+GENE    N1
+CHCK    N1
+NUMR    N8
+/BEGIN_DATA AMCVIEW
+/END_TABLE AMCVIEW
+
+/BEGIN_TABLE AMCRULE
+@       N5
+OID     N8
+RULE    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+TYPE    N5
+FLAG    N5
+CEXP    TXT
+SEXP    TXT
+LOBJ    TXT
+SOID    N8
+COBJ    A80
+NUMR    N8
+/BEGIN_DATA AMCRULE
+/END_TABLE AMCRULE
+
+/BEGIN_TABLE AMCTSPC
+@       N5
+OID     N8
+TSPC    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+OPTS    TXT
+NUMR    N8
+/BEGIN_DATA AMCTSPC
+/END_TABLE AMCTSPC
+
+/BEGIN_TABLE AMCSTOR
+@       N5
+OID     N8
+STOR    N8
+NAME    A80
+CODE    A80
+LABL    A80
+DESC    TXT
+NOTE    TXT
+OPTS    TXT
+NUMR    N8
+/BEGIN_DATA AMCSTOR
+/END_TABLE AMCSTOR
+
+/BEGIN_TABLE AMCRPRT
+@       N5
+OID     N8
+RPRT    N8
+FLGS    N8
+NAME    A64
+DESC    A254
+TMLT    BIN
+/BEGIN_DATA AMCRPRT
+/END_TABLE AMCRPRT
+
+/BEGIN_TABLE AMCSLCT
+RPRT    N8
+MODL    N8
+LOBJ    TXT
+/BEGIN_DATA AMCSLCT
+/END_TABLE AMCSLCT
+
+/BEGIN_TABLE AMCCNST
+@       N5
+CNST    N8
+MODL    N8
+NAME    A30
+TYPE    A20
+VALE    A80
+RSRV    N1
+/BEGIN_DATA AMCCNST
+/END_TABLE AMCCNST
+
+/BEGIN_TABLE AMCEXAT
+@       N5
+EXAT    N8
+MODL    N8
+NAME    A30
+TYPE    A20
+LABL    A80
+VALE    A80
+TOBJ    N5
+RSRV    N1
+/BEGIN_DATA AMCEXAT
+/END_TABLE AMCEXAT
+
+/BEGIN_TABLE AMCEXAV
+@       N5
+EXAV    N8
+MODL    N8
+EXAT    N8
+VALE    A80
+OBJT    N8
+/BEGIN_DATA AMCEXAV
+/END_TABLE AMCEXAV
+
+/BEGIN_TABLE PBEDTS
+@       N5
+EDTN    N8
+NAME    A30
+EDIT    A254
+TYPE    N5
+CNTR    N8
+SEQN    N5
+FLAG    N12
+RSVD    A32
+/BEGIN_DATA PBEDTS
+/END_TABLE PBEDTS
+
+/BEGIN_TABLE PBFRMT
+@       N5
+FMTN    N8
+NAME    A30
+FRMT    A254
+TYPE    N5
+CNTR    N8
+GENE    N8
+/BEGIN_DATA PBFRMT
+/END_TABLE PBFRMT
+
+/BEGIN_TABLE PBVALD
+@       N5
+VLDN    N8
+NAME    A30
+VALD    A254
+TYPE    N5
+CNTR    N8
+VMSG    A254
+GENE    N8
+/BEGIN_DATA PBVALD
+/END_TABLE PBVALD
+
+/BEGIN_TABLE AMCFONT
+FONT    N5
+FNAM    A32
+FSIZ    N5
+FSTY    N5
+/BEGIN_DATA AMCFONT
+1
+Arial
+8
+0
+2
+MS Sans Serif
+8
+0
+3
+Arial
+8
+1
+4
+Arial
+8
+8
+5
+Arial
+6
+1
+6
+Courier New
+10
+1
+/END_TABLE AMCFONT
+
+/BEGIN_TABLE AMCPENS
+PENS    N5
+PSTY    N5
+PCLR    N8
+PWID    N5
+/BEGIN_DATA AMCPENS
+1
+1
+0
+0
+2
+1
+255
+0
+/END_TABLE AMCPENS
+
+/BEGIN_TABLE AMCBRSH
+BRSH    N5
+BSTY    N5
+BCLR    N8
+BHAT    N5
+/BEGIN_DATA AMCBRSH
+1
+0
+32896
+0
+2
+0
+16777215
+0
+3
+0
+255
+0
+4
+0
+65280
+0
+5
+0
+0
+0
+/END_TABLE AMCBRSH
+
+/BEGIN_TABLE AMCPROP
+PROP    N5
+MODL    N8
+SUBM    N8
+SECT    A30
+NPRO    A30
+VPRO    A80
+/BEGIN_DATA AMCPROP
+0
+12
+0
+Donn‚es
+Shadow
+no
+1
+12
+0
+Donn‚es
+AutoAdjust
+yes
+2
+12
+0
+Donn‚es
+LineStyle
+2
+3
+12
+0
+Donn‚es
+PrnScale
+100
+4
+12
+0
+Donn‚es
+Orientation
+1
+5
+12
+0
+Donn‚es
+DefCheckName
+no
+6
+12
+0
+Donn‚es
+LengthName
+80
+7
+12
+0
+Donn‚es
+UpprCaseName
+no
+8
+12
+0
+Donn‚es
+LowrCaseName
+no
+9
+12
+0
+Donn‚es
+CaseSensName
+yes
+10
+12
+0
+Donn‚es
+AllowAllName
+yes
+11
+12
+0
+Donn‚es
+AllowChrName
+
+12
+12
+0
+Donn‚es
+InvldChrName
+"+-*/\.,!:;"
+13
+12
+0
+Donn‚es
+NoAccentName
+no
+14
+12
+0
+Donn‚es
+DefCheckCode
+no
+15
+12
+0
+Donn‚es
+LengthCode
+80
+16
+12
+0
+Donn‚es
+UpprCaseCode
+no
+17
+12
+0
+Donn‚es
+LowrCaseCode
+no
+18
+12
+0
+Donn‚es
+CaseSensCode
+yes
+19
+12
+0
+Donn‚es
+AllowAllCode
+no
+20
+12
+0
+Donn‚es
+AllowChrCode
+'a'-'z', 'A'-'Z', '0'-'9', "_"
+21
+12
+0
+Donn‚es
+InvldChrCode
+
+22
+12
+0
+Donn‚es
+NoAccentCode
+yes
+23
+12
+0
+Donn‚es
+PdmShowName
+yes
+24
+12
+0
+Donn‚es
+PdmShowPrim
+yes
+25
+12
+0
+Donn‚es
+PdmShowColn
+yes
+26
+12
+0
+Donn‚es
+PdmShowDttp
+no
+27
+12
+0
+Donn‚es
+PdmShowKeys
+no
+28
+12
+0
+Donn‚es
+PdmShowNull
+no
+29
+12
+0
+Donn‚es
+PdmShowIndx
+no
+30
+12
+0
+Donn‚es
+PdmShowNameRefr
+yes
+31
+12
+0
+Donn‚es
+PdmShowJoinRefr
+no
+32
+12
+0
+Donn‚es
+PdmShowCnstRefr
+no
+33
+12
+0
+Donn‚es
+PdmShowColnView
+yes
+34
+12
+0
+Donn‚es
+PdmShowDttpView
+yes
+35
+12
+0
+Donn‚es
+PdmShowExprView
+yes
+36
+12
+0
+Donn‚es
+PdmShowTablView
+yes
+37
+12
+0
+Donn‚es
+PdmRltnMode
+yes
+38
+12
+0
+Donn‚es
+PdmAutoMigrFkey
+yes
+39
+12
+0
+Donn‚es
+PdmRefrUnique
+yes
+40
+10
+0
+Donn‚es
+Shadow
+no
+41
+10
+0
+Donn‚es
+AutoAdjust
+yes
+42
+10
+0
+Donn‚es
+LineStyle
+2
+43
+10
+0
+Donn‚es
+PrnScale
+100
+44
+10
+0
+Donn‚es
+Orientation
+1
+45
+10
+0
+Donn‚es
+DefCheckName
+no
+46
+10
+0
+Donn‚es
+LengthName
+80
+47
+10
+0
+Donn‚es
+UpprCaseName
+no
+48
+10
+0
+Donn‚es
+LowrCaseName
+no
+49
+10
+0
+Donn‚es
+CaseSensName
+yes
+50
+10
+0
+Donn‚es
+AllowAllName
+yes
+51
+10
+0
+Donn‚es
+AllowChrName
+
+52
+10
+0
+Donn‚es
+InvldChrName
+"+-*/\.,!:;"
+53
+10
+0
+Donn‚es
+NoAccentName
+no
+54
+10
+0
+Donn‚es
+DefCheckCode
+no
+55
+10
+0
+Donn‚es
+LengthCode
+80
+56
+10
+0
+Donn‚es
+UpprCaseCode
+no
+57
+10
+0
+Donn‚es
+LowrCaseCode
+no
+58
+10
+0
+Donn‚es
+CaseSensCode
+yes
+59
+10
+0
+Donn‚es
+AllowAllCode
+no
+60
+10
+0
+Donn‚es
+AllowChrCode
+'a'-'z', 'A'-'Z', '0'-'9', "_"
+61
+10
+0
+Donn‚es
+InvldChrCode
+
+62
+10
+0
+Donn‚es
+NoAccentCode
+yes
+63
+10
+0
+Donn‚es
+PdmShowName
+yes
+64
+10
+0
+Donn‚es
+PdmShowPrim
+yes
+65
+10
+0
+Donn‚es
+PdmShowColn
+yes
+66
+10
+0
+Donn‚es
+PdmShowDttp
+no
+67
+10
+0
+Donn‚es
+PdmShowKeys
+no
+68
+10
+0
+Donn‚es
+PdmShowNull
+no
+69
+10
+0
+Donn‚es
+PdmShowIndx
+no
+70
+10
+0
+Donn‚es
+PdmShowNameRefr
+yes
+71
+10
+0
+Donn‚es
+PdmShowJoinRefr
+no
+72
+10
+0
+Donn‚es
+PdmShowCnstRefr
+no
+73
+10
+0
+Donn‚es
+PdmShowColnView
+yes
+74
+10
+0
+Donn‚es
+PdmShowDttpView
+yes
+75
+10
+0
+Donn‚es
+PdmShowExprView
+yes
+76
+10
+0
+Donn‚es
+PdmShowTablView
+yes
+77
+10
+0
+Donn‚es
+PdmRltnMode
+yes
+78
+10
+0
+Donn‚es
+PdmAutoMigrFkey
+yes
+79
+10
+0
+Donn‚es
+PdmRefrUnique
+yes
+80
+10
+0
+Donn‚es
+DBOCreaTspc
+no
+81
+10
+0
+Donn‚es
+DBOCreaStor
+no
+82
+10
+0
+Donn‚es
+DBOCreaDtbs
+no
+83
+10
+0
+Donn‚es
+DBOOpenDtbs
+no
+84
+10
+0
+Donn‚es
+DBOClosDtbs
+no
+85
+10
+0
+Donn‚es
+DBOCreaTabl
+yes
+86
+10
+0
+Donn‚es
+DBOConsPkey
+yes
+87
+10
+0
+Donn‚es
+DBOConsFkey
+yes
+88
+10
+0
+Donn‚es
+DBOConsIDcl
+yes
+89
+10
+0
+Donn‚es
+DBOConsAkey
+yes
+90
+10
+0
+Donn‚es
+DBOConsChck
+yes
+91
+10
+0
+Donn‚es
+DBOConsDeft
+yes
+92
+10
+0
+Donn‚es
+DBOConsUddt
+no
+93
+10
+0
+Donn‚es
+DBOCreaView
+no
+94
+10
+0
+Donn‚es
+DBOTablComm
+no
+95
+10
+0
+Donn‚es
+DBOColnComm
+no
+96
+10
+0
+Donn‚es
+DBOViewComm
+no
+97
+10
+0
+Donn‚es
+DBOPrimIndx
+no
+98
+10
+0
+Donn‚es
+DBOFornIndx
+yes
+99
+10
+0
+Donn‚es
+DBOAltrIndx
+no
+100
+10
+0
+Donn‚es
+DBOOthrIndx
+yes
+101
+10
+0
+Donn‚es
+DBODropTspc
+no
+102
+10
+0
+Donn‚es
+DBODropStor
+no
+103
+10
+0
+Donn‚es
+DBODropDtbs
+no
+104
+10
+0
+Donn‚es
+DBODropTabl
+no
+105
+10
+0
+Donn‚es
+DBODropIndx
+no
+106
+10
+0
+Donn‚es
+DBODropView
+no
+107
+10
+0
+Donn‚es
+DBOConsIDUR
+yes
+108
+10
+0
+Donn‚es
+DBOConsIDUC
+no
+109
+10
+0
+Donn‚es
+DBOConsIDUN
+no
+110
+10
+0
+Donn‚es
+DBOConsIDUD
+no
+111
+10
+0
+Donn‚es
+DBOConsIDDR
+yes
+112
+10
+0
+Donn‚es
+DBOConsIDDC
+yes
+113
+10
+0
+Donn‚es
+DBOConsIDDN
+no
+114
+10
+0
+Donn‚es
+DBOConsIDDD
+no
+115
+10
+0
+Donn‚es
+DBOUseTrgUR
+no
+116
+10
+0
+Donn‚es
+DBOUseTrgUC
+yes
+117
+10
+0
+Donn‚es
+DBOUseTrgUN
+yes
+118
+10
+0
+Donn‚es
+DBOUseTrgUD
+yes
+119
+10
+0
+Donn‚es
+DBOUseTrgDR
+no
+120
+10
+0
+Donn‚es
+DBOUseTrgDC
+no
+121
+10
+0
+Donn‚es
+DBOUseTrgDN
+yes
+122
+10
+0
+Donn‚es
+DBOUseTrgDD
+yes
+123
+10
+0
+Donn‚es
+DBOLowrCase
+no
+124
+10
+0
+Donn‚es
+DBOUpprCase
+no
+125
+10
+0
+Donn‚es
+DBONoAccent
+no
+126
+10
+0
+Donn‚es
+DBOAnsiChar
+no
+127
+10
+0
+Donn‚es
+DBOAddTitle
+yes
+128
+10
+0
+Donn‚es
+DBOUseNames
+no
+129
+10
+0
+Donn‚es
+DBOSqlODBC
+no
+/END_TABLE AMCPROP
+
+/BEGIN_TABLE AMCSYMB
+@       N5
+SID     N8
+TSYM    N5
+SSYM    N8
+NUMR    N8
+CSID    N8
+SID1    N8
+SID2    N8
+CLND    N8
+CLNN    N5
+RCX1    N8
+RCY1    N8
+RCX2    N8
+RCY2    N8
+PENS    N5
+BRSH    N5
+CTXT    N8
+FONT    N5
+JUST    N5
+WOVL    N8
+HOVL    N8
+SARR    N5
+CARR    N5
+TARR    N5
+NBPT    N8
+LSPT    BIN
+LSTY    N5
+TEXT    TXT
+PICT    PIC
+BTMP    BMP
+GRPH    N8
+OID     N8
+/BEGIN_DATA AMCSYMB
+3
+814
+289
+0
+1
+0
+0
+0
+0
+0
+366
+-14831
+6365
+-6424
+2
+2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+
+
+
+813
+1
+3
+815
+289
+2
+2
+0
+0
+0
+0
+0
+-14716
+8792
+-8117
+17199
+2
+2
+255
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+
+
+
+813
+8
+3
+816
+289
+0
+3
+0
+0
+0
+0
+0
+-961
+10400
+6015
+16855
+2
+2
+255
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+
+
+
+813
+15
+3
+817
+289
+0
+4
+0
+0
+0
+0
+0
+11414
+536
+18839
+9918
+2
+2
+255
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+
+
+
+813
+70
+3
+818
+289
+0
+5
+0
+0
+0
+0
+0
+27286
+3360
+34185
+7859
+2
+2
+255
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+
+
+
+813
+132
+3
+828
+289
+0
+6
+0
+0
+0
+0
+0
+-615
+-2455
+6811
+4000
+2
+2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+
+
+
+813
+139
+3
+819
+290
+0
+7
+0
+815
+816
+0
+0
+0
+0
+0
+0
+2
+3
+0
+0
+0
+0
+0
+1
+0
+0
+2
+75daffff073300000700000007330000
+2
+
+
+
+813
+19
+3
+822
+290
+0
+8
+0
+814
+817
+0
+0
+0
+0
+0
+0
+2
+3
+0
+0
+0
+0
+0
+1
+0
+0
+3
+250d00007dd6ffff7b3c00007dd6ffff7b3c0000c5100000
+2
+
+
+
+813
+76
+3
+825
+290
+0
+9
+0
+816
+817
+0
+0
+0
+0
+0
+0
+2
+3
+0
+0
+0
+0
+0
+1
+0
+0
+3
+7814000013380000e33b000013380000e33b000070140000
+2
+
+
+
+813
+77
+3
+829
+290
+0
+10
+0
+816
+828
+0
+0
+0
+0
+0
+0
+2
+3
+0
+0
+0
+0
+0
+1
+0
+0
+2
+740b0000c3300000740b000005030000
+2
+
+
+
+813
+143
+3
+832
+290
+0
+11
+0
+814
+828
+0
+0
+0
+0
+0
+0
+2
+3
+0
+0
+0
+0
+0
+1
+0
+0
+2
+990c00007dd6ffff990c000005030000
+2
+
+
+
+813
+144
+3
+835
+290
+0
+12
+0
+818
+817
+0
+0
+0
+0
+0
+0
+2
+3
+0
+0
+0
+0
+0
+1
+0
+0
+2
+6a7a0000f71500005c400000f7150000
+2
+
+
+
+813
+145
+/END_TABLE AMCSYMB
+
+

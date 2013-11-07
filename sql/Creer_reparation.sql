@@ -100,11 +100,11 @@ create index appartenir_FK on VELO (Vel_Type asc)
 create table DEMANDEINTER
 (
     DemI_Num          CHAR(5)                not null,
-    Deml_Velo         CHAR(5)                not null,
+    DemI_Velo         CHAR(5)                not null,
     DemI_Date         DATE                   null    ,
-    Deml_Technicien    CHAR(5)                not null,
-    Deml_Motif        VARCHAR2(50)           null    ,
-    Deml_Traite       CHAR(1)                null    ,
+    DemI_Technicien    CHAR(5)                not null,
+    DemI_Motif        VARCHAR2(50)           null    ,
+    DemI_Traite       CHAR(1)                null    ,
     constraint PK_DEMANDEINTER primary key (DemI_Num)
 )
 /
