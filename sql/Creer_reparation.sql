@@ -112,13 +112,13 @@ create table DEMANDEINTER
 -- ============================================================
 --   Index : CORRESPONDRE_FK                                   
 -- ============================================================
-create index CORRESPONDRE_FK on DEMANDEINTER (Deml_Velo asc)
+create index CORRESPONDRE_FK on DEMANDEINTER (DemI_Velo asc)
 /
 
 -- ============================================================
 --   Index : rediger_FK                                        
 -- ============================================================
-create index rediger_FK on DEMANDEINTER (Dem_Technicien asc)
+create index rediger_FK on DEMANDEINTER (DemI_Technicien asc)
 /
 
 -- ============================================================
@@ -174,7 +174,7 @@ alter table VELO
 /
 
 alter table DEMANDEINTER
-    add constraint FK_DEMANDEINTER_VELO foreign key  (Deml_Velo)
+    add constraint FK_DEMANDEINTER_VELO foreign key  (DemI_Velo)
        references VELO (Vel_Num)
 /
 
