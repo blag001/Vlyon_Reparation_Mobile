@@ -1,0 +1,165 @@
+commit 64b3d794dbcbaaade663d716e2184be3689b0d9b
+Author: blag <blag@rakshata.com>
+Date:   Thu Nov 14 01:05:20 2013 +0100
+
+    move du gant dans un subfolder
+
+ diagTaches1.gan     |  137 ---------------------------------------------------
+ gan/diagTaches1.gan |  137 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 137 insertions(+), 137 deletions(-)
+
+commit a47c5d2c7bf8af70a2a689590d96ff07c07b3020
+Author: blag <blag@rakshata.com>
+Date:   Thu Nov 14 01:00:45 2013 +0100
+
+    grosse MAJ avec ajout des fichiers SLAM3 (procedure), ajout des doc produit et MAJ des .SQL
+
+ choix_technique_EK-EB.odt                          |  Bin 0 -> 2374117 bytes
+ choix_technique_EK-EB.pdf                          |  Bin 0 -> 3384879 bytes
+ diagTaches1.gan                                    |   26 ++-
+ implementation_procedures_BM-EK-EB-LO-SM.odt       |  Bin 0 -> 1077702 bytes
+ implementation_procedures_BM-EK-EB-LO-SM.pdf       |  Bin 0 -> 1446239 bytes
+ kev/PPE2-03_V-Lyon_Contexte.doc                    |  Bin 0 -> 2912768 bytes
+ kev/avancement.docx                                |  Bin 0 -> 13154 bytes
+ kev/demandeInterv.docx                             |  Bin 0 -> 12638 bytes
+ kev/visualiserInfoVelo.docx                        |  Bin 0 -> 47956 bytes
+ kev/visualiserStations.docx                        |  Bin 0 -> 13827 bytes
+ kev/visualiserUneStation.docx                      |  Bin 0 -> 12633 bytes
+ procIncererIntervention.sql                        |   14 --
+ procedure/benoit/fct_MaxCode_BONINTERV.sql         |   20 ++
+ procedure/benoit/fct_existeDemandeI.sql            |   16 ++
+ procedure/benoit/fct_existeEtat.sql                |   16 ++
+ procedure/benoit/proc_chgEtatVelo.sql              |   30 +++
+ procedure/benoit/proc_insererIntervention.sql      |   40 ++++
+ procedure/benoit/proc_modfierDemInter.sql          |   38 ++++
+ procedure/benoit/screen/fct_MaxCode_BONINTERV.png  |  Bin 0 -> 8976 bytes
+ procedure/benoit/screen/fct_existeDemandeI.png     |  Bin 0 -> 8520 bytes
+ procedure/benoit/screen/fct_existeEtat.png         |  Bin 0 -> 8275 bytes
+ .../benoit/screen/proc_insererIntervention.png     |  Bin 0 -> 10428 bytes
+ procedure/fct_existeProduit.sql                    |   16 ++
+ procedure/fct_existeTechnicien.sql                 |   15 ++
+ procedure/fct_existeVelo.sql                       |   16 ++
+ procedure/kevin/fct_existeDemInterv.sql            |   12 ++
+ procedure/kevin/proc_insererDemInterv.sql          |   14 ++
+ procedure/maxence/fun_existeBON.sql                |   14 ++
+ procedure/maxence/fun_existeEtat.sql               |   14 ++
+ procedure/maxence/fun_existeStation.sql            |   14 ++
+ procedure/maxence/proc_affecterVelo.sql            |   31 +++
+ procedure/maxence/proc_modifDureeInt.sql           |   20 ++
+ procedure/maxence/proc_modifEtat.sql               |   22 +++
+ procedure/maxence/proc_modifStation.sql            |   31 +++
+ procedure/olivier/ExisteTechnicien.sql             |   15 ++
+ procedure/olivier/ModifierVelo.sql                 |   25 +++
+ procedure/olivier/SupprimerTechnicien.sql          |   11 +
+ procedure/olivier/fct_existeVelo.sql               |   14 ++
+ procedure/olivier/inserTech.sql                    |   25 +++
+ procedure/proc_affecterVelo.sql                    |   32 +++
+ procedure/proc_existEtat.sql                       |   14 ++
+ procedure/proc_existFI.sql                         |   14 ++
+ procedure/proc_inserTech.sql                       |   25 +++
+ procedure/proc_insererProduit.sql                  |   15 ++
+ procedure/proc_insererVelo.sql                     |   15 ++
+ procedure/proc_modifDureeInt.sql                   |   20 ++
+ procedure/proc_modifEtat.sql                       |   24 +++
+ procedure/proc_modifierVelo.sql                    |   25 +++
+ procedure/proc_supprimerStation.sql                |    9 +
+ procedure/proc_supprimerTechnicien.sql             |   11 +
+ procedure/procedure.zip                            |  Bin 0 -> 43739 bytes
+ sql/Creer_reparation.sql                           |   46 +++---
+ sql/Creer_reparation_mysql.sql                     |  200 ++++++++++++++++++++
+ 53 files changed, 914 insertions(+), 45 deletions(-)
+
+commit ac12e1e65e609b45e0b18abe687835e249a1a652
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 16:35:09 2013 +0100
+
+    mise à jour du Gantt avec les progressions et l'ajout des taches ouliees
+
+ diagTaches1.gan |  219 ++++++++++++++++++++++++++++++++-----------------------
+ 1 files changed, 127 insertions(+), 92 deletions(-)
+
+commit 60688e3d780bcd5f60735ea38c1fbd088226156f
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 15:49:23 2013 +0100
+
+    re modif L en I
+
+ sql/Creer_reparation.sql |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit d68e57ec548c44e90c0814898d9588a7e562dedf
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 15:44:06 2013 +0100
+
+    correction du sql I et L + ajout des MDP et MDC
+
+ modelisation/Creer_achat_velos.MPD      | 3465 +++++++++++++++++++++++
+ modelisation/Creer_achat_velos.mcd      | 2738 ++++++++++++++++++
+ modelisation/Creer_reparation_velos.MPD | 4037 +++++++++++++++++++++++++++
+ modelisation/Creer_reparation_velos.mcd | 3417 +++++++++++++++++++++++
+ modelisation/Creer_velos.MPD            | 4643 +++++++++++++++++++++++++++++++
+ modelisation/Creer_velos.mcd            | 3843 +++++++++++++++++++++++++
+ sql/Creer_reparation.sql                |    8 +-
+ 7 files changed, 22147 insertions(+), 4 deletions(-)
+
+commit acdcce4ff4d17f40ee8943a906497c9c32729d14
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 15:16:30 2013 +0100
+
+    mise a jour des fichiers de modelisation de la base (version Mme Levert) + retouche uml
+
+ sql/Creer_location.sql   |   23 ++++++-----
+ sql/Creer_reparation.sql |   93 +++++++++++++++++++++-------------------------
+ sql/creer_achat.sql      |   22 ++++++-----
+ uml/diagTecRespAch.dia   |  Bin 2589 -> 2627 bytes
+ uml/diagTecRespAch.png   |  Bin 30559 -> 62789 bytes
+ 5 files changed, 66 insertions(+), 72 deletions(-)
+
+commit ea8a32b10dbb60315f06e04e11b7cba51de84e78
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 14:24:48 2013 +0100
+
+    mise à jour du git avec le fichier de test
+
+ test |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit 32fe6d0e4ef9075b7210493c28e2d4aff1a17667
+Merge: 7abdc20 8e5c7be
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 14:24:17 2013 +0100
+
+    Merge /home/benoit/Dropbox/sio_webapp/curent_site
+
+commit 7abdc20443f46baa0a4a8261e983f836747123ac
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 14:22:36 2013 +0100
+
+    mise en place du git
+
+ avancement.docx                      |  Bin 0 -> 12568 bytes
+ curent_site                          |    1 +
+ description_procedure_stockee_BE.odt |  Bin 0 -> 25361 bytes
+ description_procedure_stockee_BE.pdf |  Bin 0 -> 41855 bytes
+ diagTaches1.gan                      |   92 ++++++++++++++
+ procIncererIntervention.sql          |   14 ++
+ procedure_BE                         |    3 +
+ sql/Creer_location.sql               |  232 ++++++++++++++++++++++++++++++++++
+ sql/Creer_reparation.sql             |  209 ++++++++++++++++++++++++++++++
+ sql/creer_achat.sql                  |  159 +++++++++++++++++++++++
+ sujet/PPE2-03_V-Lyon_Contexte.doc    |  Bin 0 -> 2912768 bytes
+ sujet/photo.jpg                      |  Bin 0 -> 662643 bytes
+ sujet/photo_1.jpg                    |  Bin 0 -> 825334 bytes
+ sujet/photo_2.jpg                    |  Bin 0 -> 579661 bytes
+ uml/diagTecRespAch.dia               |  Bin 0 -> 2589 bytes
+ uml/diagTecRespAch.png               |  Bin 0 -> 30559 bytes
+ 16 files changed, 710 insertions(+), 0 deletions(-)
+
+commit 8e5c7bef34f6f8013773e902eb141034e05f79b1
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Oct 17 10:23:12 2013 +0200
+
+    ajout du ficher test
+
+ test |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
