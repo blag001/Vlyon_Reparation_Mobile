@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION existeDemandeI
+(
+	pDemI_Num IN DEMANDEINTER.DemI_Num%TYPE
+)
+RETURN boolean
+IS
+	iNb integer;
+BEGIN
+	SELECT COUNT(*)
+	INTO iNb
+	FROM DEMANDEINTER
+	WHERE DemI_Num = pDemI_Num;
+
+	RETURN (iNb=1);
+END;
+/

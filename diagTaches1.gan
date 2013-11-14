@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-10-14" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
+<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-10-26" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Nom" width="66" order="0"/>
@@ -7,8 +7,8 @@
         <field id="tpd5" name="Date de fin" width="17" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="52" order="0"/>
-        <field id="1" name="Rôle par défaut" width="47" order="1"/>
+        <field id="0" name="Nom" width="50" order="0"/>
+        <field id="1" name="Rôle par défaut" width="49" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -58,7 +58,9 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="49" expand="true"/>
+        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="50" expand="true">
+            <notes><![CDATA[sous la forme de ce Gantt]]></notes>
+        </task>
         <task id="5" name="Rédaction documents techniques" color="#8cb6ce" meeting="false" start="2013-11-07" duration="16" complete="0" expand="true">
             <notes><![CDATA[-> jeux d'essai
 -> choix technique
@@ -72,23 +74,31 @@
 -> suppressions
 -> auteur
 -> date
--> lignes modifiés]]></notes>
+-> lignes modifiés
+
+À faire en .doc : justifiactions technique]]></notes>
         </task>
         <task id="0" name="Diagramme Activité Technicien (UML)" color="#8cb6ce" meeting="false" start="2013-10-17" duration="1" complete="100" expand="true">
             <depend id="20" type="2" difference="0" hardness="Rubber"/>
         </task>
-        <task id="20" name="Maquettes interfaces" color="#8cb6ce" meeting="false" start="2013-11-07" duration="1" complete="0" expand="true">
+        <task id="20" name="Maquettes interfaces" color="#8cb6ce" meeting="false" start="2013-11-07" duration="1" complete="76" expand="true">
             <depend id="28" type="2" difference="0" hardness="Strong"/>
+            <depend id="44" type="2" difference="0" hardness="Strong"/>
         </task>
+        <task id="44" name="Charte graphique" color="#8cb6ce" meeting="false" start="2013-11-08" duration="1" complete="0" expand="true"/>
         <task id="9" name="Modéliser le système d'information" color="#8cb6ce" meeting="false" start="2013-10-17" duration="15" complete="100" expand="true">
             <notes><![CDATA[Déjà fait en classe en grande partie
 ]]></notes>
             <depend id="14" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="14" name="Generation de la base MySQL" color="#8cb6ce" meeting="false" start="2013-11-08" duration="3" complete="0" expand="true">
+        <task id="14" name="Generation de la base MySQL" color="#8cb6ce" meeting="false" start="2013-11-08" duration="1" complete="82" expand="true">
+            <notes><![CDATA[convertir la syntaxe oracle en MySQL]]></notes>
             <depend id="28" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="28" name="developpement" color="#8cb6ce" meeting="false" start="2013-11-14" duration="15" complete="0" expand="true"/>
+        <task id="28" name="developpement" color="#8cb6ce" meeting="false" start="2013-11-12" duration="14" complete="0" expand="true">
+            <notes><![CDATA[imtégrer le design
+mettre en place les différents modules]]></notes>
+        </task>
     </tasks>
     <resources>
         <resource id="0" name="Benoit" function="Default:0" contacts="" phone=""/>

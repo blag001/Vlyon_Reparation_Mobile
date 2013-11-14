@@ -10,14 +10,14 @@
 create table STATION
 (
     Sta_Code          CHAR(5)                not null,
-    Sta_Nom           VARCHAR2(30)           null    ,
-    Sta_Rue           VARCHAR2(50)           null    ,
-    Sta_NbAttaches    NUMBER(2)              null    ,
-    Sta_NbVelos       NUMBER(2)              null    ,
-    Sta_NbAttacDispo  NUMBER(2)              null    ,
-    Sta_NbTotLoc      NUMBER(10)             null    ,
-    Sta_NbVols        NUMBER(5)              null    ,
-    Sta_NbDegrad      NUMBER(5)              null    ,
+    Sta_Nom           VARCHAR(30)           null    ,
+    Sta_Rue           VARCHAR(50)           null    ,
+    Sta_NbAttaches    DECIMAL(2)              null    ,
+    Sta_NbVelos       DECIMAL(2)              null    ,
+    Sta_NbAttacDispo  DECIMAL(2)              null    ,
+    Sta_NbTotLoc      DECIMAL(10)             null    ,
+    Sta_NbVols        DECIMAL(5)              null    ,
+    Sta_NbDegrad      DECIMAL(5)              null    ,
     constraint PK_STATION primary key (Sta_Code)
 )
 ;
@@ -27,8 +27,8 @@ create table STATION
 -- ============================================================
 create table ETAT
 (
-    Eta_Code          CHAR(10)               not null,
-    Eta_Libelle       VARCHAR2(30)           null    ,
+    Eta_Code          INT               not null AUTO_INCREMENT,
+    Eta_Libelle       VARCHAR(30)           null    ,
     constraint PK_ETAT primary key (Eta_Code)
 )
 ;
@@ -38,13 +38,13 @@ create table ETAT
 -- ============================================================
 create table PRODUIT
 (
-    Pdt_Code          CHAR(6)                not null,
-    Pdt_Libelle       VARCHAR2(30)           null    ,
-    Pdt_Poids         NUMBER(10)             null    ,
-    Pdt_PxCMUP        NUMBER(6,2)            null    ,
-    Pdt_QteStk        NUMBER(10)             null    ,
-    Pdt_NbVols        NUMBER(5)              null    ,
-    Pdt_NbCasses      NUMBER(5)              null    ,
+    Pdt_Code          CHAR(6)                not null AUTO_INCREMENT,
+    Pdt_Libelle       VARCHAR(30)           null    ,
+    Pdt_Poids         DECIMAL(10)             null    ,
+    Pdt_PxCMUP        DECIMAL(6,2)            null    ,
+    Pdt_QteStk        DECIMAL(10)             null    ,
+    Pdt_NbVols        DECIMAL(5)              null    ,
+    Pdt_NbCasses      DECIMAL(5)              null    ,
     constraint PK_PRODUIT primary key (Pdt_Code)
 )
 ;
@@ -54,9 +54,9 @@ create table PRODUIT
 -- ============================================================
 create table TECHNICIEN
 (
-    Tec_Matricule     CHAR(5)                not null,
-    Tec_Nom           VARCHAR2(35)           null    ,
-    Tec_Prenom        VARCHAR2(35)           null    ,
+    Tec_Matricule     INT                not null AUTO_INCREMENT,
+    Tec_Nom           VARCHAR(35)           null    ,
+    Tec_Prenom        VARCHAR(35)           null    ,
     constraint PK_TECHNICIEN primary key (Tec_Matricule)
 )
 ;
@@ -68,10 +68,10 @@ create table VELO
 (
     Vel_Num           CHAR(5)                not null,
     Vel_Station       CHAR(5)                null    ,
-    Vel_Etat          CHAR(10)               not null,
+    Vel_Etat          INT               not null,
     Vel_Type          CHAR(6)                not null,
-    Vel_Accessoire    VARCHAR2(20)           null    ,
-    Vel_Casse         CHAR(1)                null    ,
+    Vel_Accessoire    VARCHAR(20)           null    ,
+    Vel_Casse         BIT(1)                null    ,
     constraint PK_VELO primary key (Vel_Num)
 )
 ;
@@ -103,7 +103,7 @@ create table DEMANDEINTER
     DemI_Velo         CHAR(5)                not null,
     DemI_Date         DATE                   null    ,
     DemI_Technicien    CHAR(5)                not null,
-    DemI_Motif        VARCHAR2(50)           null    ,
+    DemI_Motif        VARCHAR(50)           null    ,
     DemI_Traite       CHAR(1)                null    ,
     constraint PK_DEMANDEINTER primary key (DemI_Num)
 )
@@ -130,12 +130,12 @@ create table BONINTERV
     BI_Velo           CHAR(5)                not null,
     BI_DatDebut       DATE                   null    ,
     BI_DatFin         DATE                   null    ,
-    BI_CpteRendu      VARCHAR2(100)          null    ,
+    BI_CpteRendu      VARCHAR(100)          null    ,
     BI_Reparable      CHAR(1)                null    ,
     BI_Demande        CHAR(5)                null    ,
     BI_Technicien     CHAR(5)                not null,
     BI_SurPlace       CHAR(1)                null    ,
-    BI_Duree          NUMBER(5)              null    ,
+    BI_Duree          DECIMAL(5)              null    ,
     constraint PK_BONINTERV primary key (BI_Num)
 )
 ;
