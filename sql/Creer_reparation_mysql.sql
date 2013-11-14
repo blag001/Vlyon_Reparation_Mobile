@@ -38,8 +38,8 @@ create table ETAT
 -- ============================================================
 create table PRODUIT
 (
-    Pdt_Code          CHAR(6)                not null AUTO_INCREMENT,
-    Pdt_Libelle       VARCHAR(30)           null    ,
+    Pdt_Code          CHAR(6)                not null,
+    Pdt_Libelle       VARCHAR(30)            null    ,
     Pdt_Poids         DECIMAL(10)             null    ,
     Pdt_PxCMUP        DECIMAL(6,2)            null    ,
     Pdt_QteStk        DECIMAL(10)             null    ,
@@ -102,7 +102,7 @@ create table DEMANDEINTER
     DemI_Num          CHAR(5)                not null,
     DemI_Velo         CHAR(5)                not null,
     DemI_Date         DATE                   null    ,
-    DemI_Technicien    CHAR(5)                not null,
+    DemI_Technicien    INT                not null,
     DemI_Motif        VARCHAR(50)           null    ,
     DemI_Traite       CHAR(1)                null    ,
     constraint PK_DEMANDEINTER primary key (DemI_Num)
@@ -133,7 +133,7 @@ create table BONINTERV
     BI_CpteRendu      VARCHAR(100)          null    ,
     BI_Reparable      CHAR(1)                null    ,
     BI_Demande        CHAR(5)                null    ,
-    BI_Technicien     CHAR(5)                not null,
+    BI_Technicien     INT                not null,
     BI_SurPlace       CHAR(1)                null    ,
     BI_Duree          DECIMAL(5)              null    ,
     constraint PK_BONINTERV primary key (BI_Num)
@@ -179,7 +179,7 @@ alter table DEMANDEINTER
 ;
 
 alter table DEMANDEINTER
-    add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (Dem_Technicien)
+    add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (DemI_Technicien)
        references TECHNICIEN (Tec_Matricule)
 ;
 
