@@ -1,9 +1,0 @@
-CREATE OR REPLACE PROCEDURE supprimerStation
-(pCodeStation IN STATION.Sta_Code%TYPE)
-IS
-BEGIN
-	DELETE FROM STATION
-	WHERE Sta_Code = pCodeStation;
-COMMIT WORK;
-END.
-/
