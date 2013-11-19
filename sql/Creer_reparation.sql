@@ -145,13 +145,21 @@ create table BONINTERV
 -- ============================================================
 create table AUDITS
 (
-    AUD_CODE          CHAR(5)                not null,
+    AUD_CODE          NUMBER(10)                not null,
     AUD_LIBELLE       VARCHAR2(100)          not null,
     AUD_DATE          DATE                   null    ,
     constraint PK_Audits primary key (AUD_CODE)
 )
 ;
 
+drop sequence Seq_Audits ;
+
+CREATE SEQUENCE Seq_Audits
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE 
+NOCYCLE
+NOCACHE ;
 -- ============================================================
 --   Index : CONCERNER_FK                                      
 -- ============================================================
