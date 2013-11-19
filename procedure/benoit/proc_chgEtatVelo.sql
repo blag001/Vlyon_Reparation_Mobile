@@ -24,7 +24,7 @@ COMMIT;
 
 EXCEPTION 
 	WHEN err_etat_nofound THEN
-		INSERT INTO AUDITS(AUD_NUMERO,AUD_LIBELLE)
-		VALUES (sCode, 'Etat inexistant')
+		INSERT INTO AUDITS(Aud_Code, Aud_Libelle)
+		VALUES (seq_audits.NEXTVAL, 'Etat inexistant');
 END;
 /

@@ -28,11 +28,11 @@ BEGIN
 COMMIT;
 EXCEPTION 
 	WHEN err_Etat_nofound THEN
-		INSERT INTO AUDITS(AUD_NUMERO,AUD_LIBELLE)
-		VALUES (sCode, 'Etat inexistant')
+		INSERT INTO AUDITS(Aud_Code, Aud_Libelle)
+		VALUES (seq_audits.NEXTVAL, 'Etat inexistant');
 
 	WHEN err_DemandeI_nofound THEN
-		INSERT INTO AUDITS(AUD_NUMERO,AUD_LIBELLE)
-		VALUES (sCode, 'Demande intervention inexistant')
+		INSERT INTO AUDITS(Aud_Code, Aud_Libelle)
+		VALUES (seq_audits.NEXTVAL, 'Demande intervention inexistant');
 END;
 /
