@@ -141,6 +141,18 @@ create table BONINTERV
 ;
 
 -- ============================================================
+--   Table : BONINTERV                                         
+-- ============================================================
+create table AUDITS
+(
+    AUD_CODE          CHAR(5)                not null,
+    AUD_LIBELLE       VARCHAR2(100)          not null,
+    AUD_DATE          DATE                   null    ,
+    constraint PK_Audits primary key (AUD_CODE)
+)
+;
+
+-- ============================================================
 --   Index : CONCERNER_FK                                      
 -- ============================================================
 create index CONCERNER_FK on BONINTERV (BI_Velo asc)
