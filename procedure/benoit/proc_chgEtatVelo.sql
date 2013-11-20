@@ -9,7 +9,7 @@ IS
 	err_etat_nofound Exception;
 BEGIN
 	IF existeEtat(pEta_Libelle) THEN
-		SELECT Eta_Code IN TO sEta_Code
+		SELECT Eta_Code INTO sEta_Code
 		FROM ETAT
 		WHERE Eta_Libelle = pEta_Libelle;
 

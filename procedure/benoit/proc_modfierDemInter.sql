@@ -4,20 +4,25 @@ CREATE OR REPLACE PROCEDURE ModifierDemInter
 	pEta_Libelle IN ETAT.Eta_Libelle%TYPE
 )
 IS
-	sEta_Code IETAT.Eta_Code%TYPE;
+	sEta_Code ETAT.Eta_Code%TYPE;
+	sVel_Num VELO.Vel_Num%TYPE;
 	
 	err_DemandeI_nofound Exception;
 	err_Etat_nofound Exception;
 BEGIN
 	IF existeDemandeI(pDemI_Num) THEN
 		IF existeEtat(pEta_Libelle) THEN
-			SELECT Eta_Code IN TO sEta_Code
+			SELECT Eta_Code INTO sEta_Code
 			FROM ETAT
 			WHERE Eta_Libelle = pEta_Libelle;
 
-			UPDATE VELO
+			SELECT DemI_Velo INTO sVel_Num
+			FROM DEMANDEINTER
+			WHERE DemI_Num = pDemI_Num;
+
+			UPDATE VELO 
 			SET Vel_Etat = sEta_Code
-			WHERE Vel_Num = pVel_Num;
+			WHERE Vel_Num = sVel_Num;
 		ELSE
 			RAISE err_Etat_nofound;
 		END IF;
