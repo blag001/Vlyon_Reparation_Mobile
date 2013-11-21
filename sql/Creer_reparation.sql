@@ -1,7 +1,7 @@
 -- ============================================================
 --   Nom de la base   :  REPARATION                            
 --   Nom de SGBD      :  ORACLE Version 7.x                    
---   Date de cr‚ation :  05/11/2013  22:15                     
+--   Date de creation :  05/11/2013  22:15                     
 -- ============================================================
 
 -- ============================================================
@@ -199,7 +199,7 @@ alter table DEMANDEINTER
 ;
 
 alter table DEMANDEINTER
-    add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (Dem_Technicien)
+    add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (DemI_Technicien)
        references TECHNICIEN (Tec_Matricule)
 ;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-11-01" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
+<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-10-29" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="65" order="0"/>
@@ -69,7 +69,7 @@
             <task id="48" name="Doc contrôles" color="#8cb6ce" meeting="false" start="2013-11-14" duration="12" complete="0" expand="true"/>
             <task id="49" name="Jeux d'essais" color="#8cb6ce" meeting="false" start="2013-11-14" duration="12" complete="0" expand="true"/>
         </task>
-        <task id="6" name="Rédiger guide utilisateur" color="#8cb6ce" meeting="false" start="2013-11-07" duration="16" complete="0" expand="true"/>
+        <task id="6" name="Rédiger guide utilisateur" color="#8cb6ce" meeting="false" start="2013-11-28" duration="6" complete="0" expand="true"/>
         <task id="7" name="Rédiger cahier de développement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="0" expand="true">
             <notes><![CDATA[généré par GIT
 -> ajouts
@@ -84,7 +84,7 @@
         <task id="0" name="Diagramme Activité Technicien (UML)" color="#8cb6ce" meeting="false" start="2013-10-17" duration="1" complete="100" expand="true">
             <depend id="20" type="2" difference="0" hardness="Rubber"/>
         </task>
-        <task id="20" name="Maquettes interfaces" color="#8cb6ce" meeting="false" start="2013-11-07" duration="1" complete="76" expand="true">
+        <task id="20" name="Maquettes interfaces" color="#8cb6ce" meeting="false" start="2013-11-07" duration="1" complete="100" expand="true">
             <depend id="28" type="2" difference="0" hardness="Strong"/>
             <depend id="44" type="2" difference="0" hardness="Strong"/>
         </task>
