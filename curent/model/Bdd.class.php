@@ -6,7 +6,7 @@ class Bdd
 	private $user    = 'root';
 	private $mdp     = '';
 
-	private $objBdd  = null;
+	private $oBdd  = null;
 
 	//**************//
 	// CONSTRUCTEUR //
@@ -20,10 +20,10 @@ class Bdd
 	public function __construct($host, $db_name, $user, $mdp)
 	{
 		// save des var
-		$this->host = $host;
+		$this->host    = $host;
 		$this->db_name = $db_name;
-		$this->user = $user;
-		$this->mdp = $mdp;
+		$this->user    = $user;
+		$this->mdp     =  $mdp;
 
 		$this->connexion();
 	}
@@ -36,14 +36,14 @@ class Bdd
 	{
 		try{
 			// on appelle le constructeur POD
-			$this->objBdd = PDO::__construct(
+			$this->oBdd = PDO::__construct(
 				'mysql:host='.$this->host.';dbname='.$this->db_name,
 				$this->user,
 				$this->mdp,
 				);
 			// on set les option a utilise
-			$this->objBdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-			$this->objBdd->exec("SET CHARACTER SET utf8");
+			$this->oBdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+			$this->oBdd->exec("SET CHARACTER SET utf8");
 		}
 			catch (Exception $e){
 				die('Erreur : ' . $e->getMessage());
@@ -60,15 +60,22 @@ class Bdd
 		if(!empty($arg))
 		{
 			// on prepare la requete
-			$req = $this->objBdd->prepare($sql);
+			$req = $this->oBdd->prepare($sql);
 			// on l'execute
 			$req->execute($arg);
+			return $req->fetchAll();
 		}
 		else
 		{
 			// on fait une query simple
-			$datas = $this->objBdd->query($sql);
+			$datas = $this->oBdd->query($sql);
+			return $req->fetchAll();
 		}
+	}
+	// fonction d'execute
+	public function execute(string $sql)
+	{
+		return $this->oBdd->execute($sql);
 	}
 
 }
