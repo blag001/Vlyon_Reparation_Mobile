@@ -2,12 +2,12 @@
 
 class Velo{
 
-	private $bdd = &$_SESSION['bdd'];
+	private $bdd = $_SESSION['bdd'];
 
 	public function getLesVelosDeStation($codeStation){
 
-		$req = 'SELECT * 
-				FROM VELOS 
+		$req = 'SELECT *
+				FROM VELOS
 				WHERE Vel_Station = :codeStation';
 		$lesVelos = $bdd->query($req, null, Bdd::FETCH_OBJ);
 
@@ -15,7 +15,7 @@ class Velo{
 	}
 
 	public function getUnVelo($codeVelo){
-		$req = 'SELECT * 
+		$req = 'SELECT *
 				FROM VELOS
 				WHERE Vel_Code = :codeVelo';
 
@@ -24,6 +24,6 @@ class Velo{
 	}
 
 	public function modifierUnVelo{
-		
+
 	}
 }

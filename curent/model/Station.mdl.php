@@ -16,8 +16,8 @@ class Station
 	*/
 
 	// pointeur vers la variable en session (alias)
-	private $bdd = &$_SESSION['bdd'];
-	
+	private $bdd = $_SESSION['bdd'];
+
 	public bool estStation(string $nom)
 	{
 		if(!empty($nom))
@@ -27,26 +27,26 @@ class Station
 		}
 		return false;
 	}
-	
+
 	public function getLesStations()
 	{
 		$req = 'SELECT *
 				FROM STATION';
 		$lesStations = $bdd->query($req, null, Bdd::FETCH_OBJ);
-		
+
 		return $lesStations;
 	}
-	
+
 	public function getUneStation($id)
 	{
 		$req = 'SELECT *
 				FROM STATION
 				WHERE Sta_Code = :id'
-		
+
 		$laStation = $bdd->query($req, array('id'=>$id));
-		return($laStation);	
+		return($laStation);
 	}
-	
+
 	public function getNbVelosAttaches($station)
 	{
 		$req = 'SELECT COUNT(Vel_Code)
@@ -54,7 +54,7 @@ class Station
 				WHERE Vel_Station = :station'
 
 		$nbVelo = $bdd->query($req, array('station'=>$station));
-		return $nbVelo[0];		
+		return $nbVelo[0];
 	}
 
 	public function getNbVeloDispo($station){
@@ -74,52 +74,52 @@ class Station
 		return $nbAttachesDispo;
 	}
 
-	
 
-	
-	
-	
+
+
+
+
 	/*public String getId() {
 		return(id);
 	}
-	
+
 	public String getNom() {
 		return(nom);
 	}
-	
+
 	public String getNumeroRue() {
-	
+
 	}
-	
+
 	public String getNomRue() {
-	
+
 	}
-	
+
 	public String getCoPos() {
-	
+
 	}
-	
+
 	public String getVille() {
-	
+
 	}
-	
+
 	public String get {
-	
+
 	}
-	
+
 	public String get {
-	
+
 	}
-	
+
 	public String get {
-	
+
 	}
-	
+
 	public String get {
-	
+
 	}*/
-	
-	
-	
+
+
+
 }
 
