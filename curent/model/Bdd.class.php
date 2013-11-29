@@ -8,6 +8,8 @@ class Bdd
 
 	private $oBdd  = null;
 
+	const FETCH_OBJ = true;
+
 	//**************//
 	// CONSTRUCTEUR //
 	//**************//
@@ -55,7 +57,7 @@ class Bdd
 	//**************//
 
 	// passe les requetes avec ou sans variable
-	public function query(string $sql, array $arg)
+	public function query(string $sql, array $arg = null, $mode_objet = false)
 	{
 		if(!empty($arg))
 		{
@@ -63,14 +65,17 @@ class Bdd
 			$req = $this->oBdd->prepare($sql);
 			// on l'execute
 			$req->execute($arg);
-			return $req->fetchAll();
 		}
 		else
 		{
 			// on fait une query simple
-			$datas = $this->oBdd->query($sql);
-			return $req->fetchAll();
+			$req = $this->oBdd->query($sql);
 		}
+
+		if($mode_objet)
+			return $this->objInArray($req);
+		else
+			return $req->fetchAll();
 	}
 	// fonction d'execute
 	public function execute(string $sql)
@@ -78,4 +83,19 @@ class Bdd
 		return $this->oBdd->execute($sql);
 	}
 
+	//**************//
+	//   PRIVATE    //
+	//**************//
+
+	private function objInArray($pointeur)
+	{
+		$array = array();
+		if (!empty($pointeur)) {
+			while ($data = $pointeur->fetch(PDO::FETCH_OBJ)) {
+				$array[] = $data;
+			}
+		}
+
+		return $array;
+	}
 }
