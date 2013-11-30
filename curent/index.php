@@ -9,8 +9,11 @@ function load_class($class)
 }
 spl_autoload_register('load_class');
 
-// on set l'obj de connexion SQL
+// on set les obj de connexion SQL et NoSql
 require_once 'inc/connexion.inc.php';
+
+// obj ustilisateur (gestion des droits)
+$_SESSION['user'] = new User();
 
 // on evite les error de variable !isset
 if (!isset($_GET['page']))

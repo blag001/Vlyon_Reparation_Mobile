@@ -3,6 +3,8 @@ class Velo
 {
 	public function __construct()
 	{
-		# code...
+		if (!$_SESSION['user']->estUser()) {
+			# code...
+		}
 	}
 }

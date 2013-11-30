@@ -38,7 +38,7 @@ class Bdd
 	{
 		try{
 			// on appelle le constructeur POD
-			$this->oBdd = PDO::__construct(
+			$this->oBdd = new PDO(
 				'mysql:host='.$this->host.';dbname='.$this->db_name,
 				$this->user,
 				$this->mdp,
