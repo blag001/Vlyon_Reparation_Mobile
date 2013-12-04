@@ -3,6 +3,8 @@ class Station
 {
 	public function __construct()
 	{
-		# code...
+		if (!($_SESSION['user']->estUser())) {
+			# si pas login	
+		}
 	}
 }

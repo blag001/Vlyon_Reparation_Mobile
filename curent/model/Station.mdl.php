@@ -1,26 +1,16 @@
 <?php
 class Station
 {
-	/*
-	private int $id;
-	private String $nom;
-	private String $numeroRue;
-	private String $nomRue;
-	private String $coPos;
-	private String $ville;
-	private int $nbVelosAttaches;
-	private int $nbVelosDispo;
-	private int $nbAttachesDispo;
-	*/
-
-	// pointeur vers la variable en session (alias)
 	private $bdd = $_SESSION['bdd'];
 
-	public bool estStation(string $nom)
+	public function estStation(string $nom)
 	{
 		if(!empty($nom))
 		{
-			$nb = $bdd->query('SELECT COUNT(*) FROM STATION WHERE Sta_Nom = :nom' , array('nom'=>$nom));
+			$req = 'SELECT COUNT(*)
+					FROM STATION
+					WHERE Sta_Nom = :nom';
+			$nb = $bdd->query($req , array('nom'=>$nom));
 			return (bool) $nb[0];
 		}
 		return false;
@@ -71,53 +61,6 @@ class Station
 		$nbAttachesDispo = $nbTotalAttaches - $nbVelosAttaches;
 		return $nbAttachesDispo;
 	}
-
-
-
-
-
-
-	/*public String getId() {
-		return(id);
-	}
-
-	public String getNom() {
-		return(nom);
-	}
-
-	public String getNumeroRue() {
-
-	}
-
-	public String getNomRue() {
-
-	}
-
-	public String getCoPos() {
-
-	}
-
-	public String getVille() {
-
-	}
-
-	public String get {
-
-	}
-
-	public String get {
-
-	}
-
-	public String get {
-
-	}
-
-	public String get {
-
-	}*/
-
-
 
 }
 
