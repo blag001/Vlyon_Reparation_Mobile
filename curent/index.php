@@ -48,6 +48,7 @@ switch ($_GET['page']) {
 		$station = new Station();
 		break;
 	default:
-		echo 'hello';
+		$station = new Station();
+		// echo 'hello';
 		break;
 }
