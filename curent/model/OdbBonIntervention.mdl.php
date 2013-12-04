@@ -47,7 +47,4 @@ class BonInterv
 		return $lesBonsInter;
 
 	}
-	
-
 }
-
