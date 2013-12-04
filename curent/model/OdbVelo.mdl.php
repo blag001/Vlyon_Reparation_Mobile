@@ -1,6 +1,6 @@
 <?php
 
-class Velo{
+class OdbVelo{
 
 	private $bdd = $_SESSION['bdd'];
 

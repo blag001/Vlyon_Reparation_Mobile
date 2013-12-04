@@ -5,11 +5,13 @@ require_once ('toolNosql/Nosql.class.php');
 try {
 	// creation de l'obj BDD
 	// args : ($host, $db_name, $user, $mdp)
-	$_SESSION['bdd'] = new Bdd();
+	if (empty($_SESSION['bdd']))
+		$_SESSION['bdd'] = new Bdd();
 
 	// creation de l'obj NoSql
 	// args : ($path_db)
-	$_SESSION['nosql'] = new Nosql();
+	if(empty($_SESSION['nosql']))
+		$_SESSION['nosql'] = new Nosql();
 
 } catch (Exception $e) {
 	die('Une erreur avec la base de donnee c\'est produite');

@@ -1,15 +1,8 @@
 <?php
-class DemandeInter
+class OdbDemandeInter
 {
 	// TODO : finir de rename les variables
 	private $bdd = $_SESSION['bdd'];
-	
-	public function __construct()
-	{
-		if (!($_SESSION['user']->estUser())) {
-			# si pas login	
-		}
-	}
 
 	public function estDemandeInter(string $nom)
 	{

@@ -1,5 +1,5 @@
 <?php
-class Technicien
+class OdbTechnicien
 {
 	private $bdd = $_SESSION['bdd'];
 

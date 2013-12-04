@@ -2,15 +2,22 @@
 // on lance la session
 session_start();
 
-// fonction pour auto-charger les class.ctr
-function load_class($class)
+// fonctions pour auto-charger les Class.ctr et les OdbClass.mdl
+function load_controller($class)
 {
 	require_once('controller/'.$class .'.ctr.php');
 }
-spl_autoload_register('load_class');
+function load_model($class)
+{
+	require_once('model/'.$class .'.mdl.php');
+}
+spl_autoload_register('load_controller');
+spl_autoload_register('load_model');
 
 // on set les obj de connexion SQL et NoSql
 require_once 'inc/connexion.inc.php';
+// fonction pour afficher les template
+require_once 'inc/template.inc.php';
 
 // obj ustilisateur (gestion des droits)
 $_SESSION['user'] = new User();
@@ -33,15 +40,14 @@ switch ($_GET['page']) {
 		$velo = new Velo();
 		break;
 
-	case 'station':
-		$station = new Station();
-		break;
-
 	case 'technicien':
 		$technicien = new Technicien();
 		break;
 
+	case 'station':
+		$station = new Station();
+		break;
 	default:
-		# code...
+		echo 'hello';
 		break;
 }

@@ -1,5 +1,5 @@
 <?php
-class Station
+class OdbStation
 {
 	private $bdd = $_SESSION['bdd'];
 

@@ -2,9 +2,9 @@
 class Bdd
 {
 	private $host    = 'localhost';
-	private $db_name = 'reparation';
+	private $db_name = 'sio_reparation';
 	private $user    = 'root';
-	private $mdp     = '';
+	private $mdp     = 'tioneb';
 
 	private $oBdd  = null;
 
@@ -13,20 +13,29 @@ class Bdd
 	//**************//
 	// CONSTRUCTEUR //
 	//**************//
-		// retourne une instance PDO avec les valeur par def
-	public function __construct()
+		// retourne une instance PDO avec les valeur en argument
+	public function __construct($host=false, $db_name=false, $user=false, $mdp=false)
 	{
+		if($host && $db_name && $user && $mdp)
+		{
+			// save des var
+			$this->host    = $host;
+			$this->db_name = $db_name;
+			$this->user    = $user;
+			$this->mdp     =  $mdp;
+		}
+
 		$this->connexion();
 	}
-		// retourne une instance PDO avec les valeur en argument
-	public function __construct($host, $db_name, $user, $mdp)
-	{
-		// save des var
-		$this->host    = $host;
-		$this->db_name = $db_name;
-		$this->user    = $user;
-		$this->mdp     =  $mdp;
 
+	// quand on change de page et que l instance est dans une _session
+	public function __sleep()
+	{
+		return array('host', 'db_name', 'user', 'mdp');
+	}
+	// la reconnexion
+	public function __wakeup()
+	{
 		$this->connexion();
 	}
 
@@ -41,7 +50,7 @@ class Bdd
 			$this->oBdd = new PDO(
 				'mysql:host='.$this->host.';dbname='.$this->db_name,
 				$this->user,
-				$this->mdp,
+				$this->mdp
 				);
 			// on set les option a utilise
 			$this->oBdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -77,6 +86,7 @@ class Bdd
 		else
 			return $req->fetchAll();
 	}
+
 	// fonction d'execute
 	public function execute(string $sql)
 	{
@@ -86,7 +96,7 @@ class Bdd
 	//**************//
 	//   PRIVATE    //
 	//**************//
-
+	// permet de parcourir les resultat et de les retourner dans un array
 	private function objInArray($pointeur)
 	{
 		$array = array();
