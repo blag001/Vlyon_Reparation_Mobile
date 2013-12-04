@@ -23,7 +23,14 @@ class OdbVelo{
 		return($leVelo);
 	}
 
-	public function modifierUnVelo{
+	//changer l'etat d'un velo
+	public function changerEtatVelo($codeVelo)
+	{
+		
+	}
+
+	//modifier certainens informations d'un velo
+	public function modifierUnVelo($codeVelo){
 
 	}
 }

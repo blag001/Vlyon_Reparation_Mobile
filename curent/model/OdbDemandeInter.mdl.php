@@ -21,9 +21,9 @@ class OdbDemandeInter
 	{
 		$req = 'SELECT *
 				FROM DEMANDEINTER';
-		$lesStations = $bdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesDemandesInter = $bdd->query($req, null, Bdd::FETCH_OBJ);
 
-		return $lesStations;
+		return $lesDemandesInter;
 	}
 
 	public function getUneDemandeInter($id)
@@ -32,8 +32,22 @@ class OdbDemandeInter
 				FROM DEMANDEINTER
 				WHERE Sta_Code = :id'
 
-		$laStation = $bdd->query($req, array('id'=>$id));
-		return($laStation);
+		$laDemandeInter = $bdd->query($req, array('id'=>$id));
+		return($laDemandeInter);
+	}
+
+	//visualiser toutes les demandes d'intervention non traitées
+	public function visualiserDINT()
+	{
+		{
+		$req = 'SELECT *
+				FROM DEMANDEINTER
+				WHERE DemI_Traite = 0'
+
+		$lesDemandesInter = $bdd->query($req, null, Bdd::FETCH_OBJ);
+		return($lesDemandesInter);
+	}
+
 	}
 
 }
