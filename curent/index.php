@@ -5,11 +5,13 @@ session_start();
 // fonctions pour auto-charger les Class.ctr et les OdbClass.mdl
 function load_controller($class)
 {
-	require_once('controller/'.$class .'.ctr.php');
+	if(is_file('controller/'.$class .'.ctr.php'))
+		require_once('controller/'.$class .'.ctr.php');
 }
 function load_model($class)
 {
-	require_once('model/'.$class .'.mdl.php');
+	if(is_file('model/'.$class .'.mdl.php'))
+		require_once('model/'.$class .'.mdl.php');
 }
 spl_autoload_register('load_controller');
 spl_autoload_register('load_model');

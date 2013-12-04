@@ -1,7 +1,12 @@
 <?php
 class OdbStation
 {
-	private $bdd = $_SESSION['bdd'];
+	private $bdd;
+
+	public function __construct()
+	{
+		$this->bdd = $_SESSION['bdd'];
+	}
 
 	public function estStation(string $nom)
 	{
@@ -29,7 +34,7 @@ class OdbStation
 	{
 		$req = 'SELECT *
 				FROM STATION
-				WHERE Sta_Code = :id'
+				WHERE Sta_Code = :id';
 
 		$laStation = $bdd->query($req, array('id'=>$id));
 		return($laStation);
@@ -39,7 +44,7 @@ class OdbStation
 	{
 		$req = 'SELECT COUNT(Vel_Code)
 				FROM VELO
-				WHERE Vel_Station = :station'
+				WHERE Vel_Station = :station';
 
 		$nbVelo = $bdd->query($req, array('station'=>$station));
 		return $nbVelo[0];

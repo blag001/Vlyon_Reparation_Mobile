@@ -1,7 +1,12 @@
 <?php
 class OdbTechnicien
 {
-	private $bdd = $_SESSION['bdd'];
+	private $bdd;
+
+	public function __construct()
+	{
+		$this->bdd = $_SESSION['bdd'];
+	}
 
 	public function estTechnicien(string $matricule)
 	{

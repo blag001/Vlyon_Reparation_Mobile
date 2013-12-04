@@ -1,13 +1,16 @@
 <?php
 class Station
 {
-	// private $obdStation = new User();
+	private $odbStation;
 
 	public function __construct()
 	{
 		if (!($_SESSION['user']->estUser())) {
 			# si pas login
 		}
+		// si il est connecte
+		$this->odbStation = new OdbStation();
+
 		$this->afficherLesStations();
 	}
 
