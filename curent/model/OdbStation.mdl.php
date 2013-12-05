@@ -1,22 +1,22 @@
 <?php
 class OdbStation
 {
-	// private $bdd;
+	private $oBdd;
 
 	public function __construct()
 	{
-		$this->bdd = $_SESSION['bdd'];
+		$this->oBdd = $_SESSION['bdd'];
 	}
 
 	public function estStation(string $nom)
 	{
 		if(!empty($nom))
 		{
-			$req = 'SELECT COUNT(*)
+			$req = 'SELECT COUNT(*) AS nb
 					FROM STATION
 					WHERE Sta_Nom = :nom';
-			$nb = $this->bdd->query($req , array('nom'=>$nom));
-			return (bool) $nb[0];
+			$data = $this->oBdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
+			return (bool) $data->nb;
 		}
 		return false;
 	}
@@ -25,11 +25,12 @@ class OdbStation
 	{
 		if(!empty($id))
 		{
-			$req = 'SELECT COUNT(*)
+			$req = 'SELECT COUNT(*) AS nb
 					FROM STATION
 					WHERE Sta_Code = :id';
-			$nb = $this->bdd->query($req , array('id'=>$id));
-			return (bool) $nb[0];
+			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
+			// var_dump($nb);
+			return (bool) $data->nb;
 		}
 		return false;
 	}
@@ -38,7 +39,7 @@ class OdbStation
 	{
 		$req = 'SELECT *
 				FROM STATION';
-		$lesStations = $this->bdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesStations = $this->oBdd->query($req);
 
 		return $lesStations;
 	}
@@ -49,27 +50,28 @@ class OdbStation
 				FROM STATION
 				WHERE Sta_Code = :id';
 
-		$laStation = $this->bdd->query($req, array('id'=>$id));
-		return $laStation[0];
+		$laStation = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+		// var_dump($laStation);
+		return $laStation;
 	}
 
 	public function getNbVelosAttaches($station)
 	{
-		$req = 'SELECT COUNT(Vel_Code)
+		$req = 'SELECT COUNT(Vel_Code) AS nb
 				FROM VELO
 				WHERE Vel_Station = :station';
 
-		$nbVelo = $this->bdd->query($req, array('station'=>$station));
-		return $nbVelo[0];
+		$nbVelo = $this->oBdd->query($req, array('station'=>$station), Bdd::SINGLE_RES);
+		return $nbVelo->nb;
 	}
 
 	public function getNbVeloDispo($station){
-		$req = 'SELECT COUNT(Vel_Code)
+		$req = 'SELECT COUNT(Vel_Code) AS nb
 				FROM VELO
 				WHERE Vel_Station = :station
 				AND Vel_Casse = 0';
-		$nbVelo = $this->bdd->query($req, array('station'=>$station));
-		return $nbVelo[0];
+		$nbVelo = $this->oBdd->query($req, array('station'=>$station), Bdd::SINGLE_RES);
+		return $nbVelo->nb;
 	}
 
 	public function getNbAttachesDispo($station, $nbTotalAttaches){

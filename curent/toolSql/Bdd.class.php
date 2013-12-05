@@ -8,7 +8,7 @@ class Bdd
 
 	private $oBdd  = null;
 
-	const FETCH_OBJ = true;
+	const SINGLE_RES = true;
 
 	//**************//
 	// CONSTRUCTEUR //
@@ -66,7 +66,7 @@ class Bdd
 	//**************//
 
 	// passe les requetes avec ou sans variable
-	public function query($sql, array $arg = null, $mode_objet = false)
+	public function query($sql, array $arg = null, $mono_line = false)
 	{
 		if(!empty($arg))
 		{
@@ -81,8 +81,8 @@ class Bdd
 			$req = $this->oBdd->query($sql);
 		}
 
-		if($mode_objet)
-			return $this->objInArray($req);
+		if($mono_line)
+			return $this->fetch($req);
 		else
 			return $req->fetchAll();
 	}

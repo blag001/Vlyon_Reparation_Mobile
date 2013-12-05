@@ -1,22 +1,22 @@
 <?php
 class OdbTechnicien
 {
-	private $bdd;
+	private $oBdd;
 
 	public function __construct()
 	{
-		$this->bdd = $_SESSION['bdd'];
+		$this->oBdd = $_SESSION['bdd'];
 	}
 
 	public function estTechnicien(string $matricule)
 	{
 		if(!empty($matricule))
 		{
-			$req = 'SELECT COUNT(*)
+			$req = 'SELECT COUNT(*) AS nb
 					FROM TECHNICIEN
 					WHERE Tech_Matricule = :matricule';
-			$nb = $bdd->query($req, array('matricule'=>$matricule));
-			return (bool) $nb[0];
+			$data = $oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
+			return (bool) $data->nb;
 		}
 		return false;
 	}
@@ -25,7 +25,7 @@ class OdbTechnicien
 	{
 		$req = 'SELECT *
 				FROM TECHNICIEN';
-		$lesTechniciens = $bdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesTechniciens = $oBdd->query($req);
 
 		return $lesTechniciens;
 	}
@@ -34,10 +34,10 @@ class OdbTechnicien
 	{
 		$req = 'SELECT *
 				FROM TECHNICIEN
-				WHERE Tech_Matricule = :matricule'
+				WHERE Tech_Matricule = :matricule';
 
-		$laStation = $bdd->query($req, array('matricule'=>$matricule));
-		return($laStation);
+		$leTechnicien = $oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
+		return $leTechnicien;
 	}
 
 }

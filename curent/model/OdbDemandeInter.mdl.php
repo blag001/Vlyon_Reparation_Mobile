@@ -14,11 +14,12 @@ class OdbDemandeInter
 	{
 		if(!empty($nom))
 		{
-			$req = 'SELECT COUNT(*)
+			$req = 'SELECT COUNT(*) AS nb
 					FROM DEMANDEINTER
 					WHERE Sta_Nom = :nom';
-			$nb = $bdd->query($req , array('nom'=>$nom));
-			return (bool) $nb[0];
+
+			$data = $bdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
+			return (bool) $data;
 		}
 		return false;
 	}
@@ -27,7 +28,7 @@ class OdbDemandeInter
 	{
 		$req = 'SELECT *
 				FROM DEMANDEINTER';
-		$lesDemandesInter = $bdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesDemandesInter = $bdd->query($req);
 
 		return $lesDemandesInter;
 	}
@@ -36,10 +37,10 @@ class OdbDemandeInter
 	{
 		$req = 'SELECT *
 				FROM DEMANDEINTER
-				WHERE Sta_Code = :id'
+				WHERE Sta_Code = :id';
 
-		$laDemandeInter = $bdd->query($req, array('id'=>$id));
-		return($laDemandeInter);
+		$laDemandeInter = $bdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+		return $laDemandeInter;
 	}
 
 	//visualiser toutes les demandes d'intervention non traitées
@@ -48,9 +49,9 @@ class OdbDemandeInter
 		{
 		$req = 'SELECT *
 				FROM DEMANDEINTER
-				WHERE DemI_Traite = 0'
+				WHERE DemI_Traite = 0';
 
-		$lesDemandesInter = $bdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesDemandesInter = $bdd->query($req);
 		return($lesDemandesInter);
 	}
 
