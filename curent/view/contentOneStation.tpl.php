@@ -1,5 +1,5 @@
 <div class="container">
-
+	<h1>Information Station</h1>
 	<table class="table table-bordered">
 		<thead>
 			<tr>

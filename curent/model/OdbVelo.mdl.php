@@ -15,9 +15,9 @@ class OdbVelo{
 		$req = 'SELECT *
 				FROM VELOS
 				WHERE Vel_Station = :codeStation';
-		$lesVelos = $this->oBdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesVelos = $this->oBdd->query($req);
 
-		return($lesVelos);
+		return $lesVelos;
 	}
 
 	public function getUnVelo($codeVelo){
@@ -25,8 +25,8 @@ class OdbVelo{
 				FROM VELOS
 				WHERE Vel_Code = :codeVelo';
 
-		$leVelo = $this->oBdd->query($req, array('id'=>$id)
-		return($leVelo);
+		$leVelo = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+		return $leVelo;
 	}
 
 	/*public function recupererEtatVelo($codeVelo)
@@ -49,5 +49,5 @@ class OdbVelo{
 
 		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo)
 		return($leVelo);
-	}	
+	}
 }

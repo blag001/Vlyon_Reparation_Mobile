@@ -19,7 +19,7 @@ class OdbDemandeInter
 					WHERE Sta_Nom = :nom';
 
 			$data = $bdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
-			return (bool) $data;
+			return (bool) $data->nb;
 		}
 		return false;
 	}
@@ -52,7 +52,7 @@ class OdbDemandeInter
 				WHERE DemI_Traite = 0';
 
 		$lesDemandesInter = $bdd->query($req);
-		return($lesDemandesInter);
+		return $lesDemandesInter;
 	}
 
 	}
