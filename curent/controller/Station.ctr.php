@@ -10,6 +10,7 @@ class Station
 		}
 		// si il est connecte
 		$this->odbStation = new OdbStation();
+		$this->odbVelo = new OdbVelo();
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
@@ -43,8 +44,11 @@ class Station
 			$uneStation = $this->odbStation->getUneStation($_GET['valeur']);
 			$_SESSION['tampon']['title'] = 'Station - '.$uneStation->Sta_Nom;
 
+			$lesVelosByStation = $this->odbVelo->getLesVelosDeStation($_GET['valeur']);
+
 			view('htmlHeader');
-			view('contentOneStation', array('uneStation'=>$uneStation));
+			view('contentOneStation', array('uneStation'=>$uneStation,
+				'lesVelos'=>$lesVelosByStation));
 			view('htmlFooter');
 		}
 		else

@@ -4,7 +4,7 @@ class Bdd
 	private $host    = 'localhost';
 	private $db_name = 'sio_reparation';
 	private $user    = 'root';
-	private $mdp     = '';
+	private $mdp     = 'tioneb';
 
 	private $oBdd  = null;
 
@@ -82,7 +82,7 @@ class Bdd
 		}
 
 		if($mono_line)
-			return $this->fetch($req);
+			return $req->fetch();
 		else
 			return $req->fetchAll();
 	}
@@ -97,15 +97,15 @@ class Bdd
 	//   PRIVATE    //
 	//**************//
 	// permet de parcourir les resultat et de les retourner dans un array
-	private function objInArray($pointeur)
-	{
-		$array = array();
-		if (!empty($pointeur)) {
-			while ($data = $pointeur->fetch(PDO::FETCH_OBJ)) {
-				$array[] = $data;
-			}
-		}
+	// private function objInArray($pointeur)
+	// {
+	// 	$array = array();
+	// 	if (!empty($pointeur)) {
+	// 		while ($data = $pointeur->fetch(PDO::FETCH_OBJ)) {
+	// 			$array[] = $data;
+	// 		}
+	// 	}
 
-		return $array;
-	}
+	// 	return $array;
+	// }
 }
