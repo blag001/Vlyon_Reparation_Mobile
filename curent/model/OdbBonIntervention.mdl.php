@@ -17,7 +17,7 @@ class OdbBonInterv
 			$req = 'SELECT COUNT(*)
 					FROM BONINTERV
 					WHERE BI_Num = :code';
-			$nb = $bdd->query($req , array('nom'=>$code));
+			$nb = $bdd->query($req , array('code'=>$code));
 			return (bool) $nb[0];
 		}
 		return false;
@@ -53,4 +53,17 @@ class OdbBonInterv
 		return $lesBonsInter;
 
 	}
+
+	//on crée une intervention
+	public function creerUnBonInter($code)
+	{
+		$req = 'INSERT INTO BONINTERV
+				VALUES ('$code', '$veloCode', '$dateDebut', '$dateFin', '$cpteRendu', '$reparable', '$demande', '$technicienCode', '$surPlace', '$duree' )
+				WHERE BI_Num = :code';
+
+		$leBonInter = $bdd->query($req, array('code'=>$code));
+		return($leBonInter);
+	}
+
+	
 }
