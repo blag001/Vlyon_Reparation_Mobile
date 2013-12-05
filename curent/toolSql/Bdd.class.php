@@ -4,7 +4,7 @@ class Bdd
 	private $host    = 'localhost';
 	private $db_name = 'sio_reparation';
 	private $user    = 'root';
-	private $mdp     = 'tioneb';
+	private $mdp     = '';
 
 	private $oBdd  = null;
 
