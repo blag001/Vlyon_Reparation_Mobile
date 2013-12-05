@@ -21,6 +21,19 @@ class OdbStation
 		return false;
 	}
 
+	public function estStationById($id)
+	{
+		if(!empty($id))
+		{
+			$req = 'SELECT COUNT(*)
+					FROM STATION
+					WHERE Sta_Code = :id';
+			$nb = $this->bdd->query($req , array('id'=>$id));
+			return (bool) $nb[0];
+		}
+		return false;
+	}
+
 	public function getLesStations()
 	{
 		$req = 'SELECT *
@@ -37,7 +50,7 @@ class OdbStation
 				WHERE Sta_Code = :id';
 
 		$laStation = $this->bdd->query($req, array('id'=>$id));
-		return($laStation);
+		return $laStation[0];
 	}
 
 	public function getNbVelosAttaches($station)

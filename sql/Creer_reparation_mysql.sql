@@ -1,11 +1,11 @@
 -- ============================================================
---   Nom de la base   :  REPARATION                            
---   Nom de SGBD      :  ORACLE Version 7.x                    
---   Date de cr‚ation :  05/11/2013  22:15                     
+--   Nom de la base   :  REPARATION
+--   Nom de SGBD      :  ORACLE Version 7.x
+--   Date de cr‚ation :  05/11/2013  22:15
 -- ============================================================
 
 -- ============================================================
---   Table : STATION                                           
+--   Table : STATION
 -- ============================================================
 create table STATION
 (
@@ -23,7 +23,7 @@ create table STATION
 ;
 
 -- ============================================================
---   Table : ETAT                                              
+--   Table : ETAT
 -- ============================================================
 create table ETAT
 (
@@ -34,7 +34,7 @@ create table ETAT
 ;
 
 -- ============================================================
---   Table : PRODUIT                                           
+--   Table : PRODUIT
 -- ============================================================
 create table PRODUIT
 (
@@ -50,7 +50,7 @@ create table PRODUIT
 ;
 
 -- ============================================================
---   Table : TECHNICIEN                                        
+--   Table : TECHNICIEN
 -- ============================================================
 create table TECHNICIEN
 (
@@ -62,7 +62,7 @@ create table TECHNICIEN
 ;
 
 -- ============================================================
---   Table : VELO                                              
+--   Table : VELO
 -- ============================================================
 create table VELO
 (
@@ -77,25 +77,25 @@ create table VELO
 ;
 
 -- ============================================================
---   Index : POSITIONNER_FK                                    
+--   Index : POSITIONNER_FK
 -- ============================================================
 create index POSITIONNER_FK on VELO (Vel_Station asc)
 ;
 
 -- ============================================================
---   Index : AVOIR_FK                                          
+--   Index : AVOIR_FK
 -- ============================================================
 create index AVOIR_FK on VELO (Vel_Etat asc)
 ;
 
 -- ============================================================
---   Index : appartenir_FK                                     
+--   Index : appartenir_FK
 -- ============================================================
 create index appartenir_FK on VELO (Vel_Type asc)
 ;
 
 -- ============================================================
---   Table : DEMANDEINTER                                      
+--   Table : DEMANDEINTER
 -- ============================================================
 create table DEMANDEINTER
 (
@@ -104,25 +104,25 @@ create table DEMANDEINTER
     DemI_Date         DATE                   null    ,
     DemI_Technicien    INT                not null,
     DemI_Motif        VARCHAR(50)           null    ,
-    DemI_Traite       CHAR(1)                null    ,
+    DemI_Traite       BIT(1)                null    ,
     constraint PK_DEMANDEINTER primary key (DemI_Num)
 )
 ;
 
 -- ============================================================
---   Index : CORRESPONDRE_FK                                   
+--   Index : CORRESPONDRE_FK
 -- ============================================================
 create index CORRESPONDRE_FK on DEMANDEINTER (DemI_Velo asc)
 ;
 
 -- ============================================================
---   Index : rediger_FK                                        
+--   Index : rediger_FK
 -- ============================================================
 create index rediger_FK on DEMANDEINTER (DemI_Technicien asc)
 ;
 
 -- ============================================================
---   Table : BONINTERV                                         
+--   Table : BONINTERV
 -- ============================================================
 create table BONINTERV
 (
@@ -131,29 +131,29 @@ create table BONINTERV
     BI_DatDebut       DATE                   null    ,
     BI_DatFin         DATE                   null    ,
     BI_CpteRendu      VARCHAR(100)          null    ,
-    BI_Reparable      CHAR(1)                null    ,
+    BI_Reparable      BIT(1)                null    ,
     BI_Demande        CHAR(5)                null    ,
     BI_Technicien     INT                not null,
-    BI_SurPlace       CHAR(1)                null    ,
+    BI_SurPlace       BIT(1)                null    ,
     BI_Duree          DECIMAL(5)              null    ,
     constraint PK_BONINTERV primary key (BI_Num)
 )
 ;
 
 -- ============================================================
---   Index : CONCERNER_FK                                      
+--   Index : CONCERNER_FK
 -- ============================================================
 create index CONCERNER_FK on BONINTERV (BI_Velo asc)
 ;
 
 -- ============================================================
---   Index : EXECUTER_FK2                                      
+--   Index : EXECUTER_FK2
 -- ============================================================
 create index EXECUTER_FK2 on BONINTERV (BI_Demande asc)
 ;
 
 -- ============================================================
---   Index : realiser_FK                                       
+--   Index : realiser_FK
 -- ============================================================
 create index realiser_FK on BONINTERV (BI_Technicien asc)
 ;
