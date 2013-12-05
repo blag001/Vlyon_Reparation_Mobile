@@ -47,10 +47,8 @@ switch ($_GET['page']) {
 		break;
 
 	case 'station':
-		$station = new Station();
-		break;
+
 	default:
 		$station = new Station();
-		// echo 'hello';
 		break;
 }

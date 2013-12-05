@@ -1,8 +1,14 @@
 <?php
-class BonInterv
+class OdbBonInterv
 {
 	// TODO : finir de rename les variables
-	private $bdd = $_SESSION['bdd'];
+
+	private $bdd;
+
+	public function __construct()
+	{
+		$this->bdd = $_SESSION['bdd'];
+	}
 
 	public function estBonInter(string $code)
 	{

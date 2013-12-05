@@ -11,13 +11,25 @@ class Station
 		// si il est connecte
 		$this->odbStation = new OdbStation();
 
-		$this->afficherLesStations();
+		if (empty($_GET['action']))
+			$_GET['action'] = null;
+
+		switch ($_GET['action']) {
+			case 'value':
+				# code...
+				break;
+
+			default:
+				$this->afficherLesStations();
+				break;
+		}
 	}
 
 	protected function afficherLesStations()
 	{
+		$lesStations = $this->odbStation->getLesStations();
 		view('htmlHeader');
-		view('contentAccueil');
+		view('contentAllStation');
 		view('htmlFooter');
 	}
 }
