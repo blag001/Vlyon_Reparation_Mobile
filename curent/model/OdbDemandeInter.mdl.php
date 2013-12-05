@@ -44,7 +44,7 @@ class OdbDemandeInter
 	}
 
 	//visualiser toutes les demandes d'intervention non traitées
-	public function visualiserDINT()
+	public function getLesDemandesIT()
 	{
 		{
 		$req = 'SELECT *

@@ -17,14 +17,14 @@
 					?>
 					<tr>
 						<td>
-							<a href="index.php?page=station&amp;action=unestation&amp;valeur=<?php echo $value->Sta_Code;?>">
-								<?php echo $value->Sta_Code;?>
+							<a href="index.php?page=intervention&amp;action=interventions_nt&amp;valeur=<?php echo $value->DemI_Code;?>">
+								<?php echo $value->DemI_Code;?>
 							</a>
 						</td>
-						<td><?php echo $value->Sta_Nom;?></td>
-						<td><?php echo $value->Sta_NbAttaches;?></td>
-						<td><?php echo $value->Sta_NbVelos;?></td>
-						<td><?php echo $value->Sta_NbAttacDispo;?></td>
+						<td><?php echo $value->DemI_Num;?></td>
+						<td><?php echo $value->DemI_Date;?></td>
+						<td><?php echo /*$value->Sta_NbVelos*/ NOPE PAS MAINTENANT;?></td>
+						<td><?php echo $value->DemI_Velo;?></td>
 					</tr>
 					<?php
 				}

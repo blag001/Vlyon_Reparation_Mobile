@@ -1,7 +1,7 @@
 <?php
 class Station
 {
-	private $odbStation;
+	private $odbIntervention;
 
 	public function __construct()
 	{
@@ -9,51 +9,64 @@ class Station
 			# si pas login
 		}
 		// si il est connecte
-		$this->odbStation = new OdbStation();
+		$this->odbIntervention = new odbIntervention();
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
 
 		switch ($_GET['action']) {
-			case 'unestation':
-				$this->afficherUneStation();
+			case 'unedemandeinter':
+				$this->afficherUneDemandeInter();
 				break;
 
+			case 'sesinterventions':
+				$this->afficherSesInter();
+				break;
+
+			case 'interventions_nt':
+
 			default:
-				$this->afficherLesStations();
+				$this->afficherLesDemandesInter();
 				break;
 		}
 	}
 
-	protected function afficherLesStations()
+	protected function afficherLesDemandesInter()
 	{
-		$lesStations = $this->odbStation->getLesStations();
-		$_SESSION['tampon']['title'] = 'Toutes Les Stations';
+		$lesInterventionNT = $this->odbIntervention->getLesDemandesNT();
+		$_SESSION['tampon']['title'] = 'Toutes Les demandes d interventions non traitees';
 		view('htmlHeader');
-		view('contentAllStation', array('lesStations'=>$lesStations));
+		view('contentAllDINT', array('lesInterventionNT'=>$lesInterventionNT));
 		view('htmlFooter');
 	}
 
-	protected function afficherUneStation()
+	protected function afficherUneDemandeInter()
 	{
-		if (
-				!empty($_GET['valeur'])
-				and $this->odbStation->estStationById($_GET['valeur']))
+		if (		!empty($_GET['valeur'])
+					and $this->odbIntervention->getUneDemandeInter($_GET['valeur'])		)
 		{
-			$uneStation = $this->odbStation->getUneStation($_GET['valeur']);
-			$_SESSION['tampon']['title'] = 'Station - '.$uneStation->Sta_Nom;
+			$uneDemandeInter = $this->odbIntervention->getuneDemandeInter($_GET['valeur']);
+			$_SESSION['tampon']['title'] = 'Demande Intervention - '.$uneDemandeInter->DemI_Num;
 
 			view('htmlHeader');
-			view('contentOneStation', array('uneStation'=>$uneStation));
+			view('contentOneDemI', array('uneDemandeInter'=>$uneDemandeInter));
 			view('htmlFooter');
 		}
 		else
 		{
-			$_SESSION['tampon']['title'] = 'Station - ERREUR';
-			$_SESSION['tampon']['error'] = array('La station ne semble pas exister...');
+			$_SESSION['tampon']['title'] = 'Demande Intervention - ERREUR';
+			$_SESSION['tampon']['error'] = array('La Demande Intervention ne semble pas exister...');
 			view('htmlHeader');
 			view('contentError');
 			view('htmlFooter');
 		}
+	}
+
+	protected function afficherSesInter($codeTechnicien)
+	{
+		$lesInterventions = $this->odbIntervention->getLesDemandesInter();
+		$lesBonsInter = $this->odbIntervention->getLesBonsInter();
+
+		//NON FINI
 	}
 }

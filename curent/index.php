@@ -51,7 +51,7 @@ switch ($_GET['page']) {
 		$technicien = new Technicien();
 		break;
 
-	case 'intervention'
+	case 'intervention':
 		$intervention = new Intervention();
 		break;
 
