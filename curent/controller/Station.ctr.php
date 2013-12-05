@@ -29,7 +29,7 @@ class Station
 	{
 		$lesStations = $this->odbStation->getLesStations();
 		view('htmlHeader');
-		view('contentAllStation');
+		view('contentAllStation', array('lesStations'=>$lesStations));
 		view('htmlFooter');
 	}
 }

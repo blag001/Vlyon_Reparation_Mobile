@@ -53,7 +53,7 @@ class Bdd
 				$this->mdp
 				);
 			// on set les option a utilise
-			$this->oBdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+			$this->oBdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 			$this->oBdd->exec("SET CHARACTER SET utf8");
 		}
 			catch (Exception $e){
@@ -66,7 +66,7 @@ class Bdd
 	//**************//
 
 	// passe les requetes avec ou sans variable
-	public function query(string $sql, array $arg = null, $mode_objet = false)
+	public function query($sql, array $arg = null, $mode_objet = false)
 	{
 		if(!empty($arg))
 		{

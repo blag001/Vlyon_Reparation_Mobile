@@ -1,7 +1,4 @@
 <?php
-// on load les class
-require_once ('toolSql/Bdd.class.php');
-require_once ('toolNosql/Nosql.class.php');
 try {
 	// creation de l'obj BDD
 	// args : ($host, $db_name, $user, $mdp)

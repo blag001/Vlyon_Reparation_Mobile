@@ -1,5 +1,5 @@
 <?php
-function view($name = null)
+function view($name = null, array $arg = null)
 {
 	if(empty($name))
 		return;

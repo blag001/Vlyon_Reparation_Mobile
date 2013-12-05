@@ -1,7 +1,7 @@
 <?php
 class OdbStation
 {
-	private $bdd;
+	// private $bdd;
 
 	public function __construct()
 	{
@@ -15,7 +15,7 @@ class OdbStation
 			$req = 'SELECT COUNT(*)
 					FROM STATION
 					WHERE Sta_Nom = :nom';
-			$nb = $bdd->query($req , array('nom'=>$nom));
+			$nb = $this->bdd->query($req , array('nom'=>$nom));
 			return (bool) $nb[0];
 		}
 		return false;
@@ -25,7 +25,7 @@ class OdbStation
 	{
 		$req = 'SELECT *
 				FROM STATION';
-		$lesStations = $bdd->query($req, null, Bdd::FETCH_OBJ);
+		$lesStations = $this->bdd->query($req, null, Bdd::FETCH_OBJ);
 
 		return $lesStations;
 	}
@@ -36,7 +36,7 @@ class OdbStation
 				FROM STATION
 				WHERE Sta_Code = :id';
 
-		$laStation = $bdd->query($req, array('id'=>$id));
+		$laStation = $this->bdd->query($req, array('id'=>$id));
 		return($laStation);
 	}
 
@@ -46,7 +46,7 @@ class OdbStation
 				FROM VELO
 				WHERE Vel_Station = :station';
 
-		$nbVelo = $bdd->query($req, array('station'=>$station));
+		$nbVelo = $this->bdd->query($req, array('station'=>$station));
 		return $nbVelo[0];
 	}
 
@@ -55,7 +55,7 @@ class OdbStation
 				FROM VELO
 				WHERE Vel_Station = :station
 				AND Vel_Casse = 0';
-		$nbVelo = $bdd->query($req, array('station'=>$station));
+		$nbVelo = $this->bdd->query($req, array('station'=>$station));
 		return $nbVelo[0];
 	}
 

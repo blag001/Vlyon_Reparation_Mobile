@@ -10,16 +10,16 @@
 		</tr>
 
 		<?php
-		if(!empty($lesStations) and is_array($lesStations))
+		if(!empty($arg['lesStations']) and is_array($arg['lesStations']))
 		{
-			foreach ($lesStations as $value) {
+			foreach ($arg['lesStations'] as $value) {
 				?>
 				<tr>
-					<td><?php $value->Sta_Code;?></td>
+					<td><?php echo $value->Sta_Code;?></td>
 					<td><?php echo $value->Sta_Nom;?></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><?php echo $value->Sta_NbAttaches;?></td>
+					<td><?php echo $value->Sta_NbVelos;?></td>
+					<td><?php echo $value->Sta_NbAttacDispo;?></td>
 				</tr>
 				<?php
 			}

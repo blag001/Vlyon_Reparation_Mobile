@@ -12,6 +12,7 @@ class User
 
 	public function estUser()
 	{
+		// TODO verif du compte
 		return true;
 	}
 }

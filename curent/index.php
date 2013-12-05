@@ -1,7 +1,4 @@
 <?php
-// on lance la session
-session_start();
-
 // fonctions pour auto-charger les Class.ctr et les OdbClass.mdl
 function load_controller($class)
 {
@@ -15,6 +12,14 @@ function load_model($class)
 }
 spl_autoload_register('load_controller');
 spl_autoload_register('load_model');
+
+
+// on load les class
+require_once ('toolSql/Bdd.class.php');
+require_once ('toolNosql/Nosql.class.php');
+
+// on lance la session
+session_start();
 
 // on set les obj de connexion SQL et NoSql
 require_once 'inc/connexion.inc.php';
