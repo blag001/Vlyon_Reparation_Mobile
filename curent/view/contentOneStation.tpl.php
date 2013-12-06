@@ -60,20 +60,22 @@
 		</thead>
 		<tbody>
 			<?php
-			if(!empty($arg['lesVelos']))
+			if(!empty($arg['lesVelos']) and is_array($arg['lesVelos']))
 			{
+				foreach ($arg['lesVelos'] as $value) {
 				?>
-				<tr>
-					<td>
-						<a href="index.php?page=velo&amp;action=unvelo&amp;valeur=<?php echo $arg['lesVelos']->Vel_Num;?>">
-							<?php echo $arg['lesVelos']->Vel_Num;?>
-						</a>
-					</td>
-					<td><?php echo $arg['lesVelos']->Vel_Etat;?></td>
-					<td><?php echo $arg['lesVelos']->Vel_Type;?></td>
-					<td><?php echo $arg['lesVelos']->Vel_Accessoire;?></td>
-				</tr>
+					<tr>
+						<td>
+							<a href="index.php?page=velo&amp;action=unvelo&amp;valeur=<?php echo $value->Vel_Num;?>">
+								<?php echo $value->Vel_Num;?>
+							</a>
+						</td>
+						<td><?php echo $value->Vel_Etat;?></td>
+						<td><?php echo $value->Vel_Type;?></td>
+						<td><?php echo $value->Vel_Accessoire;?></td>
+					</tr>
 				<?php
+				}
 			}
 			?>
 		</tbody>

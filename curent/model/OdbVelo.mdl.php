@@ -13,7 +13,7 @@ class OdbVelo{
 	public function getLesVelosDeStation($codeStation){
 
 		$req = 'SELECT *
-				FROM VELOS
+				FROM VELO
 				WHERE Vel_Station = :codeStation';
 		$lesVelos = $this->oBdd->query($req, array('codeStation'=>$codeStation));
 
@@ -22,7 +22,7 @@ class OdbVelo{
 
 	public function getUnVelo($codeVelo){
 		$req = 'SELECT *
-				FROM VELOS
+				FROM VELO
 				WHERE Vel_Code = :codeVelo';
 
 		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
@@ -32,7 +32,7 @@ class OdbVelo{
 	/*public function recupererEtatVelo($codeVelo)
 	{
 		$req = 'SELECT Vel_Etat
-				FROM VELOS
+				FROM VELO
 				WHERE Vel_Code = :codeVelo';
 
 		$etat = $this->oBdd->query($req, array('codeVelo'=>$codeVelo)
