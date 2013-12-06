@@ -7,7 +7,7 @@ class OdbVelo{
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
-		$this->odbEtats = new odbEtats();
+		$this->odbEtats = new OdbEtats();
 	}
 
 	public function getLesVelosDeStation($codeStation){
@@ -15,7 +15,7 @@ class OdbVelo{
 		$req = 'SELECT *
 				FROM VELOS
 				WHERE Vel_Station = :codeStation';
-		$lesVelos = $this->oBdd->query($req);
+		$lesVelos = $this->oBdd->query($req, array('codeStation'=>$codeStation));
 
 		return $lesVelos;
 	}
@@ -25,7 +25,7 @@ class OdbVelo{
 				FROM VELOS
 				WHERE Vel_Code = :codeVelo';
 
-		$leVelo = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
 		return $leVelo;
 	}
 
@@ -45,9 +45,9 @@ class OdbVelo{
 
 		$req = 'UPDATE VELO
 				SET Vel_Station = :stationVelo, Vel_Etat = :stationVelo, Vel_Type = :typeVelo, Vel_Accessoire = :accessoireVelo, Vel_Casse = :veloCasse
-				WHERE Vel_Num = :codeVelo'
+				WHERE Vel_Num = :codeVelo';
 
-		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo)
+		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo));
 		return($leVelo);
 	}
 }
