@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-11-28" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-11-21" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="Nom" width="65" order="0"/>
@@ -7,7 +8,7 @@
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
-        <field id="1" name="Rôle par défaut" width="49" order="1"/>
+        <field id="1" name="Rôle par défaut" width="50" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -57,7 +58,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="50" expand="true">
+        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="30" complete="60" expand="true">
             <notes><![CDATA[sous la forme de ce Gantt]]></notes>
         </task>
         <task id="5" name="Rédaction documents techniques" color="#8cb6ce" meeting="false" start="2013-11-07" duration="20" complete="27" expand="true">
@@ -98,18 +99,25 @@
             <notes><![CDATA[convertir la syntaxe oracle en MySQL]]></notes>
             <depend id="28" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="28" name="developpement" color="#8cb6ce" meeting="false" start="2013-11-22" duration="2" complete="100" expand="true">
+        <task id="28" name="developpement" color="#8cb6ce" meeting="false" start="2013-11-22" duration="11" complete="70" expand="true">
             <notes><![CDATA[imtégrer le design
 mettre en place les différents modules]]></notes>
             <task id="68" name="Structuration du code" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="100" expand="true">
+                <notes><![CDATA[mise en place de l'architecture
+creation des fichier commun]]></notes>
+                <depend id="71" type="2" difference="0" hardness="Strong"/>
+                <depend id="72" type="2" difference="0" hardness="Strong"/>
+                <depend id="73" type="2" difference="0" hardness="Strong"/>
+                <depend id="74" type="2" difference="0" hardness="Strong"/>
                 <depend id="75" type="2" difference="0" hardness="Strong"/>
+                <depend id="76" type="1" difference="0" hardness="Strong"/>
             </task>
+            <task id="76" name="fichiers commun et squelette" color="#8cb6ce" meeting="false" start="2013-11-22" duration="7" complete="100" expand="true"/>
             <task id="75" name="module bon d'intervention" color="#8cb6ce" meeting="false" start="2013-11-25" duration="1" complete="0" expand="true"/>
-            <task id="73" name="module technicient" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="0" expand="true"/>
-            <task id="74" name="module demande intervention" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="0" expand="true"/>
-            <task id="72" name="module velo" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="0" expand="true"/>
-            <task id="71" name="module station" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="0" expand="true"/>
-            <task id="76" name="fichiers commun et squelette" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="0" expand="true"/>
+            <task id="73" name="module technicient" color="#8cb6ce" meeting="false" start="2013-11-25" duration="1" complete="0" expand="true"/>
+            <task id="74" name="module demande intervention" color="#8cb6ce" meeting="false" start="2013-11-25" duration="1" complete="0" expand="true"/>
+            <task id="72" name="module velo" color="#8cb6ce" meeting="false" start="2013-11-25" duration="1" complete="0" expand="true"/>
+            <task id="71" name="module station" color="#8cb6ce" meeting="false" start="2013-11-25" duration="10" complete="75" expand="true"/>
         </task>
     </tasks>
     <resources>
@@ -125,12 +133,14 @@ mettre en place les différents modules]]></notes>
         <allocation task-id="45" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="68" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="73" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="71" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="76" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="0" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="9" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="20" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="28" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="44" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="71" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="75" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
     </allocations>
     <vacations>
         <vacation start="2013-10-19" end="2013-11-04" resourceid="0"/>
@@ -146,7 +156,7 @@ mettre en place les différents modules]]></notes>
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd8" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="297" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="296" visible="true"/>
         <displaycolumn property-id="tpd4" order="1" width="77" visible="true"/>
         <displaycolumn property-id="tpd5" order="2" width="78" visible="true"/>
     </taskdisplaycolumns>
