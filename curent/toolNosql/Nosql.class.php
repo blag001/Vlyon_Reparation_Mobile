@@ -2,8 +2,16 @@
 /**
  * class de gestion de donnees en fichier
  *
- * Class pour une gestion simplifier de petite BDD
- * les terme son analogique mais traite de dossiers et fichiers
+ * Class pour une gestion simplifier de petite BDD noSql
+ * les terme son analogique mais traite
+ * - de dossiers (table)
+ * - et fichiers (entree)
+ *
+ * les entrees sont basee sur le model clef-valeur
+ * avec une contrainte d'unicitee sur la clef
+ * toutes les clefs sont stockee en base64
+ *
+ * Pensez a changer le CHMOD
  *
  * @method insert($table, $name, $data)
  * @method query($table, $name, $get_value)
@@ -28,7 +36,12 @@ class Nosql
 	//**************//
 	// CONSTRUCTEUR //
 	//**************//
-		// new Nosql( [string 'chemin_du_dossier_de_stockage'] )
+	/**
+	 * instancie l'objet de connexion
+	 * le path est le dossier racine des tables
+	 *
+	 * @param string $path
+	 */
 	public function __construct($path = 'nosql')
 	{
 		$this->last_query = false;
@@ -38,7 +51,13 @@ class Nosql
 	//*********//
 	// REQUETE //
 	//*********//
-		// insertion d'une key/value dans une table
+	/**
+	 * insertion d'une key/value dans une table
+	 * @param  string $table
+	 * @param  string $name
+	 * @param  string $data
+	 * @return boolean
+	 */
 	public function insert($table = null, $name = null , $data = null)
 	{
 		if($table != null and $data != null and $this->is_table($table))
@@ -49,7 +68,13 @@ class Nosql
 		}
 		return false;
 	}
-		// recherche by key dans une table
+	/**
+	 * recherche by key dans une table
+	 * @param  string  $table
+	 * @param  string  $name
+	 * @param  boolean $get_value
+	 * @return string
+	 */
 	public function query($table = null, $name = null, $get_value = true)
 	{
 		if($table != null and $name != null and $this->is_table($table))
@@ -60,7 +85,15 @@ class Nosql
 					return true;
 		return false;
 	}
-		// recherche toutes les key dans une table (avec leur value si $get_value == true)
+	/**
+	 * recherche toutes les key dans une table
+	 *
+	 * Les valeurs si sont aussi cherchee si get_value a true
+	 *
+	 * @param  string  $table
+	 * @param  boolean $get_value
+	 * @return array
+	 */
 	public function select_all($table = null, $get_value = false)
 	{
 		$output = false;
@@ -83,7 +116,12 @@ class Nosql
 		}
 		return $output;
 	}
-		// suppression d'une entree by key
+	/**
+	 * suppression d'une entree by key
+	 * @param  string $table
+	 * @param  string $name
+	 * @return boolean
+	 */
 	public function delet($table=null, $name=null)
 	{
 		if($this->is_table($table) and $table !=null)
@@ -95,11 +133,15 @@ class Nosql
 				}
 		return false;
 	}
-		// derniere value retournee par query ou FALSE
+	/**
+	 * derniere value retournee par query ou FALSE
+	 * @return string
+	 */
 	public function last_query()
 	{
 		return $this->last_query;
 	}
+
 	//*******//
 	// TABLE //
 	//*******//

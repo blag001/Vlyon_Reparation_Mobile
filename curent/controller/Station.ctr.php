@@ -1,6 +1,7 @@
 <?php
 class Station
 {
+	/** @var OdbStation model obj de gestion station en Bdd */
 	private $odbStation;
 
 	public function __construct()
@@ -12,6 +13,11 @@ class Station
 		$this->odbStation = new OdbStation();
 		$this->odbVelo = new OdbVelo();
 
+		/**
+		 * Switch de gestion des actions de Station
+		 *
+		 * @param string $_GET['action'] contient l'action demmandee
+		 */
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
 
@@ -25,7 +31,10 @@ class Station
 				break;
 		}
 	}
-
+	/**
+	 * affiche les stations
+	 * @return void
+	 */
 	protected function afficherLesStations()
 	{
 		$lesStations = $this->odbStation->getLesStations();
@@ -34,7 +43,10 @@ class Station
 		view('contentAllStation', array('lesStations'=>$lesStations));
 		view('htmlFooter');
 	}
-
+	/**
+	 * affiche une station et ses velos lies
+	 * @return void
+	 */
 	protected function afficherUneStation()
 	{
 		if (

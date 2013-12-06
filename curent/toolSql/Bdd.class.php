@@ -1,4 +1,10 @@
 <?php
+/**
+ * class de gestion PDO simplifiee
+ *
+ * @global boolean SINGLE_RES
+ * @author Benoit <benoitelie1@gmail.com>
+ */
 class Bdd
 {
 	private $host    = 'localhost';
@@ -6,14 +12,23 @@ class Bdd
 	private $user    = 'root';
 	private $mdp     = 'tioneb';
 
+	/** @var PDO variable avec l'instance PDO */
 	private $oBdd  = null;
 
+	/** constante en cas de resultat unique */
 	const SINGLE_RES = true;
 
-	//**************//
-	// CONSTRUCTEUR //
-	//**************//
-		// retourne une instance PDO avec les valeur en argument
+	////////////////////
+	// CONSTRUCTEUR  //
+	////////////////////
+	/**
+	 * cree une instance PDO avec les valeurs en argument
+	 *
+	 * @param string $host
+	 * @param string $db_name
+	 * @param string $user
+	 * @param string $mdp
+	 */
 	public function __construct($host=false, $db_name=false, $user=false, $mdp=false)
 	{
 		if($host && $db_name && $user && $mdp)
@@ -28,21 +43,31 @@ class Bdd
 		$this->connexion();
 	}
 
-	// quand on change de page et que l instance est dans une _session
+	/**
+	 * variable a sauver a la fin du chargement de page
+	 *
+	 * @return array
+	 */
 	public function __sleep()
 	{
 		return array('host', 'db_name', 'user', 'mdp');
 	}
-	// la reconnexion
+	/**
+	 * on reconnect au load de la page
+	 */
 	public function __wakeup()
 	{
 		$this->connexion();
 	}
 
-	//**************//
-	//    PRIVATE   //
-	//**************//
-		// cree une instance PDO
+	//////////////
+	// PRIVATE //
+	//////////////
+	/**
+	 * cree une instance PDO
+	 *
+	 * @return void
+	 */
 	protected function connexion()
 	{
 		try{
@@ -52,7 +77,7 @@ class Bdd
 				$this->user,
 				$this->mdp
 				);
-			// on set les option a utilise
+			// on set les options a utilise
 			$this->oBdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 			$this->oBdd->exec("SET CHARACTER SET utf8");
 		}
@@ -61,11 +86,21 @@ class Bdd
 		}
 	}
 
-	//**************//
-	//    PUBLIC    //
-	//**************//
-
-	// passe les requetes avec ou sans variable
+	/////////////
+	// PUBLIC //
+	/////////////
+	/**
+	 * passe les requetes avec ou sans variable
+	 *
+	 * expoite a la fois les query et les prepare de PDO
+	 * retourne soit un objet si mono_line a true,
+	 * soit un array d'objet si false/null
+	 *
+	 * @param  string  $sql
+	 * @param  array  $arg
+	 * @param  boolean $mono_line
+	 * @return mixed
+	 */
 	public function query($sql, array $arg = null, $mono_line = false)
 	{
 		if(!empty($arg))
@@ -82,30 +117,27 @@ class Bdd
 		}
 
 		if($mono_line)
-			return $req->fetch();
+			$data = $req->fetch();
 		else
-			return $req->fetchAll();
+			$data = $req->fetchAll();
+
+		// on ferme la requete en cours
+		$req->closeCursor();
+
+		return $data;
 	}
 
-	// fonction d'execute
+	/**
+	 * execute une requete SQL
+	 *
+	 * retourne le nombre de ligne affectee
+	 *
+	 * @param  string $sql
+	 * @return int
+	 */
 	public function execute(string $sql)
 	{
 		return $this->oBdd->execute($sql);
 	}
 
-	//**************//
-	//   PRIVATE    //
-	//**************//
-	// permet de parcourir les resultat et de les retourner dans un array
-	// private function objInArray($pointeur)
-	// {
-	// 	$array = array();
-	// 	if (!empty($pointeur)) {
-	// 		while ($data = $pointeur->fetch(PDO::FETCH_OBJ)) {
-	// 			$array[] = $data;
-	// 		}
-	// 	}
-
-	// 	return $array;
-	// }
 }

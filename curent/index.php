@@ -1,4 +1,9 @@
 <?php
+
+//////////////////////////////////
+// chargement et initialisation //
+//////////////////////////////////
+
 // fonctions pour auto-charger les Class.ctr et les OdbClass.mdl
 function load_controller($class)
 {
@@ -14,7 +19,7 @@ spl_autoload_register('load_controller');
 spl_autoload_register('load_model');
 
 
-// on load les class
+// on load les class de gestion des BDD
 require_once ('toolSql/Bdd.class.php');
 require_once ('toolNosql/Nosql.class.php');
 
@@ -26,8 +31,19 @@ require_once 'inc/connexion.inc.php';
 // fonction pour afficher les template
 require_once 'inc/template.inc.php';
 
-// obj ustilisateur (gestion des droits)
+/**
+ * contient un objet utilisateur et ses droits
+ * @global User $_SESSION['user']
+ */
 $_SESSION['user'] = new User();
+
+//////////////////////////
+// Fin d'initialisation //
+//////////////////////////
+
+///////////////////////////////////////////////
+// Controleur prncipale de gestion des pages //
+///////////////////////////////////////////////
 
 // on evite les error de variable !isset
 if (!isset($_GET['page']))
@@ -37,10 +53,10 @@ if (!isset($_GET['page']))
  * switch principale
  *
  * doit gerer les routes pour lancer une instance
- * du controleur corespondent a la demande
+ * du controleur correspondent a la demande
  *
- *@param string $_GET['page'] contient la page demandee
- *@author benoit
+ * @param string $_GET['page'] contient la page demandee
+ * @author benoit <benoitelie1@gmail.com>
  */
 switch ($_GET['page']) {
 	case 'velo':
