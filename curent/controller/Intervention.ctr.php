@@ -9,7 +9,7 @@ class Intervention
 			# si pas login
 		}
 		// si il est connecte
-		$this->odbIntervention = new odbIntervention();
+		$this->odbIntervention = new OdbIntervention();
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;

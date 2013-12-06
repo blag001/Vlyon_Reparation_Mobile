@@ -1,6 +1,7 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
+		<!-- bouton en format mini -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
@@ -10,9 +11,21 @@
 			</button>
 			<a class="navbar-brand" href="index.php">V-Lyon</a>
 		</div>
+		<!-- full menu -->
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
+				<li class="dropdown">
+					<a href="<?php echo $_SESSION['tampon']['url'];?>" class="dropdown-toggle" data-toggle="dropdown">
+						<?php echo $_SESSION['tampon']['page'];?> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="index.php?page=station">Station</a></li>
+						<li><a href="index.php?page=intervention">Intervention</a></li>
+						<li><a href="index.php?page=technicien">Technicien</a></li>
+						<li><a href="index.php?page=velo">V&eacute;lo</a></li>
+					</ul>
+				</li>
+				<!--
+				<li><a href="#">Home</a></li>
 				<li><a href="#about">About</a></li>
 				<li><a href="#contact">Contact</a></li>
 				<li class="dropdown">
@@ -21,12 +34,11 @@
 						<li><a href="#">Action</a></li>
 						<li><a href="#">Another action</a></li>
 						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
 						<li><a href="#">Separated link</a></li>
 						<li><a href="#">One more separated link</a></li>
 					</ul>
 				</li>
+				-->
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>

@@ -13,6 +13,10 @@ class Station
 		$this->odbStation = new OdbStation();
 		$this->odbVelo = new OdbVelo();
 
+		// page actuelle
+		$_SESSION['tampon']['page'] = 'Station';
+		$_SESSION['tampon']['url'] = 'index.php?page=station';
+
 		/**
 		 * Switch de gestion des actions de Station
 		 *
@@ -49,6 +53,7 @@ class Station
 	 */
 	protected function afficherUneStation()
 	{
+		// si on a bien a faire a une station valide
 		if (
 				!empty($_GET['valeur'])
 				and $this->odbStation->estStationById($_GET['valeur']))

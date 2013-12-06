@@ -37,6 +37,11 @@ require_once 'inc/template.inc.php';
  */
 $_SESSION['user'] = new User();
 
+// nom de la page par defaut
+$_SESSION['tampon']['page'] = 'Station';
+// url de la page par defaut
+$_SESSION['tampon']['url'] = 'index.php?page=station';
+
 //////////////////////////
 // Fin d'initialisation //
 //////////////////////////
