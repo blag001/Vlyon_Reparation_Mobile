@@ -1,5 +1,5 @@
 <?php
-class Station
+class Intervention
 {
 	private $odbIntervention;
 
