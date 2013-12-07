@@ -2,19 +2,35 @@
 class OdbVelo{
 
 	private $oBdd;
-	private $odbEtats;
 
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
-		$this->odbEtats = new OdbEtats();
+	}
+
+	public function estVelo($codeVelo)
+	{
+		if(!empty($codeVelo))
+		{
+			$req = 'SELECT COUNT(*) AS nb
+					FROM VELO
+					WHERE Vel_Num = :codeVelo';
+
+			$data = $this->oBdd->query($req , array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
+
+			return (bool) $data->nb;
+		}
+
+		return false;
 	}
 
 	public function getLesVelosDeStation($codeStation){
 
 		$req = 'SELECT *
-				FROM VELO
-				WHERE Vel_Station = :codeStation';
+				FROM VELO, ETAT
+				WHERE Vel_Station = :codeStation
+					AND VELO.Vel_Etat = ETAT.Eta_Code';
+
 		$lesVelos = $this->oBdd->query($req, array('codeStation'=>$codeStation));
 
 		return $lesVelos;
@@ -22,32 +38,32 @@ class OdbVelo{
 
 	public function getUnVelo($codeVelo){
 		$req = 'SELECT *
-				FROM VELO
-				WHERE Vel_Code = :codeVelo';
+				FROM VELO, ETAT
+				WHERE Vel_Num = :codeVelo
+					AND VELO.Vel_Etat = ETAT.Eta_Code';
 
 		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
+
 		return $leVelo;
 	}
 
-	/*public function recupererEtatVelo($codeVelo)
-	{
-		$req = 'SELECT Vel_Etat
-				FROM VELO
-				WHERE Vel_Code = :codeVelo';
-
-		$etat = $this->oBdd->query($req, array('codeVelo'=>$codeVelo)
-		return($etat);
-
-	}*/
-
 	//modifier certainens informations d'un velo et l'Etat
-	public function modifierUnVelo($codeVelo, $stationVelo, $etatVelo, $typeVelo, $accessoireVelo, $veloCasse){
+	/**
+	 * @todo j'ai un doute sur l'utilisation des ->query pour les update...
+	 *       donc je check ça quand j'ai le temps :P
+	 */
+	public function modifierUnVelo($arrayDataVelo){
 
 		$req = 'UPDATE VELO
-				SET Vel_Station = :stationVelo, Vel_Etat = :stationVelo, Vel_Type = :typeVelo, Vel_Accessoire = :accessoireVelo, Vel_Casse = :veloCasse
+				SET Vel_Station     = :stationVelo,
+					Vel_Etat        = :stationVelo,
+					Vel_Type        = :typeVelo,
+					Vel_Accessoire  = :accessoireVelo,
+					Vel_Casse       = :veloCasse
 				WHERE Vel_Num = :codeVelo';
 
-		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo));
-		return($leVelo);
+		$leVelo = $this->oBdd->query($req, $aarrayDataVelo);
+
+		return $leVelo;
 	}
 }

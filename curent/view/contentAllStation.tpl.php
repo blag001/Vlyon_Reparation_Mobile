@@ -1,5 +1,5 @@
 <div class="container">
-
+	<h1>Les Stations</h1>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -33,5 +33,21 @@
 			?>
 		</tbody>
 	</table>
-
+	<?php
+	if(!empty($_SESSION['tampon']['error']) and is_array($_SESSION['tampon']['error']))
+	{
+		?>
+		<div class="has-error">
+			<div class="input-group-addon">
+				<?php
+				foreach ($_SESSION['tampon']['error'] as $value) {
+					echo $value .'<br />';
+				}
+				?>
+			</div>
+		</div>
+		<?php
+		$_SESSION['tampon']['error'] = null;
+	}
+	?>
 </div><!-- /.container -->

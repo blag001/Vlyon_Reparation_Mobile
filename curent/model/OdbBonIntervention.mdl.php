@@ -1,25 +1,29 @@
 <?php
-class OdbBonInterv
+/**
+ * @todo  @method creerUnBonInter => a revoir...
+ */
+class OdbBonIntervention
 {
-	// TODO : finir de rename les variables
-
-	private $bdd;
+	private $oBdd;
 
 	public function __construct()
 	{
-		$this->bdd = $_SESSION['bdd'];
+		$this->oBdd = $_SESSION['bdd'];
 	}
 
-	public function estBonInter(string $code)
+	public function estBonInter($code)
 	{
 		if(!empty($code))
 		{
-			$req = 'SELECT COUNT(*)
+			$req = 'SELECT COUNT(*) AS nb
 					FROM BONINTERV
 					WHERE BI_Num = :code';
-			$nb = $bdd->query($req , array('code'=>$code));
-			return (bool) $nb[0];
+
+			$data = $this->oBdd->query($req , array('code'=>$code), Bdd::SINGLE_RES);
+
+			return (bool) $data->nb;
 		}
+
 		return false;
 	}
 
@@ -27,7 +31,8 @@ class OdbBonInterv
 	{
 		$req = 'SELECT *
 				FROM BONINTERV';
-		$lesBonsInter = $bdd->query($req, null, Bdd::FETCH_OBJ);
+
+		$lesBonsInter = $this->oBdd->query($req);
 
 		return $lesBonsInter;
 	}
@@ -38,32 +43,37 @@ class OdbBonInterv
 				FROM BONINTERV
 				WHERE BI_Num = :code';
 
-		$leBonInter = $bdd->query($req, array('code'=>$code));
-		return($leBonInter);
+		$leBonInter = $this->oBdd->query($req, array('code'=>$code), Bdd::SINGLE_RES);
+
+		return $leBonInter;
 	}
 
-	//on visualise les interventions effectuées par un technicien gràce à son matricule
+	//on visualise les interventions effectuees par un technicien gràce à son matricule
 	public function getSesInterventions($techCode)
 	{
 		$req = 'SELECT *
 				FROM BONINTERV
 				WHERE BI_Technicien = :techCode';
-		$lesBonsInter = $bdd->query($req, null, Bdd::FETCH_OBJ);
+
+		$lesBonsInter = $this->oBdd->query($req);
 
 		return $lesBonsInter;
-
 	}
 
-	//on crée une intervention
+	//on cree une intervention
+	/**
+	 * @todo pas de variable dans les requetes...
+	 *       on passe tout avec des marqueur et un tableau
+	 */
 	public function creerUnBonInter($code)
 	{
-		$req = 'INSERT INTO BONINTERV
-				VALUES ('$code', '$veloCode', '$dateDebut', '$dateFin', '$cpteRendu', '$reparable', '$demande', '$technicienCode', '$surPlace', '$duree' )
-				WHERE BI_Num = :code';
+		// $req = 'INSERT INTO BONINTERV
+		// 		VALUES ('$code', '$veloCode', '$dateDebut', '$dateFin', '$cpteRendu', '$reparable', '$demande', '$technicienCode', '$surPlace', '$duree' )
+		// 		WHERE BI_Num = :code';
 
-		$leBonInter = $bdd->query($req, array('code'=>$code));
-		return($leBonInter);
+		// $leBonInter = $bdd->query($req, array('code'=>$code));
+		// return($leBonInter);
 	}
 
-	
+
 }

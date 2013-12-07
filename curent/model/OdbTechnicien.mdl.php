@@ -8,16 +8,19 @@ class OdbTechnicien
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
-	public function estTechnicien(string $matricule)
+	public function estTechnicien($matricule)
 	{
 		if(!empty($matricule))
 		{
 			$req = 'SELECT COUNT(*) AS nb
 					FROM TECHNICIEN
 					WHERE Tech_Matricule = :matricule';
+
 			$data = $oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
+
 			return (bool) $data->nb;
 		}
+
 		return false;
 	}
 
@@ -25,6 +28,7 @@ class OdbTechnicien
 	{
 		$req = 'SELECT *
 				FROM TECHNICIEN';
+
 		$lesTechniciens = $oBdd->query($req);
 
 		return $lesTechniciens;
@@ -37,7 +41,7 @@ class OdbTechnicien
 				WHERE Tech_Matricule = :matricule';
 
 		$leTechnicien = $oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
+
 		return $leTechnicien;
 	}
-
 }

@@ -1,5 +1,5 @@
 <div class="container">
-
+	<h1>Interventions non trait&eacute;es</h1>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -23,7 +23,7 @@
 						</td>
 						<td><?php echo $value->DemI_Num;?></td>
 						<td><?php echo $value->DemI_Date;?></td>
-						<td><?php echo /*$value->Sta_NbVelos*/ NOPE PAS MAINTENANT;?></td>
+						<?php /*<td>echo $value->Sta_NbVelos NOPE PAS MAINTENANT;</td>*/?>
 						<td><?php echo $value->DemI_Velo;?></td>
 					</tr>
 					<?php

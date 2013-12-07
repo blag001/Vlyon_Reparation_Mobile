@@ -1,5 +1,5 @@
 <div class="container">
-	<h1>Information Station</h1>
+	<h1>Informations Station</h1>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -26,6 +26,8 @@
 			}
 			?>
 		</tbody>
+	</table>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Nb Attaches</th>
@@ -53,8 +55,8 @@
 		<thead>
 			<tr>
 				<th>Num</th>
+				<th>&Eacute;tat</th>
 				<th>Type</th>
-				<th>Rue</th>
 				<th>Accessoires</th>
 			</tr>
 		</thead>
@@ -70,7 +72,7 @@
 								<?php echo $value->Vel_Num;?>
 							</a>
 						</td>
-						<td><?php echo $value->Vel_Etat;?></td>
+						<td><?php echo $value->Eta_Libelle;?></td>
 						<td><?php echo $value->Vel_Type;?></td>
 						<td><?php echo $value->Vel_Accessoire;?></td>
 					</tr>
@@ -79,4 +81,22 @@
 			}
 			?>
 		</tbody>
+	</table>
+		<?php
+		if(!empty($_SESSION['tampon']['error']) and is_array($_SESSION['tampon']['error']))
+		{
+			?>
+			<div class="has-error">
+				<div class="input-group-addon">
+					<?php
+					foreach ($_SESSION['tampon']['error'] as $value) {
+						echo $value .'<br />';
+					}
+					?>
+				</div>
+			</div>
+			<?php
+			$_SESSION['tampon']['error'] = null;
+		}
+		?>
 </div><!-- /.container -->

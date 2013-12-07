@@ -1,16 +1,14 @@
 <?php
 class OdbDemandeInter
 {
-	// TODO : finir de rename les variables
-
-	private $bdd;
+	private $oBdd;
 
 	public function __construct()
 	{
-		$this->bdd = $_SESSION['bdd'];
+		$this->oBdd = $_SESSION['bdd'];
 	}
 
-	public function estDemandeInter(string $nom)
+	public function estDemandeInter($nom)
 	{
 		if(!empty($nom))
 		{
@@ -18,9 +16,27 @@ class OdbDemandeInter
 					FROM DEMANDEINTER
 					WHERE Sta_Nom = :nom';
 
-			$data = $bdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
+			$data = $this->oBdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
+
 			return (bool) $data->nb;
 		}
+
+		return false;
+	}
+
+	public function estDemandeInterById($id)
+	{
+		if(!empty($id))
+		{
+			$req = 'SELECT COUNT(*) AS nb
+					FROM DEMANDEINTER
+					WHERE Sta_Code = :id';
+
+			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
+
+			return (bool) $data->nb;
+		}
+
 		return false;
 	}
 
@@ -28,7 +44,8 @@ class OdbDemandeInter
 	{
 		$req = 'SELECT *
 				FROM DEMANDEINTER';
-		$lesDemandesInter = $bdd->query($req);
+
+		$lesDemandesInter = $this->oBdd->query($req);
 
 		return $lesDemandesInter;
 	}
@@ -39,23 +56,20 @@ class OdbDemandeInter
 				FROM DEMANDEINTER
 				WHERE Sta_Code = :id';
 
-		$laDemandeInter = $bdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+
 		return $laDemandeInter;
 	}
 
-	//visualiser toutes les demandes d'intervention non traitées
-	public function getLesDemandesIT()
+	// toutes les demandes d'intervention non traitees
+	public function getLesDemandesNT()
 	{
-		{
 		$req = 'SELECT *
 				FROM DEMANDEINTER
 				WHERE DemI_Traite = 0';
 
-		$lesDemandesInter = $bdd->query($req);
+		$lesDemandesInter = $this->oBdd->query($req);
+
 		return $lesDemandesInter;
 	}
-
-	}
-
 }
-
