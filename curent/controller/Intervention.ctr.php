@@ -1,7 +1,8 @@
 <?php
 class Intervention
 {
-	private $odbIntervention;
+	private $odbDemandeInter;
+	private $odbBonIntervention;
 
 	public function __construct()
 	{
@@ -9,7 +10,8 @@ class Intervention
 			# si pas login
 		}
 		// si il est connecte
-		$this->odbIntervention = new OdbIntervention();
+		$this->odbBonIntervention = new OdbBonIntervention();
+		$this->odbDemandeInter = new OdbDemandeInter();
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
@@ -33,7 +35,7 @@ class Intervention
 
 	protected function afficherLesDemandesInter()
 	{
-		$lesInterventionNT = $this->odbIntervention->getLesDemandesNT();
+		$lesInterventionNT = $this->odbDemandeInter->getLesDemandesNT();
 		$_SESSION['tampon']['title'] = 'Toutes Les demandes d interventions non traitees';
 		view('htmlHeader');
 		view('contentAllDINT', array('lesInterventionNT'=>$lesInterventionNT));
@@ -43,9 +45,9 @@ class Intervention
 	protected function afficherUneDemandeInter()
 	{
 		if (		!empty($_GET['valeur'])
-					and $this->odbIntervention->getUneDemandeInter($_GET['valeur'])		)
+					and $this->odbDemandeInter->getUneDemandeInter($_GET['valeur'])		)
 		{
-			$uneDemandeInter = $this->odbIntervention->getuneDemandeInter($_GET['valeur']);
+			$uneDemandeInter = $this->odbDemandeInter->getuneDemandeInter($_GET['valeur']);
 			$_SESSION['tampon']['title'] = 'Demande Intervention - '.$uneDemandeInter->DemI_Num;
 
 			view('htmlHeader');
@@ -64,8 +66,8 @@ class Intervention
 
 	protected function afficherSesInter($codeTechnicien)
 	{
-		$lesInterventions = $this->odbIntervention->getLesDemandesInter();
-		$lesBonsInter = $this->odbIntervention->getLesBonsInter();
+		$lesInterventions = $this->odbBonIntervention->getLesDemandesInter();
+		$lesBonsInter = $this->odbBonIntervention->getLesBonsInter();
 
 		//NON FINI
 	}
