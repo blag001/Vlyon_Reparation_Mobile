@@ -1,0 +1,1161 @@
+commit b065f6e7cbd88adc868a860261b953a92a9973a5
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 01:46:03 2013 +0100
+
+    ajout du pdf du read-me
+
+ READ-ME.pdf |  Bin 0 -> 27515 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8c79f5e7e4c3dc27dc773f2990970d29a5eb768e
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 01:44:05 2013 +0100
+
+    ajout du read me, add noSql et bootstrap dans les choix technique + correction du gantt
+
+ READ-ME.rtf               |   27 +++++++++++++++++++++++++++
+ choix_technique_EK-EB.odt |  Bin 2374117 -> 2375045 bytes
+ choix_technique_EK-EB.pdf |  Bin 3384879 -> 417067 bytes
+ gan/diagTaches1.gan       |   19 ++++++++++---------
+ 4 files changed, 37 insertions(+), 9 deletions(-)
+
+commit 366753b94144dbdc3cba7168db33dead4d0328fd
+Merge: 11ceff0 a5c6c52
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 01:11:53 2013 +0100
+
+    Merge branch 'master' of /home/benoit/dropbox/sio_webapp/kevin/curent_site
+
+commit a5c6c528b5719715f191fa4c94ba00bd1526e4d8
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 01:11:03 2013 +0100
+
+    maj des fin de ligne/fichier
+
+ curent/model/OdbEtats.mdl.php      |    2 +-
+ curent/view/contentAllDINT.tpl.php |    1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+commit 11ceff0ea3339fb0ba68079d51e823579a78ce86
+Merge: d95b471 788c3c8
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 01:00:15 2013 +0100
+
+    Merge branch 'master' of /home/benoit/dropbox/sio_webapp/kevin/curent_site
+    
+    Conflicts:
+    	curent/controller/Intervention.ctr.php
+
+commit d95b47105ce7f1282bf4dc81fa68ff52bca97819
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 00:52:32 2013 +0100
+
+    data de test bdd+ correction content 1 station et mini patche odbVelo
+
+ curent/model/OdbVelo.mdl.php          |    6 +++---
+ curent/view/contentOneStation.tpl.php |   24 +++++++++++++-----------
+ sql/data_test_mysql.sql               |   27 +++++++++++++++++++++++++++
+ 3 files changed, 43 insertions(+), 14 deletions(-)
+
+commit 788c3c8b0e66abaf5d9365b09437394a656ae18d
+Author: kevin <kevin.elain@gmail.com>
+Date:   Sat Dec 7 00:37:49 2013 +0100
+
+    MAJ gantt
+
+ gan/diagTaches1.gan |   25 ++++++++++++-------------
+ 1 file changed, 12 insertions(+), 13 deletions(-)
+
+commit 728f89248c4684c42a56ec5696aafe0ae96fb45e
+Author: kevin <kevin.elain@gmail.com>
+Date:   Sat Dec 7 00:20:04 2013 +0100
+
+    correction controleur Intervention
+
+ curent/controller/Intervention.ctr.php |   15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit ea509b3b44867a2e01a83e3d38df3336d05e4b1a
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Dec 7 00:07:30 2013 +0100
+
+    modif du menu et correction bug sur intervention
+
+ curent/controller/Intervention.ctr.php |    2 +-
+ curent/controller/Station.ctr.php      |    5 +++++
+ curent/index.php                       |    5 +++++
+ curent/view/contentMenu.tpl.php        |   18 +++++++++++++++---
+ 4 files changed, 26 insertions(+), 4 deletions(-)
+
+commit 1bc551ff5f2efe441c4bcd9d0c9c38baa174b992
+Author: kevin <kevin.elain@gmail.com>
+Date:   Sat Dec 7 00:01:40 2013 +0100
+
+    Ajout vue OneDemI
+
+ curent/controller/Intervention.ctr.php |    2 +-
+ curent/view/contentOneDemI.tpl.php     |   38 ++++++++++++++++++++++++++++++++
+ 2 files changed, 39 insertions(+), 1 deletion(-)
+
+commit 069df898c27af686ab58fe40ad67966120eda660
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Dec 6 20:24:53 2013 +0100
+
+    mise a jour du gantt
+
+ gan/diagTaches1.gan |  320 ++++++++++++++++++++++++++-------------------------
+ 1 file changed, 165 insertions(+), 155 deletions(-)
+
+commit 2441e8c4737221083e1df7df55f06c9f12609efc
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Dec 6 20:22:28 2013 +0100
+
+    move des img, ajout de commentaires
+
+ curent/controller/Station.ctr.php                  |   16 +++-
+ curent/inc/connexion.inc.php                       |   26 ++++-
+ curent/index.php                                   |   26 ++++-
+ curent/toolNosql/Nosql.class.php                   |   58 ++++++++++--
+ curent/toolSql/Bdd.class.php                       |  100 +++++++++++++-------
+ .../54253-velib-commerce--lectronique-contrat.jpg  |  Bin 18925 -> 0 bytes
+ .../54253-velib-commerce--lectronique-contrat.jpg  |  Bin 0 -> 18925 bytes
+ maquette/img/intNonT1.png                          |  Bin 0 -> 5680 bytes
+ maquette/img/mobile_quick_sketch.jpg               |  Bin 0 -> 342161 bytes
+ maquette/img/retour.png                            |  Bin 0 -> 882 bytes
+ maquette/img/rollHor.png                           |  Bin 0 -> 1324 bytes
+ maquette/img/visualiserInfosVeloImage.jpg          |  Bin 0 -> 312802 bytes
+ maquette/intNonT1.png                              |  Bin 5680 -> 0 bytes
+ maquette/mobile_quick_sketch.jpg                   |  Bin 342161 -> 0 bytes
+ maquette/retour.png                                |  Bin 882 -> 0 bytes
+ maquette/rollHor.png                               |  Bin 1324 -> 0 bytes
+ maquette/visualiserInfosVeloImage.jpg              |  Bin 312802 -> 0 bytes
+ maquette/~$sualiserStations.docx                   |  Bin 162 -> 0 bytes
+ maquette/~$sualiserUneStation.docx                 |  Bin 162 -> 0 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc                  |  Bin 162 -> 0 bytes
+ 20 files changed, 172 insertions(+), 54 deletions(-)
+
+commit 749e69c6e7f04d2d1cd997fce5c6a96e6fee8ca4
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Dec 6 18:18:21 2013 +0100
+
+    rename dossier en "maquette" + fin une station + correction bug
+
+ curent/model/OdbVelo.mdl.php                       |   10 ++--
+ curent/view/contentOneStation.tpl.php              |   53 ++++++++++++++++++--
+ kev/54253-velib-commerce--lectronique-contrat.jpg  |  Bin 18925 -> 0 bytes
+ kev/avancement.docx                                |  Bin 13154 -> 0 bytes
+ kev/demandeInterv.docx                             |  Bin 140386 -> 0 bytes
+ kev/demandeInterv.pdf                              |  Bin 115979 -> 0 bytes
+ kev/effectuerIntervention.docx                     |  Bin 140047 -> 0 bytes
+ kev/effectuerIntervention.pdf                      |  Bin 117323 -> 0 bytes
+ kev/intNonT1.png                                   |  Bin 5680 -> 0 bytes
+ kev/mobile_quick_sketch.jpg                        |  Bin 342161 -> 0 bytes
+ kev/retour.png                                     |  Bin 882 -> 0 bytes
+ kev/rollHor.png                                    |  Bin 1324 -> 0 bytes
+ kev/visualiserInfoVelo.docx                        |  Bin 260534 -> 0 bytes
+ kev/visualiserInfoVelo.pdf                         |  Bin 147815 -> 0 bytes
+ kev/visualiserInfosVeloImage.jpg                   |  Bin 312802 -> 0 bytes
+ kev/visualiserInterventionsNonTraitees.docx        |  Bin 130941 -> 0 bytes
+ kev/visualiserInterventionsNonTraitees.pdf         |  Bin 108594 -> 0 bytes
+ kev/visualiserSesInterventions.docx                |  Bin 122712 -> 0 bytes
+ kev/visualiserStations.docx                        |  Bin 143674 -> 0 bytes
+ kev/visualiserStations.pdf                         |  Bin 115271 -> 0 bytes
+ kev/visualiserUneStation.docx                      |  Bin 137299 -> 0 bytes
+ kev/visualiserUneStation.pdf                       |  Bin 123550 -> 0 bytes
+ kev/~$sualiserStations.docx                        |  Bin 162 -> 0 bytes
+ kev/~$sualiserUneStation.docx                      |  Bin 162 -> 0 bytes
+ .../54253-velib-commerce--lectronique-contrat.jpg  |  Bin 0 -> 18925 bytes
+ maquette/avancement.docx                           |  Bin 0 -> 13154 bytes
+ maquette/demandeInterv.docx                        |  Bin 0 -> 140386 bytes
+ maquette/demandeInterv.pdf                         |  Bin 0 -> 115979 bytes
+ maquette/effectuerIntervention.docx                |  Bin 0 -> 140047 bytes
+ maquette/effectuerIntervention.pdf                 |  Bin 0 -> 117323 bytes
+ maquette/intNonT1.png                              |  Bin 0 -> 5680 bytes
+ maquette/mobile_quick_sketch.jpg                   |  Bin 0 -> 342161 bytes
+ maquette/retour.png                                |  Bin 0 -> 882 bytes
+ maquette/rollHor.png                               |  Bin 0 -> 1324 bytes
+ maquette/visualiserInfoVelo.docx                   |  Bin 0 -> 260534 bytes
+ maquette/visualiserInfoVelo.pdf                    |  Bin 0 -> 147815 bytes
+ maquette/visualiserInfosVeloImage.jpg              |  Bin 0 -> 312802 bytes
+ maquette/visualiserInterventionsNonTraitees.docx   |  Bin 0 -> 130941 bytes
+ maquette/visualiserInterventionsNonTraitees.pdf    |  Bin 0 -> 108594 bytes
+ maquette/visualiserSesInterventions.docx           |  Bin 0 -> 122712 bytes
+ maquette/visualiserStations.docx                   |  Bin 0 -> 143674 bytes
+ maquette/visualiserStations.pdf                    |  Bin 0 -> 115271 bytes
+ maquette/visualiserUneStation.docx                 |  Bin 0 -> 137299 bytes
+ maquette/visualiserUneStation.pdf                  |  Bin 0 -> 123550 bytes
+ maquette/~$sualiserStations.docx                   |  Bin 0 -> 162 bytes
+ maquette/~$sualiserUneStation.docx                 |  Bin 0 -> 162 bytes
+ 46 files changed, 54 insertions(+), 9 deletions(-)
+
+commit 70bcb3016abad3fa725cada261c302289403d8db
+Merge: 8995b07 b12c5aa
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 17:27:47 2013 +0100
+
+    Merge branch 'master' of /media/hp_16go/cours/ppe/mobil
+
+commit b12c5aa92a7cc03b06645a399e6840502bf02e13
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 17:24:53 2013 +0100
+
+    modif du menu +debut add velo sur uneStation
+
+ curent/controller/Station.ctr.php     |    6 +++++-
+ curent/css/style.css                  |    4 ++++
+ curent/index.php                      |    2 +-
+ curent/model/OdbDemandeInter.mdl.php  |    4 ++--
+ curent/model/OdbVelo.mdl.php          |   10 +++++-----
+ curent/toolSql/Bdd.class.php          |   24 ++++++++++++------------
+ curent/view/contentMenu.tpl.php       |   19 ++++++++++++++++---
+ curent/view/contentOneStation.tpl.php |    2 +-
+ curent/view/htmlHeader.tpl.php        |    5 +++++
+ 9 files changed, 51 insertions(+), 25 deletions(-)
+
+commit 8995b071f2cced93ba38ebbab4ab63c8a4800ef8
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Dec 5 17:18:28 2013 +0100
+
+    MAJ MVC interventions - display inter NT : ok
+
+ curent/controller/Intervention.ctr.php |   49 ++++++++++++++++++++------------
+ curent/index.php                       |    2 +-
+ curent/model/OdbDemandeInter.mdl.php   |    2 +-
+ curent/view/contentAllDINT.tpl.php     |   37 ++++++++++++++++++++++++
+ curent/view/contentDINT.tpl.php        |   37 ------------------------
+ 5 files changed, 70 insertions(+), 57 deletions(-)
+
+commit 0a3d8cfba247facbe1a8744bcf35ae68c729e98a
+Merge: 827575f 722783e
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 16:22:19 2013 +0100
+
+    Merge branch 'master' of /media/hp_16go/cours/ppe/mobil
+
+commit 827575f63e4ac6088b57b156781f51b80916d387
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Dec 5 16:15:13 2013 +0100
+
+    MAJ controleur/index/vue
+
+ curent/controller/Intervention.ctr.php |   59 ++++++++++++++++++++++++++++++++
+ curent/index.php                       |    4 +++
+ curent/view/contentDINT.tpl.php        |   37 ++++++++++++++++++++
+ 3 files changed, 100 insertions(+)
+
+commit 722783eaf20097bb834d198add2ac1a6695cd1b6
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 16:13:49 2013 +0100
+
+    modif de la class Bdd et repercution sur la suite
+
+ curent/model/OdbDemandeInter.mdl.php |   19 +++++++++---------
+ curent/model/OdbStation.mdl.php      |   36 ++++++++++++++++++----------------
+ curent/model/OdbTechnicien.mdl.php   |   18 ++++++++---------
+ curent/toolSql/Bdd.class.php         |    8 ++++----
+ 4 files changed, 42 insertions(+), 39 deletions(-)
+
+commit 2ffc148cfebdb6158a5df5cab4e38a3a28a54d25
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Dec 5 15:35:04 2013 +0100
+
+    Modifications modèles/controlleurs/vues
+
+ curent/model/OdbBonIntervention.mdl.php |   15 ++++++++++++++-
+ curent/model/OdbVelo.mdl.php            |   19 +++++++++++--------
+ 2 files changed, 25 insertions(+), 9 deletions(-)
+
+commit 5afa45813a89492c545cbda400bd42241a9233e5
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Dec 5 14:53:51 2013 +0100
+
+    Modifications modèles/controleurs
+
+ curent/model/OdbEtats.mdl.php     |   24 ++++++++++++++++++++++++
+ curent/model/OdbVelo.mdl.php      |   26 ++++++++++++++++++++------
+ curent/toolSql/Bdd.class.php      |    2 +-
+ kev/~$sualiserStations.docx       |  Bin 0 -> 162 bytes
+ kev/~$sualiserUneStation.docx     |  Bin 0 -> 162 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc |  Bin 0 -> 162 bytes
+ 6 files changed, 45 insertions(+), 7 deletions(-)
+
+commit a5a9e79e8e8f5ed9188320bdbb767dccac9b18af
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 14:07:32 2013 +0100
+
+    add gestion une station, mise en page rapide des view station +modif SQL en BIT
+
+ curent/controller/Station.ctr.php     |   28 +++++++++++++++--
+ curent/model/OdbStation.mdl.php       |   15 ++++++++-
+ curent/view/contentAllStation.tpl.php |   55 +++++++++++++++++++--------------
+ curent/view/contentError.tpl.php      |   13 ++++++--
+ curent/view/contentOneStation.tpl.php |   35 +++++++++++++++++++++
+ sql/Creer_reparation_mysql.sql        |   42 ++++++++++++-------------
+ 6 files changed, 138 insertions(+), 50 deletions(-)
+
+commit 3a3034a59cca3b80e09191c711dfd7a796b59fe0
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 11:11:53 2013 +0100
+
+    correction des bug SQL, mise en place d un accueil qui marche, ajout meta utf8
+
+ curent/controller/Station.ctr.php     |    2 +-
+ curent/controller/User.ctr.php        |    1 +
+ curent/inc/connexion.inc.php          |    3 ---
+ curent/inc/template.inc.php           |    2 +-
+ curent/index.php                      |   11 ++++++++---
+ curent/model/OdbStation.mdl.php       |   12 ++++++------
+ curent/toolSql/Bdd.class.php          |    4 ++--
+ curent/view/contentAllStation.tpl.php |   12 ++++++------
+ curent/view/htmlHeader.tpl.php        |    1 +
+ 9 files changed, 26 insertions(+), 22 deletions(-)
+
+commit e699e3ac13b0dd6543703cc346f293152f2467f3
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 07:41:50 2013 +0100
+
+    ajout de la view AllStation et suite des modif
+
+ curent/controller/Station.ctr.php       |   16 ++++++++++++++--
+ curent/index.php                        |    4 +---
+ curent/model/OdbBonIntervention.mdl.php |   10 ++++++++--
+ curent/model/OdbDemandeInter.mdl.php    |    8 +++++++-
+ curent/view/contentAllStation.tpl.php   |   30 ++++++++++++++++++++++++++++++
+ 5 files changed, 60 insertions(+), 8 deletions(-)
+
+commit 1c4bca7081a6c5d0aeeddb30abaf9b25c45cd4fa
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 00:47:07 2013 +0100
+
+    on vire les ~tmp et on fait une petite modif de fin de ligne
+
+ curent/model/OdbBonIntervention.mdl.php |    3 ---
+ kev/~$sualiserStations.docx             |  Bin 162 -> 0 bytes
+ kev/~$sualiserUneStation.docx           |  Bin 162 -> 0 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc       |  Bin 162 -> 0 bytes
+ 4 files changed, 3 deletions(-)
+
+commit 4220929abdcde4fc326c36cf329bfaafe6a88551
+Merge: da5e0b9 6d8d5eb
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 00:09:19 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+
+commit da5e0b9a451652303ef38d9352a0eb338c095400
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Dec 5 00:08:53 2013 +0100
+
+    correction de bug instanciation variable
+
+ curent/controller/Station.ctr.php  |    5 ++++-
+ curent/index.php                   |    6 ++++--
+ curent/model/OdbStation.mdl.php    |   11 ++++++++---
+ curent/model/OdbTechnicien.mdl.php |    7 ++++++-
+ 4 files changed, 22 insertions(+), 7 deletions(-)
+
+commit 6d8d5eb13632a7bd6513921c1f3c9d88f6129795
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Dec 5 00:03:36 2013 +0100
+
+    Modifications/ajouts Modèles
+
+ curent/model/OdbBonIntervention.mdl.php |   53 +++++++++++++++++++++++++++++++
+ curent/model/OdbDemandeInter.mdl.php    |   22 ++++++++++---
+ curent/model/OdbVelo.mdl.php            |    9 +++++-
+ kev/~$sualiserStations.docx             |  Bin 0 -> 162 bytes
+ kev/~$sualiserUneStation.docx           |  Bin 0 -> 162 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc       |  Bin 0 -> 162 bytes
+ 6 files changed, 79 insertions(+), 5 deletions(-)
+
+commit e27174cf8d4505b66403b13c7891493db4ead2be
+Author: benoit <benoitelie1@gmail.com>
+Date:   Wed Dec 4 23:50:42 2013 +0100
+
+    correction de bug et test des view()
+
+ curent/controller/Station.ctr.php |    5 ++++-
+ curent/index.php                  |    3 ++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 92a10f78334d7f7ff2f7fda1d1a083523d46c0ec
+Author: benoit <benoitelie1@gmail.com>
+Date:   Wed Dec 4 23:35:11 2013 +0100
+
+    renomage, ajout de qqs elements de code et correction des erreurs
+
+ curent/controller/DemandeInter.ctr.php |   47 -----------------------
+ curent/controller/Station.ctr.php      |    9 ++++-
+ curent/inc/connexion.inc.php           |    6 ++-
+ curent/inc/template.inc.php            |    8 ++++
+ curent/index.php                       |   22 +++++++----
+ curent/model/OdbDemandeInter.mdl.php   |   40 +++++++++++++++++++
+ curent/model/OdbStation.mdl.php        |   66 ++++++++++++++++++++++++++++++++
+ curent/model/OdbTechnicien.mdl.php     |   38 ++++++++++++++++++
+ curent/model/OdbVelo.mdl.php           |   29 ++++++++++++++
+ curent/model/Station.mdl.php           |   66 --------------------------------
+ curent/model/Technicien.mdl.php        |   38 ------------------
+ curent/model/Velo.mdl.php              |   29 --------------
+ curent/toolSql/Bdd.class.php           |   38 +++++++++++-------
+ curent/view/contentAccueil.tpl.php     |    6 +--
+ 14 files changed, 232 insertions(+), 210 deletions(-)
+
+commit f14ffe1195ad010e9a2ca5e08daf0396d0784254
+Author: benoit <benoitelie1@gmail.com>
+Date:   Wed Dec 4 22:05:06 2013 +0100
+
+    ajout de la demandeInter et pre-imple de la protection par compte
+
+ curent/controller/DemandeInter.ctr.php |   47 ++++++++++++++++++++++
+ curent/controller/Station.ctr.php      |    4 +-
+ curent/controller/Technicien.ctr.php   |    4 +-
+ curent/controller/Velo.ctr.php         |    4 +-
+ curent/model/Station.mdl.php           |   67 +++-----------------------------
+ 5 files changed, 60 insertions(+), 66 deletions(-)
+
+commit 7d1637ff35a5e5821ddb781b3f3beacf644aba95
+Merge: 413064e 773efae
+Author: benoit <benoitelie1@gmail.com>
+Date:   Mon Dec 2 01:21:57 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+
+commit 773efaed5fee7196e21121c22b11bf3002b496e7
+Author: benoit <benoitelie1@gmail.com>
+Date:   Mon Dec 2 01:19:39 2013 +0100
+
+    vidage des lock.doc
+
+ kev/~$sualiserStations.docx       |  Bin 162 -> 0 bytes
+ kev/~$sualiserUneStation.docx     |  Bin 162 -> 0 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc |  Bin 162 -> 0 bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 413064e4feee805820dae254fc45809986afc5cd
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Nov 30 14:01:36 2013 +0100
+
+    mise en place structure user add nosql; debut technicien.ctr
+
+ curent/controller/Station.ctr.php    |    8 ++
+ curent/controller/Technicien.ctr.php |    8 ++
+ curent/controller/User.ctr.php       |   17 ++++
+ curent/controller/Velo.ctr.php       |    4 +-
+ curent/inc/connexion.inc.php         |   19 +++-
+ curent/inc/login.inc.php             |    1 +
+ curent/index.php                     |    5 +-
+ curent/model/Bdd.class.php           |  101 -------------------
+ curent/model/Station.mdl.php         |    2 -
+ curent/model/Technicien.class.php    |    5 -
+ curent/model/Technicien.mdl.php      |   38 ++++++++
+ curent/toolNosql/Nosql.class.php     |  162 ++++++++++++++++++++++++++++++
+ curent/toolSql/Bdd.class.php         |  101 +++++++++++++++++++
+ curent/view/contentAccueil.tpl.php   |   10 +-
+ curent/view/contentMenu.tpl.php      |   25 ++++-
+ tree.txt                             |  179 ++++++++++++++++++++++++++++++++++
+ 16 files changed, 564 insertions(+), 121 deletions(-)
+
+commit 654fab062f3f3719e496553e6fa08fd14971816f
+Author: benoit <benoitelie1@gmail.com>
+Date:   Sat Nov 30 13:42:55 2013 +0100
+
+    conversion maquettages -> PDF
+
+ kev/demandeInterv.pdf                      |  Bin 0 -> 115979 bytes
+ kev/effectuerIntervention.docx             |  Bin 139956 -> 140047 bytes
+ kev/effectuerIntervention.pdf              |  Bin 0 -> 117323 bytes
+ kev/visualiserInfoVelo.pdf                 |  Bin 0 -> 147815 bytes
+ kev/visualiserInterventionsNonTraitees.pdf |  Bin 0 -> 108594 bytes
+ kev/visualiserStations.pdf                 |  Bin 0 -> 115271 bytes
+ kev/visualiserUneStation.pdf               |  Bin 0 -> 123550 bytes
+ kev/~$sualiserStations.docx                |  Bin 0 -> 162 bytes
+ kev/~$sualiserUneStation.docx              |  Bin 0 -> 162 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc          |  Bin 0 -> 162 bytes
+ 10 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1ebe51ee9f6ae7666e735c5c0161997f02da850a
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Nov 29 02:41:19 2013 +0100
+
+    ajout du main switch de controller
+
+ curent/index.php |   38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+commit aa04e34dc80db4411d577958e761732f57ab3a66
+Merge: 2699448 35114e8
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Nov 29 01:43:54 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+
+commit 2699448650a11ca83854b46ea8d2375f9042812d
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Nov 29 01:42:50 2013 +0100
+
+    retouche des vue; add des files annexes; correction de la Bdd.class
+
+ curent/controller/Velo.ctr.php   |    8 ++++++++
+ curent/css/1000to1300px.css      |    5 +++++
+ curent/css/min1300px.css         |    5 +++++
+ curent/css/style.css             |    6 ++++++
+ curent/js/tools.js               |    1 +
+ curent/model/Bdd.class.php       |   28 ++++++++++++++++++++++++----
+ curent/view/contentError.tpl.php |    3 +++
+ curent/view/contentLogin.tpl.php |    5 +++++
+ curent/view/contentMenu.tpl.php  |    5 +++++
+ curent/view/htmlFooter.tpl.php   |    7 ++++---
+ curent/view/htmlHeader.tpl.php   |    4 ++--
+ 11 files changed, 68 insertions(+), 9 deletions(-)
+
+commit 35114e820d07c622a1e8d75d283f5e52f78172bc
+Author: benoit <benoitelie1@gmail.com>
+Date:   Fri Nov 29 01:19:55 2013 +0100
+
+    correction des fin de ligne windows=>unix; remove des ~file et ci du gantt
+
+ curent/model/Station.mdl.php      |   66 ++++----
+ curent/model/Velo.mdl.php         |   12 +-
+ gan/diagTaches1.gan               |  310 ++++++++++++++++++-------------------
+ kev/~$sualiserStations.docx       |  Bin 162 -> 0 bytes
+ kev/~$sualiserUneStation.docx     |  Bin 162 -> 0 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc |  Bin 162 -> 0 bytes
+ 6 files changed, 194 insertions(+), 194 deletions(-)
+
+commit b2438b27d8022416d044971bb42b48287426724a
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 28 17:57:32 2013 +0100
+
+    Création des modèles Station et Velo
+
+ curent/model/Station.mdl.php |  125 ++++++++++++++++++++++++++++++++++++++++++
+ curent/model/Velo.mdl.php    |   29 ++++++++++
+ 2 files changed, 154 insertions(+)
+
+commit d5a87ccc70b70aa74cccebaaf1e59d7b9fcc0b6d
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 28 14:23:06 2013 +0100
+
+    Modification et fusion des GANTT
+
+ gan/diagTaches1.gan               |   25 +++----
+ gan/diagTaches1_kev[a-fusion].gan |  140 -------------------------------------
+ kev/~$sualiserStations.docx       |  Bin 0 -> 162 bytes
+ kev/~$sualiserUneStation.docx     |  Bin 0 -> 162 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc |  Bin 0 -> 162 bytes
+ 5 files changed, 13 insertions(+), 152 deletions(-)
+
+commit f55293fd3b9c74e9ef0bc05b446e0cd95d8525ba
+Merge: 7fd3ce8 c2d4cb5
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 28 01:13:43 2013 +0100
+
+    Merge branch 'master' of /media/hp_16go/cours/ppe/mobil
+    
+    Conflicts:
+    	curent/index.php
+    	curent/view/htmlFooter.tpl.php
+    	gan/diagTaches1.gan
+
+commit 7fd3ce820b2f8e4010087eb5cc2ad7e46bb5c737
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 28 01:06:01 2013 +0100
+
+    mise en place de qqs fichier de code (vide)
+
+ charteGraphique.docx           |  Bin 0 -> 77072 bytes
+ curent/index.php               |    4 +-
+ curent/view/htmlFooter.tpl.php |   12 +-
+ gan/diagTaches1.gan            |  280 ++++++++++++++++++++--------------------
+ kev/visualiserInfoVelo.docx    |  Bin 260504 -> 260534 bytes
+ 5 files changed, 148 insertions(+), 148 deletions(-)
+
+commit c2d4cb551dd8fe766ff735845755b80fc002478e
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 28 01:02:26 2013 +0100
+
+    mise en place de bootstrap, de la bdd.class et modif des tpl
+
+ curent/model/Bdd.class.php                         |   25 +-
+ curent/toolBootstrap/css/bootstrap-theme.css       |  459 ++
+ curent/toolBootstrap/css/bootstrap-theme.min.css   |    9 +
+ curent/toolBootstrap/css/bootstrap.css             | 7098 ++++++++++++++++++++
+ curent/toolBootstrap/css/bootstrap.min.css         |    9 +
+ .../fonts/glyphicons-halflings-regular.eot         |  Bin 0 -> 20290 bytes
+ .../fonts/glyphicons-halflings-regular.svg         |  229 +
+ .../fonts/glyphicons-halflings-regular.ttf         |  Bin 0 -> 41236 bytes
+ .../fonts/glyphicons-halflings-regular.woff        |  Bin 0 -> 23292 bytes
+ curent/toolBootstrap/js/bootstrap.js               | 2002 ++++++
+ curent/toolBootstrap/js/bootstrap.min.js           |    9 +
+ curent/view/contentAccueil.tpl.php                 |    1 +
+ curent/view/htmlFooter.tpl.php                     |    8 +-
+ curent/view/htmlHeader.tpl.php                     |   16 +
+ 14 files changed, 9854 insertions(+), 11 deletions(-)
+
+commit ba58f8abb6ff6fb9c9caeac68b49e4b93741a913
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 28 00:06:12 2013 +0100
+
+    suite de la mise en place des fichiers de base du code
+
+ curent/inc/connexion.inc.php      |    7 ++++
+ curent/index.php                  |    4 ++
+ curent/model/Bdd.class.php        |   74 +++++++++++++++++++++++++++++++++++++
+ curent/model/Technicien.class.php |    5 +++
+ gan/diagTaches1.gan               |   30 +++++++++++----
+ 5 files changed, 112 insertions(+), 8 deletions(-)
+
+commit 41866827891cae5bb080da53101114a2aba9b881
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 21 14:41:26 2013 +0100
+
+    ajout de la structure de dev
+
+ curent/index.php               |    2 ++
+ curent/view/htmlFooter.tpl.php |    6 ++++++
+ 2 files changed, 8 insertions(+)
+
+commit 0c20f85cecef8d3346650c58d475a0f4255d9d3c
+Merge: 38f5e52 d45f42f
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 21 14:38:36 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+    
+    Conflicts:
+    	curent
+
+commit 38f5e523c86c32faf2fea959d2574c2d3903bfc6
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 21 14:24:15 2013 +0100
+
+    version envoye des procedure et creation de l archi web du projet
+
+ curent                       |    1 +
+ curent_site                  |    1 -
+ procedure_BM-EK-EB-LO-SM.zip |  Bin 0 -> 4852722 bytes
+ 3 files changed, 1 insertion(+), 1 deletion(-)
+
+commit d45f42f0d6e71f1e860c35e113c99cf25c6996bb
+Author: kevin <kevin.elain@gmail.com>
+Date:   Wed Nov 20 23:49:33 2013 +0100
+
+    MAJ Interfaces
+
+ kev/effectuerIntervention.docx              |  Bin 139934 -> 139956 bytes
+ kev/intNonT1.png                            |  Bin 0 -> 5680 bytes
+ kev/visualiserInterventionsNonTraitees.docx |  Bin 0 -> 130941 bytes
+ sql/Creer_reparation.sql                    |    4 ++--
+ 4 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 4e9feed01fda02008c8086434df50fda6c651fb7
+Author: benoit <benoitelie1@gmail.com>
+Date:   Wed Nov 20 03:00:05 2013 +0100
+
+    finalisation du doc procedure, +correction
+
+ procedure/benoit/proc_chgEtatVelo.sql              |    2 +-
+ procedure/benoit/proc_modfierDemInter.sql          |   13 +++++++++----
+ procedure/benoit/screen/proc_changeretatvelo.png   |  Bin 0 -> 11295 bytes
+ .../benoit/screen/proc_insererIntervention.png     |  Bin 10428 -> 19276 bytes
+ procedure/benoit/screen/proc_modifierdeminter.png  |  Bin 0 -> 15856 bytes
+ procedure/benoit/screen/velo_apre.png              |  Bin 0 -> 7899 bytes
+ procedure/benoit/screen/velo_apre_modifdem.png     |  Bin 0 -> 7909 bytes
+ procedure/benoit/screen/velo_avant.png             |  Bin 0 -> 6784 bytes
+ .../implementation_procedures_BM-EK-EB-LO-SM.odt   |  Bin 2463725 -> 2595107 bytes
+ .../implementation_procedures_BM-EK-EB-LO-SM.pdf   |  Bin 1446239 -> 1318211 bytes
+ 10 files changed, 10 insertions(+), 5 deletions(-)
+
+commit a56baf3cabd46189c98433fbb64505b33e69d3cd
+Author: benoit <benoitelie1@gmail.com>
+Date:   Wed Nov 20 00:26:24 2013 +0100
+
+    correction proce benoit, ajout screen melina, maj procedure
+
+ procedure/benoit/proc_chgEtatVelo.sql              |    6 +++---
+ procedure/benoit/proc_modfierDemInter.sql          |   10 +++++-----
+ .../implementation_procedures_BM-EK-EB-LO-SM.odt   |  Bin 1732116 -> 2463725 bytes
+ procedure/melina/proc_insererProduit.sql           |    5 ++++-
+ procedure/melina/proc_insererVelo.sql              |   14 ++++++++++----
+ procedure/melina/proc_supprimerStation.sql         |    5 ++++-
+ .../screen/10000000000005560000029806FFB8F5.png    |  Bin 0 -> 62647 bytes
+ .../screen/10000000000005560000029822BD5539.png    |  Bin 0 -> 64488 bytes
+ .../screen/1000000000000556000002982B455970.png    |  Bin 0 -> 57200 bytes
+ .../screen/100000000000055600000298590A532C.png    |  Bin 0 -> 69736 bytes
+ .../screen/1000000000000556000002985E8D8ED6.png    |  Bin 0 -> 73482 bytes
+ .../screen/10000000000005560000029868A12BA9.png    |  Bin 0 -> 58607 bytes
+ .../screen/1000000000000556000002987595B9DB.png    |  Bin 0 -> 69723 bytes
+ .../screen/10000000000005560000029898201FC2.png    |  Bin 0 -> 72059 bytes
+ .../screen/1000000000000556000002989F00DDE6.png    |  Bin 0 -> 73589 bytes
+ .../screen/100000000000055600000298D0A405BB.png    |  Bin 0 -> 57766 bytes
+ .../screen/100000000000055600000298D91B56E9.png    |  Bin 0 -> 72829 bytes
+ .../screen/100000000000055600000298DFE0F492.png    |  Bin 0 -> 62177 bytes
+ 18 files changed, 26 insertions(+), 14 deletions(-)
+
+commit 098f4432a39772a8ea957e636b27b3a2134a60a9
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 23:38:05 2013 +0100
+
+    modif by kevin de ses procedures et ajout screen
+
+ procedure/kevin/fct_nouveauCodeDemInter.sql     |   22 ++++++++++
+ procedure/kevin/proc_changerTech.sql            |   51 +++++++++++++++++++++++
+ procedure/kevin/proc_insererDemInterv.sql       |   26 +++++++++---
+ procedure/kevin/screen/preuveChangerTec1.png    |  Bin 0 -> 1770 bytes
+ procedure/kevin/screen/preuveChangerTec2.png    |  Bin 0 -> 27111 bytes
+ procedure/kevin/screen/preuveExisteDemI.png     |  Bin 0 -> 9149 bytes
+ procedure/kevin/screen/preuveInsererDemI.png    |  Bin 0 -> 19745 bytes
+ procedure/kevin/screen/preuveNouveauCodeDem.png |  Bin 0 -> 12975 bytes
+ 8 files changed, 93 insertions(+), 6 deletions(-)
+
+commit 8e88de43f00f177b646a067673e8882e1aa7a8e2
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 20:25:08 2013 +0100
+
+    grosse mise à jour des procedure (+trix en dossier) +add des nouvelles version
+
+ description_procedure_stockee_BE.odt               |  Bin 25361 -> 0 bytes
+ description_procedure_stockee_BE.pdf               |  Bin 41855 -> 0 bytes
+ implementation_procedures_BM-EK-EB-LO-SM.odt       |  Bin 1077702 -> 0 bytes
+ implementation_procedures_BM-EK-EB-LO-SM.pdf       |  Bin 1446239 -> 0 bytes
+ procedure/description_procedure_stockee_BE.odt     |  Bin 0 -> 25361 bytes
+ procedure/description_procedure_stockee_BE.pdf     |  Bin 0 -> 41855 bytes
+ .../implementation_procedures_BM-EK-EB-LO-SM.odt   |  Bin 0 -> 1732116 bytes
+ .../implementation_procedures_BM-EK-EB-LO-SM.pdf   |  Bin 0 -> 1446239 bytes
+ procedure/maxence/fun_codeAUDITS.sql               |   12 +++++++
+ procedure/maxence/fun_existeBON.sql                |   14 ++++++++
+ procedure/maxence/fun_existeEtat.sql               |   14 ++++++++
+ procedure/maxence/fun_existeStation.sql            |   14 ++++++++
+ procedure/maxence/proc_affecterVelo.sql            |   34 ++++++++++++++++++++
+ procedure/maxence/proc_modifDureeInt.sql           |   24 ++++++++++++++
+ procedure/maxence/proc_modifEtat.sql               |   26 +++++++++++++++
+ procedure/maxence/proc_modifStation.sql            |   34 ++++++++++++++++++++
+ procedure/olivier/FctExisteTechnicien.png          |  Bin 12649 -> 0 bytes
+ procedure/olivier/FctExisteVelo.png                |  Bin 12854 -> 0 bytes
+ procedure/olivier/InserTec1.png                    |  Bin 10004 -> 0 bytes
+ procedure/olivier/InserTec2.png                    |  Bin 8246 -> 0 bytes
+ procedure/olivier/InserTec3.png                    |  Bin 11551 -> 0 bytes
+ procedure/olivier/ModifVelo1.png                   |  Bin 11113 -> 0 bytes
+ procedure/olivier/ModifVelo2.png                   |  Bin 6698 -> 0 bytes
+ procedure/olivier/ModifVelo3.png                   |  Bin 10761 -> 0 bytes
+ procedure/olivier/Proc_InserTech.png               |  Bin 12635 -> 0 bytes
+ procedure/olivier/Proc_SupprimerTech.png           |  Bin 82687 -> 0 bytes
+ procedure/olivier/SuppTec1.png                     |  Bin 8466 -> 0 bytes
+ procedure/olivier/SuppTec2.png                     |  Bin 8466 -> 0 bytes
+ procedure/olivier/SuppTec3.png                     |  Bin 10455 -> 0 bytes
+ procedure/olivier/ValidProc.png                    |  Bin 22304 -> 0 bytes
+ procedure/olivier/modifierVelo.png                 |  Bin 12891 -> 0 bytes
+ procedure/olivier/screen/FctExisteTechnicien.png   |  Bin 0 -> 12649 bytes
+ procedure/olivier/screen/FctExisteVelo.png         |  Bin 0 -> 12854 bytes
+ procedure/olivier/screen/InserTec1.png             |  Bin 0 -> 10004 bytes
+ procedure/olivier/screen/InserTec2.png             |  Bin 0 -> 8246 bytes
+ procedure/olivier/screen/InserTec3.png             |  Bin 0 -> 11551 bytes
+ procedure/olivier/screen/ModifVelo1.png            |  Bin 0 -> 11113 bytes
+ procedure/olivier/screen/ModifVelo2.png            |  Bin 0 -> 6698 bytes
+ procedure/olivier/screen/ModifVelo3.png            |  Bin 0 -> 10761 bytes
+ procedure/olivier/screen/Proc_InserTec.png         |  Bin 0 -> 14941 bytes
+ procedure/olivier/screen/Proc_InserTech.png        |  Bin 0 -> 12635 bytes
+ procedure/olivier/screen/Proc_ModifierVelo.png     |  Bin 0 -> 14193 bytes
+ procedure/olivier/screen/Proc_SuppTec.png          |  Bin 0 -> 14642 bytes
+ procedure/olivier/screen/Proc_SuppTec1.png         |  Bin 0 -> 21931 bytes
+ procedure/olivier/screen/Proc_SupprimerTech.png    |  Bin 0 -> 82687 bytes
+ procedure/olivier/screen/SuppTec1.png              |  Bin 0 -> 8466 bytes
+ procedure/olivier/screen/SuppTec2.png              |  Bin 0 -> 8466 bytes
+ procedure/olivier/screen/SuppTec3.png              |  Bin 0 -> 10455 bytes
+ procedure/olivier/screen/ValidProc.png             |  Bin 0 -> 22304 bytes
+ procedure/olivier/screen/Valid_Proc.png            |  Bin 0 -> 26230 bytes
+ procedure/olivier/screen/modifierVelo.png          |  Bin 0 -> 12891 bytes
+ procedure_BE                                       |    3 --
+ 52 files changed, 172 insertions(+), 3 deletions(-)
+
+commit cdc18f178ceba547e8311c533980547d9d03b6ec
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 17:13:53 2013 +0100
+
+    oracle.sql : ajout de la gestion AI de la table audits
+
+ sql/Creer_reparation.sql |   10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit 189c67167ab02143703e036b57c32ff660c54fcd
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 17:13:12 2013 +0100
+
+    MAJ de tt les procedures d olivier
+
+ procedure/olivier/ExisteTechnicien.sql         |   15 ------------
+ procedure/olivier/FctExisteTechnicien.png      |  Bin 0 -> 12649 bytes
+ procedure/olivier/FctExisteVelo.png            |  Bin 0 -> 12854 bytes
+ procedure/olivier/InserTec1.png                |  Bin 0 -> 10004 bytes
+ procedure/olivier/InserTec2.png                |  Bin 0 -> 8246 bytes
+ procedure/olivier/InserTec3.png                |  Bin 0 -> 11551 bytes
+ procedure/olivier/ModifVelo1.png               |  Bin 0 -> 11113 bytes
+ procedure/olivier/ModifVelo2.png               |  Bin 0 -> 6698 bytes
+ procedure/olivier/ModifVelo3.png               |  Bin 0 -> 10761 bytes
+ procedure/olivier/ModifierVelo.sql             |   25 --------------------
+ procedure/olivier/Proc_InserTech.png           |  Bin 0 -> 12635 bytes
+ procedure/olivier/Proc_SupprimerTech.png       |  Bin 0 -> 82687 bytes
+ procedure/olivier/SuppTec1.png                 |  Bin 0 -> 8466 bytes
+ procedure/olivier/SuppTec2.png                 |  Bin 0 -> 8466 bytes
+ procedure/olivier/SuppTec3.png                 |  Bin 0 -> 10455 bytes
+ procedure/olivier/SupprimerTechnicien.sql      |   11 ---------
+ procedure/olivier/ValidProc.png                |  Bin 0 -> 22304 bytes
+ procedure/olivier/fct_ExisteTechnicien.sql     |   15 ++++++++++++
+ procedure/olivier/inserTech.sql                |   25 --------------------
+ procedure/olivier/modifierVelo.png             |  Bin 0 -> 12891 bytes
+ procedure/olivier/proc_ModifierVelo.sql        |   25 ++++++++++++++++++++
+ procedure/olivier/proc_SupprimerTechnicien.sql |   13 +++++++++++
+ procedure/olivier/proc_inserTech.sql           |   29 ++++++++++++++++++++++++
+ 23 files changed, 82 insertions(+), 76 deletions(-)
+
+commit 016746d38811a8f3d1b4d8b463c5d1b69c3c0257
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 17:11:45 2013 +0100
+
+    supression des vielles procedure maxence
+
+ procedure/maxence/fun_existeBON.sql      |   14 --------------
+ procedure/maxence/fun_existeEtat.sql     |   14 --------------
+ procedure/maxence/fun_existeStation.sql  |   14 --------------
+ procedure/maxence/proc_affecterVelo.sql  |   31 ------------------------------
+ procedure/maxence/proc_modifDureeInt.sql |   20 -------------------
+ procedure/maxence/proc_modifEtat.sql     |   22 ---------------------
+ procedure/maxence/proc_modifStation.sql  |   31 ------------------------------
+ 7 files changed, 146 deletions(-)
+
+commit cbd277917dbc5276d1d999fe7b3f66eca254cec8
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 15:27:27 2013 +0100
+
+    suppression des vieilles versions  des fonctions et rqt (avant groupement)
+
+ procedure/fct_existeProduit.sql        |   16 ----------------
+ procedure/fct_existeTechnicien.sql     |   15 ---------------
+ procedure/fct_existeVelo.sql           |   16 ----------------
+ procedure/proc_affecterVelo.sql        |   32 --------------------------------
+ procedure/proc_existEtat.sql           |   14 --------------
+ procedure/proc_existFI.sql             |   14 --------------
+ procedure/proc_inserTech.sql           |   25 -------------------------
+ procedure/proc_insererProduit.sql      |   15 ---------------
+ procedure/proc_insererVelo.sql         |   15 ---------------
+ procedure/proc_modifDureeInt.sql       |   20 --------------------
+ procedure/proc_modifEtat.sql           |   24 ------------------------
+ procedure/proc_modifierVelo.sql        |   25 -------------------------
+ procedure/proc_supprimerStation.sql    |    9 ---------
+ procedure/proc_supprimerTechnicien.sql |   11 -----------
+ procedure/procedure.zip                |  Bin 43739 -> 0 bytes
+ 15 files changed, 251 deletions(-)
+
+commit 9c4b79c173507b65e52de6088ea4bfb8a3e8da4b
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 15:22:54 2013 +0100
+
+    ajout des procedure de melina
+
+ procedure/melina/fct_existeProduit.sql      |   14 ++++++++++++++
+ procedure/melina/fct_existeVelo.sql         |   14 ++++++++++++++
+ procedure/melina/fct_nbVelo.sql             |   14 ++++++++++++++
+ procedure/melina/fct_nouveauCodeProduit.sql |   20 ++++++++++++++++++++
+ procedure/melina/fct_nouveauCodeVelo.sql    |   20 ++++++++++++++++++++
+ procedure/melina/proc_insererProduit.sql    |   13 +++++++++++++
+ procedure/melina/proc_insererVelo.sql       |   13 +++++++++++++
+ procedure/melina/proc_supprimerStation.sql  |   10 ++++++++++
+ 8 files changed, 118 insertions(+)
+
+commit ed4a9f0623c399cc8c782a80b1ae491097560cc6
+Author: benoit <benoitelie1@gmail.com>
+Date:   Tue Nov 19 15:19:15 2013 +0100
+
+    ajout de la table audits pour les procedure (version oracle)
+
+ sql/Creer_reparation.sql |   12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit 2e70e45fecb957dc854f0cf4f1ab62e8cc5d4ed5
+Merge: 902b8eb ac8eaa3
+Author: benoit <benoitelie1@gmail.com>
+Date:   Mon Nov 18 10:38:14 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+
+commit ac8eaa359d1a952fd3832cdcaa6f4df0554159ce
+Author: benoit <benoitelie1@gmail.com>
+Date:   Mon Nov 18 02:23:44 2013 +0100
+
+    maj de syncronisation
+
+ sujet/~$E2-03_V-Lyon_Contexte.doc |  Bin 162 -> 0 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a5c727c3d5ca423f0025fc522909d4bf44bde960
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 17:52:50 2013 +0100
+
+    Modification de la maquette visualiser une station
+
+ kev/visualiserSesInterventions.docx |  Bin 0 -> 122712 bytes
+ kev/visualiserUneStation.docx       |  Bin 130842 -> 137299 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 0928bc71a0a5b3a030ee1f36ae8fc64350ce5e55
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 17:28:10 2013 +0100
+
+    Ajout maquette effectuer une intervention
+
+ kev/effectuerIntervention.docx |  Bin 0 -> 139934 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 902b8ebc79f53f01f6e27d44fb365b98a759cfa3
+Merge: ed09fc1 ef88f58
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 14 17:18:04 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+
+commit ef88f58063e7fce4017c5ed9b1688f707d65fcad
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 17:17:31 2013 +0100
+
+    Suppression d'un fichier doublon
+
+ kev/PPE2-03_V-Lyon_Contexte.doc   |  Bin 2912768 -> 0 bytes
+ sujet/~$E2-03_V-Lyon_Contexte.doc |  Bin 0 -> 162 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit ed09fc180d7d29f0e6966b7b3c92ddf2785af888
+Merge: 88aee73 b022428
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 14 17:14:17 2013 +0100
+
+    Merge branch 'master' of /home/benoit/Dropbox/sio_webapp/kevin/curent_site
+
+commit b022428d4827dae467e02516a8451cf71ed2f89e
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 17:12:35 2013 +0100
+
+    Modifications de maquettes au format mobile
+
+ kev/54253-velib-commerce--lectronique-contrat.jpg |  Bin 0 -> 18925 bytes
+ kev/demandeInterv.docx                            |  Bin 12638 -> 140386 bytes
+ kev/retour.png                                    |  Bin 0 -> 882 bytes
+ kev/rollHor.png                                   |  Bin 0 -> 1324 bytes
+ kev/visualiserInfoVelo.docx                       |  Bin 47956 -> 260504 bytes
+ kev/visualiserInfosVelo.jpg                       |  Bin 312802 -> 0 bytes
+ kev/visualiserInfosVeloImage.jpg                  |  Bin 0 -> 312802 bytes
+ kev/visualiserStations.docx                       |  Bin 13827 -> 143674 bytes
+ kev/visualiserUneStation.docx                     |  Bin 12633 -> 130842 bytes
+ 9 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 88aee73c45b7344dc1e1e55c5b92172a1e7d2e0d
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 14 17:08:24 2013 +0100
+
+    fin du script Mysql => Maj du Gantt
+
+ gan/diagTaches1.gan            |    9 +++++----
+ modelisation/MPD_MySQL.png     |  Bin 0 -> 58852 bytes
+ sql/Creer_reparation_mysql.sql |   10 +++++-----
+ 3 files changed, 10 insertions(+), 9 deletions(-)
+
+commit e94b68fa3c65eda367ea04e0249c8be584f4e175
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 15:05:48 2013 +0100
+
+    réévaluation des durées des tâches + décomposition Doc technique
+
+ gan/diagTaches1.gan |   18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit 1892c6819b426c75389ba162cb61b25f1ffeaff0
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 14:44:45 2013 +0100
+
+    modifications/ajouts de maquettes
+
+ kev/mobile_quick_sketch.jpg |  Bin 0 -> 342161 bytes
+ kev/visualiserInfosVelo.jpg |  Bin 0 -> 312802 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bae7da9a498f3bcdf170c4707c1357e1622201e0
+Author: kevin <kevin.elain@gmail.com>
+Date:   Thu Nov 14 10:21:34 2013 +0100
+
+    Test de git depuis l'ordi de kéké
+
+ 0 files changed
+
+commit e3963f30b6d8701ac305c9bc455e4be6c8f54c19
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 14 01:09:50 2013 +0100
+
+    ajout du dump GIT pour les modif et creation fichier
+
+ dump_git.txt |  165 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 165 insertions(+)
+
+commit 64b3d794dbcbaaade663d716e2184be3689b0d9b
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 14 01:05:20 2013 +0100
+
+    move du gant dans un subfolder
+
+ diagTaches1.gan     |  137 ---------------------------------------------------
+ gan/diagTaches1.gan |  137 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 137 insertions(+), 137 deletions(-)
+
+commit a47c5d2c7bf8af70a2a689590d96ff07c07b3020
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 14 01:00:45 2013 +0100
+
+    grosse MAJ avec ajout des fichiers SLAM3 (procedure), ajout des doc produit et MAJ des .SQL
+
+ choix_technique_EK-EB.odt                          |  Bin 0 -> 2374117 bytes
+ choix_technique_EK-EB.pdf                          |  Bin 0 -> 3384879 bytes
+ diagTaches1.gan                                    |   26 ++-
+ implementation_procedures_BM-EK-EB-LO-SM.odt       |  Bin 0 -> 1077702 bytes
+ implementation_procedures_BM-EK-EB-LO-SM.pdf       |  Bin 0 -> 1446239 bytes
+ kev/PPE2-03_V-Lyon_Contexte.doc                    |  Bin 0 -> 2912768 bytes
+ kev/avancement.docx                                |  Bin 0 -> 13154 bytes
+ kev/demandeInterv.docx                             |  Bin 0 -> 12638 bytes
+ kev/visualiserInfoVelo.docx                        |  Bin 0 -> 47956 bytes
+ kev/visualiserStations.docx                        |  Bin 0 -> 13827 bytes
+ kev/visualiserUneStation.docx                      |  Bin 0 -> 12633 bytes
+ procIncererIntervention.sql                        |   14 --
+ procedure/benoit/fct_MaxCode_BONINTERV.sql         |   20 ++
+ procedure/benoit/fct_existeDemandeI.sql            |   16 ++
+ procedure/benoit/fct_existeEtat.sql                |   16 ++
+ procedure/benoit/proc_chgEtatVelo.sql              |   30 +++
+ procedure/benoit/proc_insererIntervention.sql      |   40 ++++
+ procedure/benoit/proc_modfierDemInter.sql          |   38 ++++
+ procedure/benoit/screen/fct_MaxCode_BONINTERV.png  |  Bin 0 -> 8976 bytes
+ procedure/benoit/screen/fct_existeDemandeI.png     |  Bin 0 -> 8520 bytes
+ procedure/benoit/screen/fct_existeEtat.png         |  Bin 0 -> 8275 bytes
+ .../benoit/screen/proc_insererIntervention.png     |  Bin 0 -> 10428 bytes
+ procedure/fct_existeProduit.sql                    |   16 ++
+ procedure/fct_existeTechnicien.sql                 |   15 ++
+ procedure/fct_existeVelo.sql                       |   16 ++
+ procedure/kevin/fct_existeDemInterv.sql            |   12 ++
+ procedure/kevin/proc_insererDemInterv.sql          |   14 ++
+ procedure/maxence/fun_existeBON.sql                |   14 ++
+ procedure/maxence/fun_existeEtat.sql               |   14 ++
+ procedure/maxence/fun_existeStation.sql            |   14 ++
+ procedure/maxence/proc_affecterVelo.sql            |   31 +++
+ procedure/maxence/proc_modifDureeInt.sql           |   20 ++
+ procedure/maxence/proc_modifEtat.sql               |   22 +++
+ procedure/maxence/proc_modifStation.sql            |   31 +++
+ procedure/olivier/ExisteTechnicien.sql             |   15 ++
+ procedure/olivier/ModifierVelo.sql                 |   25 +++
+ procedure/olivier/SupprimerTechnicien.sql          |   11 ++
+ procedure/olivier/fct_existeVelo.sql               |   14 ++
+ procedure/olivier/inserTech.sql                    |   25 +++
+ procedure/proc_affecterVelo.sql                    |   32 ++++
+ procedure/proc_existEtat.sql                       |   14 ++
+ procedure/proc_existFI.sql                         |   14 ++
+ procedure/proc_inserTech.sql                       |   25 +++
+ procedure/proc_insererProduit.sql                  |   15 ++
+ procedure/proc_insererVelo.sql                     |   15 ++
+ procedure/proc_modifDureeInt.sql                   |   20 ++
+ procedure/proc_modifEtat.sql                       |   24 +++
+ procedure/proc_modifierVelo.sql                    |   25 +++
+ procedure/proc_supprimerStation.sql                |    9 +
+ procedure/proc_supprimerTechnicien.sql             |   11 ++
+ procedure/procedure.zip                            |  Bin 0 -> 43739 bytes
+ sql/Creer_reparation.sql                           |   46 ++---
+ sql/Creer_reparation_mysql.sql                     |  200 ++++++++++++++++++++
+ 53 files changed, 914 insertions(+), 45 deletions(-)
+
+commit ac12e1e65e609b45e0b18abe687835e249a1a652
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 16:35:09 2013 +0100
+
+    mise à jour du Gantt avec les progressions et l'ajout des taches ouliees
+
+ diagTaches1.gan |  219 ++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 127 insertions(+), 92 deletions(-)
+
+commit 60688e3d780bcd5f60735ea38c1fbd088226156f
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 15:49:23 2013 +0100
+
+    re modif L en I
+
+ sql/Creer_reparation.sql |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit d68e57ec548c44e90c0814898d9588a7e562dedf
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 15:44:06 2013 +0100
+
+    correction du sql I et L + ajout des MDP et MDC
+
+ modelisation/Creer_achat_velos.MPD      | 3465 +++++++++++++++++++++++
+ modelisation/Creer_achat_velos.mcd      | 2738 ++++++++++++++++++
+ modelisation/Creer_reparation_velos.MPD | 4037 +++++++++++++++++++++++++++
+ modelisation/Creer_reparation_velos.mcd | 3417 +++++++++++++++++++++++
+ modelisation/Creer_velos.MPD            | 4643 +++++++++++++++++++++++++++++++
+ modelisation/Creer_velos.mcd            | 3843 +++++++++++++++++++++++++
+ sql/Creer_reparation.sql                |    8 +-
+ 7 files changed, 22147 insertions(+), 4 deletions(-)
+
+commit acdcce4ff4d17f40ee8943a906497c9c32729d14
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 15:16:30 2013 +0100
+
+    mise a jour des fichiers de modelisation de la base (version Mme Levert) + retouche uml
+
+ sql/Creer_location.sql   |   23 ++++++------
+ sql/Creer_reparation.sql |   93 +++++++++++++++++++++-------------------------
+ sql/creer_achat.sql      |   22 ++++++-----
+ uml/diagTecRespAch.dia   |  Bin 2589 -> 2627 bytes
+ uml/diagTecRespAch.png   |  Bin 30559 -> 62789 bytes
+ 5 files changed, 66 insertions(+), 72 deletions(-)
+
+commit ea8a32b10dbb60315f06e04e11b7cba51de84e78
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 14:24:48 2013 +0100
+
+    mise à jour du git avec le fichier de test
+
+ test |    1 -
+ 1 file changed, 1 deletion(-)
+
+commit 32fe6d0e4ef9075b7210493c28e2d4aff1a17667
+Merge: 7abdc20 8e5c7be
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 14:24:17 2013 +0100
+
+    Merge /home/benoit/Dropbox/sio_webapp/curent_site
+
+commit 7abdc20443f46baa0a4a8261e983f836747123ac
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Nov 7 14:22:36 2013 +0100
+
+    mise en place du git
+
+ avancement.docx                      |  Bin 0 -> 12568 bytes
+ curent_site                          |    1 +
+ description_procedure_stockee_BE.odt |  Bin 0 -> 25361 bytes
+ description_procedure_stockee_BE.pdf |  Bin 0 -> 41855 bytes
+ diagTaches1.gan                      |   92 ++++++++++++++
+ procIncererIntervention.sql          |   14 ++
+ procedure_BE                         |    3 +
+ sql/Creer_location.sql               |  232 ++++++++++++++++++++++++++++++++++
+ sql/Creer_reparation.sql             |  209 ++++++++++++++++++++++++++++++
+ sql/creer_achat.sql                  |  159 +++++++++++++++++++++++
+ sujet/PPE2-03_V-Lyon_Contexte.doc    |  Bin 0 -> 2912768 bytes
+ sujet/photo.jpg                      |  Bin 0 -> 662643 bytes
+ sujet/photo_1.jpg                    |  Bin 0 -> 825334 bytes
+ sujet/photo_2.jpg                    |  Bin 0 -> 579661 bytes
+ uml/diagTecRespAch.dia               |  Bin 0 -> 2589 bytes
+ uml/diagTecRespAch.png               |  Bin 0 -> 30559 bytes
+ 16 files changed, 710 insertions(+)
+
+commit 8e5c7bef34f6f8013773e902eb141034e05f79b1
+Author: benoit <benoitelie1@gmail.com>
+Date:   Thu Oct 17 10:23:12 2013 +0200
+
+    ajout du ficher test
+
+ test |    1 +
+ 1 file changed, 1 insertion(+)
