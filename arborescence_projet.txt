@@ -2,6 +2,7 @@
 ├── arborescence_projet.txt
 ├── avancement.docx
 ├── charteGraphique.docx
+├── charteGraphique.pdf
 ├── choix_technique_EK-EB.odt
 ├── choix_technique_EK-EB.pdf
 ├── curent/
@@ -186,7 +187,6 @@
 │           ├── SuppTec3.png
 │           ├── Valid_Proc.png
 │           └── ValidProc.png
-├── procedure_BM-EK-EB-LO-SM.zip
 ├── READ-ME.pdf
 ├── READ-ME.rtf
 ├── sql/
@@ -196,6 +196,7 @@
 │   ├── Creer_reparation.sql
 │   └── data_test_mysql.sql
 ├── sujet/
+│   ├── ~$E2-03_V-Lyon_Contexte.doc
 │   ├── photo_1.jpg
 │   ├── photo_2.jpg
 │   ├── photo.jpg
@@ -204,4 +205,4 @@
     ├── diagTecRespAch.dia
     └── diagTecRespAch.png
 
-32 directories, 172 files
+32 directories, 173 files
