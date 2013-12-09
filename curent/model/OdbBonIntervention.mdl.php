@@ -41,7 +41,8 @@ class OdbBonIntervention
 	{
 		$req = 'SELECT *
 				FROM BONINTERV
-				WHERE BI_Num = :code';
+				WHERE BI_Num = :code
+					AND BI_Technicien = Tec_Matricule';
 
 		$leBonInter = $this->oBdd->query($req, array('code'=>$code), Bdd::SINGLE_RES);
 
@@ -52,8 +53,9 @@ class OdbBonIntervention
 	public function getSesInterventions($techCode)
 	{
 		$req = 'SELECT *
-				FROM BONINTERV
-				WHERE BI_Technicien = :techCode';
+				FROM BONINTERV, STATION
+				WHERE BI_Technicien = :techCode
+					AND BI_Station = Sta_Num';
 
 		$lesBonsInter = $this->oBdd->query($req);
 

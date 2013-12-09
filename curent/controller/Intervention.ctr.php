@@ -37,6 +37,10 @@ class Intervention
 				$this->afficherSesInter();
 				break;
 
+			case 'unbonintervention':
+				$this->afficherUnBonInter();
+				break;
+
 			case 'interventions_nt':
 
 			default:
@@ -103,9 +107,29 @@ class Intervention
 	 */
 	protected function afficherSesInter($codeTechnicien)
 	{
-		$lesInterventions = $this->odbBonIntervention->getLesDemandesInter();
-		$lesBonsInter = $this->odbBonIntervention->getLesBonsInter();
+		$lesBonsInter = $this->odbBonIntervention->getSesInterventions($codeTechnicien);
 
-		//NON FINI
+		$_SESSION['tampon']['title'] = 'Toutes interventions du technicien';
+
+		/**
+		 * Load des vues
+		 */
+		view('htmlHeader');
+		view('contentSesInterventions', array('sesInterventions'=>$sesInterventions));
+		view('htmlFooter');
+	}
+
+	protected function afficherUnBonInter($codeBonInter)
+	{
+		$lesBonsInter = $this->odbBonIntervention->getUnBonInter($codeBonInter);
+
+		$_SESSION['tampon']['title'] = 'Un bon d\'intervention';
+
+		/**
+		 * Load des vues
+		 */
+		view('htmlHeader');
+		view('contentOneBonInter', array('unBonIntervention'=>$unBonIntervention));
+		view('htmlFooter');
 	}
 }

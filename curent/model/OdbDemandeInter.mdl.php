@@ -53,8 +53,11 @@ class OdbDemandeInter
 	public function getUneDemandeInter($id)
 	{
 		$req = 'SELECT *
-				FROM DEMANDEINTER
-				WHERE Sta_Code = :id';
+				FROM DEMANDEINTER, TECHNICIEN, STATION
+				WHERE DemI_Num = :id
+					AND DemI_Velo = Velo_Num
+					AND Vel_Station = Sta_Code
+					AND DemI_Demandeur = Tec_Matricule';
 
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
 
@@ -65,8 +68,10 @@ class OdbDemandeInter
 	public function getLesDemandesNT()
 	{
 		$req = 'SELECT *
-				FROM DEMANDEINTER
-				WHERE DemI_Traite = 0';
+				FROM DEMANDEINTER, VELO, STATION
+				WHERE DemI_Traite = 0
+					AND DemI_Velo = Vel_Num
+					AND Vel_Station = Sta_Code';
 
 		$lesDemandesInter = $this->oBdd->query($req);
 

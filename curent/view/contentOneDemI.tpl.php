@@ -18,16 +18,15 @@
 				?>
 				<tr>
 					<td>
-						<a href="index.php?page=intervention&amp;action=uneDemandeInter&amp;valeur=<?php echo $arg['uneDemandeInter']->DemI_Num;?>">
+						<a href="index.php?page=intervention&amp;action=unedemandeinter&amp;valeur=<?php echo $arg['uneDemandeInter']->DemI_Num;?>">
 							<?php echo $arg['uneDemandeInter']->DemI_Num;?>
 						</a>
 					</td>
-					<td><?php echo $arg['uneDemandeInter']->DemI_Num;?></td>
-					<td><?php echo $arg['uneDemandeInter']->Sta_Date;?></td>
+					<td><?php echo $arg['uneDemandeInter']->DemI_Date;?></td>
 					<td><?php echo $arg['uneDemandeInter']->DemI_Velo;?></td>
-					<td><?php echo $arg['uneDemandeInter']->	;?></td>
-					<td><?php echo $arg['uneDemandeInter']->Sta_Technicien;?></td>
-					<td><?php echo $arg['uneDemandeInter']->Sta_Motif;?></td>
+					<td><?php echo $arg['uneDemandeInter']->Sta_Nom;?></td>
+					<td><?php echo $arg['uneDemandeInter']->Tec_Nom;?></td>
+					<td><?php echo $arg['uneDemandeInter']->DemI_Motif;?></td>
 				</tr>
 				<?php
 			}

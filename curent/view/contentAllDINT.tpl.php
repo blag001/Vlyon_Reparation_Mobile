@@ -21,9 +21,8 @@
 								<?php echo $value->DemI_Code;?>
 							</a>
 						</td>
-						<td><?php echo $value->DemI_Num;?></td>
 						<td><?php echo $value->DemI_Date;?></td>
-						<?php /*<td>echo $value->Sta_NbVelos NOPE PAS MAINTENANT;</td>*/?>
+						<td><?php echo $value->Sta_Nom;?></td>
 						<td><?php echo $value->DemI_Velo;?></td>
 					</tr>
 					<?php
