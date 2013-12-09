@@ -18,27 +18,42 @@
 					<a href="<?php echo $_SESSION['tampon']['url'];?>" class="dropdown-toggle" data-toggle="dropdown">
 						<?php echo $_SESSION['tampon']['page'];?> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="index.php?page=station">Station</a></li>
-						<li><a href="index.php?page=intervention">Intervention</a></li>
-						<li><a href="index.php?page=technicien">Technicien</a></li>
-						<li><a href="index.php?page=velo">V&eacute;lo</a></li>
+						<li <?php if($_SESSION['tampon']['page']=='Station') echo 'class="active"';?>>
+							<a href="index.php?page=station">Station</a>
+						</li>
+						<li <?php if($_SESSION['tampon']['page']=='Intervention') echo 'class="active"';?>>
+							<a href="index.php?page=intervention">Intervention</a>
+						</li>
+						<li <?php if($_SESSION['tampon']['page']=='Technicien') echo 'class="active"';?>>
+							<a href="index.php?page=technicien">Technicien</a>
+						</li>
+						<li <?php if($_SESSION['tampon']['page']=='V&eacute;lo') echo 'class="active"';?>>
+							<a href="index.php?page=velo">V&eacute;lo</a>
+						</li>
 					</ul>
 				</li>
 				<!--
 				<li><a href="#">Home</a></li>
 				<li><a href="#about">About</a></li>
 				<li><a href="#contact">Contact</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
 				-->
+				<?php
+				if(!empty($_SESSION['tampon']['sous_menu']) and is_array($_SESSION['tampon']['sous_menu']))
+				{
+					?>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+					<?php
+				}
+				?>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>

@@ -135,9 +135,23 @@ class Bdd
 	 * @param  string $sql
 	 * @return int
 	 */
-	public function execute(string $sql)
+	public function exec(string $sql, array $arg = null)
 	{
-		return $this->oBdd->execute($sql);
-	}
+		if(!empty($arg))
+		{
+			// on prepare la requete
+			$req = $this->oBdd->prepare($sql);
+			// on l'execute
+			if($out = $req->execute($arg))
+				// si pas de pb, on compte le nb ligne affectee
+				$out = $req->rowCount();
 
+			// on ferme la requete en cours
+			$req->closeCursor();
+		}
+		else
+			$out = $this->oBdd->exec($sql);
+
+		return $out;
+	}
 }
