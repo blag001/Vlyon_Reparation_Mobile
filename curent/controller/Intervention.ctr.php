@@ -55,14 +55,14 @@ class Intervention
 	 */
 	protected function afficherLesDemandesInter()
 	{
-		$lesInterventionNT = $this->odbDemandeInter->getLesDemandesNT();
-		$_SESSION['tampon']['title'] = 'Toutes Les demandes d\'interventions non trait&eacute;es';
+		$lesDemandesINT = $this->odbDemandeInter->getLesDemandesNT();
+		$_SESSION['tampon']['title'] = 'Demandes d\'interventions non trait&eacute;es';
 
 		/**
 		 * Load des vues
 		 */
 		view('htmlHeader');
-		view('contentAllDINT', array('lesInterventionNT'=>$lesInterventionNT));
+		view('contentAllDINT', array('lesDemandesINT'=>$lesDemandesINT));
 		view('htmlFooter');
 	}
 
@@ -77,7 +77,7 @@ class Intervention
 				!empty($_GET['valeur'])
 				and $this->odbDemandeInter->estDemandeInterById($_GET['valeur']))
 		{
-			$uneDemandeInter = $this->odbDemandeInter->getuneDemandeInter($_GET['valeur']);
+			$uneDemandeInter = $this->odbDemandeInter->getUneDemandeInter($_GET['valeur']);
 
 			$_SESSION['tampon']['title'] = 'Demande Intervention - '.$uneDemandeInter->DemI_Num;
 

@@ -19,6 +19,16 @@ class Station
 		// page actuelle
 		$_SESSION['tampon']['page'] = 'Station';
 		$_SESSION['tampon']['url'] = 'index.php?page=station';
+		// liste des sous menus
+		$_SESSION['tampon']['sous_menu']['list'] =
+			array(
+					array('url'=>'index.php?page=station',
+						'title'=>'Les stations'),
+					array('url'=>'index.php?page=station&amp;action=unestation',
+						'title'=>'Une station'),
+					array('url'=>'index.php?page=station&amp;action=rechercherstation' ,
+						'title'=>'Rechercher station'),
+				);
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
@@ -29,6 +39,9 @@ class Station
 		 * @param string $_GET['action'] contient l'action demmandee
 		 */
 		switch ($_GET['action']) {
+			case 'rechercherstation':
+				$this->rechercherUneStation();
+				break;
 			case 'unestation':
 				$this->afficherUneStation();
 				break;
@@ -48,6 +61,8 @@ class Station
 		$lesStations = $this->odbStation->getLesStations();
 
 		$_SESSION['tampon']['title'] = 'Toutes Les Stations';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les stations';
 
 		if (empty($lesStations))
 			$_SESSION['tampon']['error'] = array('Pas de station...');
@@ -75,6 +90,8 @@ class Station
 			$lesVelosByStation = $this->odbVelo->getLesVelosDeStation($_GET['valeur']);
 
 			$_SESSION['tampon']['title'] = 'Station - '.$uneStation->Sta_Nom;
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=unestation';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une station';
 
 			if (empty($lesVelosByStation))
 				$_SESSION['tampon']['error'] = array('Pas de v&eacute;lo pour cette station...');
@@ -87,9 +104,11 @@ class Station
 				'lesVelos'=>$lesVelosByStation));
 			view('htmlFooter');
 		}
-		else
+		elseif(!empty($_GET['valeur']))
 		{
 			$_SESSION['tampon']['title'] = 'Station - ERREUR';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=unestation';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une station';
 			$_SESSION['tampon']['error'] = array('La station ne semble pas exister...');
 
 			/**
@@ -99,5 +118,25 @@ class Station
 			view('contentError');
 			view('htmlFooter');
 		}
+		else
+			$this->rechercherUneStation();
+	}
+
+	/**
+	 * affiche une station et ses velos lies
+	 * @return void
+	 */
+	protected function rechercherUneStation()
+	{
+		$_SESSION['tampon']['title'] = 'Rechercher Une Station';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherstation';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher station';
+
+		/**
+		 * Load des vues
+		 */
+		view('htmlHeader');
+		view('contentSearchStation');
+		view('htmlFooter');
 	}
 }

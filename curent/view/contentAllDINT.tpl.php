@@ -17,8 +17,8 @@
 					?>
 					<tr>
 						<td>
-							<a href="index.php?page=intervention&amp;action=interventions_nt&amp;valeur=<?php echo $value->DemI_Code;?>">
-								<?php echo $value->DemI_Code;?>
+							<a href="index.php?page=intervention&amp;action=unedemandeinter&amp;valeur=<?php echo $value->DemI_Num;?>">
+								<?php echo $value->DemI_Num;?>
 							</a>
 						</td>
 						<td><?php echo $value->DemI_Date;?></td>

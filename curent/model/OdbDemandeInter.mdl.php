@@ -8,31 +8,15 @@ class OdbDemandeInter
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
-	public function estDemandeInter($nom)
+	public function estDemandeInterById($code)
 	{
-		if(!empty($nom))
+		if(!empty($code))
 		{
 			$req = 'SELECT COUNT(*) AS nb
 					FROM DEMANDEINTER
-					WHERE Sta_Nom = :nom';
+					WHERE DemI_Num = :code';
 
-			$data = $this->oBdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
-
-			return (bool) $data->nb;
-		}
-
-		return false;
-	}
-
-	public function estDemandeInterById($id)
-	{
-		if(!empty($id))
-		{
-			$req = 'SELECT COUNT(*) AS nb
-					FROM DEMANDEINTER
-					WHERE Sta_Code = :id';
-
-			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
+			$data = $this->oBdd->query($req , array('code'=>$code), Bdd::SINGLE_RES);
 
 			return (bool) $data->nb;
 		}
@@ -53,11 +37,11 @@ class OdbDemandeInter
 	public function getUneDemandeInter($id)
 	{
 		$req = 'SELECT *
-				FROM DEMANDEINTER, TECHNICIEN, STATION
+				FROM DEMANDEINTER, TECHNICIEN, STATION, VELO
 				WHERE DemI_Num = :id
-					AND DemI_Velo = Velo_Num
+					AND DemI_Velo = Vel_Num
 					AND Vel_Station = Sta_Code
-					AND DemI_Demandeur = Tec_Matricule';
+					AND DemI_Technicien = Tec_Matricule';
 
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
 
