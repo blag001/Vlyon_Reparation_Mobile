@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php if(!empty($_SESSION['tampon']['title'])) echo $_SESSION['tampon']['title'];?></title>
+		<title><?php if(!empty($_SESSION['tampon']['page']['title'])) echo $_SESSION['tampon']['page']['title'];?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8" />
 		<!-- Bootstrap -->
