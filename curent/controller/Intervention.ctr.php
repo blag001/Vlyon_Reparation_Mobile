@@ -53,6 +53,10 @@ class Intervention
 				$this->afficherUnBonInter();
 				break;
 
+			case 'rechercherbonintervention':
+				$this->rechercherUnBonInter();
+				break;
+
 			case 'interventions_nt':
 
 			default:
@@ -192,6 +196,24 @@ class Intervention
 			view('htmlFooter');
 		}
 
+	}
+
+	/**
+	 * NON FINI EN DESSOUS
+	 * @return void
+	 */
+	protected function rechercherUnBonInter()
+	{
+		$_SESSION['tampon']['title'] = 'Rechercher un bon d\'intervention';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherstation';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher station';
+
+		/**
+		 * Load des vues
+		 */
+		view('htmlHeader');
+		view('contentSearchStation');
+		view('htmlFooter');
 	}
 
 
