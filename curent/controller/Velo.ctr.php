@@ -51,7 +51,7 @@ class Velo
 	protected function afficherLesVelos()
 	{
 		// $lesVelos = $this->odbVelo->getLesVelos();
-		$_SESSION['tampon']['page']['title'] = 'Tous Les Velos';
+		$_SESSION['tampon']['title'] = 'Tous Les Velos';
 		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo';
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les v&eacute;los';
 
@@ -76,7 +76,7 @@ class Velo
 		{
 			$unVelo = $this->odbVelo->getUnVelo($_GET['valeur']);
 
-			$_SESSION['tampon']['page']['title'] = 'V&eacute;lo - '.$unVelo->Vel_Num;
+			$_SESSION['tampon']['title'] = 'V&eacute;lo - '.$unVelo->Vel_Num;
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un v&eacute;lo';
 
@@ -89,7 +89,7 @@ class Velo
 		}
 		else
 		{
-			$_SESSION['tampon']['page']['title'] = 'V&eacute;lo - ERREUR';
+			$_SESSION['tampon']['title'] = 'V&eacute;lo - ERREUR';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un v&eacute;lo';
 
