@@ -17,7 +17,7 @@
 					?>
 					<tr>
 						<td>
-							<a href="index.php?page=intervention&amp;action=sesinterventions&amp;valeur=<?php echo $value->BI_Num;?>">
+							<a href="index.php?page=intervention&amp;action=unbonintervention&amp;valeur=<?php echo $value->BI_Num;?>">
 								<?php echo $value->BI_Num;?>
 							</a>
 						</td>

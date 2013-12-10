@@ -55,7 +55,7 @@ class OdbBonIntervention
 		$req = 'SELECT *
 				FROM BONINTERV, STATION
 				WHERE BI_Technicien = :techCode
-					AND BI_Station = Sta_Num';
+					AND BI_Station = Sta_Code';
 
 		$lesBonsInter = $this->oBdd->query($req);
 

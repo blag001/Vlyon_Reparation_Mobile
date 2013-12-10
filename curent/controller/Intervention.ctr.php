@@ -142,7 +142,8 @@ class Intervention
 
 	protected function afficherUnBonInter($codeBonInter)
 	{
-		$lesBonsInter = $this->odbBonIntervention->getUnBonInter($codeBonInter);
+		/*
+		$unBonInter = $this->odbBonIntervention->getUnBonInter($codeBonInter);
 
 		$_SESSION['tampon']['title'] = 'Un bon d\'intervention';
 		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unbonintervention';
@@ -150,9 +151,50 @@ class Intervention
 
 		/**
 		 * Load des vues
-		 */
+		 *
 		view('htmlHeader');
 		view('contentOneBonInter', array('unBonIntervention'=>$unBonIntervention));
 		view('htmlFooter');
+		*/
+	
+
+		// si le bon existe
+		if (
+				!empty($_GET['valeur'])
+				and $this->odbBonIntervention->estBonInter($_GET['valeur']))
+		{
+			$unBonInter = $this->odbBonIntervention->getUnBonInter($_GET['valeur']);
+
+			$_SESSION['tampon']['title'] = 'Bon Intervention - '.$unBonInter->BI_Num;
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
+
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentOneBonInter', array('unBonInter'=>$unBonInter));
+			view('htmlFooter');
+		}
+		else
+		{
+			$_SESSION['tampon']['title'] = 'Bon Intervention - ERREUR';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
+
+			$_SESSION['tampon']['error'] = array('Le bon d\'Intervention ne semble pas exister...');
+
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentError');
+			view('htmlFooter');
+		}
+
 	}
+
+
+
+
 }
