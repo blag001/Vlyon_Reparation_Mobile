@@ -38,9 +38,9 @@ require_once 'inc/template.inc.php';
 $_SESSION['user'] = new User();
 
 // nom de la page par defaut
-$_SESSION['tampon']['page'] = 'Station';
+$_SESSION['tampon']['page']['title'] = 'Station';
 // url de la page par defaut
-$_SESSION['tampon']['url'] = 'index.php?page=station';
+$_SESSION['tampon']['page']['url'] = 'index.php?page=station';
 
 //////////////////////////
 // Fin d'initialisation //
@@ -82,3 +82,6 @@ switch ($_GET['page']) {
 		$station = new Station();
 		break;
 }
+
+// on vide le tampon
+$_SESSION['tampon'] = null;
