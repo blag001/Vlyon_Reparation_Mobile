@@ -10,12 +10,19 @@ class Bdd
 	private $host    = 'localhost';
 	private $db_name = 'sio_reparation';
 	private $user    = 'root';
-	private $mdp     = 'tioneb';
+	private $mdp     = '';
 
 	/** @var PDO variable avec l'instance PDO */
 	private $oBdd  = null;
 
-	/** constante en cas de resultat unique */
+	/**
+	 * constante en cas de resultat unique
+	 *
+	 * Si vous savez que vous allez avoir un seul resultat
+	 * (par ex, un COUNT(*), un getUn...() )
+	 * utilisez en 3eme param de query "Bdd::SINGLE_RES"
+	 * la methode vous retourneras directement un objet
+	 */
 	const SINGLE_RES = true;
 
 	////////////////////
@@ -31,14 +38,15 @@ class Bdd
 	 */
 	public function __construct($host=false, $db_name=false, $user=false, $mdp=false)
 	{
-		if($host && $db_name && $user && $mdp)
-		{
 			// save des var
-			$this->host    = $host;
+		if(!empty($host))
+			$this->host = $host;
+		if(!empty($db_name))
 			$this->db_name = $db_name;
-			$this->user    = $user;
-			$this->mdp     =  $mdp;
-		}
+		if(!empty($user))
+			$this->user = $user;
+		if(!empty($mdp))
+			$this->mdp = $mdp;
 
 		$this->connexion();
 	}
@@ -66,6 +74,9 @@ class Bdd
 	/**
 	 * cree une instance PDO
 	 *
+	 * passe le mode de recherche en retour object
+	 * utilise l'UTF8 pour les transactions
+	 *
 	 * @return void
 	 */
 	protected function connexion()
@@ -90,11 +101,23 @@ class Bdd
 	// PUBLIC //
 	/////////////
 	/**
-	 * passe les requetes avec ou sans variable
+	 * Passe les requetes avec ou sans variable
 	 *
-	 * expoite a la fois les query et les prepare de PDO
-	 * retourne soit un objet si mono_line a true,
+	 * Expoite a la fois les query et les prepare de PDO
+	 * retourne soit un objet si $mono_line a true,
 	 * soit un array d'objet si false/null
+	 *
+	 * On lui passe la requete SQL avec les marqueurs.
+	 * 	un marqueur est une string avec ':' devant
+	 * 		ex : 'SELECT * FROM Table WHERE Tab_code = :mon_marqueur '
+	 * On lui donne les arguments dans un tableau.
+	 * 	l'array doit etre associatif marqueur => valeur
+	 * 		ex : 'array('mon_marqueur' => $codeTable)'
+	 *
+	 * Si vous savez que vous allez avoir un seul resultat
+	 * (par ex, un COUNT(*), un getUn...() )
+	 * utilisez en 3eme param "Bdd::SINGLE_RES" (ou TRUE)
+	 * la methode vous retourneras directement un objet
 	 *
 	 * @param  string  $sql
 	 * @param  array  $arg
@@ -103,11 +126,12 @@ class Bdd
 	 */
 	public function query($sql, array $arg = null, $mono_line = false)
 	{
+		// on regarde si on a des variable dans les arguments
 		if(!empty($arg))
 		{
-			// on prepare la requete
+			// on prepare la requete SQL
 			$req = $this->oBdd->prepare($sql);
-			// on l'execute
+			// on l'execute avec les variables
 			$req->execute($arg);
 		}
 		else
@@ -116,9 +140,10 @@ class Bdd
 			$req = $this->oBdd->query($sql);
 		}
 
+		// si on demande une monoligne, simple fetch
 		if($mono_line)
 			$data = $req->fetch();
-		else
+		else // sinon on cherche tout les obj en array
 			$data = $req->fetchAll();
 
 		// on ferme la requete en cours
@@ -130,13 +155,22 @@ class Bdd
 	/**
 	 * execute une requete SQL
 	 *
+	 * On lui passe la requete SQL avec les marqueurs.
+	 * 	un marqueur est une string avec ':' devant
+	 * 		ex : 'SELECT * FROM Table WHERE Tab_code = :mon_marqueur '
+	 * on lui donne les arguments dans un tableau.
+	 * 	l'array doit etre associatif marqueur => valeur
+	 * 		ex : 'array('mon_marqueur' => $codeTable)'
+	 *
 	 * retourne le nombre de ligne affectee
 	 *
 	 * @param  string $sql
+	 * @param  array $arg
 	 * @return int
 	 */
 	public function exec(string $sql, array $arg = null)
 	{
+		// on regarde si on a des variable dans les arguments
 		if(!empty($arg))
 		{
 			// on prepare la requete

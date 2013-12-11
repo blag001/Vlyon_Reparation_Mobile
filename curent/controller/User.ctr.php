@@ -5,9 +5,14 @@
 // TODO mettre en place la protection et la gestion des users
 class User
 {
+	private $matricule;
+	private $hash;
+
+	private $oNoSql;
+
 	public function __construct()
 	{
-		# code...
+		$this->oNoSql = new Nosql();
 	}
 
 	public function estUser()

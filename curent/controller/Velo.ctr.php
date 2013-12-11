@@ -15,7 +15,7 @@ class Velo
 
 		// page actuelle
 		$_SESSION['tampon']['page']['title'] = 'V&eacute;lo';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=Un v&eacute;lo';
+		$_SESSION['tampon']['page']['url'] = 'index.php?page=unvelo';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(

@@ -23,7 +23,8 @@
  * @method get_table($table)
  * @method drop($table)
  *
- * @author benoit elie
+ * @global boolean GET_RESULT
+ * @author Benoit <benoitelie1@gmail.com>
  */
 class Nosql
 {
@@ -32,6 +33,18 @@ class Nosql
 	private $path_db;
 	private $chmod_file = 0666;
 	private $chmod_dir = 0777;
+
+	/**
+	 * constante pour demander la valeur
+	 *
+	 * Si vous ne l'utilisez pas, les methodes query()
+	 * et select_all() ne vous retournerons
+	 * que l'existance de l'entree, via un boolean.
+	 *
+	 * utilisez en dernier param de query/select_all "Nosql::GET_RESULT"
+	 * la methode vous retourneras directement la valeur
+	 */
+	const GET_RESULT = true;
 
 	//**************//
 	// CONSTRUCTEUR //

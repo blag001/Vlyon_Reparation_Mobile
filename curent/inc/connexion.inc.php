@@ -3,8 +3,8 @@ try {
 	/**
 	 * instanciation de la connexion BDD
 	 *
-	 * changez les null par vos informations
-	 * par defaut (si null ou false) :
+	 * changez les null par vos informations.
+	 * Par defaut (si null ou false) :
 	 * 		$host    = 'localhost';
 	 * 		$db_name = 'sio_reparation';
 	 * 		$user    = 'root';
@@ -16,7 +16,7 @@ try {
 	 * @param string $mdp mot de passe de l'utilisateur
 	 */
 	if (empty($_SESSION['bdd']))
-		$_SESSION['bdd'] = new Bdd(null, null, null, null);
+		$_SESSION['bdd'] = new Bdd(null, null, 'sio', 'KpurqD5Ey4NQSYVU');
 
 	/**
 	 * inctanciation de l'obj NoSql
