@@ -2,6 +2,10 @@
 /**
  * class de gestion PDO simplifiee
  *
+ * @method {mixed} query() query(string $sql, array $arg, bool $mono_line) lance une recherche
+ * 	qui attend un ou plusieurs resultats (retour en obj ou array d'obj)
+ * @method {int} exec() exec(string $sql, array $arg) execute une commande et
+ * 	retourne le nb de lignes affectees
  * @global boolean SINGLE_RES
  * @author Benoit <benoitelie1@gmail.com>
  */
