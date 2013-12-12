@@ -5,6 +5,8 @@ class Intervention
 	private $odbDemandeInter;
 	/** @var OdbBonIntervention model de gestion Bdd */
 	private $odbBonIntervention;
+	/** @var OdbTechnicien model de gestion Bdd */
+	private $odbTechnicien;
 
 	public function __construct()
 	{
@@ -15,6 +17,7 @@ class Intervention
 		// on instancie les model
 		$this->odbDemandeInter = new OdbDemandeInter();
 		$this->odbBonIntervention = new OdbBonIntervention();
+		$this->odbTechnicien = new OdbTechnicien();
 
 		// page actuelle
 		$_SESSION['tampon']['page']['title'] = 'Intervention';
@@ -128,20 +131,42 @@ class Intervention
 	/**
 	 * @todo a finir
 	 */
-	protected function afficherSesInter($codeTechnicien)
+	protected function afficherSesInter()
 	{
-		$lesBonsInter = $this->odbBonIntervention->getSesInterventions($codeTechnicien);
+		// si la demande existe
+		if (
+				!empty($_GET['valeur'])
+				and $this->odbTechnicien->estTechnicien($_GET['valeur']))
+		{
+			$sesInterventions = $this->odbBonIntervention->getSesInterventions($_GET['valeur']);
 
-		$_SESSION['tampon']['title'] = 'Toutes interventions du technicien';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=sesinterventions';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Ses interventions';
+			$_SESSION['tampon']['title'] = 'Toutes interventions du technicien';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=sesinterventions';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Ses interventions';
 
-		/**
-		 * Load des vues
-		 */
-		view('htmlHeader');
-		view('contentSesInterventions', array('sesInterventions'=>$sesInterventions));
-		view('htmlFooter');
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentSesInterventions', array('sesInterventions'=>$sesInterventions));
+			view('htmlFooter');
+		}
+		else
+		{
+			$_SESSION['tampon']['title'] = 'Toutes interventions du technicien - ERREUR';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=sesinterventions';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Ses interventions';
+
+			$_SESSION['tampon']['error'] = array('Le Technicien ne semble pas exister...');
+
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentError');
+			view('htmlFooter');
+		}
+
 	}
 
 	protected function afficherUnBonInter($codeBonInter)
@@ -160,7 +185,7 @@ class Intervention
 		view('contentOneBonInter', array('unBonIntervention'=>$unBonIntervention));
 		view('htmlFooter');
 		*/
-	
+
 
 		// si le bon existe
 		if (
