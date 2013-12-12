@@ -64,18 +64,50 @@ class OdbBonIntervention
 
 	//on cree une intervention
 	/**
+	 * MAJ : normalement elle est OK, mais faut check...
 	 * @todo pas de variable dans les requetes...
 	 *       on passe tout avec des marqueur et un tableau
 	 */
 	public function creerUnBonInter($code)
 	{
-		// $req = 'INSERT INTO BONINTERV
-		// 		VALUES ('$code', '$veloCode', '$dateDebut', '$dateFin', '$cpteRendu', '$reparable', '$demande', '$technicienCode', '$surPlace', '$duree' )
-		// 		WHERE BI_Num = :code';
+		$req = 'INSERT INTO BONINTERV (
+					 `BI_Num`,
+					 `BI_Velo`,
+					 `BI_DatDebut`,
+					 `BI_DatFin`,
+					 `BI_CpteRendu`,
+					 `BI_Reparable`,
+					 `BI_Demande`,
+					 `BI_Technicien`,
+					 `BI_SurPlace`,
+					 `BI_Duree`
+					)
+				VALUES (
+					 :code,
+					 :veloCode,
+					 :dateDebut,
+					 :dateFin,
+					 :cpteRendu,
+					 :reparable,
+					 :demande,
+					 :technicienCode,
+					 :surPlace,
+					 :duree
+				 	)
+				WHERE BI_Num = :code';
 
-		// $leBonInter = $bdd->query($req, array('code'=>$code));
-		// return($leBonInter);
+		$out = $bdd->exec($req, array(
+				 'code'=>$_POST['code'],
+				 'veloCode'=>$_POST['veloCode'],
+				 'dateDebut'=>$_POST['dateDebut'],
+				 'dateFin'=>$_POST['dateFin'],
+				 'cpteRendu'=>$_POST['cpteRendu'],
+				 'reparable'=>$_POST['reparable'],
+				 'demande'=>$_POST['demande'],
+				 'technicienCode'=>$_POST['technicienCode'],
+				 'surPlace'=>$_POST['surPlace'],
+				 'duree'=>$_POST['duree'],
+				));
+		return $out;
 	}
-
-
 }
