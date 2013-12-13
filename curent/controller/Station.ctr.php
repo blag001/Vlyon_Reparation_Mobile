@@ -17,8 +17,8 @@ class Station
 		$this->odbVelo = new OdbVelo();
 
 		// page actuelle
-		$_SESSION['tampon']['page']['title'] = 'Station';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=station&amp;action=lesstations';
+		$_SESSION['tampon']['menu']['title'] = 'Station';
+		$_SESSION['tampon']['menu']['url'] = 'index.php?page=station&amp;action=lesstations';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(

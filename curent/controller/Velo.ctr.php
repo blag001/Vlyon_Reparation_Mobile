@@ -14,8 +14,8 @@ class Velo
 		$this->odbVelo = new OdbVelo();
 
 		// page actuelle
-		$_SESSION['tampon']['page']['title'] = 'V&eacute;lo';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=unvelo&amp;action=lesvelos';
+		$_SESSION['tampon']['menu']['title'] = 'V&eacute;lo';
+		$_SESSION['tampon']['menu']['url'] = 'index.php?page=unvelo&amp;action=lesvelos';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(

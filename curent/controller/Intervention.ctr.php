@@ -20,8 +20,8 @@ class Intervention
 		$this->odbTechnicien = new OdbTechnicien();
 
 		// page actuelle
-		$_SESSION['tampon']['page']['title'] = 'Intervention';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=intervention&amp;action=interventions_nt';
+		$_SESSION['tampon']['menu']['title'] = 'Intervention';
+		$_SESSION['tampon']['menu']['url'] = 'index.php?page=intervention&amp;action=interventions_nt';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(

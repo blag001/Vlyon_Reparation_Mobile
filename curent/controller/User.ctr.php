@@ -21,8 +21,8 @@ class User
 		$this->odbUser = new OdbUser();
 
 		// page actuelle
-		$_SESSION['tampon']['page']['title'] = 'Utilisateur';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=user&amp;action=adduser';
+		$_SESSION['tampon']['menu']['title'] = 'Utilisateur';
+		$_SESSION['tampon']['menu']['url'] = 'index.php?page=user&amp;action=adduser';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(

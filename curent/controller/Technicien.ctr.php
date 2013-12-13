@@ -18,8 +18,8 @@ class Technicien
 		$this->odbTechnicien = new OdbTechnicien();
 
 		// page actuelle
-		$_SESSION['tampon']['page']['title'] = 'Technicien';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=technicien';
+		$_SESSION['tampon']['menu']['title'] = 'Technicien';
+		$_SESSION['tampon']['menu']['url'] = 'index.php?page=technicien';
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
