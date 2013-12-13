@@ -18,11 +18,11 @@ class Station
 
 		// page actuelle
 		$_SESSION['tampon']['page']['title'] = 'Station';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=station';
+		$_SESSION['tampon']['page']['url'] = 'index.php?page=station&amp;action=lesstations';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(
-					array('url'=>'index.php?page=station',
+					array('url'=>'index.php?page=station&amp;action=lesstations',
 						'title'=>'Les stations'),
 					array('url'=>'index.php?page=station&amp;action=unestation',
 						'title'=>'Une station'),
@@ -46,6 +46,8 @@ class Station
 				$this->afficherUneStation();
 				break;
 
+			case 'lesstations':
+
 			default:
 				$this->afficherLesStations();
 				break;
@@ -61,7 +63,7 @@ class Station
 		$lesStations = $this->odbStation->getLesStations();
 
 		$_SESSION['tampon']['title'] = 'Toutes Les Stations';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=lesstations';
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les stations';
 
 		if (empty($lesStations))

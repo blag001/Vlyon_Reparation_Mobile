@@ -21,11 +21,11 @@ class Intervention
 
 		// page actuelle
 		$_SESSION['tampon']['page']['title'] = 'Intervention';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=intervention';
+		$_SESSION['tampon']['page']['url'] = 'index.php?page=intervention&amp;action=interventions_nt';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(
-					array('url'=>'index.php?page=intervention',
+					array('url'=>'index.php?page=intervention&amp;action=interventions_nt',
 						'title'=>'Non trait&eacute;es'),
 					array('url'=>'index.php?page=intervention&amp;action=unbonintervention',
 						'title'=>'Une intervention'),
@@ -76,7 +76,7 @@ class Intervention
 	{
 		$lesDemandesINT = $this->odbDemandeInter->getLesDemandesNT();
 		$_SESSION['tampon']['title'] = 'Demandes d\'interventions non trait&eacute;es';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=interventions_nt';
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Non trait&eacute;es';
 
 		/**
@@ -224,7 +224,7 @@ class Intervention
 	}
 
 	/**
-	 * NON FINI EN DESSOUS
+	 * @todo  NON FINI EN DESSOUS
 	 * @return void
 	 */
 	protected function rechercherUnBonInter()

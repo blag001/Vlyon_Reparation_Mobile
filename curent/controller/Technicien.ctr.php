@@ -1,4 +1,8 @@
 <?php
+/**
+ * @todo  voir ce qu'on gere sur les technicien
+ * @todo  decider si on fusionne avec User.ctr
+ */
 class Technicien
 {
 	/** @var OdbTechnicien model de gestion Bdd */
