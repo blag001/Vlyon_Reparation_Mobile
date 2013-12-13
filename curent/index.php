@@ -83,5 +83,7 @@ switch ($_GET['page']) {
 		break;
 }
 
-// on vide le tampon
+///////////////////////
+// on vide le tampon //
+///////////////////////
 $_SESSION['tampon'] = null;

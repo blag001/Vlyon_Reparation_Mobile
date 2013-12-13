@@ -43,7 +43,7 @@ class Technicien
 	 */
 	protected function showEmpty()
 	{
-		$_SESSION['tampon']['title'] = 'Tous Les Techniciens';
+		$_SESSION['tampon']['html']['title'] = 'Tous Les Techniciens';
 		view('htmlHeader');
 		view('htmlFooter');
 	}
