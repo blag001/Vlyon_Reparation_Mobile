@@ -158,6 +158,31 @@ create index EXECUTER_FK2 on BONINTERV (BI_Demande asc)
 create index realiser_FK on BONINTERV (BI_Technicien asc)
 ;
 
+-- ============================================================
+--   Table : USER
+-- ============================================================
+create table USER
+(
+    Use_Num            INT                    not null AUTO_INCREMENT,
+    Use_Nom            VARCHAR(50)            not null,
+    Use_Hash           CHAR(128)              not null,
+    Use_RespAchat      BIT(1)                 null    ,
+    Use_Technicien     INT                    not null,
+    constraint PK_USER primary key (Use_Num)
+)
+;
+
+-- ============================================================
+--   Index : CONCERNER_FK
+-- ============================================================
+create index HASH_FK on USER (Use_Hash asc)
+;
+
+
+
+-- ============================================================
+--   ajout des contraites
+-- ============================================================
 alter table VELO
     add constraint FK_VELO_STATION foreign key  (Vel_Station)
        references STATION (Sta_Code)
@@ -195,6 +220,11 @@ alter table BONINTERV
 
 alter table BONINTERV
     add constraint FK_BONINTERV_TECHNICIEN foreign key  (BI_Technicien)
+       references TECHNICIEN (Tec_Matricule)
+;
+
+alter table USER
+    add constraint FK_USER_TECHNICIEN foreign key  (Use_Technicien)
        references TECHNICIEN (Tec_Matricule)
 ;
 
