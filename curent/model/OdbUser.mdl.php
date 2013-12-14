@@ -24,6 +24,22 @@ class OdbUser{
 		return false;
 	}
 
+	public function getUser($nom)
+	{
+		if(!empty($nom))
+		{
+			$req = 'SELECT *
+					FROM USER
+					WHERE Use_Nom = :nom';
+
+			$data = $this->oBdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
+
+			return $data;
+		}
+
+		return false;
+	}
+
 	/**
 	 * verifie que le mot de passe est bon
 	 *

@@ -5,9 +5,10 @@
 // TODO mettre en place la protection et la gestion des users
 class User
 {
+	private $id;
 	private $matricule;
 	private $nom;
-	private $hash;
+	private $respAchat = false;
 
 	/** @var odbUser model de gestion Bdd */
 	private $odbUser;
@@ -83,7 +84,7 @@ class User
 
 		return false;
 	}
-	public function rechercherUneUtilisateur()
+	public function rechercherUnUtilisateur()
 	{
 		// TODO
 		return false;
@@ -93,7 +94,7 @@ class User
 		// TODO
 		return false;
 	}
-	public function afficherLesStations()
+	public function afficherLesUtilissateurs()
 	{
 		// TODO
 		return false;
@@ -102,15 +103,35 @@ class User
 	//////////////////////
 	// Methodes privee //
 	//////////////////////
-
+	/**
+	 * va verifier si le mdp/is passe est bien prensent en bdd
+	 *
+	 * hash est une metode pour obtenir une emprinte unique
+	 * ca nous evite de garder en clair les mdp, comme ca en
+	 * cas de piratage, les mdp ne sont pas retrouvable simplement
+	 *
+	 * @return bool vrai si compte existe avec ce mdp, false sinon
+	 */
 	private function login()
 	{
+		// si on envois un nom et un mdp, alors on va faire les verif en bdd
 		if(!empty($_POST['nom']) and isset($_POST['mdp']))
-			return $odbUser->checkHashUser(
-				$_POST['nom'],
+		{
+			if($odbUser->checkHashUser($_POST['nom'],
 				hash('sha512',
-					$_POST['nom'].$_POST['mdp'].$_POST['nom'])
-				);
+					$_POST['nom'].$_POST['mdp'].$_POST['nom'])))
+			{
+				$user = $odbUser->getUser($_POST['nom']);
+
+				$this->id = $user->Use_Num;
+				$this->matricule = $user->Use_Technicien;
+				$this->nom = $user->Use_Nom;
+				$this->respAchat = $user->Use_RespAchat;
+
+				return true;
+			}
+		}
+
 		return false;
 	}
 }
