@@ -26,8 +26,8 @@ class OdbDemandeInter
 
 	public function getLesDemandesInter()
 	{
-		$req = 'SELECT *
-				FROM DEMANDEINTER';
+		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
+				FROM DEMANDEINTER";
 
 		$lesDemandesInter = $this->oBdd->query($req);
 
@@ -36,12 +36,12 @@ class OdbDemandeInter
 
 	public function getUneDemandeInter($id)
 	{
-		$req = 'SELECT *
+		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
 				FROM DEMANDEINTER, TECHNICIEN, STATION, VELO
 				WHERE DemI_Num = :id
 					AND DemI_Velo = Vel_Num
 					AND Vel_Station = Sta_Code
-					AND DemI_Technicien = Tec_Matricule';
+					AND DemI_Technicien = Tec_Matricule";
 
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
 
@@ -51,11 +51,11 @@ class OdbDemandeInter
 	// toutes les demandes d'intervention non traitees
 	public function getLesDemandesNT()
 	{
-		$req = 'SELECT *
+		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
 				FROM DEMANDEINTER, VELO, STATION
 				WHERE DemI_Traite = 0
 					AND DemI_Velo = Vel_Num
-					AND Vel_Station = Sta_Code';
+					AND Vel_Station = Sta_Code";
 
 		$lesDemandesInter = $this->oBdd->query($req);
 
