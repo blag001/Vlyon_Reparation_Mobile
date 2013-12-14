@@ -15,19 +15,19 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
-					<a href="<?php echo $_SESSION['tampon']['page']['url'];?>" class="dropdown-toggle" data-toggle="dropdown">
-						<?php echo $_SESSION['tampon']['page']['title'];?> <b class="caret"></b></a>
+					<a href="<?php echo $_SESSION['tampon']['menu']['url'];?>" class="dropdown-toggle" data-toggle="dropdown">
+						<?php echo $_SESSION['tampon']['menu']['title'];?> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li <?php if($_SESSION['tampon']['page']['title']=='Station') echo 'class="active"';?>>
+						<li <?php if($_SESSION['tampon']['menu']['title']=='Station') echo 'class="active"';?>>
 							<a href="index.php?page=station">Station</a>
 						</li>
-						<li <?php if($_SESSION['tampon']['page']['title']=='Intervention') echo 'class="active"';?>>
+						<li <?php if($_SESSION['tampon']['menu']['title']=='Intervention') echo 'class="active"';?>>
 							<a href="index.php?page=intervention">Intervention</a>
 						</li>
-						<li <?php if($_SESSION['tampon']['page']['title']=='Technicien') echo 'class="active"';?>>
+						<li <?php if($_SESSION['tampon']['menu']['title']=='Technicien') echo 'class="active"';?>>
 							<a href="index.php?page=technicien">Technicien</a>
 						</li>
-						<li <?php if($_SESSION['tampon']['page']['title']=='V&eacute;lo') echo 'class="active"';?>>
+						<li <?php if($_SESSION['tampon']['menu']['title']=='V&eacute;lo') echo 'class="active"';?>>
 							<a href="index.php?page=velo">V&eacute;lo</a>
 						</li>
 					</ul>

@@ -35,12 +35,13 @@ require_once 'inc/template.inc.php';
  * contient un objet utilisateur et ses droits
  * @global User $_SESSION['user']
  */
-$_SESSION['user'] = new User();
+if(empty($_SESSION['user']))
+	$_SESSION['user'] = new User();
 
 // nom de la page par defaut
-$_SESSION['tampon']['page']['title'] = 'Station';
+$_SESSION['tampon']['menu']['title'] = 'Station';
 // url de la page par defaut
-$_SESSION['tampon']['page']['url'] = 'index.php?page=station';
+$_SESSION['tampon']['menu']['url'] = 'index.php?page=station';
 
 //////////////////////////
 // Fin d'initialisation //
@@ -83,5 +84,7 @@ switch ($_GET['page']) {
 		break;
 }
 
-// on vide le tampon
+///////////////////////
+// on vide le tampon //
+///////////////////////
 $_SESSION['tampon'] = null;

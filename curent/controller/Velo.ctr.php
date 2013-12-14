@@ -14,12 +14,12 @@ class Velo
 		$this->odbVelo = new OdbVelo();
 
 		// page actuelle
-		$_SESSION['tampon']['page']['title'] = 'V&eacute;lo';
-		$_SESSION['tampon']['page']['url'] = 'index.php?page=unvelo';
+		$_SESSION['tampon']['menu']['title'] = 'V&eacute;lo';
+		$_SESSION['tampon']['menu']['url'] = 'index.php?page=unvelo&amp;action=lesvelos';
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(
-					array('url'=>'index.php?page=velo',
+					array('url'=>'index.php?page=velo&amp;action=lesvelos',
 						'title'=>'Les v&eacute;los'),
 					array('url'=>'index.php?page=velo&amp;action=unvelo',
 						'title'=>'Un v&eacute;lo'),
@@ -38,6 +38,8 @@ class Velo
 				$this->afficherUnVelo();
 				break;
 
+			case 'lesvelos':
+
 			default:
 				$this->afficherLesVelos();
 				break;
@@ -51,8 +53,8 @@ class Velo
 	protected function afficherLesVelos()
 	{
 		// $lesVelos = $this->odbVelo->getLesVelos();
-		$_SESSION['tampon']['title'] = 'Tous Les Velos';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo';
+		$_SESSION['tampon']['html']['title'] = 'Tous Les Velos';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=lesvelos';
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les v&eacute;los';
 
 		/**
@@ -76,7 +78,7 @@ class Velo
 		{
 			$unVelo = $this->odbVelo->getUnVelo($_GET['valeur']);
 
-			$_SESSION['tampon']['title'] = 'V&eacute;lo - '.$unVelo->Vel_Num;
+			$_SESSION['tampon']['html']['title'] = 'V&eacute;lo - '.$unVelo->Vel_Num;
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un v&eacute;lo';
 
@@ -89,7 +91,7 @@ class Velo
 		}
 		else
 		{
-			$_SESSION['tampon']['title'] = 'V&eacute;lo - ERREUR';
+			$_SESSION['tampon']['html']['title'] = 'V&eacute;lo - ERREUR';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un v&eacute;lo';
 
