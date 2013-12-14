@@ -30,6 +30,10 @@ class Intervention
 						'title'=>'Ses interventions'),
 					array('url'=>'index.php?page=intervention&amp;action=unedemandeinter' ,
 						'title'=>'Une demande'),
+					array('url'=>'index.php?page=intervention&amp;action=rechercherbonintervention' ,
+						'title'=>'Recherche bon'),
+					array('url'=>'index.php?page=intervention&amp;action=creerbonintervention' ,
+						'title'=>'Creer un bon'),
 				);
 
 		if (empty($_GET['action']))
@@ -55,6 +59,10 @@ class Intervention
 
 			case 'rechercherbonintervention':
 				$this->rechercherUnBonInter();
+				break;
+
+				case 'creerbonintervention':
+				$this->creerUnBonIntervention();
 				break;
 
 			case 'interventions_nt':
@@ -199,24 +207,39 @@ class Intervention
 	}
 
 	/**
-	 * NON FINI EN DESSOUS
+	 *
 	 * @return void
 	 */
 	protected function rechercherUnBonInter()
 	{
 		$_SESSION['tampon']['title'] = 'Rechercher un bon d\'intervention';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherstation';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher station';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherbonintervention';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher un bon d\'intervention';
 
 		/**
 		 * Load des vues
 		 */
 		view('htmlHeader');
-		view('contentSearchStation');
+		view('contentSearchBonIntervention');
 		view('htmlFooter');
 	}
 
+	protected function creerUnBonIntervention()
+	{
+		$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
 
+		$_SESSION['tampon']['title'] = 'Ceer un nouveau on d\'intervention';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
+
+		/**
+		 * Load des vues
+		 */
+		view('htmlHeader');
+		view('contentCreerUnBon');
+		view('htmlFooter');
+
+	}
 
 
 }

@@ -68,7 +68,7 @@ class OdbBonIntervention
 	 * @todo pas de variable dans les requetes...
 	 *       on passe tout avec des marqueur et un tableau
 	 */
-	public function creerUnBonInter($code)
+	public function creerUnBonInter()
 	{
 		$req = 'INSERT INTO BONINTERV (
 					 `BI_Num`,
