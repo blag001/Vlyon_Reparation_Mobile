@@ -6,6 +6,7 @@
 class User
 {
 	private $matricule;
+	private $nom;
 	private $hash;
 
 	/** @var odbUser model de gestion Bdd */
@@ -20,48 +21,67 @@ class User
 		// on instancie les model
 		$this->odbUser = new OdbUser();
 
-		// page actuelle
-		$_SESSION['tampon']['menu']['title'] = 'Utilisateur';
-		$_SESSION['tampon']['menu']['url'] = 'index.php?page=user&amp;action=adduser';
-		// liste des sous menus
-		$_SESSION['tampon']['sous_menu']['list'] =
-			array(
-					array('url'=>'index.php?page=user&amp;action=adduser',
-						'title'=>'Ajouter Utilisateur'),
-					array('url'=>'index.php?page=user&amp;action=unuser',
-						'title'=>'Un Utilisateur'),
-					array('url'=>'index.php?page=user&amp;action=rechercheruser' ,
-						'title'=>'Rechercher utilisateur'),
-				);
+		// // page actuelle
+		// $_SESSION['tampon']['menu']['title'] = 'Utilisateur';
+		// $_SESSION['tampon']['menu']['url'] = 'index.php?page=user&amp;action=adduser';
+		// // liste des sous menus
+		// $_SESSION['tampon']['sous_menu']['list'] =
+		// 	array(
+		// 			array('url'=>'index.php?page=user&amp;action=adduser',
+		// 				'title'=>'Ajouter Utilisateur'),
+		// 			array('url'=>'index.php?page=user&amp;action=unuser',
+		// 				'title'=>'Un Utilisateur'),
+		// 			array('url'=>'index.php?page=user&amp;action=rechercheruser' ,
+		// 				'title'=>'Rechercher utilisateur'),
+		// 		);
 
-		if (empty($_GET['action']))
-			$_GET['action'] = null;
+		// if (empty($_GET['action']))
+		// 	$_GET['action'] = null;
 
-		/**
-		 * Switch de gestion des actions de User
-		 *
-		 * @param string $_GET['action'] contient l'action demmandee
-		 */
-		switch ($_GET['action']) {
-			case 'rechercheruser':
-				$this->rechercherUneUtilisateur();
-				break;
-			case 'unuser':
-				$this->afficherUnUtilisateur();
-				break;
+		// /**
+		//  * Switch de gestion des actions de User
+		//  *
+		//  * @param string $_GET['action'] contient l'action demmandee
+		//  */
+		// switch ($_GET['action']) {
+		// 	case 'rechercheruser':
+		// 		$this->rechercherUneUtilisateur();
+		// 		break;
+		// 	case 'unuser':
+		// 		$this->afficherUnUtilisateur();
+		// 		break;
 
-			case 'adduser':
+		// 	case 'adduser':
 
-			default:
-				$this->afficherLesStations();
-				break;
-		}
+		// 	default:
+		// 		$this->afficherLesStations();
+		// 		break;
+		// }
 	}
+
+	public function __sleep()
+	{
+		return array('matricule', 'nom', 'hash');
+	}
+
+	public function __wakeup()
+	{
+		$this->odbUser = new OdbUser();
+	}
+
+	//////////////////////
+	// Methodes public  //
+	//////////////////////
 
 	public function estUser()
 	{
 		// TODO verif du compte
-		return true;
+		if(!empty($this->matricule))
+			return true;
+		// elseif ($this->login())
+			return true;
+
+		return false;
 	}
 	public function rechercherUneUtilisateur()
 	{
@@ -79,4 +99,18 @@ class User
 		return false;
 	}
 
+	//////////////////////
+	// Methodes privee //
+	//////////////////////
+
+	private function login()
+	{
+		if(!empty($_POST['nom']) and isset($_POST['mdp']))
+			return $odbUser->checkHashUser(
+				$_POST['nom'],
+				hash('sha512',
+					$_POST['nom'].$_POST['mdp'].$_POST['nom'])
+				);
+		return false;
+	}
 }
