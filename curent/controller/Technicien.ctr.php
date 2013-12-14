@@ -20,6 +20,16 @@ class Technicien
 		// page actuelle
 		$_SESSION['tampon']['menu']['title'] = 'Technicien';
 		$_SESSION['tampon']['menu']['url'] = 'index.php?page=technicien';
+		// liste des sous menus
+		$_SESSION['tampon']['sous_menu']['list'] =
+			array(
+					array('url'=>'index.php?page=technicien&amp;action=showEmpty',
+						'title'=>'Empty'),
+					// array('url'=>'index.php?page=technicien&amp;action=unestation',
+					// 	'title'=>'Un Technicien'),
+					// array('url'=>'index.php?page=technicien&amp;action=rechercherstation' ,
+					// 	'title'=>'Rechercher technicien'),
+				);
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
@@ -44,6 +54,12 @@ class Technicien
 	protected function showEmpty()
 	{
 		$_SESSION['tampon']['html']['title'] = 'Tous Les Techniciens';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=technicien&amp;action=showEmpty';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Empty';
+
+		/**
+		 * Load des vues
+		 */
 		view('htmlHeader');
 		view('htmlFooter');
 	}

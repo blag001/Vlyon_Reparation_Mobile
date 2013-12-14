@@ -169,7 +169,7 @@ class Intervention
 
 	}
 
-	protected function afficherUnBonInter($codeBonInter)
+	protected function afficherUnBonInter()
 	{
 		/*
 		$unBonInter = $this->odbBonIntervention->getUnBonInter($codeBonInter);
