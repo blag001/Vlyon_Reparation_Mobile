@@ -17,6 +17,3 @@
 		<![endif]-->
 	</head>
 	<body>
-<?php
-		view('contentMenu');
-?>
