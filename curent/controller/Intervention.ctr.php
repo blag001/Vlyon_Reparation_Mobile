@@ -11,7 +11,8 @@ class Intervention
 	public function __construct()
 	{
 		if (!($_SESSION['user']->estUser())) {
-			# si pas login
+			$_SESSION['user']->displayForm();
+			die;
 		}
 		// si il est connecte
 		// on instancie les model

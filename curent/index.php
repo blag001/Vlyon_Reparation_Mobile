@@ -33,10 +33,13 @@ require_once 'inc/template.inc.php';
 
 /**
  * contient un objet utilisateur et ses droits
+ * on passe true pour signaler que on est en private :
+ * seul le script fait les appels
+ *
  * @global User $_SESSION['user']
  */
 if(empty($_SESSION['user']))
-	$_SESSION['user'] = new User();
+	$_SESSION['user'] = new User(true);
 
 // nom de la page par defaut
 $_SESSION['tampon']['menu']['title'] = 'Station';

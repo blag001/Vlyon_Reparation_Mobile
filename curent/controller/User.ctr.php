@@ -13,10 +13,11 @@ class User
 	/** @var odbUser model de gestion Bdd */
 	private $odbUser;
 
-	public function __construct()
+	public function __construct($private = false)
 	{
-		if (!($_SESSION['user']->estUser())) {
-			# si pas login
+		if (!$private and !($_SESSION['user']->estUser())) {
+			$_SESSION['user']->displayForm();
+			die;
 		}
 		// si il est connecte
 		// on instancie les model
@@ -62,7 +63,7 @@ class User
 
 	public function __sleep()
 	{
-		return array('matricule', 'nom', 'hash');
+		return array('id', 'matricule', 'nom', 'respAchat');
 	}
 
 	public function __wakeup()
@@ -76,10 +77,12 @@ class User
 
 	public function estUser()
 	{
-		// TODO verif du compte
-		if(!empty($this->matricule))
+		if(!empty($_GET['page']) and $_GET['page'] == 'logout')
+			$this->logout();
+
+		if(!empty($this->id))
 			return true;
-		// elseif ($this->login())
+		elseif ($this->login())
 			return true;
 
 		return false;
@@ -123,11 +126,11 @@ class User
 		// si on envois un nom et un mdp, alors on va faire les verif en bdd
 		if(!empty($_POST['nom']) and isset($_POST['mdp']))
 		{
-			if($odbUser->checkHashUser($_POST['nom'],
+			if($this->odbUser->checkHashUser($_POST['nom'],
 				hash('sha512',
 					$_POST['nom'].$_POST['mdp'].$_POST['nom'])))
 			{
-				$user = $odbUser->getUser($_POST['nom']);
+				$user = $this->odbUser->getUser($_POST['nom']);
 
 				$this->id = $user->Use_Num;
 				$this->matricule = $user->Use_Technicien;
@@ -139,5 +142,16 @@ class User
 		}
 
 		return false;
+	}
+	private function logout()
+	{
+		// pour le moment on supporte pas le remember-me
+		// if(isset($_COOKIE['remember_me']))
+		// 	setcookie('remember_me', '', time()-1);
+
+		$this->id = null;
+		$this->matricule = null;
+		$this->nom = null;
+		$this->respAchat = null;
 	}
 }

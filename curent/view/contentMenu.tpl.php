@@ -67,6 +67,9 @@
 				}
 				?>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.php?page=logout">Logout</a></li>
+			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
 </div>
