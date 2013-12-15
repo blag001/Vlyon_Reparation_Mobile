@@ -167,7 +167,7 @@ create table USER
     Use_Nom            VARCHAR(50)            not null,
     Use_Hash           CHAR(128)              not null,
     Use_RespAchat      BIT(1)                 null    ,
-    Use_Technicien     INT                    not null,
+    Use_Technicien     INT                    null    ,
     constraint PK_USER primary key (Use_Num)
 )
 ;
