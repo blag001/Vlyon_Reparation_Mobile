@@ -50,7 +50,7 @@
 			?>
 		</tbody>
 	</table>
-	<h1>V&eacute;los accroch&eacute;s</h1>
+	<h2>V&eacute;los accroch&eacute;s</h2>
 	<table class="table table-bordered">
 		<thead>
 			<tr>

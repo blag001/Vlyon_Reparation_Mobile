@@ -84,6 +84,12 @@ class User
 
 		return false;
 	}
+	public function displayForm()
+	{
+		view('htmlHeader');
+		view('contentLogin');
+		view('htmlFooter');
+	}
 	public function rechercherUnUtilisateur()
 	{
 		// TODO

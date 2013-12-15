@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<title><?php if(!empty($_SESSION['tampon']['html']['title'])) echo $_SESSION['tampon']['html']['title'];?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
