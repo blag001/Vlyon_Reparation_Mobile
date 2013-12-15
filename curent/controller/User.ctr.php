@@ -90,6 +90,8 @@ class User
 	public function displayForm()
 	{
 		view('htmlHeader');
+		if(!empty($_SESSION['tampon']['error']))
+			view('contentError');
 		view('contentLogin');
 		view('htmlFooter');
 	}
@@ -139,6 +141,10 @@ class User
 
 				return true;
 			}
+			elseif ($this->odbUser->estUser($_POST['nom']))
+				$_SESSION['tampon']['error'][] = 'Erreur sur le mot de passe.';
+			else
+				$_SESSION['tampon']['error'][] = 'Erreur sur l\'identifiant.';
 		}
 
 		return false;
