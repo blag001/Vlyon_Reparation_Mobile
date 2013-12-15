@@ -50,6 +50,19 @@ class OdbStation
 		return $lesStations;
 	}
 
+	public function searchStations($valeur)
+	{
+		$req = "SELECT *
+				FROM `STATION`
+				WHERE `Sta_Code` LIKE :valeur
+					OR `Sta_Nom` LIKE :valeur
+					OR `Sta_Rue` LIKE :valeur";
+
+		$lesStations = $this->oBdd->query($req, array('valeur'=>'%'.$valeur.'%'));
+
+		return $lesStations;
+	}
+
 	public function getUneStation($id)
 	{
 		$req = 'SELECT *

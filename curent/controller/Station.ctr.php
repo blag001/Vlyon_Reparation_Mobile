@@ -134,9 +134,17 @@ class Station
 	 */
 	protected function rechercherUneStation()
 	{
+		if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+			$lesStations = $this->odbStation->searchStations($_GET['valeur']);
+		else
+			$lesStations = $this->odbStation->getLesStations();
+
 		$_SESSION['tampon']['html']['title'] = 'Rechercher Une Station';
 		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherstation';
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher station';
+
+		if (empty($lesStations))
+			$_SESSION['tampon']['error'] = array('Pas de station...');
 
 		/**
 		 * Load des vues
@@ -144,6 +152,7 @@ class Station
 		view('htmlHeader');
 		view('contentMenu');
 		view('contentSearchStation');
+		view('contentAllStation', array('lesStations'=>$lesStations));
 		view('htmlFooter');
 	}
 }

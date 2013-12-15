@@ -1,6 +1,6 @@
 <div class="container">
 	<form class="form-signin" role="form" action="index.php" method="POST" >
-		<h2 class="form-signin-heading">Enregistrez-vous</h2>
+		<h1 class="form-signin-heading">Enregistrez-vous</h1>
 		<input type="text" name="nom" class="form-control" placeholder="Identifiant" required autofocus >
 		<input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required >
 <?php
