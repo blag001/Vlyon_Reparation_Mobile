@@ -1,6 +1,6 @@
 <div class="container">
 	<h1>Ses Interventions</h1>
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Numero du bon l'intervention</th>

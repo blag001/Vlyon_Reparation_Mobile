@@ -1,6 +1,6 @@
 <div class="container">
 	<h1>Les Stations</h1>
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Id</th>

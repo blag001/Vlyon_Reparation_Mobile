@@ -51,7 +51,7 @@
 		</tbody>
 	</table>
 	<h2>V&eacute;los accroch&eacute;s</h2>
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Num</th>

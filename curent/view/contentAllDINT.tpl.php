@@ -1,6 +1,6 @@
 <div class="container">
 	<h1>Interventions non trait&eacute;es</h1>
-	<table class="table table-bordered">
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Numero de la Demande</th>
