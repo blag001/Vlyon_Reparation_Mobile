@@ -1,7 +1,7 @@
 <div class="container">
 	<form class="form-search" role="form" action="index.php?page=station&amp;action=rechercherstation" method="GET" >
 		<h1 class="form-search-heading">Rechercher une Station</h1>
-		<input type="search" name="valeur" class="form-control" placeholder="Code, nom ou rue." autofocus <?php
+		<input type="search" name="valeur" class="form-control" placeholder="Code, nom ou rue" autofocus <?php
 			if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
 				echo 'value="'.$_GET['valeur'].'" ';
 			?>>

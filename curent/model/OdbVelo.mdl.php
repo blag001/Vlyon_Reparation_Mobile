@@ -36,6 +36,18 @@ class OdbVelo{
 		return $lesVelos;
 	}
 
+	public function searchVelos($valeur)
+	{
+		$req = "SELECT *
+				FROM VELO, ETAT
+				WHERE Vel_Num LIKE :valeur
+					OR Vel_Station LIKE :valeur";
+
+		$lesStations = $this->oBdd->query($req, array('valeur'=>'%'.$valeur.'%'));
+
+		return $lesStations;
+	}
+
 	public function getUnVelo($codeVelo){
 		$req = 'SELECT *
 				FROM VELO, ETAT

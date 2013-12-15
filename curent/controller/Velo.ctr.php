@@ -20,8 +20,8 @@ class Velo
 		// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(
-					array('url'=>'index.php?page=velo&amp;action=lesvelos',
-						'title'=>'Les v&eacute;los'),
+					array('url'=>'index.php?page=velo&amp;action=recherchervelo',
+						'title'=>'Rechercher v&eacute;lo'),
 					array('url'=>'index.php?page=velo&amp;action=unvelo',
 						'title'=>'Un v&eacute;lo'),
 				);
@@ -39,10 +39,10 @@ class Velo
 				$this->afficherUnVelo();
 				break;
 
-			case 'lesvelos':
+			case 'recherchervelo':
 
 			default:
-				$this->afficherLesVelos();
+				$this->rechercherUnVelo();
 				break;
 		}
 	}
@@ -51,19 +51,27 @@ class Velo
 	 * affiche les stations
 	 * @return void
 	 */
-	protected function afficherLesVelos()
+	protected function rechercherUnVelo()
 	{
-		// $lesVelos = $this->odbVelo->getLesVelos();
-		$_SESSION['tampon']['html']['title'] = 'Tous Les Velos';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=lesvelos';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les v&eacute;los';
+		$lesVelos = null;
+
+		if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+			$lesVelos = $this->odbVelo->searchVelos($_GET['valeur']);
+
+		$_SESSION['tampon']['html']['title'] = 'Rechercher Un v&eacute;lo';
+		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=recherchervelo';
+		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher v&eacute;lo';
+
+		if (empty($lesVelos))
+			$_SESSION['tampon']['error'] = array('Pas de v&eacute;lo...');
 
 		/**
 		 * Load des vues
 		 */
 		view('htmlHeader');
 		view('contentMenu');
-		// view('contentAllStation', array('lesStations'=>$lesStations));
+		view('contentSearchVelo');
+		view('contentAllVelo', array('lesVelos'=>$lesVelos));
 		view('htmlFooter');
 	}
 
@@ -92,7 +100,7 @@ class Velo
 			view('contentOneVelo', array('unVelo'=>$unVelo));
 			view('htmlFooter');
 		}
-		else
+		elseif(!empty($_GET['valeur']))
 		{
 			$_SESSION['tampon']['html']['title'] = 'V&eacute;lo - ERREUR';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
@@ -108,5 +116,7 @@ class Velo
 			view('contentError');
 			view('htmlFooter');
 		}
+		else
+			$this->rechercherUnVelo();
 	}
 }
