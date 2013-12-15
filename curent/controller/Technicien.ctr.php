@@ -61,6 +61,7 @@ class Technicien
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		view('htmlFooter');
 	}
 

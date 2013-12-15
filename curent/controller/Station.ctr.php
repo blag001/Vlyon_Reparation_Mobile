@@ -73,6 +73,7 @@ class Station
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		view('contentAllStation', array('lesStations'=>$lesStations));
 		view('htmlFooter');
 	}
@@ -102,6 +103,7 @@ class Station
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentOneStation', array('uneStation'=>$uneStation,
 				'lesVelos'=>$lesVelosByStation));
 			view('htmlFooter');
@@ -117,6 +119,7 @@ class Station
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}
@@ -138,6 +141,7 @@ class Station
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		view('contentSearchStation');
 		view('htmlFooter');
 	}

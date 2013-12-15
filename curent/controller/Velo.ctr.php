@@ -61,6 +61,7 @@ class Velo
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		// view('contentAllStation', array('lesStations'=>$lesStations));
 		view('htmlFooter');
 	}
@@ -86,6 +87,7 @@ class Velo
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentOneVelo', array('unVelo'=>$unVelo));
 			view('htmlFooter');
 		}
@@ -101,6 +103,7 @@ class Velo
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}

@@ -91,6 +91,7 @@ class Intervention
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		view('contentAllDINT', array('lesDemandesINT'=>$lesDemandesINT));
 		view('htmlFooter');
 	}
@@ -116,6 +117,7 @@ class Intervention
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentOneDemI', array('uneDemandeInter'=>$uneDemandeInter));
 			view('htmlFooter');
 		}
@@ -131,6 +133,7 @@ class Intervention
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}
@@ -156,6 +159,7 @@ class Intervention
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentSesInterventions', array('sesInterventions'=>$sesInterventions));
 			view('htmlFooter');
 		}
@@ -171,6 +175,7 @@ class Intervention
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}
@@ -190,6 +195,7 @@ class Intervention
 		 * Load des vues
 		 *
 		view('htmlHeader');
+		view('contentMenu');
 		view('contentOneBonInter', array('unBonIntervention'=>$unBonIntervention));
 		view('htmlFooter');
 		*/
@@ -210,6 +216,7 @@ class Intervention
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentOneBonInter', array('unBonInter'=>$unBonInter));
 			view('htmlFooter');
 		}
@@ -225,6 +232,7 @@ class Intervention
 			 * Load des vues
 			 */
 			view('htmlHeader');
+			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}
@@ -245,6 +253,7 @@ class Intervention
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		view('contentSearchBonIntervention');
 		view('htmlFooter');
 	}
@@ -261,6 +270,7 @@ class Intervention
 		 * Load des vues
 		 */
 		view('htmlHeader');
+		view('contentMenu');
 		view('contentCreerUnBon');
 		view('htmlFooter');
 
