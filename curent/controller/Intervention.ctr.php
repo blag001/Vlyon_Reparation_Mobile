@@ -146,6 +146,7 @@ class Intervention
 		if ($_SESSION['user']->estTechnicien())
 		{
 			$mesInterventions = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
+			// var_dump($mesInterventions);die;
 			$_SESSION['tampon']['html']['title'] = 'Toutes mes interventions';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=mesinterventions';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';

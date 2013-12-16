@@ -5,8 +5,8 @@
 			<tr>
 				<th>Numero du bon l'intervention</th>
 				<th>Date début</th> <!-- pas de précision donc on affiche date de début-->
-				<th>Station</th>
 				<th>No Velo</th>
+				<th>Demande</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,9 +21,9 @@
 								<?php echo $value->BI_Num;?>
 							</a>
 						</td>
-						<td><?php echo $value->BI_DateDebut;?></td>
-						<td><?php echo $value->Sta_Nom;?></td>
+						<td><?php echo $value->BI_DatDebut;?></td>
 						<td><?php echo $value->BI_Velo;?></td>
+						<td><?php echo $value->BI_Demande;?></td>
 					</tr>
 					<?php
 				}
