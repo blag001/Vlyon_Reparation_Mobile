@@ -40,8 +40,12 @@ class OdbVelo{
 	{
 		$req = "SELECT *
 				FROM VELO, ETAT
-				WHERE Vel_Num LIKE :valeur
-					OR Vel_Station LIKE :valeur";
+				WHERE
+					(
+						Vel_Num LIKE :valeur
+						OR Vel_Station LIKE :valeur
+					)
+					AND VELO.Vel_Etat = ETAT.Eta_Code";
 
 		$lesStations = $this->oBdd->query($req, array('valeur'=>'%'.$valeur.'%'));
 
