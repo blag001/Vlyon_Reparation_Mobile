@@ -15,9 +15,9 @@ class OdbBonIntervention
 	{
 		if(!empty($code))
 		{
-			$req = 'SELECT COUNT(*) AS nb
+			$req = "SELECT COUNT(*) AS nb
 					FROM BONINTERV
-					WHERE BI_Num = :code';
+					WHERE BI_Num = :code";
 
 			$data = $this->oBdd->query($req , array('code'=>$code), Bdd::SINGLE_RES);
 
@@ -29,8 +29,10 @@ class OdbBonIntervention
 
 	public function getLesBonsInter()
 	{
-		$req = 'SELECT *
-				FROM BONINTERV';
+		$req = "SELECT *,
+					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
+					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
+				FROM BONINTERV";
 
 		$lesBonsInter = $this->oBdd->query($req);
 
@@ -39,10 +41,12 @@ class OdbBonIntervention
 
 	public function getUnBonInter($code)
 	{
-		$req = 'SELECT *
+		$req = "SELECT *,
+					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
+					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
 				FROM BONINTERV
 				WHERE BI_Num = :code
-					AND BI_Technicien = Tec_Matricule';
+					AND BI_Technicien = Tec_Matricule";
 
 		$leBonInter = $this->oBdd->query($req, array('code'=>$code), Bdd::SINGLE_RES);
 
@@ -50,14 +54,16 @@ class OdbBonIntervention
 	}
 
 	//on visualise les interventions effectuees par un technicien gràce à son matricule
-	public function getSesInterventions($techCode)
+	public function getMesInterventions($techCode)
 	{
-		$req = 'SELECT *
+		$req = "SELECT *,
+					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
+					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
 				FROM BONINTERV, STATION
 				WHERE BI_Technicien = :techCode
-					AND BI_Station = Sta_Code';
+					AND BI_Station = Sta_Code";
 
-		$lesBonsInter = $this->oBdd->query($req);
+		$lesBonsInter = $this->oBdd->query($req, array('techCode'=>$techCode));
 
 		return $lesBonsInter;
 	}

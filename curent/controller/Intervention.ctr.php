@@ -30,8 +30,8 @@ class Intervention
 						'title'=>'Non trait&eacute;es'),
 					array('url'=>'index.php?page=intervention&amp;action=unbonintervention',
 						'title'=>'Une intervention'),
-					array('url'=>'index.php?page=intervention&amp;action=sesinterventions' ,
-						'title'=>'Ses interventions'),
+					array('url'=>'index.php?page=intervention&amp;action=mesinterventions' ,
+						'title'=>'Mes interventions'),
 					array('url'=>'index.php?page=intervention&amp;action=unedemandeinter' ,
 						'title'=>'Une demande'),
 					array('url'=>'index.php?page=intervention&amp;action=rechercherbonintervention' ,
@@ -53,8 +53,8 @@ class Intervention
 				$this->afficherUneDemandeInter();
 				break;
 
-			case 'sesinterventions':
-				$this->afficherSesInter();
+			case 'mesinterventions':
+				$this->afficherMesInter();
 				break;
 
 			case 'unbonintervention':
@@ -140,37 +140,34 @@ class Intervention
 		}
 	}
 
-	/**
-	 * @todo a finir
-	 */
-	protected function afficherSesInter()
+	protected function afficherMesInter()
 	{
-		// si la demande existe
-		if (
-				!empty($_GET['valeur'])
-				and $this->odbTechnicien->estTechnicien($_GET['valeur']))
+		// si le compte est bien celui d'un tech
+		if ($_SESSION['user']->estTechnicien())
 		{
-			$sesInterventions = $this->odbBonIntervention->getSesInterventions($_GET['valeur']);
+			$mesInterventions = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
+			$_SESSION['tampon']['html']['title'] = 'Toutes mes interventions';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=mesinterventions';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
 
-			$_SESSION['tampon']['html']['title'] = 'Toutes interventions du technicien';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=sesinterventions';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Ses interventions';
+			if (empty($mesInterventions))
+				$_SESSION['tampon']['error'] = array('Pas d\'Intervention...');
 
 			/**
 			 * Load des vues
 			 */
 			view('htmlHeader');
 			view('contentMenu');
-			view('contentSesInterventions', array('sesInterventions'=>$sesInterventions));
+			view('contentMesInterventions', array('mesInterventions'=>$mesInterventions));
 			view('htmlFooter');
 		}
 		else
 		{
-			$_SESSION['tampon']['html']['title'] = 'Toutes interventions du technicien - ERREUR';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=sesinterventions';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Ses interventions';
+			$_SESSION['tampon']['html']['title'] = 'Toutes mes interventions - ERREUR';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=mesinterventions';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
 
-			$_SESSION['tampon']['error'] = array('Le Technicien ne semble pas exister...');
+			$_SESSION['tampon']['error'] = array('Vous ne semblez pas &ecirc;tre Technicien...');
 
 			/**
 			 * Load des vues

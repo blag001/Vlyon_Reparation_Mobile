@@ -71,9 +71,9 @@ class User
 		$this->odbUser = new OdbUser();
 	}
 
-	//////////////////////
-	// Methodes public  //
-	//////////////////////
+	////////////////////////////////
+	// Methodes public du compte  //
+	////////////////////////////////
 
 	public function estUser()
 	{
@@ -95,6 +95,26 @@ class User
 		view('contentLogin');
 		view('htmlFooter');
 	}
+	public function estTechnicien()
+	{
+		if(!empty($this->matricule))
+			if(!($this->respAchat))
+				return true;
+
+		return false;
+	}
+	public function getMatricule()
+	{
+		if(!empty($this->matricule))
+				return $this->matricule;
+
+		return false;
+	}
+
+	/////////////////////////////////////////////
+	// Methodes public de gestion des comptes  //
+	/////////////////////////////////////////////
+
 	public function rechercherUnUtilisateur()
 	{
 		// TODO
@@ -142,9 +162,9 @@ class User
 				return true;
 			}
 			elseif ($this->odbUser->estUser($_POST['nom']))
-				$_SESSION['tampon']['error'][] = 'Erreur sur le mot de passe.';
+				$_SESSION['tampon']['error'] = array('Erreur sur le mot de passe.');
 			else
-				$_SESSION['tampon']['error'][] = 'Erreur sur l\'identifiant.';
+				$_SESSION['tampon']['error'] = array('Erreur sur l\'identifiant.');
 		}
 
 		return false;
