@@ -258,19 +258,24 @@ class Intervention
 
 	protected function creerUnBonIntervention()
 	{
-		$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
+		if (false) {
+			# on check qu'il y a un envois valide avant de save
+			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
+		}
+		else
+		{
+			$_SESSION['tampon']['title'] = 'Cr&eacute;er un bon d\'intervention';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
 
-		$_SESSION['tampon']['title'] = 'Ceer un nouveau on d\'intervention';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
-
-		/**
-		 * Load des vues
-		 */
-		view('htmlHeader');
-		view('contentMenu');
-		view('contentCreerUnBon');
-		view('htmlFooter');
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentMenu');
+			view('contentCreerUnBon');
+			view('htmlFooter');
+		}
 
 	}
 

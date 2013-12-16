@@ -102,7 +102,7 @@ class OdbBonIntervention
 				 	)
 				WHERE BI_Num = :code';
 
-		$out = $bdd->exec($req, array(
+		$out = $this->oBdd->exec($req, array(
 				 'code'=>$_POST['code'],
 				 'veloCode'=>$_POST['veloCode'],
 				 'dateDebut'=>$_POST['dateDebut'],
