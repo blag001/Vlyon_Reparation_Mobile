@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-11-13" view-index="0" gantt-divider-location="455" resource-divider-location="300" version="2.0" locale="fr">
+<project name="Gestion Vélos" company="Benoit &amp; Kaykay" webLink="" view-date="2013-11-25" view-index="0" gantt-divider-location="554" resource-divider-location="300" version="2.0" locale="fr">
     <description/>
-    <view zooming-state="default:3" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="65" order="0"/>
-        <field id="tpd4" name="Date de début" width="17" order="1"/>
-        <field id="tpd5" name="Date de fin" width="17" order="2"/>
+    <view zooming-state="default:5" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="61" order="0"/>
+        <field id="tpd4" name="Date de début" width="18" order="1"/>
+        <field id="tpd5" name="Date de fin" width="20" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
@@ -58,7 +58,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="39" complete="89" expand="true">
+        <task id="2" name="Document d'avancement" color="#8cb6ce" meeting="false" start="2013-10-17" duration="39" complete="97" expand="true">
             <notes><![CDATA[sous la forme de ce Gantt]]></notes>
         </task>
         <task id="5" name="Rédaction documents techniques" color="#8cb6ce" meeting="false" start="2013-11-07" duration="20" complete="21" expand="true">
@@ -84,7 +84,7 @@
         <task id="0" name="Diagramme Activité Technicien (UML)" color="#8cb6ce" meeting="false" start="2013-10-17" duration="1" complete="100" expand="true">
             <depend id="20" type="2" difference="0" hardness="Rubber"/>
         </task>
-        <task id="44" name="Charte graphique" color="#8cb6ce" meeting="false" start="2013-11-08" duration="9" complete="50" expand="true">
+        <task id="44" name="Charte graphique" color="#8cb6ce" meeting="false" start="2013-11-08" duration="9" complete="100" expand="true">
             <depend id="20" type="1" difference="0" hardness="Rubber"/>
         </task>
         <task id="20" name="Maquettes interfaces" color="#8cb6ce" meeting="false" start="2013-11-08" duration="9" complete="100" expand="true">
@@ -99,7 +99,7 @@
             <notes><![CDATA[convertir la syntaxe oracle en MySQL]]></notes>
             <depend id="28" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="28" name="developpement" color="#8cb6ce" meeting="false" start="2013-11-22" duration="15" complete="53" expand="true">
+        <task id="28" name="dev v2" color="#8cb6ce" meeting="false" start="2013-11-22" duration="20" complete="91" expand="true">
             <notes><![CDATA[imtégrer le design
 mettre en place les différents modules]]></notes>
             <task id="68" name="Structuration du code" color="#8cb6ce" meeting="false" start="2013-11-22" duration="1" complete="100" expand="true">
@@ -113,11 +113,21 @@ creation des fichier commun]]></notes>
                 <depend id="76" type="1" difference="0" hardness="Strong"/>
             </task>
             <task id="76" name="fichiers commun et squelette" color="#8cb6ce" meeting="false" start="2013-11-22" duration="7" complete="100" expand="true"/>
-            <task id="75" name="module bon d'intervention" color="#8cb6ce" meeting="false" start="2013-11-25" duration="14" complete="40" expand="true"/>
-            <task id="73" name="module technicient" color="#8cb6ce" meeting="false" start="2013-11-25" duration="14" complete="10" expand="true"/>
-            <task id="74" name="module demande intervention" color="#8cb6ce" meeting="false" start="2013-11-25" duration="14" complete="40" expand="true"/>
-            <task id="72" name="module velo" color="#8cb6ce" meeting="false" start="2013-11-25" duration="14" complete="50" expand="true"/>
-            <task id="71" name="module station" color="#8cb6ce" meeting="false" start="2013-11-25" duration="14" complete="100" expand="true"/>
+            <task id="75" name="module bon d'intervention" color="#8cb6ce" meeting="false" start="2013-11-25" duration="19" complete="85" expand="true"/>
+            <task id="73" name="module technicient" color="#8cb6ce" meeting="false" start="2013-11-25" duration="14" complete="100" expand="true"/>
+            <task id="74" name="module demande intervention" color="#8cb6ce" meeting="false" start="2013-11-25" duration="19" complete="83" expand="true"/>
+            <task id="72" name="module velo" color="#8cb6ce" meeting="false" start="2013-11-25" duration="17" complete="90" expand="true"/>
+            <task id="71" name="module station" color="#8cb6ce" meeting="false" start="2013-11-25" duration="16" complete="100" expand="true"/>
+            <task id="95" name="module gestion droits" color="#8cb6ce" meeting="false" start="2013-12-13" duration="2" complete="100" expand="true"/>
+        </task>
+        <task id="93" name="dev v3" color="#8cb6ce" meeting="false" start="2013-12-05" duration="15" complete="25" expand="true">
+            <task id="94" name="mdl dispo velo" color="#8cb6ce" meeting="false" start="2013-12-19" duration="1" complete="0" expand="true"/>
+            <task id="104" name="mdl stat station" color="#8cb6ce" meeting="false" start="2013-12-19" duration="1" complete="0" expand="true"/>
+            <task id="106" name="mdl tt les inter" color="#8cb6ce" meeting="false" start="2013-12-05" duration="15" complete="36" expand="true"/>
+            <task id="108" name="mdl dem achat" color="#8cb6ce" meeting="false" start="2013-12-19" duration="1" complete="0" expand="true"/>
+            <task id="111" name="mdl dem depla velo" color="#8cb6ce" meeting="false" start="2013-12-19" duration="1" complete="0" expand="true"/>
+            <task id="112" name="mdl affecter velo" color="#8cb6ce" meeting="false" start="2013-12-19" duration="1" complete="0" expand="true"/>
+            <task id="113" name="mdl etat commande" color="#8cb6ce" meeting="false" start="2013-12-19" duration="1" complete="0" expand="true"/>
         </task>
     </tasks>
     <resources>
@@ -135,12 +145,18 @@ creation des fichier commun]]></notes>
         <allocation task-id="73" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="71" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="76" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="72" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="74" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="75" resource-id="0" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="95" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="0" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="9" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="20" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="28" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="44" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="75" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="74" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="106" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
     </allocations>
     <vacations>
         <vacation start="2013-10-19" end="2013-11-04" resourceid="0"/>
@@ -156,9 +172,9 @@ creation des fichier commun]]></notes>
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd8" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="295" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="78" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="78" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="338" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="101" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="111" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>
