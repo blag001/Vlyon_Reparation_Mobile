@@ -1,8 +1,9 @@
 <?php
 /**
- *gestion des utilisateurs autorises
+ * gestion des utilisateurs et de leurs droit d'accee
+ * @todo mettre en place la gestion des user
+ * @todo ajouter le remember-me
  */
-// TODO mettre en place la protection et la gestion des users
 class User
 {
 	private $id;
@@ -74,7 +75,10 @@ class User
 	////////////////////////////////
 	// Methodes public du compte  //
 	////////////////////////////////
-
+	/**
+	 * check si est un user
+	 * @return [type] [description]
+	 */
 	public function estUser()
 	{
 		if(!empty($_GET['page']) and $_GET['page'] == 'logout')
@@ -87,6 +91,10 @@ class User
 
 		return false;
 	}
+	/**
+	 * affiche le formulaire de login
+	 * @return [type] [description]
+	 */
 	public function displayForm()
 	{
 		view('htmlHeader');
@@ -95,6 +103,10 @@ class User
 		view('contentLogin');
 		view('htmlFooter');
 	}
+	/**
+	 * check si est technicient (et donc pas resp achat)
+	 * @return [type] [description]
+	 */
 	public function estTechnicien()
 	{
 		if(!empty($this->matricule))
@@ -103,6 +115,10 @@ class User
 
 		return false;
 	}
+	/**
+	 * va chercher le matricule
+	 * @return int matricule de l'utilisateur
+	 */
 	public function getMatricule()
 	{
 		if(!empty($this->matricule))
@@ -114,7 +130,10 @@ class User
 	/////////////////////////////////////////////
 	// Methodes public de gestion des comptes  //
 	/////////////////////////////////////////////
-
+	/**
+	 * @todo a faire
+	 * @return [type] [description]
+	 */
 	public function rechercherUnUtilisateur()
 	{
 		// TODO
@@ -141,7 +160,7 @@ class User
 	 * ca nous evite de garder en clair les mdp, comme ca en
 	 * cas de piratage, les mdp ne sont pas retrouvable simplement
 	 *
-	 * @return bool vrai si compte existe avec ce mdp, false sinon
+	 * @return bool vrai si compte existe avec ce mdp/id, false sinon
 	 */
 	private function login()
 	{
@@ -169,6 +188,10 @@ class User
 
 		return false;
 	}
+	/**
+	 * permet au user de se deconnecter
+	 * @return void
+	 */
 	private function logout()
 	{
 		// pour le moment on supporte pas le remember-me

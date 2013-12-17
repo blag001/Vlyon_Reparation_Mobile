@@ -23,7 +23,11 @@
 						</td>
 						<td><?php echo $value->DemI_Date;?></td>
 						<td><?php echo $value->Sta_Nom;?></td>
-						<td><?php echo $value->DemI_Velo;?></td>
+						<td>
+							<a href="index.php?page=velo&amp;action=unvelo&amp;valeur=<?php echo $value->DemI_Velo;?>">
+								<?php echo $value->DemI_Velo;?>
+							</a>
+						</td>
 					</tr>
 					<?php
 				}

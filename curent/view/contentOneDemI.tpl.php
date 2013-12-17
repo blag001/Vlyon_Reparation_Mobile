@@ -20,7 +20,11 @@
 						</a>
 					</td>
 					<td><?php echo $arg['uneDemandeInter']->DemI_Date;?></td>
-					<td><?php echo $arg['uneDemandeInter']->DemI_Velo;?></td>
+					<td>
+						<a href="index.php?page=velo&amp;action=unvelo&amp;valeur=<?php echo $arg['uneDemandeInter']->DemI_Velo;?>">
+							<?php echo $arg['uneDemandeInter']->DemI_Velo;?>
+						</a>
+					</td>
 				</tr>
 				<?php
 			}

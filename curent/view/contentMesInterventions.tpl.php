@@ -17,12 +17,16 @@
 					?>
 					<tr>
 						<td>
-							<a href="index.php?page=intervention&amp;action=unbonintervention&amp;valeur=<?php echo $value->BI_Num;?>">
+							<a href="index.php?page=intervention&amp;action=monbonintervention&amp;valeur=<?php echo $value->BI_Num;?>">
 								<?php echo $value->BI_Num;?>
 							</a>
 						</td>
 						<td><?php echo $value->BI_DatDebut;?></td>
-						<td><?php echo $value->BI_Velo;?></td>
+						<td>
+							<a href="index.php?page=velo&amp;action=unvelo&amp;valeur=<?php echo $value->BI_Velo;?>">
+								<?php echo $value->BI_Velo;?>
+							</a>
+						</td>
 						<td><?php echo $value->BI_Demande;?></td>
 					</tr>
 					<?php

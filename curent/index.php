@@ -72,10 +72,6 @@ switch ($_GET['page']) {
 		$velo = new Velo();
 		break;
 
-	case 'technicien':
-		$technicien = new Technicien();
-		break;
-
 	case 'intervention':
 		$intervention = new Intervention();
 		break;

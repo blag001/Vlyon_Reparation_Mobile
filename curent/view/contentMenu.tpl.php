@@ -24,9 +24,6 @@
 						<li <?php if($_SESSION['tampon']['menu']['title']=='Intervention') echo 'class="active"';?>>
 							<a href="index.php?page=intervention">Intervention</a>
 						</li>
-						<li <?php if($_SESSION['tampon']['menu']['title']=='Technicien') echo 'class="active"';?>>
-							<a href="index.php?page=technicien">Technicien</a>
-						</li>
 						<li <?php if($_SESSION['tampon']['menu']['title']=='V&eacute;lo') echo 'class="active"';?>>
 							<a href="index.php?page=velo">V&eacute;lo</a>
 						</li>

@@ -48,7 +48,10 @@ class OdbDemandeInter
 		return $laDemandeInter;
 	}
 
-	// toutes les demandes d'intervention non traitees
+	/**
+	 * toutes les demandes d'intervention non traitees
+	 * @return array tableau d'objet demande
+	 */
 	public function getLesDemandesNT()
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date

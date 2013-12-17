@@ -48,7 +48,7 @@ class Velo
 	}
 
 	/**
-	 * affiche les stations
+	 * rechercher un velo via input user
 	 * @return void
 	 */
 	protected function rechercherUnVelo()

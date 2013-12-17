@@ -5,8 +5,6 @@ class Intervention
 	private $odbDemandeInter;
 	/** @var OdbBonIntervention model de gestion Bdd */
 	private $odbBonIntervention;
-	/** @var OdbTechnicien model de gestion Bdd */
-	private $odbTechnicien;
 
 	public function __construct()
 	{
@@ -18,7 +16,6 @@ class Intervention
 		// on instancie les model
 		$this->odbDemandeInter = new OdbDemandeInter();
 		$this->odbBonIntervention = new OdbBonIntervention();
-		$this->odbTechnicien = new OdbTechnicien();
 
 		// page actuelle
 		$_SESSION['tampon']['menu']['title'] = 'Intervention';
@@ -28,7 +25,7 @@ class Intervention
 			array(
 					array('url'=>'index.php?page=intervention&amp;action=interventions_nt',
 						'title'=>'Non trait&eacute;es'),
-					array('url'=>'index.php?page=intervention&amp;action=unbonintervention',
+					array('url'=>'index.php?page=intervention&amp;action=monbonintervention',
 						'title'=>'Une intervention'),
 					array('url'=>'index.php?page=intervention&amp;action=mesinterventions' ,
 						'title'=>'Mes interventions'),
@@ -57,8 +54,8 @@ class Intervention
 				$this->afficherMesInter();
 				break;
 
-			case 'unbonintervention':
-				$this->afficherUnBonInter();
+			case 'monbonintervention':
+				$this->afficherMonBonInter();
 				break;
 
 			case 'rechercherbonintervention':
@@ -139,14 +136,17 @@ class Intervention
 			view('htmlFooter');
 		}
 	}
-
+	/**
+	 * affiche ses interv quand on est technicient
+	 * @return void
+	 */
 	protected function afficherMesInter()
 	{
 		// si le compte est bien celui d'un tech
 		if ($_SESSION['user']->estTechnicien())
 		{
 			$mesInterventions = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
-			// var_dump($mesInterventions);die;
+
 			$_SESSION['tampon']['html']['title'] = 'Toutes mes interventions';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=mesinterventions';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
@@ -180,35 +180,23 @@ class Intervention
 		}
 
 	}
-
-	protected function afficherUnBonInter()
+	/**
+	 * affiche un bon d'interv quand on est technicient
+	 * @return void
+	 */
+	protected function afficherMonBonInter()
 	{
-		/*
-		$unBonInter = $this->odbBonIntervention->getUnBonInter($codeBonInter);
-
-		$_SESSION['tampon']['html']['title'] = 'Un bon d\'intervention';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unbonintervention';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une intervention';
-
-		/**
-		 * Load des vues
-		 *
-		view('htmlHeader');
-		view('contentMenu');
-		view('contentOneBonInter', array('unBonIntervention'=>$unBonIntervention));
-		view('htmlFooter');
-		*/
-
-
 		// si le bon existe
 		if (
 				!empty($_GET['valeur'])
-				and $this->odbBonIntervention->estBonInter($_GET['valeur']))
+				and $_SESSION['user']->estTechnicien()
+				and $this->odbBonIntervention->estMonBonInter($_GET['valeur'], $_SESSION['user']->getMatricule())
+			)
 		{
-			$unBonInter = $this->odbBonIntervention->getUnBonInter($_GET['valeur']);
+			$unBonInter = $this->odbBonIntervention->getMonBonInter($_GET['valeur'], $_SESSION['user']->getMatricule());
 
 			$_SESSION['tampon']['html']['title'] = 'Bon Intervention - '.$unBonInter->BI_Num;
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=monbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
 
 			/**
@@ -222,7 +210,7 @@ class Intervention
 		else
 		{
 			$_SESSION['tampon']['html']['title'] = 'Bon Intervention - ERREUR';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=monbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
 
 			$_SESSION['tampon']['error'] = array('Le bon d\'Intervention ne semble pas exister...');
@@ -240,6 +228,7 @@ class Intervention
 
 	/**
 	 * @todo  NON FINI EN DESSOUS
+	 *        cf la recherche velo ou station
 	 * @return void
 	 */
 	protected function rechercherUnBonInter()
@@ -253,14 +242,18 @@ class Intervention
 		 */
 		view('htmlHeader');
 		view('contentMenu');
-		view('contentSearchBonIntervention');
+		// view('contentSearchBonIntervention');
 		view('htmlFooter');
 	}
-
+	/**
+	 * @todo faire les controle si envois ou non (enregistrement ou form)
+	 * @todo  faire les check de data avant de lancer le save()
+	 * @return void
+	 */
 	protected function creerUnBonIntervention()
 	{
 		if (false) {
-			# on check qu'il y a un envois valide avant de save
+			# @todo on check qu'il y a un envois valide avant de save
 			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
 		}
 		else

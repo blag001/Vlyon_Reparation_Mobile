@@ -63,23 +63,29 @@ class OdbVelo{
 		return $leVelo;
 	}
 
-	//modifier certainens informations d'un velo et l'Etat
 	/**
-	 * @todo j'ai un doute sur l'utilisation des ->query pour les update...
-	 *       donc je check ça quand j'ai le temps :P
+	 * modifier certainens informations d'un velo et l'Etat
+	 * @return int                nombre de ligne affectee
 	 */
 	public function modifierUnVelo($arrayDataVelo){
 
 		$req = 'UPDATE VELO
 				SET Vel_Station     = :stationVelo,
-					Vel_Etat        = :stationVelo,
+					Vel_Etat        = :etatVelo,
 					Vel_Type        = :typeVelo,
 					Vel_Accessoire  = :accessoireVelo,
 					Vel_Casse       = :veloCasse
 				WHERE Vel_Num = :codeVelo';
 
-		$leVelo = $this->oBdd->query($req, $aarrayDataVelo);
+		$out = $this->oBdd->exec($req, array(
+				'stationVelo'=>$_POST['stationVelo'],
+				'etatVelo'=>$_POST['etatVelo'],
+				'typeVelo'=>$_POST['typeVelo'],
+				'accessoireVelo'=>$_POST['accessoireVelo'],
+				'veloCasse'=>$_POST['veloCasse'],
+				'codeVelo'=>$_POST['codeVelo'],
+				));
 
-		return $leVelo;
+		return $out;
 	}
 }

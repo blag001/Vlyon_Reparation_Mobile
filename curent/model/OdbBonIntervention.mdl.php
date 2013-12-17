@@ -27,6 +27,23 @@ class OdbBonIntervention
 		return false;
 	}
 
+	public function estMonBonInter($code, $techCode)
+	{
+		if(!empty($code) and !empty($techCode))
+		{
+			$req = "SELECT COUNT(*) AS nb
+					FROM BONINTERV
+					WHERE BI_Num = :code
+						AND BI_Technicien = :techCode";
+
+			$data = $this->oBdd->query($req , array('code'=>$code, 'techCode'=>$techCode), Bdd::SINGLE_RES);
+
+			return (bool) $data->nb;
+		}
+
+		return false;
+	}
+
 	public function getLesBonsInter()
 	{
 		$req = "SELECT *,
@@ -39,21 +56,25 @@ class OdbBonIntervention
 		return $lesBonsInter;
 	}
 
-	public function getUnBonInter($code)
+	public function getMonBonInter($code, $techCode)
 	{
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
 				FROM BONINTERV
 				WHERE BI_Num = :code
-					AND BI_Technicien = Tec_Matricule";
+					AND BI_Technicien = :techCode";
 
-		$leBonInter = $this->oBdd->query($req, array('code'=>$code), Bdd::SINGLE_RES);
+		$leBonInter = $this->oBdd->query($req, array('code'=>$code, 'techCode'=>$techCode), Bdd::SINGLE_RES);
 
 		return $leBonInter;
 	}
 
-	//on visualise les interventions effectuees par un technicien gràce à son matricule
+	/**
+	 * on visualise les interventions effectuees par un technicien gràce à son matricule
+	 * @param  int $techCode matricule du technincient
+	 * @return array           tableau d'objets
+	 */
 	public function getMesInterventions($techCode)
 	{
 		$req = "SELECT *,
@@ -68,13 +89,11 @@ class OdbBonIntervention
 		return $lesBonsInter;
 	}
 
-	//on cree une intervention
 	/**
+	 * on cree une intervention
 	 * MAJ : normalement elle est OK, mais faut check...
-	 * @todo pas de variable dans les requetes...
-	 *       on passe tout avec des marqueur et un tableau
 	 */
-	public function creerUnBonInter()
+	public function creerUnBonInter($code)
 	{
 		$req = 'INSERT INTO BONINTERV (
 					 `BI_Num`,
@@ -99,11 +118,10 @@ class OdbBonIntervention
 					 :technicienCode,
 					 :surPlace,
 					 :duree
-				 	)
-				WHERE BI_Num = :code';
+				 	)';
 
 		$out = $this->oBdd->exec($req, array(
-				 'code'=>$_POST['code'],
+				 'code'=>$code,
 				 'veloCode'=>$_POST['veloCode'],
 				 'dateDebut'=>$_POST['dateDebut'],
 				 'dateFin'=>$_POST['dateFin'],
