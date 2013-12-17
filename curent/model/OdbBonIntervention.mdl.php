@@ -134,4 +134,22 @@ class OdbBonIntervention
 				));
 		return $out;
 	}
+
+	public function searchMesBonIntervention($valeur, $techCode)
+	{
+		$req = "SELECT *
+				FROM `BONINTERV`
+				WHERE 
+					(
+						`BI_Num` LIKE :valeur
+						OR `BI_Velo` LIKE :valeur
+						OR `BI_Demande` LIKE :valeur
+					)
+					AND BI_Technicien = :techCode"
+					;
+
+		$lesBonsInter = $this->oBdd->query($req, array('valeur'=>'%'.$valeur.'%', 'techCode'=>$techCode));
+
+		return $lesBonsInter;
+	}
 }
