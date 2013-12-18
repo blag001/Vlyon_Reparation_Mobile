@@ -1,7 +1,7 @@
 <?php
 try {
 	/**
-	 * instanciation de la connexion BDD
+	 * instanciation de la connexion BDD dans une variable de session
 	 *
 	 * changez les null par vos informations.
 	 * Par defaut (si null ou false) :

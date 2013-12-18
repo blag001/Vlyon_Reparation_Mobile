@@ -1,7 +1,7 @@
 -- ============================================================
 --   Nom de la base   :  REPARATION
 --   Nom de SGBD      :  ORACLE Version 7.x
---   Date de cr‚ation :  05/11/2013  22:15
+--   Date de creation :  05/11/2013  22:15
 -- ============================================================
 
 -- ============================================================
@@ -227,4 +227,3 @@ alter table USER
     add constraint FK_USER_TECHNICIEN foreign key  (Use_Technicien)
        references TECHNICIEN (Tec_Matricule)
 ;
-

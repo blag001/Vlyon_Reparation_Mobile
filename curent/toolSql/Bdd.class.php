@@ -6,11 +6,13 @@
  * 	qui attend un ou plusieurs resultats (retour en obj ou array d'obj)
  * @method {int} exec() exec(string $sql, array $arg) execute une commande et
  * 	retourne le nb de lignes affectees
+ *
  * @global boolean SINGLE_RES
  * @author Benoit <benoitelie1@gmail.com>
  */
 class Bdd
 {
+	// valeur par defaut en cas d'instanciation sans valeur
 	private $host    = 'localhost';
 	private $db_name = 'sio_reparation';
 	private $user    = 'root';
@@ -161,10 +163,12 @@ class Bdd
 	 *
 	 * On lui passe la requete SQL avec les marqueurs.
 	 * 	un marqueur est une string avec ':' devant
-	 * 		ex : 'SELECT * FROM Table WHERE Tab_code = :mon_marqueur '
+	 * 		ex : 'DELETE FROM Table WHERE Tab_code = :mon_marqueur '
+	 * 		ex : 'DELETE FROM Table WHERE Tab_val > :marqueur1 AND Tab_type = :marqueur2 '
 	 * on lui donne les arguments dans un tableau.
 	 * 	l'array doit etre associatif marqueur => valeur
 	 * 		ex : 'array('mon_marqueur' => $codeTable)'
+	 * 		ex2 : 'array('marqueur1' => $clause1, 'marqueur2'=>$clause2)'
 	 *
 	 * retourne le nombre de ligne affectee
 	 *
