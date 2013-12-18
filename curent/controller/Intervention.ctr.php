@@ -233,17 +233,44 @@ class Intervention
 	 */
 	protected function rechercherUnBonInter()
 	{
-		$_SESSION['tampon']['html']['title'] = 'Rechercher un bon d\'intervention';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherbonintervention';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher un bon d\'intervention';
+		if ($_SESSION['user']->estTechnicien())
+		{
+			if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+				$lesBonsInter = $this->odbBonIntervention->searchMesBonIntervention($_GET['valeur'], $_SESSION['user']->getMatricule());
+			else
+				$lesBonsInter = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
+			$_SESSION['tampon']['html']['title'] = 'Rechercher un bon d\'intervention';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=rechercherbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher bon';
 
-		/**
-		 * Load des vues
-		 */
-		view('htmlHeader');
-		view('contentMenu');
-		// view('contentSearchBonIntervention');
-		view('htmlFooter');
+			if (empty($lesBonsInter))
+				$_SESSION['tampon']['error'] = array('Pas de bon...');
+
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentMenu');
+			view('contentSearchBonIntervention');
+			view('contentMesInterventions', array('mesInterventions'=>$lesBonsInter));
+			view('htmlFooter');
+		}
+		else
+		{
+			$_SESSION['tampon']['html']['title'] = 'Rechercher un bon d\'intervention - ERREUR';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=rechercherbonintervention';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
+
+			$_SESSION['tampon']['error'] = array('Vous ne semblez pas &ecirc;tre Technicien...');
+
+			/**
+			 * Load des vues
+			 */
+			view('htmlHeader');
+			view('contentMenu');
+			view('contentError');
+			view('htmlFooter');
+		}
 	}
 	/**
 	 * @todo faire les controle si envois ou non (enregistrement ou form)
