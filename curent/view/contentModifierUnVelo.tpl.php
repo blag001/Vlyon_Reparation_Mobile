@@ -1,5 +1,5 @@
 <div class="container">
-	<form class="form-add" role="form" action="index.php?page=contentModifierUnVelo&amp;action=modifiervelo" method="POST" >
+	<form class="form-add" role="form" action="index.php?page=velo&amp;action=modifiervelo" method="POST" >
 		<h1 class="form-add-heading">Modifier un V&eacute;lo</h1>
 
 		<div class="form-group">
