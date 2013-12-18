@@ -181,9 +181,9 @@ class User
 				return true;
 			}
 			elseif ($this->odbUser->estUser($_POST['nom']))
-				$_SESSION['tampon']['error'] = array('Erreur sur le mot de passe.');
+				$_SESSION['tampon']['error'][] = 'Erreur sur le mot de passe.';
 			else
-				$_SESSION['tampon']['error'] = array('Erreur sur l\'identifiant.');
+				$_SESSION['tampon']['error'][] = 'Erreur sur l\'identifiant.';
 		}
 
 		return false;

@@ -68,7 +68,7 @@ class Station
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les stations';
 
 		if (empty($lesStations))
-			$_SESSION['tampon']['error'] = array('Pas de station...');
+			$_SESSION['tampon']['error'][] = 'Pas de station...';
 
 		/**
 		 * Load des vues
@@ -98,7 +98,7 @@ class Station
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une station';
 
 			if (empty($lesVelosByStation))
-				$_SESSION['tampon']['error'] = array('Pas de v&eacute;lo pour cette station...');
+				$_SESSION['tampon']['error'][] = 'Pas de v&eacute;lo pour cette station...';
 
 			/**
 			 * Load des vues
@@ -114,7 +114,7 @@ class Station
 			$_SESSION['tampon']['html']['title'] = 'Station - ERREUR';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=unestation';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une station';
-			$_SESSION['tampon']['error'] = array('La station ne semble pas exister...');
+			$_SESSION['tampon']['error'][] = 'La station ne semble pas exister...';
 
 			/**
 			 * Load des vues
@@ -144,7 +144,7 @@ class Station
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher station';
 
 		if (empty($lesStations))
-			$_SESSION['tampon']['error'] = array('Pas de station...');
+			$_SESSION['tampon']['error'][] = 'Pas de station...';
 
 		/**
 		 * Load des vues

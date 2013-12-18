@@ -125,7 +125,7 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unedemandeinter';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une demande';
 
-			$_SESSION['tampon']['error'] = array('La Demande d\'Intervention ne semble pas exister...');
+			$_SESSION['tampon']['error'][] = 'La Demande d\'Intervention ne semble pas exister...';
 
 			/**
 			 * Load des vues
@@ -152,7 +152,7 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
 
 			if (empty($mesInterventions))
-				$_SESSION['tampon']['error'] = array('Pas d\'Intervention...');
+				$_SESSION['tampon']['error'][] = 'Pas d\'Intervention...';
 
 			/**
 			 * Load des vues
@@ -168,7 +168,7 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=mesinterventions';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
 
-			$_SESSION['tampon']['error'] = array('Vous ne semblez pas &ecirc;tre Technicien...');
+			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
 
 			/**
 			 * Load des vues
@@ -213,7 +213,7 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=monbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
 
-			$_SESSION['tampon']['error'] = array('Le bon d\'Intervention ne semble pas exister...');
+			$_SESSION['tampon']['error'][] = 'Le bon d\'Intervention ne semble pas exister...';
 
 			/**
 			 * Load des vues
@@ -244,7 +244,7 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher bon';
 
 			if (empty($lesBonsInter))
-				$_SESSION['tampon']['error'] = array('Pas de bon...');
+				$_SESSION['tampon']['error'][] = 'Pas de bon...';
 
 			/**
 			 * Load des vues
@@ -261,7 +261,7 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=rechercherbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Mes interventions';
 
-			$_SESSION['tampon']['error'] = array('Vous ne semblez pas &ecirc;tre Technicien...');
+			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
 
 			/**
 			 * Load des vues
