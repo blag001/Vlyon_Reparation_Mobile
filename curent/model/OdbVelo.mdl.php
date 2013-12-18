@@ -67,7 +67,7 @@ class OdbVelo{
 	 * modifier certainens informations d'un velo et l'Etat
 	 * @return int                nombre de ligne affectee
 	 */
-	public function modifierUnVelo($arrayDataVelo){
+	public function modifierUnVelo(){
 
 		$req = 'UPDATE VELO
 				SET Vel_Station     = :stationVelo,

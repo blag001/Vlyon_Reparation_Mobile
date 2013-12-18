@@ -3,6 +3,8 @@ class Velo
 {
 	/** @var OdbVelo model de gestion Bdd */
 	private $odbVelo;
+	/** @var OdbStation model de gestion Bdd */
+	private $odbStation;
 
 	public function __construct()
 	{
@@ -13,6 +15,7 @@ class Velo
 		// si il est connecte
 		// on instancie les model
 		$this->odbVelo = new OdbVelo();
+		$this->odbStation = new OdbStation();
 
 		// page actuelle
 		$_SESSION['tampon']['menu']['title'] = 'V&eacute;lo';
@@ -24,6 +27,8 @@ class Velo
 						'title'=>'Rechercher v&eacute;lo'),
 					array('url'=>'index.php?page=velo&amp;action=unvelo',
 						'title'=>'Un v&eacute;lo'),
+					array('url'=>'index.php?page=velo&amp;action=modifiervelo',
+						'title'=>'Modifier'),
 				);
 
 		if (empty($_GET['action']))
@@ -37,6 +42,9 @@ class Velo
 		switch ($_GET['action']) {
 			case 'unvelo':
 				$this->afficherUnVelo();
+				break;
+			case 'modifiervelo':
+				$this->modifierUnVelo();
 				break;
 
 			case 'recherchervelo':
@@ -118,5 +126,32 @@ class Velo
 		}
 		else
 			$this->rechercherUnVelo();
+	}
+	/**
+	 * modifer un velo
+	 * @todo  a faire
+	 * @return void
+	 */
+	protected function modifierUnVelo()
+	{
+
+		// if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+		// 	$lesVelos = $this->odbVelo->searchVelos($_GET['valeur']);
+
+		// $_SESSION['tampon']['html']['title'] = 'Rechercher Un v&eacute;lo';
+		// $_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=recherchervelo';
+		// $_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher v&eacute;lo';
+
+		// if (empty($lesVelos))
+		// 	$_SESSION['tampon']['error'] = array('Pas de v&eacute;lo...');
+
+		// /**
+		//  * Load des vues
+		//  */
+		// view('htmlHeader');
+		// view('contentMenu');
+		// view('contentSearchVelo');
+		// view('contentAllVelo', array('lesVelos'=>$lesVelos));
+		// view('htmlFooter');
 	}
 }

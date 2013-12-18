@@ -82,7 +82,7 @@ class OdbBonIntervention
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
 				FROM BONINTERV, VELO
 				WHERE BI_Technicien = :techCode
-					AND BI_Velo = Vel_Num";
+					AND BONINTERV.BI_Velo = VELO.Vel_Num";
 
 		$lesBonsInter = $this->oBdd->query($req, array('techCode'=>$techCode));
 
@@ -139,7 +139,7 @@ class OdbBonIntervention
 	{
 		$req = "SELECT *
 				FROM `BONINTERV`
-				WHERE 
+				WHERE
 					(
 						`BI_Num` LIKE :valeur
 						OR `BI_Velo` LIKE :valeur

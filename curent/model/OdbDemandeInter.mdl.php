@@ -39,9 +39,9 @@ class OdbDemandeInter
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
 				FROM DEMANDEINTER, TECHNICIEN, STATION, VELO
 				WHERE DemI_Num = :id
-					AND DemI_Velo = Vel_Num
-					AND Vel_Station = Sta_Code
-					AND DemI_Technicien = Tec_Matricule";
+					AND DEMANDEINTER.DemI_Velo = VELO.Vel_Num
+					AND VELO.Vel_Station = STATION.Sta_Code
+					AND DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule";
 
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
 
@@ -57,13 +57,13 @@ class OdbDemandeInter
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
 				FROM DEMANDEINTER, VELO, STATION
 				WHERE DemI_Traite = 0
-					AND DemI_Velo = Vel_Num
-					AND Vel_Station = Sta_Code";
+					AND DEMANDEINTER.DemI_Velo = VELO.Vel_Num
+					AND VELO.Vel_Station = STATION.Sta_Code";
 
 		$lesDemandesInter = $this->oBdd->query($req);
 
 		return $lesDemandesInter;
 	}
 
-	
+
 }

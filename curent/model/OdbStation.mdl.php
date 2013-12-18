@@ -50,6 +50,16 @@ class OdbStation
 		return $lesStations;
 	}
 
+	public function getLesIdStations()
+	{
+		$req = 'SELECT Sta_Code
+				FROM STATION';
+
+		$lesStations = $this->oBdd->query($req);
+
+		return $lesStations;
+	}
+
 	public function searchStations($valeur)
 	{
 		$req = "SELECT *

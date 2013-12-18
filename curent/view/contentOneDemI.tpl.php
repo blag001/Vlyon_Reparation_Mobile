@@ -5,6 +5,7 @@
 			<tr>
 				<th>Id</th>
 				<th>Date</th>
+				<th>Demandeur</th>
 				<th>No Velo</th>
 			</tr>
 		</thead>
@@ -20,6 +21,7 @@
 						</a>
 					</td>
 					<td><?php echo $arg['uneDemandeInter']->DemI_Date;?></td>
+					<td><?php echo $arg['uneDemandeInter']->Tec_Nom;?></td>
 					<td>
 						<a href="index.php?page=velo&amp;action=unvelo&amp;valeur=<?php echo $arg['uneDemandeInter']->DemI_Velo;?>">
 							<?php echo $arg['uneDemandeInter']->DemI_Velo;?>
@@ -34,8 +36,8 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
+				<th>No Station</th>
 				<th>Station</th>
-				<th>Demandeur</th>
 				<th>Motif</th>
 			</tr>
 		</thead>
@@ -45,8 +47,12 @@
 			{
 				?>
 				<tr>
+					<td>
+						<a href="index.php?page=station&amp;action=unestation&amp;valeur=<?php echo $arg['uneDemandeInter']->Sta_Code;?>">
+							<?php echo $arg['uneDemandeInter']->Sta_Code;?>
+						</a>
+					</td>
 					<td><?php echo $arg['uneDemandeInter']->Sta_Nom;?></td>
-					<td><?php echo $arg['uneDemandeInter']->Tec_Nom;?></td>
 					<td><?php echo $arg['uneDemandeInter']->DemI_Motif;?></td>
 				</tr>
 				<?php
