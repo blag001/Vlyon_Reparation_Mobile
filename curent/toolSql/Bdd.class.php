@@ -176,7 +176,7 @@ class Bdd
 	 * @param  array $arg
 	 * @return int
 	 */
-	public function exec(string $sql, array $arg = null)
+	public function exec($sql, array $arg = null)
 	{
 		// on regarde si on a des variable dans les arguments
 		if(!empty($arg))

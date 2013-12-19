@@ -29,4 +29,14 @@
 			?>
 		</tbody>
 	</table>
+	<form class="form-add" role="form" action="index.php?page=velo&amp;action=modifiervelo" method="GET" >
+
+		<input type="hidden" name="page" class="form-control" value="velo" required >
+		<input type="hidden" name="action" class="form-control" value="modifiervelo" required >
+		<input type="hidden" name="valeur" class="form-control" <?php
+			if(!empty($arg['unVelo']))
+				echo 'value="'.$arg['unVelo']->Vel_Num.'" ';
+			?> required >
+        <button type="submit" class="btn btn-lg btn-primary btn-block" >Modifier</button>
+	</form>
 </div><!-- /.container -->

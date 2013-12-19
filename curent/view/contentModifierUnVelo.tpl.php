@@ -1,12 +1,15 @@
 <div class="container">
-	<form class="form-add" role="form" action="index.php?page=velo&amp;action=modifiervelo" method="POST" >
+	<form class="form-add" role="form" action="index.php?page=velo&amp;action=modifiervelo<?php
+				if (!empty($arg['leVelo']))
+					echo '&amp;valeur='.$arg['leVelo']->Vel_Num;
+			?>" method="POST" >
 		<h1 class="form-add-heading">Modifier un V&eacute;lo</h1>
 
 		<div class="form-group">
 			<label for="vel_code">No du v&eacute;lo</label>
 			<input class="form-control" id="vel_code" type="text" name="codeVelo" value="<?php
 				if (!empty($arg['leVelo']))
-					echo $arg['leVelo']->Vel_Num
+					echo $arg['leVelo']->Vel_Num;
 			?>" disabled>
 		</div>
 		<div class="form-group">

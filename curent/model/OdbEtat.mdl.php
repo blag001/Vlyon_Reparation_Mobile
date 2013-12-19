@@ -8,6 +8,22 @@ class odbEtat{
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
+	public function estEtatById($id)
+	{
+		if(!empty($id))
+		{
+			$req = 'SELECT COUNT(*) AS nb
+					FROM ETAT
+					WHERE Eta_Code = :id';
+
+			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
+
+			return (bool) $data->nb;
+		}
+
+		return false;
+	}
+
 	public function getLesEtats()
 	{
 		$req = 'SELECT *

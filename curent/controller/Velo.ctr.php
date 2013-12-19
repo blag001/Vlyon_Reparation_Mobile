@@ -109,6 +109,8 @@ class Velo
 			 */
 			view('htmlHeader');
 			view('contentMenu');
+			if (!empty($_SESSION['tampon']['success']))
+				view('contentSuccess');
 			view('contentOneVelo', array('unVelo'=>$unVelo));
 			view('htmlFooter');
 		}
@@ -145,6 +147,41 @@ class Velo
 			and $this->odbVelo->estVelo($_GET['valeur'])
 			)
 		{
+			if (!empty($_POST)) {
+				$has_error = array();
+
+				if (!isset($_POST['stationVelo'])
+					or !$this->odbStation->estStationById($_POST['stationVelo']))
+					$has_error['stationVelo'] = true;
+				if (!isset($_POST['etatVelo'])
+					or !$this->odbEtat->estEtatById($_POST['etatVelo']))
+					$has_error['etatVelo'] = true;
+				if (!isset($_POST['typeVelo'])
+					or !$this->odbProduit->estType($_POST['typeVelo']))
+					$has_error['typeVelo'] = true;
+				if (!isset($_POST['accessoireVelo']))
+					$has_error['accessoireVelo'] = true; // on ne supprime pas des champs...
+				if (empty($_POST['veloCasse']))
+					$_POST['veloCasse'] = 0;
+				if (!isset($_POST['codeVelo']))
+					$_POST['codeVelo'] = $_GET['valeur'];
+
+				/**
+				 * si aucune erreur trouvee
+				 */
+				if (empty($has_error))
+				{
+					$outModifVelo = $this->odbVelo->modifierUnVelo();
+					if ($outModifVelo)
+					{
+						$_SESSION['tampon']['success'][] =
+							'Modification du v&eacute;lo No '.$_GET['valeur'].' r&eacute;ussie !';
+						header('Location:index.php?page=velo&action=unvelo&valeur='.$_GET['valeur']);
+						die;
+					}
+				}
+			}
+
 			$leVelo = $this->odbVelo->getUnVelo($_GET['valeur']);
 			$lesStations = $this->odbStation->getLesIdStations();
 			$lesEtats = $this->odbEtat->getLesEtats();
@@ -165,12 +202,15 @@ class Velo
 			 */
 			view('htmlHeader');
 			view('contentMenu');
-			view('contentModifierUnVelo', array(
-					'lesStations'=>$lesStations,
-					'leVelo'=>$leVelo,
-					'lesEtats'=>$lesEtats,
-					'lesTypes'=>$lesTypes,
-					));
+			if(!empty($_SESSION['tampon']['error']))
+				view('contentError');
+			else
+				view('contentModifierUnVelo', array(
+						'lesStations'=>$lesStations,
+						'leVelo'=>$leVelo,
+						'lesEtats'=>$lesEtats,
+						'lesTypes'=>$lesTypes,
+						));
 			view('htmlFooter');
 		}
 		else
