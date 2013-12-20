@@ -4,7 +4,23 @@
 					echo '&amp;valeur='.$arg['leVelo']->Vel_Num;
 			?>" method="POST" >
 		<h1 class="form-add-heading">Modifier un V&eacute;lo</h1>
-
+		<?php
+		if(!empty($_SESSION['tampon']['error']) and is_array($_SESSION['tampon']['error']))
+		{
+			?>
+			<div class="has-error">
+				<div class="input-group-addon">
+					<?php
+					foreach ($_SESSION['tampon']['error'] as $value) {
+						echo $value .'<br />';
+					}
+					$_SESSION['tampon']['error'] = null;
+					?>
+				</div>
+			</div>
+			<?php
+		}
+		?>
 		<div class="form-group">
 			<label for="vel_code">No du v&eacute;lo</label>
 			<input class="form-control" id="vel_code" type="text" name="codeVelo" value="<?php

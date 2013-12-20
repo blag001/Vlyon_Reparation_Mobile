@@ -72,18 +72,14 @@ class OdbVelo{
 		$req = 'UPDATE VELO
 				SET Vel_Station     = :stationVelo,
 					Vel_Etat        = :etatVelo,
-					Vel_Type        = :typeVelo,
 					Vel_Accessoire  = :accessoireVelo,
-					Vel_Casse       = :veloCasse
 				WHERE Vel_Num = :codeVelo';
 
 		$out = $this->oBdd->exec($req, array(
-				'stationVelo'=>$_POST['stationVelo'],
-				'etatVelo'=>$_POST['etatVelo'],
-				'typeVelo'=>$_POST['typeVelo'],
-				'accessoireVelo'=>$_POST['accessoireVelo'],
-				'veloCasse'=>$_POST['veloCasse'],
-				'codeVelo'=>$_POST['codeVelo'],
+				'stationVelo'    =>$_POST['stationVelo'],
+				'etatVelo'       =>$_POST['etatVelo'],
+				'accessoireVelo' =>$_POST['accessoireVelo'],
+				'codeVelo'       =>$_POST['codeVelo'],
 				));
 
 		return $out;

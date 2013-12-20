@@ -141,46 +141,68 @@ class Velo
 	protected function modifierUnVelo()
 	{
 
+		/**
+		 * Si le velo existe, on peut lancer le module
+		 * sinon on passe directement a une erreur
+		 */
 		if(
 			isset($_GET['valeur'])
-			and $_GET['valeur'] !== ''
 			and $this->odbVelo->estVelo($_GET['valeur'])
 			)
 		{
-			if (!empty($_POST)) {
-				$has_error = array();
+			/** @var array stock les erreurs de la modification du velo */
+			$has_error = array();
 
+			/**
+			 * Si on a un envois de fomulaire sur la demande de modification de velo
+			 */
+			if (!empty($_POST))
+			{
+				/**
+				 * on test les valeurs
+				 */
+				/** que la station existe bien */
 				if (!isset($_POST['stationVelo'])
 					or !$this->odbStation->estStationById($_POST['stationVelo']))
 					$has_error['stationVelo'] = true;
+				/** que l'etat existe lui aussi */
 				if (!isset($_POST['etatVelo'])
 					or !$this->odbEtat->estEtatById($_POST['etatVelo']))
 					$has_error['etatVelo'] = true;
-				if (!isset($_POST['typeVelo'])
-					or !$this->odbProduit->estType($_POST['typeVelo']))
-					$has_error['typeVelo'] = true;
+				/** que le champ accessoire a pas etais supprime */
 				if (!isset($_POST['accessoireVelo']))
 					$has_error['accessoireVelo'] = true; // on ne supprime pas des champs...
-				if (empty($_POST['veloCasse']))
-					$_POST['veloCasse'] = 0;
-				if (!isset($_POST['codeVelo']))
-					$_POST['codeVelo'] = $_GET['valeur'];
+				/** on charge le code du velo a modifier directement depuis le GET */
+				$_POST['codeVelo'] = $_GET['valeur'];
 
 				/**
 				 * si aucune erreur trouvee
 				 */
 				if (empty($has_error))
 				{
+					// on lance la modif
 					$outModifVelo = $this->odbVelo->modifierUnVelo();
+					/** si on a un nombre de ligne >0 et donc TRUE */
 					if ($outModifVelo)
 					{
 						$_SESSION['tampon']['success'][] =
 							'Modification du v&eacute;lo No '.$_GET['valeur'].' r&eacute;ussie !';
+						// on redirige vers la page d'affiche d'un velo
 						header('Location:index.php?page=velo&action=unvelo&valeur='.$_GET['valeur']);
-						die;
+						die; // on stop le chargement de la page
 					}
+					else // sinon on charge une erreur
+						$_SESSION['tampon']['error'][] = 'Erreur avec la modification du v&eacute;lo No '.$_GET['valeur'];
 				}
 			}
+
+			/**
+			 * partie principal de la modif velo, on va chercher les info
+			 * - du velo
+			 * - des stations
+			 * - des etats
+			 * - des types de velo
+			 */
 
 			$leVelo = $this->odbVelo->getUnVelo($_GET['valeur']);
 			$lesStations = $this->odbStation->getLesIdStations();
@@ -192,6 +214,7 @@ class Velo
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=modifiervelo';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Modifier v&eacute;lo';
 
+			/** en cas de retour vide sur une des valeurs */
 			if (empty($lesStations))
 				$_SESSION['tampon']['error'][] = 'Aucune station dans la base !';
 			if (empty($lesEtats))
@@ -202,15 +225,13 @@ class Velo
 			 */
 			view('htmlHeader');
 			view('contentMenu');
-			if(!empty($_SESSION['tampon']['error']))
-				view('contentError');
-			else
-				view('contentModifierUnVelo', array(
-						'lesStations'=>$lesStations,
-						'leVelo'=>$leVelo,
-						'lesEtats'=>$lesEtats,
-						'lesTypes'=>$lesTypes,
-						));
+			view('contentModifierUnVelo', array(
+					'lesStations'=>$lesStations,
+					'leVelo'=>$leVelo,
+					'lesEtats'=>$lesEtats,
+					'lesTypes'=>$lesTypes,
+					'has_error'=>$has_error,
+					));
 			view('htmlFooter');
 		}
 		else
