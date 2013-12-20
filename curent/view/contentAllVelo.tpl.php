@@ -22,7 +22,7 @@
 							</a>
 						</td>
 						<td><?php echo $value->Eta_Libelle;?></td>
-						<td><?php echo $value->Vel_Type;?></td>
+						<td><?php echo $value->Pdt_Libelle;?></td>
 						<td><?php echo $value->Vel_Accessoire;?></td>
 					</tr>
 				<?php

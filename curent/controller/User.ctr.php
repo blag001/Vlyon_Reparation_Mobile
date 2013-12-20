@@ -16,12 +16,17 @@ class User
 
 	public function __construct($private = false)
 	{
+		/**
+		 * On regarde si le user est connecte,
+		 * si non, on lui affiche le formulaire de coo,
+		 * et on termine le script
+		 */
 		if (!$private and !($_SESSION['user']->estUser())) {
 			$_SESSION['user']->displayForm();
 			die;
 		}
 		// si il est connecte
-		// on instancie les model
+		// on instancie les model (lien avec la BDD)
 		$this->odbUser = new OdbUser();
 
 		// // page actuelle

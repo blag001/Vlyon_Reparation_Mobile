@@ -1,27 +1,32 @@
 <?php
 class Velo
 {
-	/** @var OdbVelo model de gestion Bdd */
+	/** @var OdbVelo model de gestion Velo en Bdd */
 	private $odbVelo;
-	/** @var OdbStation model de gestion Bdd */
+	/** @var OdbStation model de gestion Station en Bdd */
 	private $odbStation;
-	/** @var odbEtat model de gestion Bdd */
+	/** @var odbEtat model de gestion Etat Velo en Bdd */
 	private $odbEtat;
 
 	public function __construct()
 	{
+		/**
+		 * On regarde si le user est connecte,
+		 * si non, on lui affiche le formulaire de coo,
+		 * et on termine le script
+		 */
 		if (!($_SESSION['user']->estUser())) {
 			$_SESSION['user']->displayForm();
 			die;
 		}
 		// si il est connecte
-		// on instancie les model
+		// on instancie les model (lien avec la BDD)
 		$this->odbVelo = new OdbVelo();
 		$this->odbStation = new OdbStation();
 		$this->odbEtat = new OdbEtat();
 		$this->odbProduit = new OdbProduit();
 
-		// page actuelle
+		// page actuelle dans le menu principale
 		$_SESSION['tampon']['menu']['title'] = 'V&eacute;lo';
 		$_SESSION['tampon']['menu']['url'] = 'index.php?page=unvelo&amp;action=lesvelos';
 		// liste des sous menus
@@ -35,11 +40,13 @@ class Velo
 						'title'=>'Modifier'),
 				);
 
+		// on evite les erreurs en cas de pas d'action
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
 
 		/**
 		 * Switch de gestion des actions de Intervention
+		 * se charge d'appeller la methode pour l'action requise
 		 *
 		 * @param string $_GET['action'] contient l'action demmandee
 		 */
@@ -67,8 +74,11 @@ class Velo
 	{
 		$lesVelos = null;
 
+		/** on check, et on demande au model */
 		if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
 			$lesVelos = $this->odbVelo->searchVelos($_GET['valeur']);
+		else
+			$lesVelos = $this->odbVelo->getNouveauxVelos();
 
 		$_SESSION['tampon']['html']['title'] = 'Rechercher Un v&eacute;lo';
 		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=recherchervelo';
@@ -114,6 +124,7 @@ class Velo
 			view('contentOneVelo', array('unVelo'=>$unVelo));
 			view('htmlFooter');
 		}
+		// sinon si on a une valeur, mais que on a pas valider le estVelo
 		elseif(!empty($_GET['valeur']))
 		{
 			$_SESSION['tampon']['html']['title'] = 'V&eacute;lo - ERREUR';
@@ -130,7 +141,7 @@ class Velo
 			view('contentError');
 			view('htmlFooter');
 		}
-		else
+		else // par defaut on affiche la page de recherche
 			$this->rechercherUnVelo();
 	}
 	/**

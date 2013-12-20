@@ -21,7 +21,7 @@
 						</a>
 					</td>
 					<td><?php echo $arg['unVelo']->Eta_Libelle;?></td>
-					<td><?php echo $arg['unVelo']->Vel_Type;?></td>
+					<td><?php echo $arg['unVelo']->Pdt_Libelle;?></td>
 					<td><?php echo $arg['unVelo']->Vel_Accessoire;?></td>
 				</tr>
 			<?php
