@@ -72,7 +72,7 @@
 		</div>
 		<div class="form-group">
 			<label for="vel_type">Type du v&eacute;lo</label>
-			<select class="form-control" id="vel_type" name="typeVelo" >
+			<select class="form-control" id="vel_type" name="typeVelo" disabled>
 				<?php
 				if(
 					!empty($arg['lesTypes'])
@@ -100,7 +100,7 @@
 		</div>
 		<div class="checkbox">
 			<label for="vel_casse">
-				<input type="checkbox" value="1" id="vel_casse" name="veloCasse">
+				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" disabled>
 				V&eacute;lo Cass&eacute;.
 			</label>
 		</div>
