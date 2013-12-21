@@ -60,5 +60,14 @@
 			?>
 		</tbody>
 	</table>
+	<form class="form-add" role="form" action="index.php" method="GET" >
+		<input type="hidden" name="page" class="form-control" value="intervention" required >
+		<input type="hidden" name="action" class="form-control" value="creerbonintervention" required >
+		<input type="hidden" name="valeur" class="form-control" <?php
+			if(!empty($arg['uneDemandeInter']))
+				echo 'value="'.$arg['uneDemandeInter']->DemI_Num.'" ';
+			?> required >
+        <button type="submit" class="btn btn-lg btn-primary btn-block" >Intervenir</button>
+	</form>
 
 </div><!-- /.container -->
