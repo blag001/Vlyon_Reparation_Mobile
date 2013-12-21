@@ -14,8 +14,8 @@
 	 * @todo  Pensez a changer le CHMOD
 	 *
 	 * @method insert($table, $name, $data)
-	 * @method query($table, $name, $get_value)
-	 * @method select_all($table, $get_value)
+	 * @method query($table, $name[, $get_value])
+	 * @method select_all($table[, $get_value])
 	 * @method delet($table, $name)
 	 * @method last_query()
 	 * @method is_table($table)
