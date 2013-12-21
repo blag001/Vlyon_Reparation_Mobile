@@ -94,7 +94,7 @@ class OdbUser{
 	public function getToken($name)
 	{
 		if($name !== null)
-			return $this->oNosql->query('remember_me', $name, Nosql::GET_RESULT);
+			return $this->oNosql->query('remember_me', $name);
 
 		return false ;
 	}
