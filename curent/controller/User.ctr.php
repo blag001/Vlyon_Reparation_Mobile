@@ -1,8 +1,6 @@
 <?php
 /**
  * gestion des utilisateurs et de leurs droit d'accee
- * @todo mettre en place la gestion des user
- * @todo ajouter le remember-me
  */
 class User
 {
@@ -183,12 +181,36 @@ class User
 				$this->nom = $user->Use_Nom;
 				$this->respAchat = $user->Use_RespAchat;
 
+				if(!empty($_POST['remember_me']))
+				{
+					/** @var string un jeton qui servira de mot de passe */
+					$seed = bin2hex(openssl_random_pseudo_bytes(256));
+					$token = hash('sha512', $_POST['nom'].$seed.$_POST['nom']);
+
+					if($this->odbUser->saveToken($_POST['nom'], $token))
+					{
+						setcookie('nom', $_POST['nom'], time()+7776000);
+						// un cookie qui contient le nom pour 3 mois
+						setcookie('remember_me', $seed, time()+7776000);
+						// un cookie qui contient le token pour 3 mois
+					}
+				}
+
 				return true;
 			}
 			elseif ($this->odbUser->estUser($_POST['nom']))
 				$_SESSION['tampon']['error'][] = 'Erreur sur le mot de passe.';
 			else
 				$_SESSION['tampon']['error'][] = 'Erreur sur l\'identifiant.';
+		}
+		/** Si on a un cookie pour se souvenir de l'utilisateur */
+		elseif(!empty($_COOKIE['remember_me']) and isset($_COOKIE['nom']))
+		{
+			$hash = hash('sha512', $_COOKIE['nom'].$_COOKIE['remember_me'].$_COOKIE['nom']);
+
+			if($trueHash = $this->odbUser->getToken($_COOKIE['nom']))
+				if(strcmp($hash, $trueHash) === 0)
+					return true;
 		}
 
 		return false;
@@ -199,9 +221,8 @@ class User
 	 */
 	private function logout()
 	{
-		// pour le moment on supporte pas le remember-me
-		// if(isset($_COOKIE['remember_me']))
-		// 	setcookie('remember_me', '', time()-1);
+		if(isset($_COOKIE['remember_me']))
+			setcookie('remember_me', '', time()-1);
 
 		$this->id = null;
 		$this->matricule = null;

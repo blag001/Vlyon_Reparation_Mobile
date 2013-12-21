@@ -2,10 +2,12 @@
 class OdbUser{
 
 	private $oNosql;
+	private $oBdd;
 
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
+		$this->oNosql = $_SESSION['nosql'];
 	}
 
 	public function estUser($nom)
@@ -66,5 +68,27 @@ class OdbUser{
 		}
 
 		return false;
+	}
+	public function saveToken($name, $token)
+	{
+		if($name !== null and !empty($token))
+		{
+			if (!$this->oNosql->is_table('remember_me'))
+				if(!$this->oNosql->create('remember_me'))
+					return false;
+
+			$this->oNosql->delet('remember_me', $name);
+
+			return $this->oNosql->insert('remember_me', $name, $token);
+		}
+
+		return false ;
+	}
+	public function getToken($name)
+	{
+		if($name !== null)
+			return $this->oNosql->query('remember_me', $name, true);
+
+		return false ;
 	}
 }
