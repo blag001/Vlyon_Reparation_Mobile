@@ -1,9 +1,53 @@
 <div class="container">
 	<form class="form-add" role="form" action="index.php?page=intervention&amp;action=creerbonintervention" method="POST" >
-		<h1 class="form-add-heading">Ajouter une Intervention</h1>
-		<input type="text" name="valeur" class="form-control" placeholder="Code, nom ou rue" autofocus >
-		<input type="text" name="valeur" class="form-control" placeholder="Code, nom ou rue" >
-		<input type="text" name="valeur" class="form-control" placeholder="Code, nom ou rue" >
-        <button type="submit" class="btn btn-lg btn-primary btn-block" >Ajouter</button>
+		<h1 class="form-add-heading">Cr&eacute;er un bon d'intervention</h1>
+		
+		<div class="form-group">
+			<label for="vel_num">V&eacute;lo concern&eacute;</label>
+			<select class="form-control" id="vel_station" name="stationVelo" >
+				<?php
+				if(
+					!empty($arg['lesVelos'])
+					and is_array($arg['lesVelos'])
+					)
+				{
+					foreach ($arg['lesVelos'] as $unVelo)
+					{
+						echo '<option';
+						if ($unVelo->Vel_Num == $arg['leVelo']->BI_Velo)
+							echo ' selected ';
+						echo '>'.$unVelo->Vel_Num.'</option>';
+					}
+				}
+				?>
+			</select>
+
+			<label for="compteRendu">Comtpe rendu</label>
+			<input type="text" class="form-control"  id="compteRendu" name="compteRendu" placeholder="Motif du probleme">
+			
+			<label for="dateDebut">Date de d&eacute;but de l'intervention</label>
+			<input type="date" class="form-control"  id="dateDebut" name="dateDebut" placeholder="Date de debut">
+			
+			<label for="dateFin">Date de fin de l'intervention</label>
+			<input type="date" class="form-control"  id="dateFin" name="dateFin" placeholder="Date de fin">
+
+			<div class="checkbox">
+				<label for="vel_reparable">
+				<input type="checkbox" value="0"  name="veloReparable">
+				V&eacute;lo NON r&eacute;parable
+				</label>
+			</div>
+
+			<div class="checkbox">
+				<label for="vel_surPlace">
+				<input type="checkbox" value="1" name="surPlace">
+				R&eacute;parable sur place
+				</label>
+			</div>
+
+
+
+        	<button type="submit" class="btn btn-lg btn-primary btn-block" >Ajouter le bon</button>
+		</div>
 	</form>
 </div>

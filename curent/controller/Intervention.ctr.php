@@ -279,6 +279,14 @@ class Intervention
 	 */
 	protected function creerUnBonIntervention()
 	{
+		if(
+			isset($_GET['valeur'])
+			and $this->odbVelo->estVelo($_GET['valeur'])
+			)
+			$leVeloNum = $_GET['valeur'];
+		else
+			$leVeloNum = null;
+
 		if (false) {
 			# @todo on check qu'il y a un envois valide avant de save
 			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
@@ -294,7 +302,10 @@ class Intervention
 			 */
 			view('htmlHeader');
 			view('contentMenu');
-			view('contentCreerUnBon');
+			view('contentCreerUnBon', array(
+				'leVeloNum'=>$leVeloNum,
+				'lesVelos'=>$lesVelos,
+				));
 			view('htmlFooter');
 		}
 
