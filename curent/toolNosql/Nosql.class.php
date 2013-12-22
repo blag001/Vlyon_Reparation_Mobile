@@ -24,6 +24,7 @@
 	 * @method drop($table)
 	 *
 	 * @global boolean NO_RESULT
+	 * @global boolean NO_ERASE
 	 * @author Benoit <benoitelie1@gmail.com>
 	 */
 class Nosql
@@ -48,6 +49,17 @@ class Nosql
 		 */
 	const NO_RESULT = false;
 
+		/**
+		 * constante pour NE PAS ecraser les fichier
+		 *
+		 * Lors d'un Insert(), par defaut si le fichier existe,
+		 * les donnees contenue serons perdue et remplace par $data
+		 *
+		 * utilisez en dernier param de insert "Nosql::NO_ERASE"
+		 * la methode ajoutera les donnees a la fin du fichier
+		 */
+	const NO_ERASE = true;
+
 	///////////////////
 	// CONSTRUCTEUR //
 	///////////////////
@@ -71,20 +83,31 @@ class Nosql
 		/**
 		 * insertion d'une key/value dans une table
 		 *
+		 * Par defaut si le fichier existe,
+		 * les donnees contenue serons perdue et remplace par $data
+		 *
+		 * utilisez en dernier param la constante "Nosql::NO_ERASE" (ou TRUE)
+		 * la methode ajoutera les donnees a la fin du fichier
+		 *
 		 * @param  string $table
 		 * @param  string $key
 		 * @param  string $data
-		 * @return boolean
+		 * @param  boolean $no_erase
+		 * @return int
 		 */
-	public function insert($table = null, $key = null , $data = null)
+	public function insert($table = null, $key = null , $data = null, $no_erase = false)
 	{
-		if(
-				$table != null
-				and $this->is_table($table)
-				and $data !== null
-				and $key != null
-			){
-			$output = file_put_contents($this->path_db.'/'.$table.'/'.base64_encode($key) , $data, FILE_APPEND);
+		if($table != null and $this->is_table($table) and $data !== null and $key != null){
+			if($no_erase)
+				$ressource = @fopen($this->path_db.'/'.$table.'/'.base64_encode($key), 'a');
+			else
+				$ressource = @fopen($this->path_db.'/'.$table.'/'.base64_encode($key), 'w');
+
+			if(!$ressource)
+				die('ERROR : Le script ne peut ecrire le fichier "'.$this->path_db.'/'.$table.'/'.base64_encode($key).'"');
+
+			$output = fwrite($ressource, $data);
+			fclose($ressource);
 			chmod($this->path_db.'/'.$table.'/'.base64_encode($key) , $this->chmod_file);
 
 			return $output;
