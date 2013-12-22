@@ -16,7 +16,7 @@
 	 * @method insert($table, $name, $data)
 	 * @method query($table, $name[, $get_value])
 	 * @method select_all($table[, $get_value])
-	 * @method delet($table, $name)
+	 * @method delete($table, $name)
 	 * @method last_query()
 	 * @method is_table($table)
 	 * @method create($table)
@@ -175,7 +175,7 @@ class Nosql
 		 * @param  string $key
 		 * @return boolean
 		 */
-	public function delet($table=null, $key=null)
+	public function delete($table=null, $key=null)
 	{
 		if($table !=null and $this->is_table($table)){
 			if($key != null and file_exists($this->path_db.'/'.$table.'/'.base64_encode($key))){
@@ -269,7 +269,7 @@ class Nosql
 
 			if(($array = $this->select_all($table)) !== false)
 				foreach($array as $value)
-					$no_error &= $this->delet($table, $value['key']);
+					$no_error &= $this->delete($table, $value['key']);
 					// And binaire : si un false on reste false
 
 			if($no_error){
