@@ -27,11 +27,26 @@ class OdbVelo{
 	public function getLesVelosDeStation($codeStation){
 
 		$req = 'SELECT *
-				FROM VELO, ETAT
+				FROM VELO, ETAT, PRODUIT
 				WHERE Vel_Station = :codeStation
-					AND VELO.Vel_Etat = ETAT.Eta_Code';
+					AND VELO.Vel_Etat = ETAT.Eta_Code
+					AND VELO.Vel_Type = PRODUIT.Pdt_Code';
 
 		$lesVelos = $this->oBdd->query($req, array('codeStation'=>$codeStation));
+
+		return $lesVelos;
+	}
+
+	public function getNouveauxVelos(){
+
+		$req = 'SELECT *
+				FROM VELO, ETAT, PRODUIT
+				WHERE VELO.Vel_Etat = ETAT.Eta_Code
+					AND VELO.Vel_Type = PRODUIT.Pdt_Code
+				ORDER BY Vel_Num DESC
+				LIMIT 50';
+
+		$lesVelos = $this->oBdd->query($req);
 
 		return $lesVelos;
 	}
@@ -39,13 +54,14 @@ class OdbVelo{
 	public function searchVelos($valeur)
 	{
 		$req = "SELECT *
-				FROM VELO, ETAT
+				FROM VELO, ETAT, PRODUIT
 				WHERE
 					(
 						Vel_Num LIKE :valeur
 						OR Vel_Station LIKE :valeur
 					)
-					AND VELO.Vel_Etat = ETAT.Eta_Code";
+					AND VELO.Vel_Etat = ETAT.Eta_Code
+					AND VELO.Vel_Type = PRODUIT.Pdt_Code";
 
 		$lesStations = $this->oBdd->query($req, array('valeur'=>'%'.$valeur.'%'));
 
@@ -54,9 +70,10 @@ class OdbVelo{
 
 	public function getUnVelo($codeVelo){
 		$req = 'SELECT *
-				FROM VELO, ETAT
+				FROM VELO, ETAT, PRODUIT
 				WHERE Vel_Num = :codeVelo
-					AND VELO.Vel_Etat = ETAT.Eta_Code';
+					AND VELO.Vel_Etat = ETAT.Eta_Code
+					AND VELO.Vel_Type = PRODUIT.Pdt_Code';
 
 		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
 
@@ -72,18 +89,14 @@ class OdbVelo{
 		$req = 'UPDATE VELO
 				SET Vel_Station     = :stationVelo,
 					Vel_Etat        = :etatVelo,
-					Vel_Type        = :typeVelo,
 					Vel_Accessoire  = :accessoireVelo,
-					Vel_Casse       = :veloCasse
 				WHERE Vel_Num = :codeVelo';
 
 		$out = $this->oBdd->exec($req, array(
-				'stationVelo'=>$_POST['stationVelo'],
-				'etatVelo'=>$_POST['etatVelo'],
-				'typeVelo'=>$_POST['typeVelo'],
-				'accessoireVelo'=>$_POST['accessoireVelo'],
-				'veloCasse'=>$_POST['veloCasse'],
-				'codeVelo'=>$_POST['codeVelo'],
+				'stationVelo'    =>$_POST['stationVelo'],
+				'etatVelo'       =>$_POST['etatVelo'],
+				'accessoireVelo' =>$_POST['accessoireVelo'],
+				'codeVelo'       =>$_POST['codeVelo'],
 				));
 
 		return $out;

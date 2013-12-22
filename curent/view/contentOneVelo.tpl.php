@@ -21,7 +21,7 @@
 						</a>
 					</td>
 					<td><?php echo $arg['unVelo']->Eta_Libelle;?></td>
-					<td><?php echo $arg['unVelo']->Vel_Type;?></td>
+					<td><?php echo $arg['unVelo']->Pdt_Libelle;?></td>
 					<td><?php echo $arg['unVelo']->Vel_Accessoire;?></td>
 				</tr>
 			<?php
@@ -29,7 +29,7 @@
 			?>
 		</tbody>
 	</table>
-	<form class="form-add" role="form" action="index.php?page=velo&amp;action=modifiervelo" method="GET" >
+	<form class="form-add" role="form" action="index.php" method="GET" >
 
 		<input type="hidden" name="page" class="form-control" value="velo" required >
 		<input type="hidden" name="action" class="form-control" value="modifiervelo" required >

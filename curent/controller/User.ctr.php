@@ -1,14 +1,12 @@
 <?php
 /**
  * gestion des utilisateurs et de leurs droit d'accee
- * @todo mettre en place la gestion des user
- * @todo ajouter le remember-me
  */
 class User
 {
 	private $id;
 	private $matricule;
-	private $nom;
+	private $name;
 	private $respAchat = false;
 
 	/** @var odbUser model de gestion Bdd */
@@ -16,12 +14,17 @@ class User
 
 	public function __construct($private = false)
 	{
+		/**
+		 * On regarde si le user est connecte,
+		 * si non, on lui affiche le formulaire de coo,
+		 * et on termine le script
+		 */
 		if (!$private and !($_SESSION['user']->estUser())) {
 			$_SESSION['user']->displayForm();
 			die;
 		}
 		// si il est connecte
-		// on instancie les model
+		// on instancie les model (lien avec la BDD)
 		$this->odbUser = new OdbUser();
 
 		// // page actuelle
@@ -64,7 +67,7 @@ class User
 
 	public function __sleep()
 	{
-		return array('id', 'matricule', 'nom', 'respAchat');
+		return array('id', 'matricule', 'name', 'respAchat');
 	}
 
 	public function __wakeup()
@@ -164,26 +167,50 @@ class User
 	 */
 	private function login()
 	{
-		// si on envois un nom et un mdp, alors on va faire les verif en bdd
-		if(!empty($_POST['nom']) and isset($_POST['mdp']))
+		// si on envois un name et un mdp, alors on va faire les verif en bdd
+		if(!empty($_POST['name']) and isset($_POST['mdp']))
 		{
-			if($this->odbUser->checkHashUser($_POST['nom'],
+			if($this->odbUser->checkHashUser($_POST['name'],
 				hash('sha512',
-					$_POST['nom'].$_POST['mdp'].$_POST['nom'])))
+					$_POST['name'].$_POST['mdp'].$_POST['name'])))
 			{
-				$user = $this->odbUser->getUser($_POST['nom']);
+				$user = $this->odbUser->getUser($_POST['name']);
 
 				$this->id = $user->Use_Num;
 				$this->matricule = $user->Use_Technicien;
-				$this->nom = $user->Use_Nom;
+				$this->name = $user->Use_Nom;
 				$this->respAchat = $user->Use_RespAchat;
+
+				if(!empty($_POST['remember_me']))
+				{
+					/** @var string un jeton qui servira de mot de passe */
+					$seed = bin2hex(openssl_random_pseudo_bytes(256));
+					$token = hash('sha512', $_POST['name'].$seed.$_POST['name']);
+
+					if($this->odbUser->saveToken($_POST['name'], $token))
+					{
+						// un cookie qui contient le name pour 3 mois
+						setcookie('name', $_POST['name'], time()+7776000);
+						// un cookie qui contient le token pour 3 mois
+						setcookie('remember_me', $seed, time()+7776000);
+					}
+				}
 
 				return true;
 			}
-			elseif ($this->odbUser->estUser($_POST['nom']))
+			elseif ($this->odbUser->estUser($_POST['name']))
 				$_SESSION['tampon']['error'][] = 'Erreur sur le mot de passe.';
 			else
 				$_SESSION['tampon']['error'][] = 'Erreur sur l\'identifiant.';
+		}
+		/** Si on a un cookie pour se souvenir de l'utilisateur */
+		elseif(!empty($_COOKIE['remember_me']) and isset($_COOKIE['name']))
+		{
+			$hash = hash('sha512', $_COOKIE['name'].$_COOKIE['remember_me'].$_COOKIE['name']);
+
+			if($trueHash = $this->odbUser->getToken($_COOKIE['name']))
+				if(strcmp($hash, $trueHash) === 0)
+					return true;
 		}
 
 		return false;
@@ -194,13 +221,16 @@ class User
 	 */
 	private function logout()
 	{
-		// pour le moment on supporte pas le remember-me
-		// if(isset($_COOKIE['remember_me']))
-		// 	setcookie('remember_me', '', time()-1);
+		if(isset($_COOKIE['remember_me']))
+			setcookie('remember_me', '', time()-1);
+		if(isset($_COOKIE['name'])){
+			$this->odbUser->forgetToken($_COOKIE['name']);
+			setcookie('name', '', time()-1);
+		}
 
 		$this->id = null;
 		$this->matricule = null;
-		$this->nom = null;
+		$this->name = null;
 		$this->respAchat = null;
 	}
 }

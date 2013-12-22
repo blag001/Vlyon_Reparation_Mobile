@@ -4,7 +4,23 @@
 					echo '&amp;valeur='.$arg['leVelo']->Vel_Num;
 			?>" method="POST" >
 		<h1 class="form-add-heading">Modifier un V&eacute;lo</h1>
-
+		<?php
+		if(!empty($_SESSION['tampon']['error']) and is_array($_SESSION['tampon']['error']))
+		{
+			?>
+			<div class="has-error">
+				<div class="input-group-addon">
+					<?php
+					foreach ($_SESSION['tampon']['error'] as $value) {
+						echo $value .'<br />';
+					}
+					$_SESSION['tampon']['error'] = null;
+					?>
+				</div>
+			</div>
+			<?php
+		}
+		?>
 		<div class="form-group">
 			<label for="vel_code">No du v&eacute;lo</label>
 			<input class="form-control" id="vel_code" type="text" name="codeVelo" value="<?php
@@ -56,7 +72,7 @@
 		</div>
 		<div class="form-group">
 			<label for="vel_type">Type du v&eacute;lo</label>
-			<select class="form-control" id="vel_type" name="typeVelo" >
+			<select class="form-control" id="vel_type" name="typeVelo" disabled>
 				<?php
 				if(
 					!empty($arg['lesTypes'])
@@ -84,7 +100,7 @@
 		</div>
 		<div class="checkbox">
 			<label for="vel_casse">
-				<input type="checkbox" value="1" id="vel_casse" name="veloCasse">
+				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" disabled>
 				V&eacute;lo Cass&eacute;.
 			</label>
 		</div>
