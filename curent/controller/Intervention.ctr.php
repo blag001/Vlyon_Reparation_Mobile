@@ -1,31 +1,32 @@
 <?php
 class Intervention
 {
-	/** @var OdbDemandeInter model de gestion Bdd */
+		/** @var OdbDemandeInter model de gestion Bdd */
 	private $odbDemandeInter;
-	/** @var OdbBonIntervention model de gestion Bdd */
+		/** @var OdbBonIntervention model de gestion Bdd */
 	private $odbBonIntervention;
 
 	public function __construct()
 	{
-		/**
-		 * On regarde si le user est connecte,
-		 * si non, on lui affiche le formulaire de coo,
-		 * et on termine le script
-		 */
+			/**
+			 * On regarde si le user est connecte,
+			 * si non, on lui affiche le formulaire de coo,
+			 * et on termine le script
+			 */
 		if (!($_SESSION['user']->estUser())) {
 			$_SESSION['user']->displayForm();
 			die;
 		}
-		// si il est connecte
-		// on instancie les model (lien avec la BDD)
+
+			// si il est connecte
+			// on instancie les model (lien avec la BDD)
 		$this->odbDemandeInter = new OdbDemandeInter();
 		$this->odbBonIntervention = new OdbBonIntervention();
 
-		// page actuelle
+			// page actuelle
 		$_SESSION['tampon']['menu']['title'] = 'Intervention';
 		$_SESSION['tampon']['menu']['url'] = 'index.php?page=intervention&amp;action=interventions_nt';
-		// liste des sous menus
+			// liste des sous menus
 		$_SESSION['tampon']['sous_menu']['list'] =
 			array(
 					array('url'=>'index.php?page=intervention&amp;action=interventions_nt',
@@ -45,11 +46,11 @@ class Intervention
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
 
-		/**
-		 * Switch de gestion des actions de Intervention
-		 *
-		 * @param string $_GET['action'] contient l'action demmandee
-		 */
+			/**
+			 * Switch de gestion des actions de Intervention
+			 *
+			 * @param string $_GET['action'] contient l'action demmandee
+			 */
 		switch ($_GET['action']) {
 			case 'unedemandeinter':
 				$this->afficherUneDemandeInter();
@@ -67,7 +68,7 @@ class Intervention
 				$this->rechercherUnBonInter();
 				break;
 
-				case 'creerbonintervention':
+			case 'creerbonintervention':
 				$this->creerUnBonIntervention();
 				break;
 
@@ -79,10 +80,10 @@ class Intervention
 		}
 	}
 
-	/**
-	 * affiche toutes les demandes d'interventions non traitees
-	 * @return void
-	 */
+		/**
+		 * affiche toutes les demandes d'interventions non traitees
+		 * @return void
+		 */
 	protected function afficherLesDemandesInter()
 	{
 		$lesDemandesINT = $this->odbDemandeInter->getLesDemandesNT();
@@ -90,22 +91,22 @@ class Intervention
 		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=interventions_nt';
 		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Non trait&eacute;es';
 
-		/**
-		 * Load des vues
-		 */
+			/**
+			 * Load des vues
+			 */
 		view('htmlHeader');
 		view('contentMenu');
 		view('contentAllDINT', array('lesDemandesINT'=>$lesDemandesINT));
 		view('htmlFooter');
 	}
 
-	/**
-	 * affiche une demande d'interventions
-	 * @return void
-	 */
+		/**
+		 * affiche une demande d'interventions
+		 * @return void
+		 */
 	protected function afficherUneDemandeInter()
 	{
-		// si la demande existe
+			// si la demande existe
 		if (
 				!empty($_GET['valeur'])
 				and $this->odbDemandeInter->estDemandeInterById($_GET['valeur']))
@@ -116,9 +117,9 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=unedemandeinter';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une demande';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentOneDemI', array('uneDemandeInter'=>$uneDemandeInter));
@@ -132,22 +133,23 @@ class Intervention
 
 			$_SESSION['tampon']['error'][] = 'La Demande d\'Intervention ne semble pas exister...';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}
 	}
-	/**
-	 * affiche ses interv quand on est technicient
-	 * @return void
-	 */
+
+		/**
+		 * affiche ses interv quand on est technicient
+		 * @return void
+		 */
 	protected function afficherMesInter()
 	{
-		// si le compte est bien celui d'un tech
+			// si le compte est bien celui d'un tech
 		if ($_SESSION['user']->estTechnicien())
 		{
 			$mesInterventions = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
@@ -159,9 +161,9 @@ class Intervention
 			if (empty($mesInterventions))
 				$_SESSION['tampon']['error'][] = 'Pas d\'Intervention...';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentMesInterventions', array('mesInterventions'=>$mesInterventions));
@@ -175,9 +177,9 @@ class Intervention
 
 			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentError');
@@ -185,13 +187,14 @@ class Intervention
 		}
 
 	}
-	/**
-	 * affiche un bon d'interv quand on est technicient
-	 * @return void
-	 */
+
+		/**
+		 * affiche un bon d'interv quand on est technicient
+		 * @return void
+		 */
 	protected function afficherMonBonInter()
 	{
-		// si le bon existe
+			// si le bon existe
 		if (
 				!empty($_GET['valeur'])
 				and $_SESSION['user']->estTechnicien()
@@ -204,9 +207,9 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=monbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentOneBonInter', array('unBonInter'=>$unBonInter));
@@ -220,9 +223,9 @@ class Intervention
 
 			$_SESSION['tampon']['error'][] = 'Le bon d\'Intervention ne semble pas exister...';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentError');
@@ -231,29 +234,31 @@ class Intervention
 
 	}
 
-	/**
-	 * @todo  NON FINI EN DESSOUS
-	 *        cf la recherche velo ou station
-	 * @return void
-	 */
+		/**
+		 * permet une recherche dans ses bons d'interventions
+		 * @return void
+		 */
 	protected function rechercherUnBonInter()
 	{
 		if ($_SESSION['user']->estTechnicien())
 		{
+				// si une valeur, on lance la recherche
 			if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
 				$lesBonsInter = $this->odbBonIntervention->searchMesBonIntervention($_GET['valeur'], $_SESSION['user']->getMatricule());
-			else
+			else // par def on charge tout mes bons
 				$lesBonsInter = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
+
 			$_SESSION['tampon']['html']['title'] = 'Rechercher un bon d\'intervention';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=rechercherbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher bon';
 
+				// rien en retour ? une erreur
 			if (empty($lesBonsInter))
 				$_SESSION['tampon']['error'][] = 'Pas de bon...';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentSearchBonIntervention');
@@ -268,20 +273,21 @@ class Intervention
 
 			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
 		}
 	}
-	/**
-	 * @todo faire les controle si envois ou non (enregistrement ou form)
-	 * @todo  faire les check de data avant de lancer le save()
-	 * @return void
-	 */
+
+		/**
+		 * @todo faire les controle si envois ou non (enregistrement ou form)
+		 * @todo  faire les check de data avant de lancer le save()
+		 * @return void
+		 */
 	protected function creerUnBonIntervention()
 	{
 		if(
@@ -302,9 +308,9 @@ class Intervention
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
 
-			/**
-			 * Load des vues
-			 */
+				/**
+				 * Load des vues
+				 */
 			view('htmlHeader');
 			view('contentMenu');
 			view('contentCreerUnBon', array(
