@@ -5,6 +5,8 @@ class Intervention
 	private $odbDemandeInter;
 		/** @var OdbBonIntervention model de gestion Bdd */
 	private $odbBonIntervention;
+		/** @var OdbVelo model de gestion Velo en Bdd */
+	private $odbVelo;
 
 	public function __construct()
 	{
@@ -22,6 +24,7 @@ class Intervention
 			// on instancie les model (lien avec la BDD)
 		$this->odbDemandeInter = new OdbDemandeInter();
 		$this->odbBonIntervention = new OdbBonIntervention();
+		$this->odbVelo = new OdbVelo();
 
 			// page actuelle
 		$_SESSION['tampon']['menu']['title'] = 'Intervention';
@@ -297,6 +300,8 @@ class Intervention
 			$leVeloNum = $_GET['valeur'];
 		else
 			$leVeloNum = null;
+
+		$lesVelos = $this->odbVelo->getLesVelos();
 
 		if (false) {
 			# @todo on check qu'il y a un envois valide avant de save

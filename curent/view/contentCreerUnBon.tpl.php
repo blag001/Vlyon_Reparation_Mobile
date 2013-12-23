@@ -1,7 +1,7 @@
 <div class="container">
 	<form class="form-add" role="form" action="index.php?page=intervention&amp;action=creerbonintervention" method="POST" >
 		<h1 class="form-add-heading">Cr&eacute;er un bon d'intervention</h1>
-		
+
 		<div class="form-group">
 			<label for="vel_num">V&eacute;lo concern&eacute;</label>
 			<select class="form-control" id="vel_station" name="stationVelo" >
@@ -14,7 +14,7 @@
 					foreach ($arg['lesVelos'] as $unVelo)
 					{
 						echo '<option';
-						if ($unVelo->Vel_Num == $arg['leVelo']->BI_Velo)
+						if ($unVelo->Vel_Num == $arg['leVeloNum'])
 							echo ' selected ';
 						echo '>'.$unVelo->Vel_Num.'</option>';
 					}
@@ -24,10 +24,10 @@
 
 			<label for="compteRendu">Comtpe rendu</label>
 			<input type="text" class="form-control"  id="compteRendu" name="compteRendu" placeholder="Motif du probleme">
-			
+
 			<label for="dateDebut">Date de d&eacute;but de l'intervention</label>
 			<input type="date" class="form-control"  id="dateDebut" name="dateDebut" placeholder="Date de debut">
-			
+
 			<label for="dateFin">Date de fin de l'intervention</label>
 			<input type="date" class="form-control"  id="dateFin" name="dateFin" placeholder="Date de fin">
 
