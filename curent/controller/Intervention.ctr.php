@@ -309,7 +309,7 @@ class Intervention
 		}
 		else
 		{
-			$_SESSION['tampon']['title'] = 'Cr&eacute;er un bon d\'intervention';
+			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er un bon d\'intervention';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
 
