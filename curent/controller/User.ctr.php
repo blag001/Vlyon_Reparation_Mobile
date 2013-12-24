@@ -200,7 +200,7 @@ class User
 						setcookie('remember_me', $seed, time()+7776000);
 					}
 				}
-
+				header('Location:'.$_SERVER['PHP_SELF']);
 				return true;
 			}
 			elseif ($this->odbUser->estUser($_POST['name']))
