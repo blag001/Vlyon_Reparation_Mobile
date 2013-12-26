@@ -1,6 +1,8 @@
 FAIT //virer les champ dans le modif velo 
 
-Faire la page de creation d'un bon d'intervention
+| Faire la page de creation d'un bon d'intervention
+ > en cours, il faut gerer les trois entrée possible : nature, avec le velo, avec la demande
+ > surement changer le "_POST['valeur']" si on veux pas se planter
 Faire la page de creation d'une demande d'intervention
 
 Maj la doc des choix technique &co...
