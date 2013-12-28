@@ -37,6 +37,30 @@ class OdbVelo{
 		return $lesVelos;
 	}
 
+	public function getLesVelos(){
+
+		$req = 'SELECT *
+				FROM VELO, ETAT, PRODUIT
+				WHERE VELO.Vel_Etat = ETAT.Eta_Code
+					AND VELO.Vel_Type = PRODUIT.Pdt_Code';
+
+		$lesVelos = $this->oBdd->query($req);
+
+		return $lesVelos;
+	}
+
+	public function getLesIdVelos(){
+
+		$req = 'SELECT Vel_Num
+				FROM VELO, ETAT, PRODUIT
+				WHERE VELO.Vel_Etat = ETAT.Eta_Code
+					AND VELO.Vel_Type = PRODUIT.Pdt_Code';
+
+		$lesVelos = $this->oBdd->query($req);
+
+		return $lesVelos;
+	}
+
 	public function getNouveauxVelos(){
 
 		$req = 'SELECT *

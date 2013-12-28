@@ -5,6 +5,8 @@ class Intervention
 	private $odbDemandeInter;
 	/** @var OdbBonIntervention model de gestion Bdd */
 	private $odbBonIntervention;
+	/** @var OdbVelo model de velo Bdd */
+	private $odbVelo;
 
 	public function __construct()
 	{
@@ -21,6 +23,7 @@ class Intervention
 		// on instancie les model (lien avec la BDD)
 		$this->odbDemandeInter = new OdbDemandeInter();
 		$this->odbBonIntervention = new OdbBonIntervention();
+		$this->odbVelo = new OdbVelo();
 
 		// page actuelle
 		$_SESSION['tampon']['menu']['title'] = 'Intervention';
@@ -298,6 +301,9 @@ class Intervention
 		}
 		else
 		{
+			//on recupere tous les codes velos pour la liste deroulante
+			$lesVelos = $this->odbVelo->getLesVelos();
+
 			$_SESSION['tampon']['title'] = 'Cr&eacute;er un bon d\'intervention';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
@@ -311,6 +317,8 @@ class Intervention
 				'leVeloNum'=>$leVeloNum,
 				'lesVelos'=>$lesVelos,
 				));
+			var_dump($lesVelos);
+			die();
 			view('htmlFooter');
 		}
 
