@@ -77,7 +77,7 @@ class OdbUser{
 				if(!$this->oNosql->create('remember_me'))
 					return false;
 
-			$this->oNosql->delet('remember_me', $name);
+			$this->oNosql->delete('remember_me', $name);
 
 			return $this->oNosql->insert('remember_me', $name, $token);
 		}
@@ -87,7 +87,7 @@ class OdbUser{
 	public function forgetToken($name)
 	{
 		if($name !== null)
-			return $this->oNosql->delet('remember_me', $name);
+			return $this->oNosql->delete('remember_me', $name);
 
 		return false ;
 	}
