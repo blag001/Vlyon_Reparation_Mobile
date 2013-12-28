@@ -7,3 +7,5 @@ Faire la page de creation d'une demande d'intervention
  > idem, passer avec un velo en arg (add le lien sur le detail velo)
 
 Maj la doc des choix technique &co...
+=> tout fusionner dans un seul doc, histoire de pas trop se compliquer
++ ajouter la politique de secu (PDO, check des input, exsistance des var, "requier" & co)
