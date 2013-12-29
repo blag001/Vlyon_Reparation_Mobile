@@ -9,3 +9,5 @@ Faire la page de creation d'une demande d'intervention
 Maj la doc des choix technique &co...
 => tout fusionner dans un seul doc, histoire de pas trop se compliquer
 + ajouter la politique de secu (PDO, check des input, exsistance des var, "requier" & co)
++ add le justificatif NoSQL 
++ add l'explication du cooki de remember-me
