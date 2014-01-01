@@ -50,4 +50,4 @@ Normalement vous devriez avoir une Bdd operationnel, il ne vous reste que les pa
 
 Simple a realiser :
 * Copiez le contenue de `/curent/` dans votre dossier de test
-* sur un system unix, passez le CHMOD a 777 pour le test
+* sur un system unix, passez le CHMOD a 777 pour le test (**le dossier racine de l'app doit être écrivable par PHP**)
