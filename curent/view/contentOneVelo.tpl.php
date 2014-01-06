@@ -43,7 +43,7 @@
 	<form class="form-add" role="form" action="index.php" method="GET" >
 		<input type="hidden" name="page" class="form-control" value="intervention" required >
 		<input type="hidden" name="action" class="form-control" value="creerbonintervention" required >
-		<input type="hidden" name="valeur" class="form-control" <?php
+		<input type="hidden" name="code_velo" class="form-control" <?php
 			if(!empty($arg['unVelo']))
 				echo 'value="'.$arg['unVelo']->Vel_Num.'" ';
 			?> required >
