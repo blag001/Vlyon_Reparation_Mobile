@@ -66,12 +66,12 @@ create table TECHNICIEN
 -- ============================================================
 create table VELO
 (
-    Vel_Num           CHAR(5)                not null,
+    Vel_Num           INT                    not null AUTO_INCREMENT,
     Vel_Station       CHAR(5)                null    ,
-    Vel_Etat          INT               not null,
+    Vel_Etat          INT                    not null,
     Vel_Type          CHAR(6)                not null,
-    Vel_Accessoire    VARCHAR(20)           null    ,
-    Vel_Casse         BIT(1)                null    ,
+    Vel_Accessoire    VARCHAR(20)            null    ,
+    Vel_Casse         BIT(1)                 null    ,
     constraint PK_VELO primary key (Vel_Num)
 )
 ;
@@ -99,12 +99,12 @@ create index appartenir_FK on VELO (Vel_Type asc)
 -- ============================================================
 create table DEMANDEINTER
 (
-    DemI_Num          CHAR(5)                not null,
-    DemI_Velo         CHAR(5)                not null,
+    DemI_Num          INT                    not null AUTO_INCREMENT,
+    DemI_Velo         INT                    not null,
     DemI_Date         DATE                   null    ,
-    DemI_Technicien    INT                not null,
-    DemI_Motif        VARCHAR(50)           null    ,
-    DemI_Traite       BIT(1)                null    ,
+    DemI_Technicien   INT                    not null,
+    DemI_Motif        VARCHAR(50)            null    ,
+    DemI_Traite       BIT(1)                 null    ,
     constraint PK_DEMANDEINTER primary key (DemI_Num)
 )
 ;
@@ -126,16 +126,16 @@ create index rediger_FK on DEMANDEINTER (DemI_Technicien asc)
 -- ============================================================
 create table BONINTERV
 (
-    BI_Num            CHAR(10)               not null,
-    BI_Velo           CHAR(5)                not null,
+    BI_Num            INT                    not null AUTO_INCREMENT,
+    BI_Velo           INT                    not null,
     BI_DatDebut       DATE                   null    ,
     BI_DatFin         DATE                   null    ,
-    BI_CpteRendu      VARCHAR(100)          null    ,
-    BI_Reparable      BIT(1)                null    ,
-    BI_Demande        CHAR(5)                null    ,
-    BI_Technicien     INT                not null,
-    BI_SurPlace       BIT(1)                null    ,
-    BI_Duree          DECIMAL(5)              null    ,
+    BI_CpteRendu      VARCHAR(100)           null    ,
+    BI_Reparable      BIT(1)                 null    ,
+    BI_Demande        INT                    null    ,
+    BI_Technicien     INT                    not null,
+    BI_SurPlace       BIT(1)                 null    ,
+    BI_Duree          DECIMAL(5)             null    ,
     constraint PK_BONINTERV primary key (BI_Num)
 )
 ;
