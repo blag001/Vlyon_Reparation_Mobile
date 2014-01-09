@@ -50,14 +50,14 @@
 
 			<div class="checkbox">
 				<label for="vel_reparable">
-				<input type="checkbox" value="0"  name="veloReparable">
+				<input type="checkbox" id="vel_reparable" name="veloReparable">
 				V&eacute;lo NON r&eacute;parable
 				</label>
 			</div>
 
 			<div class="checkbox">
 				<label for="vel_surPlace">
-				<input type="checkbox" value="1" name="surPlace">
+				<input type="checkbox" id="vel_surPlace" name="surPlace" checked="checked">
 				R&eacute;parable sur place
 				</label>
 			</div>

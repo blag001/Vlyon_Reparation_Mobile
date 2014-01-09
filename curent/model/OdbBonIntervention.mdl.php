@@ -96,7 +96,6 @@ class OdbBonIntervention
 	public function creerUnBonInter($code)
 	{
 		$req = 'INSERT INTO BONINTERV (
-					 `BI_Num`,
 					 `BI_Velo`,
 					 `BI_DatDebut`,
 					 `BI_DatFin`,
@@ -108,7 +107,6 @@ class OdbBonIntervention
 					 `BI_Duree`
 					)
 				VALUES (
-					 :code,
 					 :veloCode,
 					 :dateDebut,
 					 :dateFin,
@@ -121,14 +119,13 @@ class OdbBonIntervention
 				 	)';
 
 		$out = $this->oBdd->exec($req, array(
-				 'code'=>$code,
 				 'veloCode'=>$_POST['veloCode'],
 				 'dateDebut'=>$_POST['dateDebut'],
 				 'dateFin'=>$_POST['dateFin'],
 				 'cpteRendu'=>$_POST['cpteRendu'],
 				 'reparable'=>$_POST['reparable'],
 				 'demande'=>$_POST['demande'],
-				 'technicienCode'=>$_POST['technicienCode'],
+				 'technicienCode'=>$_SESSION['user']->getMatricule() ,
 				 'surPlace'=>$_POST['surPlace'],
 				 'duree'=>$_POST['duree'],
 				));
