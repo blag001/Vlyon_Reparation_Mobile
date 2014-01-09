@@ -93,7 +93,7 @@ class OdbBonIntervention
 	 * on cree une intervention
 	 * MAJ : normalement elle est OK, mais faut check...
 	 */
-	public function creerUnBonInter($code)
+	public function creerUnBonInter()
 	{
 		$req = 'INSERT INTO BONINTERV (
 					 `BI_Velo`,
