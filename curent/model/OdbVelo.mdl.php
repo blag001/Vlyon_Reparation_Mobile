@@ -42,7 +42,6 @@ class OdbVelo{
 		$req = 'SELECT *
 				FROM VELO, ETAT, PRODUIT
 				WHERE VELO.Vel_Etat = ETAT.Eta_Code
-<<<<<<< HEAD
 					AND VELO.Vel_Type = PRODUIT.Pdt_Code';
 
 		$lesVelos = $this->oBdd->query($req);

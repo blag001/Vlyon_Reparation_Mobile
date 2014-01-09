@@ -316,7 +316,9 @@ class Intervention
 		}
 		$lesVelos = $this->odbVelo->getLesVelos();
 
-		if (false) {
+		if (!empty($_POST['veloCode']) and !empty($_POST['dateDebut']) and !empty($_POST['dateFin'])  and !empty($_POST['cpteRendu'])
+			 and !empty($_POST['reparable']) and !empty($_POST['demande'])  and !empty($_POST['technicienCode'])
+			 and !empty($_POST['surPlace']) and !empty($_POST['duree']) ) {
 			# @todo on check qu'il y a un envois valide avant de save
 			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
 		}
@@ -343,8 +345,8 @@ class Intervention
 				'laDemandeInterNum'=>$laDemandeInterNum,
 				'lesVelos'=>$lesVelos,
 				));
-			var_dump($lesVelos);
-			die();
+			//var_dump($lesVelos);
+			//die();
 			view('htmlFooter');
 		}
 
