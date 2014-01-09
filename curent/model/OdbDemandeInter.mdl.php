@@ -8,7 +8,7 @@ class OdbDemandeInter
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
-	public function estDemandeInterById($code)
+	public function estDemandeInter($code)
 	{
 		if(!empty($code))
 		{
@@ -46,6 +46,17 @@ class OdbDemandeInter
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
 
 		return $laDemandeInter;
+	}
+
+	public function getIdVeloByIdDemandeInter($id)
+	{
+		$req = "SELECT DemI_Velo AS Vel_Num
+				FROM DEMANDEINTER
+				WHERE DemI_Num = :id";
+
+		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+
+		return $laDemandeInter->Vel_Num;
 	}
 
 	/**

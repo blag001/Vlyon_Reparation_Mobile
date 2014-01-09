@@ -115,7 +115,7 @@ class Intervention
 			// si la demande existe
 		if (
 				!empty($_GET['valeur'])
-				and $this->odbDemandeInter->estDemandeInterById($_GET['valeur']))
+				and $this->odbDemandeInter->estDemandeInter($_GET['valeur']))
 		{
 			$uneDemandeInter = $this->odbDemandeInter->getUneDemandeInter($_GET['valeur']);
 
@@ -297,13 +297,23 @@ class Intervention
 	protected function creerUnBonIntervention()
 	{
 		if(
-			isset($_GET['valeur'])
-			and $this->odbVelo->estVelo($_GET['valeur'])
-			)
-			$leVeloNum = $_GET['valeur'];
-		else
-			$leVeloNum = null;
-
+			isset($_GET['code_demande'])
+			and $this->odbDemandeInter->estDemandeInter($_GET['code_demande'])
+			){
+			$leVeloNum = $this->odbDemandeInter->getIdVeloByIdDemandeInter($_GET['code_demande']);
+			$laDemandeInterNum = $_GET['code_demande'];
+		}
+		elseif(
+			isset($_GET['code_velo'])
+			and $this->odbVelo->estVelo($_GET['code_velo'])
+			){
+				$leVeloNum = $_GET['code_velo'];
+				$laDemandeInterNum = null;
+			}
+		else{
+				$leVeloNum = null;
+				$laDemandeInterNum = null;
+		}
 		$lesVelos = $this->odbVelo->getLesVelos();
 
 		if (false) {
@@ -330,6 +340,7 @@ class Intervention
 			view('contentMenu');
 			view('contentCreerUnBon', array(
 				'leVeloNum'=>$leVeloNum,
+				'laDemandeInterNum'=>$laDemandeInterNum,
 				'lesVelos'=>$lesVelos,
 				));
 			var_dump($lesVelos);

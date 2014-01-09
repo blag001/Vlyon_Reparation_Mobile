@@ -3,8 +3,25 @@
 		<h1 class="form-add-heading">Cr&eacute;er un bon d'intervention</h1>
 
 		<div class="form-group">
+			<?php
+			if(!empty($arg['laDemandeInterNum']))
+			{ ?>
+				<label for="code_demande">Demande concern&eacute;e</label>
+				<select class="form-control" id="code_demande" name="code_demande" disabled>
+					<?php
+					echo '<option selected >'.$arg['laDemandeInterNum'].'</option>';
+					?>
+				</select>
+				<?php
+			}
+			?>
 			<label for="vel_num">V&eacute;lo concern&eacute;</label>
-			<select class="form-control" id="vel_station" name="stationVelo" >
+			<select class="form-control" id="vel_num" name="vel_num"
+				<?php
+				if(!empty($arg['laDemandeInterNum']))
+					echo ' disabled';
+				?>
+				>
 				<?php
 				if(
 					!empty($arg['lesVelos'])
