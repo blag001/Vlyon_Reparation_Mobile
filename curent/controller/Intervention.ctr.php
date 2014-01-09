@@ -47,6 +47,8 @@ class Intervention
 						'title'=>'Recherche bon'),
 					array('url'=>'index.php?page=intervention&amp;action=creerbonintervention' ,
 						'title'=>'Creer un bon'),
+					array('url'=>'index.php?page=intervention&amp;action=creerdemandeintervention' ,
+						'title'=>'Creer une demande'),
 				);
 
 		if (empty($_GET['action']))
@@ -76,6 +78,10 @@ class Intervention
 
 			case 'creerbonintervention':
 				$this->creerUnBonIntervention();
+				break;
+
+			case 'creerdemandeintervention':
+				$this->creerUneDemandeIntervention();
 				break;
 
 			case 'interventions_nt':
@@ -357,11 +363,38 @@ class Intervention
 				'laDemandeInterNum'=>$laDemandeInterNum,
 				'lesVelos'=>$lesVelos,
 				));
-			//var_dump($lesVelos);
-			//die();
 			view('htmlFooter');
 		}
 
+	}
+
+	# @todo mettre en place les verifs
+	protected function creerUneDemandeIntervention()
+	{
+			$leVeloNum = null;
+			$laDemandeInterNum = null;
+		
+			//on recupere tous les codes velos pour la liste deroulante
+			$lesVelos = $this->odbVelo->getLesVelos();
+
+			$_SESSION['tampon']['title'] = 'Cr&eacute;er une demande d\'intervention';
+
+			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er une demande d\'intervention';
+
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = '';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer une demande';
+
+				/**
+				 * Load des vues
+				 */
+			view('htmlHeader');
+			view('contentMenu');
+			view('contentCreerUneDemande', array(
+				'leVeloNum'=>$leVeloNum,
+				'laDemandeInterNum'=>$laDemandeInterNum,
+				'lesVelos'=>$lesVelos,
+				));
+			view('htmlFooter');
 	}
 
 

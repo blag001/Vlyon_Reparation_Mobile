@@ -39,8 +39,8 @@
 				?>
 			</select>
 
-			<label for="compteRendu">Comtpe rendu</label>
-			<input type="text" class="form-control"  id="compteRendu" name="compteRendu" placeholder="Motif du probleme">
+			<label for="cpteRendu">Comtpe rendu</label>
+			<input type="text" class="form-control"  id="cpteRendu" name="cpteRendu" placeholder="Motif du probleme">
 
 			<label for="dateDebut">Date de d&eacute;but de l'intervention</label>
 			<input type="date" class="form-control"  id="dateDebut" name="dateDebut" placeholder="Date de debut">

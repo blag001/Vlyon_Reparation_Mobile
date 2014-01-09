@@ -76,5 +76,31 @@ class OdbDemandeInter
 		return $lesDemandesInter;
 	}
 
+	public function creerUneDemande()
+	{
+		$req = 'INSERT INTO DEMANDEINTER (
+					 `DemI_Velo`,
+					 `DemI_Date`,
+					 `DemI_Technicien`,
+					 `DemI_Motif`,
+					 `DemI_Traite`,
+					)
+				VALUES (
+					 :veloCode,
+					 :dateDemande,
+					 :technicienCode,
+					 :cpteRendu,
+					 :traite
+				 	)';
+
+		$out = $this->oBdd->exec($req, array(
+				 'veloCode'=>$_POST['veloCode'],
+				 'dateDemande'=>$_POST['dateDemande'],
+				 'technicienCode'=>$_SESSION['user']->getMatricule() ,
+				 'cpteRendu'=>$_POST['cpteRendu'],
+				 'traite'=>$_POST['traite'],
+				));
+		return $out;
+	}
 
 }
