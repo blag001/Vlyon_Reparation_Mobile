@@ -47,8 +47,8 @@ class Intervention
 						'title'=>'Recherche bon'),
 					array('url'=>'index.php?page=intervention&amp;action=creerbonintervention' ,
 						'title'=>'Creer un bon'),
-					array('url'=>'index.php?page=intervention&amp;action=creerdemandeintervention' ,
-						'title'=>'Creer une demande'),
+					// array('url'=>'index.php?page=intervention&amp;action=creerdemandeintervention' ,
+					// 	'title'=>'Creer une demande'),
 				);
 
 		if (empty($_GET['action']))
@@ -330,9 +330,19 @@ class Intervention
 
 
 			// si on a un envois valide, on lance la sauvegarde
-		if( ($error = $this->checkSubmitBonI()) == null and !empty($_POST['sbmtMkBon']) )
+		if( ($error = $this->checkSubmitBonI()) == null and isset($_POST['sbmtMkBon']) and false )
 		{
-			# @todo on check qu'il y a un envois valide avant de save
+			// en cours
+			$dateDebut = date_create($_POST['dateDebut']);
+			$dateFin = date_create($_POST['dateFin']);
+			$duree = date_diff($dateDebut, $dateFin, true);
+			$_POST['duree'] = $duree->format('a');
+
+
+			$_POST['reparable'];
+			$_POST['demande'];
+			$_POST['surPlace'];
+
 			// $unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
 		}
 		else // si pas d'envoi ou pas valide
