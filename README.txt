@@ -1,4 +1,5 @@
-﻿Vlyon_Reparation_Mobile Fichier read-me
+﻿
+* Les identifiants de connexion a l'app via l'interface web sont root / rootVlyon_Reparation_Mobile Fichier read-me
 =======================================
 
 _Ceci est un fichier Read-me, il résume la structure globale et le rôle des différents dossier._
@@ -51,3 +52,4 @@ Normalement vous devriez avoir une Bdd operationnel, il ne vous reste que les pa
 Simple a realiser :
 * Copiez le contenue de `/curent/` dans votre dossier de test
 * sur un system unix, passez le CHMOD a 777 pour le test (**le dossier racine de l'app doit être écrivable par PHP**)
+* Les identifiants de connexion a l'app via l'interface web sont root / root
