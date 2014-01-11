@@ -37,18 +37,20 @@ class Intervention
 			array(
 					array('url'=>'index.php?page=intervention&amp;action=interventions_nt',
 						'title'=>'Non trait&eacute;es'),
-					array('url'=>'index.php?page=intervention&amp;action=monbonintervention',
-						'title'=>'Une intervention'),
+					array('url'=>'index.php?page=intervention&amp;action=creerbonintervention' ,
+						'title'=>'Intervenir'),
 					array('url'=>'index.php?page=intervention&amp;action=mesinterventions' ,
 						'title'=>'Mes interventions'),
+					array('url'=>'index.php?page=intervention&amp;action=rechercherbonintervention' ,
+						'title'=>'Rechercher intervention'),
+					array('url'=>'index.php?page=intervention&amp;action=monbonintervention',
+						'title'=>'Une intervention'),
+					// array('url'=>'index.php?page=intervention&amp;action=creerdemandeinter' ,
+					// 	'title'=>'Demander'),
+					// array('url'=>'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
+					// 	'title'=>'Rechercher intervention'),
 					array('url'=>'index.php?page=intervention&amp;action=unedemandeinter' ,
 						'title'=>'Une demande'),
-					array('url'=>'index.php?page=intervention&amp;action=rechercherbonintervention' ,
-						'title'=>'Recherche bon'),
-					array('url'=>'index.php?page=intervention&amp;action=creerbonintervention' ,
-						'title'=>'Creer un bon'),
-					// array('url'=>'index.php?page=intervention&amp;action=creerdemandeintervention' ,
-					// 	'title'=>'Creer une demande'),
 				);
 
 		if (empty($_GET['action']))
@@ -80,8 +82,8 @@ class Intervention
 				$this->creerUnBonIntervention();
 				break;
 
-			case 'creerdemandeintervention':
-				$this->creerUneDemandeIntervention();
+			case 'creerdemandeinter':
+				$this->creerUneDemandeInter();
 				break;
 
 			case 'interventions_nt':
@@ -217,7 +219,7 @@ class Intervention
 
 			$_SESSION['tampon']['html']['title'] = 'Bon Intervention - '.$unBonInter->BI_Num;
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=monbonintervention';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une intervention';
 
 				/**
 				 * Load des vues
@@ -227,11 +229,11 @@ class Intervention
 			view('contentOneBonInter', array('unBonInter'=>$unBonInter));
 			view('htmlFooter');
 		}
-		else
+		elseif(!empty($_GET['valeur']))
 		{
 			$_SESSION['tampon']['html']['title'] = 'Bon Intervention - ERREUR';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=monbonintervention';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un bon';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une intervention';
 
 			$_SESSION['tampon']['error'][] = 'Le bon d\'Intervention ne semble pas exister...';
 
@@ -243,6 +245,8 @@ class Intervention
 			view('contentError');
 			view('htmlFooter');
 		}
+		else
+			$this->rechercherUnBonInter();
 
 	}
 
@@ -262,7 +266,7 @@ class Intervention
 
 			$_SESSION['tampon']['html']['title'] = 'Rechercher un bon d\'intervention';
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=intervention&amp;action=rechercherbonintervention';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher bon';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher intervention';
 
 				// rien en retour ? une erreur
 			if (empty($lesBonsInter))
@@ -355,7 +359,7 @@ class Intervention
 			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er un bon d\'intervention';
 
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerbonintervention';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer un bon';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Intervenir';
 
 				/**
 				 * Load des vues
@@ -415,7 +419,7 @@ class Intervention
 	}
 
 	# @todo mettre en place les verifs
-	protected function creerUneDemandeIntervention()
+	protected function creerUneDemandeInter()
 	{
 			$leVeloNum = null;
 			$laDemandeInterNum = null;
@@ -428,7 +432,7 @@ class Intervention
 			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er une demande d\'intervention';
 
 			$_SESSION['tampon']['sous_menu']['curent']['url'] = '';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Creer une demande';
+			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Demander';
 
 				/**
 				 * Load des vues
