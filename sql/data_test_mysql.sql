@@ -66,7 +66,7 @@ INSERT INTO VELO
 
 -- `DemI_Num`, `DemI_Velo`, `DemI_Date`, `DemI_Technicien`, `DemI_Motif`, `DemI_Traite`
 INSERT INTO DEMANDEINTER
-	VALUES (null, '1', '2013-12-11', '1', 'changer la roue', 0);
+	VALUES (null, '1', '2013-12-11', '1', 'changer la roue', 1);
 INSERT INTO DEMANDEINTER
 	VALUES (null, '4', '2013-12-11', '1', 'changer les freins', 0);
 INSERT INTO DEMANDEINTER
@@ -76,9 +76,9 @@ INSERT INTO DEMANDEINTER
 
 -- `BI_Num`, `BI_Velo`, `BI_DatDebut`, `BI_DatFin`, `BI_CpteRendu`, `BI_Reparable`, `BI_Demande`, `BI_Technicien`, `BI_SurPlace`, `BI_Duree`
 INSERT INTO BONINTERV
-	VALUES (null, '7', '2013-06-18', '2013-06-18', 'usure naturel', '1', '', '1', '1', '0');
+	VALUES (null, '7', '2013-06-18', '2013-06-18', 'usure naturel', '1', '1', '1', '1', '0');
 INSERT INTO BONINTERV
-	VALUES (null, '2', '2013-02-14', '2013-02-14', 'casse de la pedale', '1', '', '1', '1', '0');
+	VALUES (null, '2', '2013-02-14', '2013-02-14', 'casse de la pedale', '1', '4', '1', '1', '0');
 
 INSERT INTO USER
 	VALUES( null, 'root', '6779bcb1f994927795f01178c45b345a36cdabef683618d11e85489441482dd55ad241d920b466418c5b865a4f96aa0fd1cd76a206f66e58de650bb3d16a9806', 0, null);
