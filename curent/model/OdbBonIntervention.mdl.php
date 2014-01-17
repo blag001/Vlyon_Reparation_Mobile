@@ -107,7 +107,7 @@ class OdbBonIntervention
 					 `BI_Duree`
 					)
 				VALUES (
-					 :veloCode,
+					 :Vel_Num,
 					 :dateDebut,
 					 :dateFin,
 					 :cpteRendu,
@@ -119,7 +119,7 @@ class OdbBonIntervention
 				 	)';
 
 		$out = $this->oBdd->exec($req, array(
-				 'veloCode'=>$_POST['veloCode'],
+				 'Vel_Num'=>$_POST['Vel_Num'],
 				 'dateDebut'=>$_POST['dateDebut'],
 				 'dateFin'=>$_POST['dateFin'],
 				 'cpteRendu'=>$_POST['cpteRendu'],

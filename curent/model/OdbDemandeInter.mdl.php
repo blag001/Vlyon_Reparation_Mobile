@@ -86,7 +86,7 @@ class OdbDemandeInter
 					 `DemI_Traite`,
 					)
 				VALUES (
-					 :veloCode,
+					 :Vel_Num,
 					 :dateDemande,
 					 :technicienCode,
 					 :cpteRendu,
@@ -94,7 +94,7 @@ class OdbDemandeInter
 				 	)';
 
 		$out = $this->oBdd->exec($req, array(
-				 'veloCode'=>$_POST['veloCode'],
+				 'Vel_Num'=>$_POST['Vel_Num'],
 				 'dateDemande'=>$_POST['dateDemande'],
 				 'technicienCode'=>$_SESSION['user']->getMatricule() ,
 				 'cpteRendu'=>$_POST['cpteRendu'],
