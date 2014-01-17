@@ -41,10 +41,6 @@ require_once 'inc/function.inc.php';
 if(empty($_SESSION['user']))
 	$_SESSION['user'] = new User(true);
 
-// nom de la page par defaut
-$_SESSION['tampon']['menu']['title'] = 'Station';
-// url de la page par defaut
-$_SESSION['tampon']['menu']['url'] = 'index.php?page=station';
 
 //////////////////////////
 // Fin d'initialisation //
