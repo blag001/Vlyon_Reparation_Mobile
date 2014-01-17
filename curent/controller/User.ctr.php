@@ -195,9 +195,9 @@ class User
 					if($this->odbUser->saveToken($_POST['name'], $token))
 					{
 							// un cookie qui contient le name pour 3 mois
-						setcookie('name', $_POST['name'], time()+7776000);
+						setcookie('name', $_POST['name'], time()+7776000, null, null, false, true);
 							// un cookie qui contient la seed pour 3 mois
-						setcookie('remember_me', $seed, time()+7776000);
+						setcookie('remember_me', $seed, time()+7776000, null, null, false, true);
 					}
 				}
 				header('Location:'.$_SERVER['PHP_SELF']);
