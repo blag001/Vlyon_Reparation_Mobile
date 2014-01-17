@@ -29,7 +29,7 @@ session_start();
 // on set les obj de connexion SQL et NoSql
 require_once 'inc/connexion.inc.php';
 // fonction pour afficher les template
-require_once 'inc/template.inc.php';
+require_once 'inc/function.inc.php';
 
 /**
  * contient un objet utilisateur et ses droits
