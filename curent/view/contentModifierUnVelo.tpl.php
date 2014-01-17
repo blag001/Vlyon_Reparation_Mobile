@@ -23,10 +23,10 @@
 		?>
 		<div class="form-group">
 			<label for="vel_code">No du v&eacute;lo</label>
-			<input class="form-control" id="vel_code" type="text" name="codeVelo" value="<?php
+			<input class="form-control" id="vel_code" type="text" name="codeVelo"<?php
 				if (!empty($arg['leVelo']))
-					echo $arg['leVelo']->Vel_Num;
-			?>" disabled>
+					echo ' value="'.$arg['leVelo']->Vel_Num.'"';
+			?> disabled="disabled">
 		</div>
 		<div class="form-group">
 			<label for="vel_station">Station du v&eacute;lo</label>
@@ -40,10 +40,10 @@
 				{
 					foreach ($arg['lesStations'] as $value)
 					{
-						echo '<option';
+						echo '<option value="'.$value->Sta_Code.'"';
 						if ($value->Sta_Code == $arg['leVelo']->Vel_Station)
-							echo ' selected ';
-						echo '>'.$value->Sta_Code.'</option>';
+							echo ' selected="selected"';
+						echo ' >'.$value->Sta_Code.'</option>';
 					}
 				}
 				?>
@@ -61,9 +61,9 @@
 				{
 					foreach ($arg['lesEtats'] as $value)
 					{
-						echo '<option value="' .$value->Eta_Code. '"';
+						echo '<option value="'.$value->Eta_Code.'"';
 						if ($value->Eta_Code == $arg['leVelo']->Vel_Etat)
-							echo ' selected ';
+							echo ' selected="selected"';
 						echo ' >'.$value->Eta_Libelle.'</option>';
 					}
 				}
@@ -72,7 +72,7 @@
 		</div>
 		<div class="form-group">
 			<label for="vel_type">Type du v&eacute;lo</label>
-			<select class="form-control" id="vel_type" name="typeVelo" disabled>
+			<select class="form-control" id="vel_type" name="typeVelo" disabled="disabled">
 				<?php
 				if(
 					!empty($arg['lesTypes'])
@@ -84,7 +84,7 @@
 					{
 						echo '<option value="' .$value->Pdt_Code. '"';
 						if ($value->Pdt_Code == $arg['leVelo']->Vel_Type)
-							echo ' selected ';
+							echo ' selected="selected"';
 						echo ' >'.$value->Pdt_Libelle.'</option>';
 					}
 				}
@@ -93,14 +93,14 @@
 		</div>
 		<div class="form-group">
 			<label for="vel_accessoire">Accessoire(s)</label>
-			<input class="form-control" id="vel_accessoire" type="text" name="accessoireVelo" <?php
+			<input class="form-control" id="vel_accessoire" type="text" name="accessoireVelo"<?php
 				if (!empty($arg['leVelo']))
-					echo 'value="'.$arg['leVelo']->Vel_Accessoire.'"';
+					echo ' value="'.$arg['leVelo']->Vel_Accessoire.'"';
 			?> >
 		</div>
 		<div class="checkbox">
 			<label for="vel_casse">
-				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" disabled>
+				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" disabled="disabled">
 				V&eacute;lo Cass&eacute;.
 			</label>
 		</div>

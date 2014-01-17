@@ -7,19 +7,20 @@
 			if(!empty($arg['laDemandeInterNum']))
 			{ ?>
 				<label for="code_demande">Demande concern&eacute;e</label>
-				<select class="form-control" id="code_demande" name="code_demande" disabled>
+				<select class="form-control" id="code_demande" name="code_demande" disabled="disabled">
 					<?php
-					echo '<option selected >'.$arg['laDemandeInterNum'].'</option>';
+					echo '<option selected="selected" value="'.$arg['laDemandeInterNum'].'" >';
+					echo $arg['laDemandeInterNum'].'</option>';
 					?>
 				</select>
 				<?php
 			}
 			?>
-			<label for="vel_num">V&eacute;lo concern&eacute;</label>
-			<select class="form-control" id="vel_num" name="vel_num"
+			<label for="Vel_Num">V&eacute;lo concern&eacute;</label>
+			<select class="form-control" id="Vel_Num" name="Vel_Num"
 				<?php
 				if(!empty($arg['laDemandeInterNum']))
-					echo ' disabled';
+					echo ' disabled="disabled"';
 				?>
 				>
 				<?php
@@ -31,8 +32,9 @@
 					foreach ($arg['lesVelos'] as $unVelo)
 					{
 						echo '<option';
+						echo ' value="'.$unVelo->Vel_Num.'" ';
 						if ($unVelo->Vel_Num == $arg['leVeloNum'])
-							echo ' selected ';
+							echo ' selected="selected" ';
 						echo '>'.$unVelo->Vel_Num.'</option>';
 					}
 				}

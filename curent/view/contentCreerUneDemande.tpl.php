@@ -7,7 +7,7 @@
 			<select class="form-control" id="vel_num" name="vel_num"
 				<?php
 				if(!empty($arg['laDemandeInterNum']))
-					echo ' disabled';
+					echo ' disabled="disabled"';
 				?>
 				>
 				<?php
@@ -18,9 +18,9 @@
 				{
 					foreach ($arg['lesVelos'] as $unVelo)
 					{
-						echo '<option';
+						echo '<option value="'.$unVelo->Vel_Num.'" ';
 						if ($unVelo->Vel_Num == $arg['leVeloNum'])
-							echo ' selected ';
+							echo ' selected="selected" ';
 						echo '>'.$unVelo->Vel_Num.'</option>';
 					}
 				}
