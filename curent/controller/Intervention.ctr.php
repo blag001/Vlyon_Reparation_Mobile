@@ -436,6 +436,20 @@ class Intervention
 	# @todo mettre en place les verifs
 	protected function creerUneDemandeInter()
 	{
+		// si on a un envois valide, on lance la sauvegarde
+		if( ($error = $this->checkSubmitBonI()) == null and isset($_POST['sbmtMkBon']) and false )
+		{
+			// en cours
+			$dateDemmande = date_create($_POST['dateDemmande']);
+
+			//j'ai pas trop compris ici ce qu'il faudra mettre
+			//les champs du formulaire?
+
+			// $unNouveauBon = $this->odbDemandeInter->creerUneDemande();
+		}
+
+		else
+		{
 			$leVeloNum = null;
 			$laDemandeInterNum = null;
 
@@ -446,7 +460,7 @@ class Intervention
 
 			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er une demande d\'intervention';
 
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = '';
+			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=creerdemandeintervention';
 			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Demander';
 
 				/**
@@ -460,6 +474,7 @@ class Intervention
 				'lesVelos'=>$lesVelos,
 				));
 			view('htmlFooter');
+		}
 	}
 
 }
