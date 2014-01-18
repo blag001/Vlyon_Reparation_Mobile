@@ -219,7 +219,7 @@ class Velo
 
 
 			$_SESSION['tampon']['html']['title'] = 'Modifier un V&eacute;lo';
-			$_SESSION['tampon']['menu'][1]['current'] = 'Modifier v&eacute;lo';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Modifier';
 
 				/** en cas de retour vide sur une des valeurs */
 			if (empty($lesStations))
@@ -241,7 +241,7 @@ class Velo
 					));
 			view('htmlFooter');
 		}
-		else
+		elseif(isset($_GET['valeur']))
 		{
 
 			$_SESSION['tampon']['html']['title'] = 'Modifier un V&eacute;lo - ERREUR';
@@ -257,5 +257,7 @@ class Velo
 			view('contentError');
 			view('htmlFooter');
 		}
+		else
+			$this->rechercherUnVelo();
 	}
 }

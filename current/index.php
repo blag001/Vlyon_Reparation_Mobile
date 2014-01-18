@@ -49,7 +49,7 @@ $_SESSION['tampon']['menu'][0]['list'] =
 	array(
 			'Station'      => 'index.php?page=station&amp;action=lesstations',
 			'Intervention' => 'index.php?page=intervention&amp;action=interventions_nt',
-			'V&eacute;lo'  => 'index.php?page=unvelo&amp;action=lesvelos',
+			'V&eacute;lo'  => 'index.php?page=velo&amp;action=lesvelos',
 		);
 
 $_SESSION['menu'] = new Menu($_SESSION['tampon']['menu']);

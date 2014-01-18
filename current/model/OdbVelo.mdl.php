@@ -114,7 +114,7 @@ class OdbVelo{
 		$req = 'UPDATE VELO
 				SET Vel_Station     = :stationVelo,
 					Vel_Etat        = :etatVelo,
-					Vel_Accessoire  = :accessoireVelo,
+					Vel_Accessoire  = :accessoireVelo
 				WHERE Vel_Num = :codeVelo';
 
 		$out = $this->oBdd->exec($req, array(

@@ -83,7 +83,7 @@ class OdbDemandeInter
 					 `DemI_Date`,
 					 `DemI_Technicien`,
 					 `DemI_Motif`,
-					 `DemI_Traite`,
+					 `DemI_Traite`
 					)
 				VALUES (
 					 :Vel_Num,
