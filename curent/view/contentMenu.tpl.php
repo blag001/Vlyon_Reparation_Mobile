@@ -15,48 +15,49 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
-					<a href="<?php echo $_SESSION['tampon']['menu']['url'];?>" class="dropdown-toggle" data-toggle="dropdown">
-						<?php echo $_SESSION['tampon']['menu']['title'];?> <b class="caret"></b></a>
+					<?php
+					$menu = $_SESSION['menu']->getCurrentMenu(0);
+					echo '<a href="'.$menu['url'].'" class="dropdown-toggle" data-toggle="dropdown">';
+					echo $menu['title'].' <b class="caret"></b></a>';
+					?>
 					<ul class="dropdown-menu">
-						<li <?php if($_SESSION['tampon']['menu']['title']=='Station') echo 'class="active"';?>>
-							<a href="index.php?page=station">Station</a>
-						</li>
-						<li <?php if($_SESSION['tampon']['menu']['title']=='Intervention') echo 'class="active"';?>>
-							<a href="index.php?page=intervention">Intervention</a>
-						</li>
-						<li <?php if($_SESSION['tampon']['menu']['title']=='V&eacute;lo') echo 'class="active"';?>>
-							<a href="index.php?page=velo">V&eacute;lo</a>
-						</li>
+						<?php
+						foreach ($_SESSION['menu']->getListMenu(0) as $title => $url) {
+							echo '<li';
+							if($_SESSION['menu']->isCurrentMenu(0, $title))
+								echo ' class="active"';
+							echo ' >';
+							echo '<a href="'.$url.'">'.$title.'</a>';
+							echo '</li>';
+						}
+
+						?>
 					</ul>
 				</li>
 
 				<?php
+				$subMenu = $_SESSION['menu']->getListMenu(1);
 				// si presence d'un sous menu
-				if(!empty($_SESSION['tampon']['sous_menu']) and is_array($_SESSION['tampon']['sous_menu']))
+				if(!empty($subMenu))
 				{
 					?>
 					<li class="dropdown">
-						<a href="<?php echo $_SESSION['tampon']['sous_menu']['curent']['url'];?>" class="dropdown-toggle" data-toggle="dropdown">
-							<?php echo $_SESSION['tampon']['sous_menu']['curent']['title'];?> <b class="caret"></b>
-						</a>
+						<?php
+						$menu = $_SESSION['menu']->getCurrentMenu(1);
+						echo '<a href="'.$menu['url'].'" class="dropdown-toggle" data-toggle="dropdown">';
+						echo $menu['title'].' <b class="caret"></b></a>';
+						?>
 						<ul class="dropdown-menu">
 						<?php
-						// on parcours les differents sous menus
-						if(
-							!empty($_SESSION['tampon']['sous_menu']['list'])
-							and is_array($_SESSION['tampon']['sous_menu']['list']))
-						{
-							foreach ($_SESSION['tampon']['sous_menu']['list'] as $value)
-							{
-								?>
-								<li <?php
-									if($value['title'] == $_SESSION['tampon']['sous_menu']['curent']['title'])
-										echo 'class="active"';?>>
-									<a href="<?php echo $value['url'];?>"><?php echo $value['title'];?></a>
-								</li>
-								<?php
-							}
+						foreach ($subMenu as $title => $url) {
+							echo '<li';
+							if($_SESSION['menu']->isCurrentMenu(1, $title))
+								echo ' class="active"';
+							echo ' >';
+							echo '<a href="'.$url.'">'.$title.'</a>';
+							echo '</li>';
 						}
+
 						?>
 						</ul>
 					</li>

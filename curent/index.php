@@ -22,6 +22,8 @@ spl_autoload_register('load_model');
 // on load les class de gestion des BDD
 require_once ('toolSql/Bdd.class.php');
 require_once ('toolNosql/Nosql.class.php');
+// la class de gestion des menus
+require_once ('toolMenu/Menu.class.php');
 
 // on lance la session
 session_start();
@@ -41,6 +43,16 @@ require_once 'inc/function.inc.php';
 if(empty($_SESSION['user']))
 	$_SESSION['user'] = new User(true);
 
+
+
+$_SESSION['tampon']['menu'][0]['list'] =
+	array(
+			'Station'      => 'index.php?page=station&amp;action=lesstations',
+			'Intervention' => 'index.php?page=intervention&amp;action=interventions_nt',
+			'V&eacute;lo'  => 'index.php?page=unvelo&amp;action=lesvelos',
+		);
+
+$_SESSION['menu'] = new Menu($_SESSION['tampon']['menu']);
 
 //////////////////////////
 // Fin d'initialisation //

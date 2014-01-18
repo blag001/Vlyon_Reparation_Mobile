@@ -24,17 +24,13 @@ class Station
 		$this->odbVelo = new OdbVelo();
 
 			// page actuelle
-		$_SESSION['tampon']['menu']['title'] = 'Station';
-		$_SESSION['tampon']['menu']['url'] = 'index.php?page=station&amp;action=lesstations';
+		$_SESSION['tampon']['menu'][0]['current'] = 'Station';
 			// liste des sous menus
-		$_SESSION['tampon']['sous_menu']['list'] =
+		$_SESSION['tampon']['menu'][1]['list'] =
 			array(
-					array('url'=>'index.php?page=station&amp;action=lesstations',
-						'title'=>'Les stations'),
-					array('url'=>'index.php?page=station&amp;action=unestation',
-						'title'=>'Une station'),
-					array('url'=>'index.php?page=station&amp;action=rechercherstation' ,
-						'title'=>'Rechercher station'),
+					'Les stations'       => 'index.php?page=station&amp;action=lesstations',
+					'Une station'        => 'index.php?page=station&amp;action=unestation',
+					'Rechercher station' => 'index.php?page=station&amp;action=rechercherstation' ,
 				);
 
 		if (empty($_GET['action']))
@@ -70,8 +66,7 @@ class Station
 		$lesStations = $this->odbStation->getLesStations();
 
 		$_SESSION['tampon']['html']['title'] = 'Toutes Les Stations';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=lesstations';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Les stations';
+		$_SESSION['tampon']['menu'][1]['current'] = 'Les stations';
 
 		if (empty($lesStations))
 			$_SESSION['tampon']['error'][] = 'Pas de station...';
@@ -100,8 +95,7 @@ class Station
 			$lesVelosByStation = $this->odbVelo->getLesVelosDeStation($_GET['valeur']);
 
 			$_SESSION['tampon']['html']['title'] = 'Station - '.$uneStation->Sta_Nom;
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=unestation';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une station';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Une station';
 
 			if (empty($lesVelosByStation))
 				$_SESSION['tampon']['error'][] = 'Pas de v&eacute;lo pour cette station...';
@@ -118,8 +112,8 @@ class Station
 		elseif(!empty($_GET['valeur']))
 		{
 			$_SESSION['tampon']['html']['title'] = 'Station - ERREUR';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=unestation';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Une station';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Une station';
+
 			$_SESSION['tampon']['error'][] = 'La station ne semble pas exister...';
 
 				/**
@@ -146,8 +140,7 @@ class Station
 			$lesStations = $this->odbStation->getLesStations();
 
 		$_SESSION['tampon']['html']['title'] = 'Rechercher Une Station';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=rechercherstation';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher station';
+		$_SESSION['tampon']['menu'][1]['current'] = 'Rechercher station';
 
 		if (empty($lesStations))
 			$_SESSION['tampon']['error'][] = 'Pas de station...';

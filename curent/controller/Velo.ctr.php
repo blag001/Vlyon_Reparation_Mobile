@@ -28,17 +28,13 @@ class Velo
 		$this->odbProduit = new OdbProduit();
 
 			// page actuelle dans le menu principale
-		$_SESSION['tampon']['menu']['title'] = 'V&eacute;lo';
-		$_SESSION['tampon']['menu']['url'] = 'index.php?page=unvelo&amp;action=lesvelos';
+		$_SESSION['tampon']['menu'][0]['current'] = 'V&eacute;lo';
 			// liste des sous menus
-		$_SESSION['tampon']['sous_menu']['list'] =
+		$_SESSION['tampon']['menu'][1]['list'] =
 			array(
-					array('url'=>'index.php?page=velo&amp;action=recherchervelo',
-						'title'=>'Rechercher v&eacute;lo'),
-					array('url'=>'index.php?page=velo&amp;action=unvelo',
-						'title'=>'Un v&eacute;lo'),
-					array('url'=>'index.php?page=velo&amp;action=modifiervelo',
-						'title'=>'Modifier'),
+					'Rechercher v&eacute;lo' => 'index.php?page=velo&amp;action=recherchervelo',
+					'Modifier'               => 'index.php?page=velo&amp;action=modifiervelo',
+					'Un v&eacute;lo'         => 'index.php?page=velo&amp;action=unvelo',
 				);
 
 			// on evite les erreurs en cas de pas d'action
@@ -82,8 +78,7 @@ class Velo
 			$lesVelos = $this->odbVelo->getNouveauxVelos();
 
 		$_SESSION['tampon']['html']['title'] = 'Rechercher Un v&eacute;lo';
-		$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=station&amp;action=recherchervelo';
-		$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Rechercher v&eacute;lo';
+		$_SESSION['tampon']['menu'][1]['current'] = 'Rechercher v&eacute;lo';
 
 			// si pas de velo, erreur
 		if (empty($lesVelos))
@@ -113,8 +108,7 @@ class Velo
 			$unVelo = $this->odbVelo->getUnVelo($_GET['valeur']);
 
 			$_SESSION['tampon']['html']['title'] = 'V&eacute;lo - '.$unVelo->Vel_Num;
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un v&eacute;lo';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Un v&eacute;lo';
 
 				/**
 				 * Load des vues
@@ -132,8 +126,7 @@ class Velo
 		elseif(!empty($_GET['valeur']))
 		{
 			$_SESSION['tampon']['html']['title'] = 'V&eacute;lo - ERREUR';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=unvelo';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Un v&eacute;lo';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Un v&eacute;lo';
 
 			$_SESSION['tampon']['error'][] = 'Le v&eacute;lo ne semble pas exister...';
 
@@ -226,8 +219,7 @@ class Velo
 
 
 			$_SESSION['tampon']['html']['title'] = 'Modifier un V&eacute;lo';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=modifiervelo';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Modifier v&eacute;lo';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Modifier v&eacute;lo';
 
 				/** en cas de retour vide sur une des valeurs */
 			if (empty($lesStations))
@@ -253,8 +245,7 @@ class Velo
 		{
 
 			$_SESSION['tampon']['html']['title'] = 'Modifier un V&eacute;lo - ERREUR';
-			$_SESSION['tampon']['sous_menu']['curent']['url'] = 'index.php?page=velo&amp;action=modifiervelo';
-			$_SESSION['tampon']['sous_menu']['curent']['title'] = 'Modifier v&eacute;lo';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Modifier v&eacute;lo';
 
 			$_SESSION['tampon']['error'][] = 'Le v&eacute;lo ne semble pas exister...';
 

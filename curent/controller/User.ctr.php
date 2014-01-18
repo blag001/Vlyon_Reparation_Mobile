@@ -29,10 +29,10 @@ class User
 		$this->odbUser = new OdbUser();
 
 		// // page actuelle
-		// $_SESSION['tampon']['menu']['title'] = 'Utilisateur';
-		// $_SESSION['tampon']['menu']['url'] = 'index.php?page=user&amp;action=adduser';
+		// $_SESSION['tampon']['menu'][0]['current'] = 'Utilisateur';
+		// $_SESSION['tampon']['menu'][0]['url'] = 'index.php?page=user&amp;action=adduser';
 		// // liste des sous menus
-		// $_SESSION['tampon']['sous_menu']['list'] =
+		// $_SESSION['tampon']['menu'][1]['list'] =
 		// 	array(
 		// 			array('url'=>'index.php?page=user&amp;action=adduser',
 		// 				'title'=>'Ajouter Utilisateur'),
