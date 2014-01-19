@@ -89,6 +89,20 @@ class OdbBonIntervention
 
 		return $lesBonsInter;
 	}
+	/**
+	 * on va chercher la derniere intervention
+	 */
+	public function getIdLastIntervention()
+	{
+		$req = "SELECT BI_Num
+				FROM BONINTERV
+				ORDER BY BI_Num DESC
+				LIMIT 1";
+
+		$lesBonsInter = $this->oBdd->query($req, null, Bdd::SINGLE_RES);
+
+		return $lesBonsInter->BI_Num;
+	}
 
 	/**
 	 * on cree une intervention

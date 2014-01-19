@@ -1,11 +1,11 @@
 <div class="container">
-	<h1>Informations sur la demande d'intervention</h1>
+	<h1>Informations sur l'intervention</h1>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Velo</th>
-				<th>No Demande</th>
+				<th>N° Demande</th>
 				<th>Date Début</th>
 				<th>Date Fin</th>
 				<th>Durée</th>

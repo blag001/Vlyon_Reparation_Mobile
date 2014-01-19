@@ -38,7 +38,7 @@ class Intervention
 					'Rechercher intervention' => 'index.php?page=intervention&amp;action=rechercherbonintervention' ,
 					'Une intervention'        => 'index.php?page=intervention&amp;action=monbonintervention',
 					// 'Demander'                => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
-					// 'Rechercher intervention' => 'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
+					// 'Rechercher demande' => 'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
 					'Une demande'             => 'index.php?page=intervention&amp;action=unedemandeinter' ,
 				);
 
@@ -74,6 +74,10 @@ class Intervention
 			case 'creerdemandeinter':
 				$this->creerUneDemandeInter();
 				break;
+
+			// case 'rechercherdemandeinter':
+			// 	$this->rechercherUneDemandeInter();
+			// 	break;
 
 			case 'interventions_nt':
 
@@ -209,6 +213,8 @@ class Intervention
 				 */
 			view('htmlHeader');
 			view('contentMenu');
+			if (!empty($_SESSION['tampon']['success']))
+				view('contentSuccess');
 			view('contentOneBonInter', array('unBonInter'=>$unBonInter));
 			view('htmlFooter');
 		}
@@ -322,7 +328,7 @@ class Intervention
 			$dateDebut = date_create($_POST['dateDebut']);
 			$dateFin = date_create($_POST['dateFin']);
 			$dureeAbs = $dateDebut->diff($dateFin, true);
-			$_POST['duree'] = $duree->format('%a') + 1;
+			$_POST['duree'] = $dureeAbs->format('%a') + 1;
 
 			$_POST['dateDebut'] = $dateDebut->format('Y-m-d');
 			$_POST['dateFin'] = $dateFin->format('Y-m-d');
@@ -341,7 +347,19 @@ class Intervention
 				$_POST['surPlace'] = 0;
 
 			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
-			echo "ok !";
+
+				/** si on a un nombre de ligne >0 et donc TRUE */
+			if ($unNouveauBon)
+			{
+				$idIntervention = $this->odbBonIntervention->getIdLastIntervention();
+				$_SESSION['tampon']['success'][] =
+					'Ajout de l\'intervention n°'.$idIntervention.' r&eacute;ussie !';
+					// on redirige vers la page d'affiche des intervention
+				header('Location:index.php?page=intervention&action=monbonintervention&valeur='.$idIntervention);
+				die; // on stop le chargement de la page
+			}
+			else // sinon on charge une erreur
+				$_SESSION['tampon']['error'][] = 'Erreur avec l\'ajout de l\'intervention sur le v&eacute; n°'.$_POST['Vel_Num'];
 		}
 		else // si pas d'envoi ou pas valide
 		{
