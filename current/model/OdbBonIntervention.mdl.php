@@ -80,9 +80,10 @@ class OdbBonIntervention
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
-				FROM BONINTERV, VELO
-				WHERE BI_Technicien = :techCode
-					AND BONINTERV.BI_Velo = VELO.Vel_Num";
+				FROM BONINTERV
+				INNER JOIN VELO
+					ON BONINTERV.BI_Velo = VELO.Vel_Num
+				WHERE BI_Technicien = :techCode";
 
 		$lesBonsInter = $this->oBdd->query($req, array('techCode'=>$techCode));
 

@@ -37,11 +37,14 @@ class OdbDemandeInter
 	public function getUneDemandeInter($id)
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
-				FROM DEMANDEINTER, TECHNICIEN, STATION, VELO
-				WHERE DemI_Num = :id
-					AND DEMANDEINTER.DemI_Velo = VELO.Vel_Num
-					AND VELO.Vel_Station = STATION.Sta_Code
-					AND DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule";
+				FROM DEMANDEINTER
+				INNER JOIN VELO
+					ON DEMANDEINTER.DemI_Velo = VELO.Vel_Num
+				INNER JOIN STATION
+					ON VELO.Vel_Station = STATION.Sta_Code
+				INNER JOIN TECHNICIEN
+					ON DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule
+				WHERE DemI_Num = :id";
 
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
 
@@ -66,10 +69,12 @@ class OdbDemandeInter
 	public function getLesDemandesNT()
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
-				FROM DEMANDEINTER, VELO, STATION
-				WHERE DemI_Traite = 0
-					AND DEMANDEINTER.DemI_Velo = VELO.Vel_Num
-					AND VELO.Vel_Station = STATION.Sta_Code";
+				FROM DEMANDEINTER
+				INNER JOIN VELO
+					ON DEMANDEINTER.DemI_Velo = VELO.Vel_Num
+				INNER JOIN STATION
+					ON VELO.Vel_Station = STATION.Sta_Code
+				WHERE DemI_Traite = 0";
 
 		$lesDemandesInter = $this->oBdd->query($req);
 

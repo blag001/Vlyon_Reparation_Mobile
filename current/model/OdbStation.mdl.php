@@ -108,7 +108,7 @@ class OdbStation
 
 	public function getNbAttachesDispo($station, $nbTotalAttaches){
 
-		$nbVelosAttaches = getNbVelosAttaches($station);
+		$nbVelosAttaches = $this->getNbVelosAttaches($station);
 
 		$nbAttachesDispo = $nbTotalAttaches - $nbVelosAttaches;
 		return $nbAttachesDispo;
