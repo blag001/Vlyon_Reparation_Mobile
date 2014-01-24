@@ -292,13 +292,17 @@ class Intervention
 		 */
 	protected function creerUnBonIntervention()
 	{
-		/**
-		 * On regarde si on a deja des valeurs pour pre-remplir
-		 *
-		 * soit un code de demande d'intervention
-		 * soit un code de velo
-		 * sinon on met des null
-		 */
+		$error = null;
+		if (isset($_POST['sbmtMkBon']))
+			$error = $this->_saveSubmitBonI();
+
+			/**
+			 * On regarde si on a deja des valeurs pour pre-remplir
+			 *
+			 * soit un code de demande d'intervention
+			 * soit un code de velo
+			 * sinon on met des null
+			 */
 		if(
 			isset($_GET['code_demande'])
 			and $this->odbDemandeInter->estDemandeInter($_GET['code_demande'])
@@ -321,10 +325,95 @@ class Intervention
 		}
 
 
-			// si on a un envois valide, on lance la sauvegarde
-		if( ($error = $this->checkSubmitBonI()) == null and isset($_POST['sbmtMkBon']) )
+		//on recupere tous les codes velos pour la liste deroulante
+		$lesVelos = $this->odbVelo->getLesVelos();
+
+
+		$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er un bon d\'intervention';
+
+		$_SESSION['tampon']['menu'][1]['current'] = 'Intervenir';
+
+			/**
+			 * Load des vues
+			 */
+		view('htmlHeader');
+		view('contentMenu');
+		if(!empty($_SESSION['tampon']['error']))
+			view('contentError');
+		view('contentCreerUnBon', array(
+			'leVeloNum'=>$leVeloNum,
+			'laDemandeInterNum'=>$laDemandeInterNum,
+			'lesVelos'=>$lesVelos,
+			'error'=>$error,
+			));
+		view('htmlFooter');
+
+	}
+
+	private function _checkSubmitBonI()
+	{
+			// var pour la validatation des envois
+		$error = null;
+			// on traite les dates en Fr pour les avoir un YYYY/MM/DD
+		if (substr_count($_POST['dateDebut'], '/'))
+			$_POST['dateDebut'] = preg_replace('#([0-9]{1,2})/([0-9]{1,2})/([0-9]{2,4})#', '$3-$2-$1', $_POST['dateDebut']);
+		if (substr_count($_POST['dateFin'], '/'))
+			$_POST['dateFin'] = preg_replace('#([0-9]{1,2})/([0-9]{1,2})/([0-9]{2,4})#', '$3-$2-$1', $_POST['dateFin']);
+
+			// si on a une demande
+		if(!empty($_POST['code_demande']))
 		{
-			// en cours
+				// si la demande n'existe pas
+			if(!$this->odbDemandeInter->estDemandeInter($_POST['code_demande']))
+				$error['code_demande'][] = 'La demande ne semble pas exister...';
+				// sinon si elle n'a pas de velo liee
+			elseif ( !($code_velo = $this->odbDemandeInter->getIdVeloByIdDemandeInter($_POST['code_demande'])) )
+				$error['code_demande'][] = 'Pas de velo li&eacute; &agrave; cette demande...';
+				// sinon si le velo liee est introuvable
+			elseif ( !$this->odbVelo->estVelo($code_velo) )
+				$error['code_demande'][] = 'Le velo ne semble pas exister...';
+				// sinon si on a bidouiller pour changer l'idVelo dans le html
+			elseif ( $code_velo != $_POST['Vel_Num'] )
+				$error['Vel_Num'][] = 'On ne hack pas l\'application SVP...';
+		}
+			// sinon si on a pas de velo
+		elseif (empty($_POST['Vel_Num']))
+			$error['Vel_Num'][] = 'Merci de selectionner un v&eacute;lo...';
+			// sinon si le velo est introuvable
+		elseif( !$this->odbVelo->estVelo($_POST['Vel_Num']) )
+			$error['Vel_Num'][] = 'Le velo ne semble pas exister...';
+
+			// si pas de date debut
+		if (empty($_POST['dateDebut']))
+			$error['dateDebut'][] = 'Merci de remplir une date de d&eacute;but...';
+
+			// si pas de date de fin
+		if (empty($_POST['dateFin']))
+			$error['dateFin'][] = 'Merci de remplir une date de fin...';
+
+			// si on peut pas exploiter la date debut
+		if(!date_create($_POST['dateDebut']))
+			$error['dateDebut'][] = 'Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA';
+
+			// si on peut pas exploiter la date de fin
+		if(!date_create($_POST['dateFin']))
+			$error['dateFin'][] = 'Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA';
+
+			// si pas de compte rendu
+		if (empty($_POST['cpteRendu']))
+			$error['cpteRendu'][] = 'Le compte-rendu doit être remplis !';
+
+		return $error;
+	}
+
+	private function _saveSubmitBonI()
+	{
+			// var pour la validatation des envois
+		$error = null;
+			// si on a un envois valide, on lance la sauvegarde
+		if( ($error = $this->_checkSubmitBonI()) == null)
+		{
+				// on traite les dates
 			$dateDebut = date_create($_POST['dateDebut']);
 			$dateFin = date_create($_POST['dateFin']);
 			$dureeAbs = $dateDebut->diff($dateFin, true);
@@ -346,10 +435,8 @@ class Intervention
 			else
 				$_POST['surPlace'] = 0;
 
-			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter();
-
 				/** si on a un nombre de ligne >0 et donc TRUE */
-			if ($unNouveauBon)
+			if ($unNouveauBon = $this->odbBonIntervention->creerUnBonInter())
 			{
 				$idIntervention = $this->odbBonIntervention->getIdLastIntervention();
 				$_SESSION['tampon']['success'][] =
@@ -361,70 +448,6 @@ class Intervention
 			else // sinon on charge une erreur
 				$_SESSION['tampon']['error'][] = 'Erreur avec l\'ajout de l\'intervention sur le v&eacute; n°'.$_POST['Vel_Num'];
 		}
-		else // si pas d'envoi ou pas valide
-		{
-			//on recupere tous les codes velos pour la liste deroulante
-			$lesVelos = $this->odbVelo->getLesVelos();
-
-
-			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er un bon d\'intervention';
-
-			$_SESSION['tampon']['menu'][1]['current'] = 'Intervenir';
-			// var_dump($error);
-			// var_dump($_POST);
-				/**
-				 * Load des vues
-				 */
-			view('htmlHeader');
-			view('contentMenu');
-			view('contentCreerUnBon', array(
-				'leVeloNum'=>$leVeloNum,
-				'laDemandeInterNum'=>$laDemandeInterNum,
-				'lesVelos'=>$lesVelos,
-				));
-			view('htmlFooter');
-		}
-
-	}
-
-	private function checkSubmitBonI()
-	{
-		// var pour la validatation des envois
-		$error = null;
-
-			// si on a une demande
-		if(!empty($_POST['demande'])){
-				// si la demande n'existe pas
-			if(!$this->odbDemandeInter->estDemandeInter($_GET['demande']))
-				$error['demande'][] = 'La demande ne semble pas exister...';
-				// si elle n'a pas de velo liee
-			elseif ( !($code_velo = $this->odbDemandeInter->getIdVeloByIdDemandeInter($_GET['code_demande'])) )
-				$error['demande'][] = 'Pas de velo li&eacute; &agrave; cette demande...';
-				// si le velo liee est introuvable
-			elseif ( !$this->odbVelo->estVelo($code_velo) )
-				$error['demande'][] = 'Le velo ne semble pas exister...';
-				// si on a bidouiller pour changer l'idVelo dans le html
-			elseif ( $code_velo != $_POST['Vel_Num'] )
-				$error['Vel_Num'][] = 'On ne hack pas l\'application SVP...';
-		}
-			// si on a pas de velo
-		elseif (empty($_POST['Vel_Num']))
-			$error['Vel_Num'][] = 'Merci de selectionner un v&eacute;lo...';
-			// si le velo est introuvable
-		elseif( !$this->odbVelo->estVelo($_POST['Vel_Num']) )
-			$error['Vel_Num'][] = 'Le velo ne semble pas exister...';
-
-			// si pas de date debut
-		if (empty($_POST['dateDebut']))
-			$error['dateDebut'][] = 'Merci de remplir une date de d&eacute;but...';
-
-			// si pas de date de fin
-		if (empty($_POST['dateFin']))
-			$error['dateFin'][] = 'Merci de remplir une date de fin...';
-
-			// si pas de compte rendu
-		if (empty($_POST['cpteRendu']))
-			$error['cpteRendu'][] = 'Le compte-rendu doit être remplis !';
 
 		return $error;
 	}
@@ -433,7 +456,7 @@ class Intervention
 	protected function creerUneDemandeInter()
 	{
 		// si on a un envois valide, on lance la sauvegarde
-		if( ($error = $this->checkSubmitBonI()) == null and isset($_POST['sbmtMkBon']) and false )
+		if( ($error = $this->_checkSubmitDemandeI()) == null and isset($_POST['sbmtMkBon']) and false )
 		{
 			// en cours
 			$dateDemmande = date_create($_POST['dateDemmande']);
