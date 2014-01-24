@@ -139,7 +139,7 @@ class OdbBonIntervention
 				 'dateFin'=>$_POST['dateFin'],
 				 'cpteRendu'=>$_POST['cpteRendu'],
 				 'reparable'=>$_POST['reparable'],
-				 'demande'=>$_POST['demande'],
+				 'demande'=>$_POST['code_demande'],
 				 'technicienCode'=>$_SESSION['user']->getMatricule() ,
 				 'surPlace'=>$_POST['surPlace'],
 				 'duree'=>$_POST['duree'],
