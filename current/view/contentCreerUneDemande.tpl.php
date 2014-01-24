@@ -7,7 +7,7 @@
 			<select class="form-control" id="vel_num" name="vel_num"
 				<?php
 				if(!empty($arg['laDemandeInterNum']))
-					echo ' disabled="disabled"';
+					echo ' readonly="readonly"';
 				?>
 				>
 				<?php

@@ -26,7 +26,7 @@
 			<input class="form-control" id="vel_code" type="text" name="codeVelo"<?php
 				if (!empty($arg['leVelo']))
 					echo ' value="'.$arg['leVelo']->Vel_Num.'"';
-			?> disabled="disabled">
+			?> readonly="readonly">
 		</div>
 		<div class="form-group">
 			<label for="vel_station">Station du v&eacute;lo</label>
@@ -72,7 +72,7 @@
 		</div>
 		<div class="form-group">
 			<label for="vel_type">Type du v&eacute;lo</label>
-			<select class="form-control" id="vel_type" name="typeVelo" disabled="disabled">
+			<select class="form-control" id="vel_type" name="typeVelo" readonly="readonly">
 				<?php
 				if(
 					!empty($arg['lesTypes'])
@@ -100,7 +100,7 @@
 		</div>
 		<div class="checkbox">
 			<label for="vel_casse">
-				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" disabled="disabled">
+				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" readonly="readonly">
 				V&eacute;lo Cass&eacute;.
 			</label>
 		</div>
