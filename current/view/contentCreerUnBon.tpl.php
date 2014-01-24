@@ -4,13 +4,19 @@
 
 		<div class="form-group">
 			<?php
-			if(!empty($arg['laDemandeInterNum']))
+			if(!empty($arg['laDemandeInterNum']) or !empty($_POST['code_demande']))
 			{ ?>
 				<label for="code_demande">Demande concern&eacute;e</label>
-				<select class="form-control" id="code_demande" name="code_demande" disabled="disabled">
+				<select class="form-control" id="code_demande" name="code_demande" readonly="readonly">
 					<?php
-					echo '<option selected="selected" value="'.$arg['laDemandeInterNum'].'" >';
-					echo $arg['laDemandeInterNum'].'</option>';
+					if (!empty($arg['laDemandeInterNum'])){
+						echo '<option selected="selected" value="'.$arg['laDemandeInterNum'].'" >';
+						echo $arg['laDemandeInterNum'].'</option>';
+					}
+					if(!empty($_POST['code_demande'])){
+						echo '<option selected="selected" value="'.$_POST['code_demande'].'" >';
+						echo $_POST['code_demande'].'</option>';
+					}
 					?>
 				</select>
 				<?php
@@ -20,7 +26,7 @@
 			<select class="form-control" id="Vel_Num" name="Vel_Num"
 				<?php
 				if(!empty($arg['laDemandeInterNum']))
-					echo ' disabled="disabled"';
+					echo ' readonly="readonly"';
 				?>
 				>
 				<?php
