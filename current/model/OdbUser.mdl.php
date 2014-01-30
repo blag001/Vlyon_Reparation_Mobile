@@ -77,8 +77,6 @@ class OdbUser{
 				if(!$this->oNosql->create('remember_me'))
 					return false;
 
-			$this->oNosql->delete('remember_me', $name);
-
 			return $this->oNosql->insert('remember_me', $name, $token);
 		}
 
