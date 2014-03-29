@@ -19,6 +19,14 @@
 					}
 					?>
 				</select>
+				<input type="hidden" class="form-control" name="code_demande"
+					<?php
+					if (!empty($arg['laDemandeInterNum']))
+						echo ' value="'.$arg['laDemandeInterNum'].'" ';
+					if(!empty($_POST['code_demande']))
+						echo ' value="'.$_POST['code_demande'].'" ';
+					?>
+					/>
 				<?php
 			}
 			?>
