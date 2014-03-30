@@ -40,7 +40,7 @@ function _getReqHttp()
 	 * @param  {string} idTarget  l'id de reception du retour
 	 * @return {void}           pas de retour
 	 */
-function envoyerListe(methode, urlTarget, arg, idTarget )
+function ajax(methode, urlTarget, arg, idTarget )
 {
 	// récupération d'un objet XMLHttpRequest
 	var reqHttp1 = _getReqHttp() ;

@@ -1,4 +1,7 @@
-<div class="container">
+<?php
+if(empty($arg['isAjax'])) { ?>
+<div class="container" id="allStation">
+<?php } ?>
 	<h1>Les Stations</h1>
 	<table class="table table-bordered table-striped">
 		<thead>
@@ -49,5 +52,8 @@
 		<?php
 		$_SESSION['tampon']['error'] = null;
 	}
-	?>
+
+if(empty($arg['isAjax'])) { ?>
 </div><!-- /.container -->
+<?php
+}

@@ -45,6 +45,9 @@ class Station
 			case 'rechercherstation':
 				$this->rechercherUneStation();
 				break;
+			case 'ajaxrechercherstation':
+				$this->ajaxRechercherUneStation();
+				break;
 			case 'unestation':
 				$this->afficherUneStation();
 				break;
@@ -153,5 +156,25 @@ class Station
 		view('contentSearchStation');
 		view('contentAllStation', array('lesStations'=>$lesStations));
 		view('htmlFooter');
+	}
+
+		/**
+		 * affiche une station et ses velos lies
+		 * @return void
+		 */
+	protected function ajaxRechercherUneStation()
+	{
+		if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+			$lesStations = $this->odbStation->searchStations($_GET['valeur']);
+		else
+			$lesStations = $this->odbStation->getLesStations();
+
+		if (empty($lesStations))
+			$_SESSION['tampon']['error'][] = 'Pas de station...';
+
+			/**
+			 * Load des vues
+			 */
+		view('contentAllStation', array('lesStations'=>$lesStations, 'isAjax'=>true));
 	}
 }
