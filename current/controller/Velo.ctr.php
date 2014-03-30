@@ -54,6 +54,9 @@ class Velo
 			case 'modifiervelo':
 				$this->modifierUnVelo();
 				break;
+			case 'ajaxrecherchervelo':
+				$this->ajaxRechercherUnVelo();
+				break;
 
 			case 'recherchervelo':
 
@@ -92,6 +95,30 @@ class Velo
 		view('contentSearchVelo');
 		view('contentAllVelo', array('lesVelos'=>$lesVelos));
 		view('htmlFooter');
+	}
+
+		/**
+		 * rechercher un velo via input user
+		 * @return void
+		 */
+	protected function ajaxRechercherUnVelo()
+	{
+		$lesVelos = null;
+
+			/** si valeur, on lance la recherche */
+		if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+			$lesVelos = $this->odbVelo->searchVelos($_GET['valeur']);
+		else
+			$lesVelos = $this->odbVelo->getNouveauxVelos();
+
+			// si pas de velo, erreur
+		if (empty($lesVelos))
+			$_SESSION['tampon']['error'][] = 'Pas de v&eacute;lo...';
+
+			/**
+			 * Load des vues
+			 */
+		view('contentAllVelo', array('lesVelos'=>$lesVelos, 'isAjax'=>true));
 	}
 
 		/**
