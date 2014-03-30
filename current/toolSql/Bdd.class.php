@@ -60,6 +60,8 @@ class Bdd
 	private $oBdd  = null;
 		/** @var object variable qui contient une requête préparée */
 	private $oReq  = null;
+		/** @var string url lors de l'instanciation de la class */
+	private $callSource;
 
 		/** constante à utiliser en cas de resultat unique attendu */
 	const SINGLE_RES = true;
@@ -97,6 +99,9 @@ class Bdd
 
 		if(!empty($production))
 			$this->production = $production;
+
+			// on sauve la page d'instanciation
+		$this->callSource = $_SERVER['PHP_SELF'];
 
 			// on lance la connexion
 		$this->_connexion();
@@ -574,4 +579,29 @@ class Bdd
 			$this->_showError($e);
 		}
 	}
+
+	//////////////////////////////////////
+	// fonction de gestion de la class //
+	//////////////////////////////////////
+
+	public function needReload()
+	{
+		if($this->callSource !== $_SERVER['PHP_SELF'])
+			return true;
+		else
+			return false;
+	}
+
+	public static function needInstance()
+	{
+		if(
+			empty($_SESSION['bdd'])
+			or !is_object($_SESSION['bdd'])
+			or $_SESSION['bdd']->needReload()
+			)
+			return true;
+		else
+			return false;
+	}
+
 }

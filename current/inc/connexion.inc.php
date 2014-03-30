@@ -21,8 +21,8 @@
 	 * @param string $mdp mot de passe de l'utilisateur
 	 * @param bool $production (dés)active les messages d'erreurs
 	 */
-if (empty($_SESSION['bdd']))
-	$_SESSION['bdd'] = new Bdd(null, null, 'sio_reparation', '', false);
+if (Bdd::needInstance())
+	$_SESSION['bdd'] = new Bdd(null, 'sio_reparation', 'root', '', false);
 
 
 	/**
