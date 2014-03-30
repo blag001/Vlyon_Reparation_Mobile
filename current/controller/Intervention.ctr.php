@@ -67,6 +67,10 @@ class Intervention
 				$this->rechercherUnBonInter();
 				break;
 
+			case 'ajaxrechercherbonintervention':
+				$this->ajaxRechercherUnBonInter();
+				break;
+
 			case 'creerbonintervention':
 				$this->creerUnBonIntervention();
 				break;
@@ -282,6 +286,40 @@ class Intervention
 			view('contentMenu');
 			view('contentError');
 			view('htmlFooter');
+		}
+	}
+
+		/**
+		 * permet une recherche ajax dans ses bons d'interventions
+		 * @return void
+		 */
+	protected function ajaxRechercherUnBonInter()
+	{
+		if ($_SESSION['user']->estTechnicien())
+		{
+				// si une valeur, on lance la recherche
+			if(isset($_GET['valeur']) and $_GET['valeur'] !== '')
+				$lesBonsInter = $this->odbBonIntervention->searchMesBonIntervention($_GET['valeur'], $_SESSION['user']->getMatricule());
+			else // par def on charge tout mes bons
+				$lesBonsInter = $this->odbBonIntervention->getMesInterventions($_SESSION['user']->getMatricule());
+
+				// rien en retour ? une erreur
+			if (empty($lesBonsInter))
+				$_SESSION['tampon']['error'][] = 'Pas de bon...';
+
+				/**
+				 * Load des vues
+				 */
+			view('contentMesInterventions', array('mesInterventions'=>$lesBonsInter, 'isAjax'=>true));
+		}
+		else
+		{
+			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
+
+				/**
+				 * Load des vues
+				 */
+			view('contentError');
 		}
 	}
 
