@@ -4,12 +4,7 @@
 
 		<div class="form-group">
 			<label for="vel_num">V&eacute;lo concern&eacute;</label>
-			<select class="form-control" id="vel_num" name="vel_num"
-				<?php
-				if(!empty($arg['laDemandeInterNum']))
-					echo ' readonly="readonly"';
-				?>
-				>
+			<select class="form-control" id="vel_num" name="vel_num" >
 				<?php
 				if(
 					!empty($arg['lesVelos'])
