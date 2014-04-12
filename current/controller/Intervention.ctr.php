@@ -32,14 +32,14 @@ class Intervention
 			// liste des sous menus
 		$_SESSION['tampon']['menu'][1]['list'] =
 			array(
-					'Non trait&eacute;es'     => 'index.php?page=intervention&amp;action=interventions_nt',
-					'Intervenir'              => 'index.php?page=intervention&amp;action=creerbonintervention' ,
-					'Mes interventions'       => 'index.php?page=intervention&amp;action=mesinterventions' ,
-					'Rechercher intervention' => 'index.php?page=intervention&amp;action=rechercherbonintervention' ,
-					'Une intervention'        => 'index.php?page=intervention&amp;action=monbonintervention',
-					// 'Demander'                => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
-					// 'Rechercher demande' => 'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
-					'Une demande'             => 'index.php?page=intervention&amp;action=unedemandeinter' ,
+					'Demandes Non trait&eacute;es' => 'index.php?page=intervention&amp;action=interventions_nt',
+					'Intervenir'                   => 'index.php?page=intervention&amp;action=creerbonintervention' ,
+					'Mes interventions'            => 'index.php?page=intervention&amp;action=mesinterventions' ,
+					'Rechercher intervention'      => 'index.php?page=intervention&amp;action=rechercherbonintervention' ,
+					'Une intervention'             => 'index.php?page=intervention&amp;action=monbonintervention',
+					// 'Demander'                  => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
+					// 'Rechercher demande'        => 'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
+					'Une demande'                  => 'index.php?page=intervention&amp;action=unedemandeinter' ,
 				);
 
 		if (empty($_GET['action']))
@@ -112,6 +112,12 @@ class Intervention
 
 		/**
 		 * affiche une demande d'interventions
+		 *
+		 * elle doit etre :
+		 * soit non traitee
+		 * soit etre a moi
+		 * soit je doit etre responcable achat
+		 *
 		 * @return void
 		 */
 	protected function afficherUneDemandeInter()
@@ -121,7 +127,13 @@ class Intervention
 				!empty($_GET['valeur'])
 				and $this->odbDemandeInter->estDemandeInter($_GET['valeur']))
 		{
-			$uneDemandeInter = $this->odbDemandeInter->getUneDemandeInter($_GET['valeur']);
+				// si on est technicien on recup le matricule
+			if($_SESSION['user']->estTechnicien())
+				$techCode = $_SESSION['user']->getMatricule();
+			else
+				$techCode = -1; // -1 = responcable achat = passe-partout
+
+			$uneDemandeInter = $this->odbDemandeInter->getUneDemandeInter($_GET['valeur'], $techCode);
 
 			$_SESSION['tampon']['html']['title'] = 'Demande Intervention - '.$uneDemandeInter->DemI_Num;
 			$_SESSION['tampon']['menu'][1]['current'] = 'Une demande';
@@ -324,9 +336,8 @@ class Intervention
 	}
 
 		/**
-		 * @todo faire les controle si envois ou non (enregistrement ou form)
-		 * @todo  faire les check de data avant de lancer le save()
-		 * @return void
+		 * gere la sauvegarde des bon d'intervention
+		 * @return void affiche les vues
 		 */
 	protected function creerUnBonIntervention()
 	{
@@ -490,45 +501,52 @@ class Intervention
 		return $error;
 	}
 
-	# @todo mettre en place les verifs
 	protected function creerUneDemandeInter()
 	{
-		// si on a un envois valide, on lance la sauvegarde
-		if( ($error = $this->_checkSubmitDemandeI()) == null and isset($_POST['sbmtMkBon']) and false )
+		$error = null;
+
+		if (isset($_POST['sbmtMkBon']))
+			$error = $this->_saveSubmitBonI();
+
+			/**
+			 * On regarde si on a deja une valeur pour pre-remplir
+			 *
+			 * soit un code de velo
+			 * sinon on met des null
+			 */
+		if(
+			isset($_GET['code_velo'])
+			and $this->odbVelo->estVelo($_GET['code_velo'])
+			)
 		{
-			// en cours
-			$dateDemmande = date_create($_POST['dateDemmande']);
-
-			//j'ai pas trop compris ici ce qu'il faudra mettre
-			//les champs du formulaire?
-
-			// $unNouveauBon = $this->odbDemandeInter->creerUneDemande();
+				$leVeloNum = $_GET['code_velo'];
+			}
+		else{
+				$leVeloNum = null;
 		}
 
-		else
-		{
-			$leVeloNum = null;
-			$laDemandeInterNum = null;
 
-			//on recupere tous les codes velos pour la liste deroulante
-			$lesVelos = $this->odbVelo->getLesVelos();
+		//on recupere tous les codes velos pour la liste deroulante
+		$lesVelos = $this->odbVelo->getLesVelos();
 
-			$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er une demande d\'intervention';
 
-			$_SESSION['tampon']['menu'][1]['current'] = 'Demander';
+		$_SESSION['tampon']['html']['title'] = 'Cr&eacute;er une demande d\'intervention';
 
-				/**
-				 * Load des vues
-				 */
-			view('htmlHeader');
-			view('contentMenu');
-			view('contentCreerUneDemande', array(
-				'leVeloNum'=>$leVeloNum,
-				'laDemandeInterNum'=>$laDemandeInterNum,
-				'lesVelos'=>$lesVelos,
-				));
-			view('htmlFooter');
-		}
+		$_SESSION['tampon']['menu'][1]['current'] = 'Demander';
+
+			/**
+			 * Load des vues
+			 */
+		view('htmlHeader');
+		view('contentMenu');
+		if(!empty($_SESSION['tampon']['error']))
+			view('contentError');
+		view('contentCreerUneDemande', array(
+			'leVeloNum'=>$leVeloNum,
+			'lesVelos'=>$lesVelos,
+			'error'=>$error,
+			));
+		view('htmlFooter');
 	}
 
 }
