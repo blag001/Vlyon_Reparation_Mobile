@@ -34,7 +34,7 @@ class OdbDemandeInter
 		return $lesDemandesInter;
 	}
 
-	public function getUneDemandeInter($id)
+	public function getUneDemandeInter($id, $techCode = -2)
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
 				FROM DEMANDEINTER
@@ -44,9 +44,19 @@ class OdbDemandeInter
 					ON VELO.Vel_Station = STATION.Sta_Code
 				INNER JOIN TECHNICIEN
 					ON DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule
-				WHERE DemI_Num = :id";
+				WHERE DemI_Num = :id
+					AND  (
+						DemI_Traite = 0
+						OR DemI_Technicien = :techCode
+						OR -1 = :techCode
+						)";
 
-		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
+		$laDemandeInter = $this->oBdd->query($req,
+			array(
+				'id'=>$id,
+				'techCode'=>$techCode,
+				),
+			Bdd::SINGLE_RES);
 
 		return $laDemandeInter;
 	}
@@ -106,6 +116,37 @@ class OdbDemandeInter
 				 'traite'=>$_POST['traite'],
 				));
 		return $out;
+	}
+
+	public function searchLesDemandesInter($valeur, $techCode = -2)
+	{
+		$req = "SELECT *, DATE_FORMAT(`DemI_Date`, '%d/%m/%Y') AS `DemI_Date`
+				FROM DEMANDEINTER
+				INNER JOIN VELO
+					ON DEMANDEINTER.DemI_Velo = VELO.Vel_Num
+				INNER JOIN STATION
+					ON VELO.Vel_Station = STATION.Sta_Code
+				INNER JOIN TECHNICIEN
+					ON DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule
+				WHERE (
+						`DemI_Num` LIKE :valeur
+						OR DemI_Velo LIKE :valeur
+						OR Vel_Station LIKE :valeur
+						)
+					AND  (
+						`DemI_Traite` = 0
+						OR `DemI_Technicien` = :techCode
+						OR -1 = :techCode
+						)"
+					;
+
+		$lesDemandesInter = $this->oBdd->query($req,
+			array(
+				'valeur'=>'%'.$valeur.'%',
+				 'techCode'=>$techCode,
+				 ));
+
+		return $lesDemandesInter;
 	}
 
 }
