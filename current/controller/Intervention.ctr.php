@@ -99,7 +99,7 @@ class Intervention
 	{
 		$lesDemandesINT = $this->odbDemandeInter->getLesDemandesNT();
 		$_SESSION['tampon']['html']['title'] = 'Demandes d\'interventions non trait&eacute;es';
-		$_SESSION['tampon']['menu'][1]['current'] = 'Non trait&eacute;es';
+		$_SESSION['tampon']['menu'][1]['current'] = 'Demandes Non trait&eacute;es';
 
 			/**
 			 * Load des vues
