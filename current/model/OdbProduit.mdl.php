@@ -13,7 +13,7 @@ class odbProduit{
 		if(!empty($id))
 		{
 			$req = 'SELECT COUNT(*) AS nb
-					FROM PRODUIT
+					FROM produit
 					WHERE Pdt_Code = :id';
 
 			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
@@ -27,7 +27,7 @@ class odbProduit{
 	public function getLesTypes()
 	{
 		$req = 'SELECT Pdt_Code, Pdt_Libelle
-				FROM PRODUIT';
+				FROM produit';
 
 		$lesTypes = $this->oBdd->query($req);
 

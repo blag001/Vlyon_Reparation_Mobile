@@ -1,13 +1,13 @@
 -- ============================================================
---   Nom de la base   :  REPARATION
---   Nom de SGBD      :  ORACLE Version 7.x
+--   Nom de la base   :  sio_reparation
+--   Nom de SGBD      :  MYSQL Version 5.5 ou >
 --   Date de creation :  05/11/2013  22:15
 -- ============================================================
 
 -- ============================================================
---   Table : STATION
+--   Table : station
 -- ============================================================
-create table STATION
+create table station
 (
     Sta_Code          CHAR(5)                not null,
     Sta_Nom           VARCHAR(30)           null    ,
@@ -23,9 +23,9 @@ create table STATION
 ;
 
 -- ============================================================
---   Table : ETAT
+--   Table : etat
 -- ============================================================
-create table ETAT
+create table etat
 (
     Eta_Code          INT               not null AUTO_INCREMENT,
     Eta_Libelle       VARCHAR(30)           null    ,
@@ -34,9 +34,9 @@ create table ETAT
 ;
 
 -- ============================================================
---   Table : PRODUIT
+--   Table : produit
 -- ============================================================
-create table PRODUIT
+create table produit
 (
     Pdt_Code          CHAR(6)                not null,
     Pdt_Libelle       VARCHAR(30)            null    ,
@@ -50,9 +50,9 @@ create table PRODUIT
 ;
 
 -- ============================================================
---   Table : TECHNICIEN
+--   Table : technicien
 -- ============================================================
-create table TECHNICIEN
+create table technicien
 (
     Tec_Matricule     INT                not null AUTO_INCREMENT,
     Tec_Nom           VARCHAR(35)           null    ,
@@ -62,9 +62,9 @@ create table TECHNICIEN
 ;
 
 -- ============================================================
---   Table : VELO
+--   Table : velo
 -- ============================================================
-create table VELO
+create table velo
 (
     Vel_Num           INT                    not null AUTO_INCREMENT,
     Vel_Station       CHAR(5)                null    ,
@@ -79,25 +79,25 @@ create table VELO
 -- ============================================================
 --   Index : POSITIONNER_FK
 -- ============================================================
-create index POSITIONNER_FK on VELO (Vel_Station asc)
+create index POSITIONNER_FK on velo (Vel_Station asc)
 ;
 
 -- ============================================================
 --   Index : AVOIR_FK
 -- ============================================================
-create index AVOIR_FK on VELO (Vel_Etat asc)
+create index AVOIR_FK on velo (Vel_Etat asc)
 ;
 
 -- ============================================================
 --   Index : appartenir_FK
 -- ============================================================
-create index appartenir_FK on VELO (Vel_Type asc)
+create index appartenir_FK on velo (Vel_Type asc)
 ;
 
 -- ============================================================
---   Table : DEMANDEINTER
+--   Table : demandeinter
 -- ============================================================
-create table DEMANDEINTER
+create table demandeinter
 (
     DemI_Num          INT                    not null AUTO_INCREMENT,
     DemI_Velo         INT                    not null,
@@ -112,19 +112,19 @@ create table DEMANDEINTER
 -- ============================================================
 --   Index : CORRESPONDRE_FK
 -- ============================================================
-create index CORRESPONDRE_FK on DEMANDEINTER (DemI_Velo asc)
+create index CORRESPONDRE_FK on demandeinter (DemI_Velo asc)
 ;
 
 -- ============================================================
 --   Index : rediger_FK
 -- ============================================================
-create index rediger_FK on DEMANDEINTER (DemI_Technicien asc)
+create index rediger_FK on demandeinter (DemI_Technicien asc)
 ;
 
 -- ============================================================
---   Table : BONINTERV
+--   Table : boninterv
 -- ============================================================
-create table BONINTERV
+create table boninterv
 (
     BI_Num            INT                    not null AUTO_INCREMENT,
     BI_Velo           INT                    not null,
@@ -143,25 +143,25 @@ create table BONINTERV
 -- ============================================================
 --   Index : CONCERNER_FK
 -- ============================================================
-create index CONCERNER_FK on BONINTERV (BI_Velo asc)
+create index CONCERNER_FK on boninterv (BI_Velo asc)
 ;
 
 -- ============================================================
 --   Index : EXECUTER_FK2
 -- ============================================================
-create index EXECUTER_FK2 on BONINTERV (BI_Demande asc)
+create index EXECUTER_FK2 on boninterv (BI_Demande asc)
 ;
 
 -- ============================================================
 --   Index : realiser_FK
 -- ============================================================
-create index realiser_FK on BONINTERV (BI_Technicien asc)
+create index realiser_FK on boninterv (BI_Technicien asc)
 ;
 
 -- ============================================================
---   Table : USER
+--   Table : user
 -- ============================================================
-create table USER
+create table user
 (
     Use_Num            INT                    not null AUTO_INCREMENT,
     Use_Nom            VARCHAR(50)            not null,
@@ -175,7 +175,7 @@ create table USER
 -- ============================================================
 --   Index : CONCERNER_FK
 -- ============================================================
-create index HASH_FK on USER (Use_Hash asc)
+create index HASH_FK on user (Use_Hash asc)
 ;
 
 
@@ -183,47 +183,47 @@ create index HASH_FK on USER (Use_Hash asc)
 -- ============================================================
 --   ajout des contraites
 -- ============================================================
-alter table VELO
+alter table velo
     add constraint FK_VELO_STATION foreign key  (Vel_Station)
-       references STATION (Sta_Code)
+       references station (Sta_Code)
 ;
 
-alter table VELO
+alter table velo
     add constraint FK_VELO_ETAT foreign key  (Vel_Etat)
-       references ETAT (Eta_Code)
+       references etat (Eta_Code)
 ;
 
-alter table VELO
+alter table velo
     add constraint FK_VELO_PRODUIT foreign key  (Vel_Type)
-       references PRODUIT (Pdt_Code)
+       references produit (Pdt_Code)
 ;
 
-alter table DEMANDEINTER
+alter table demandeinter
     add constraint FK_DEMANDEINTER_VELO foreign key  (DemI_Velo)
-       references VELO (Vel_Num)
+       references velo (Vel_Num)
 ;
 
-alter table DEMANDEINTER
+alter table demandeinter
     add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (DemI_Technicien)
-       references TECHNICIEN (Tec_Matricule)
+       references technicien (Tec_Matricule)
 ;
 
-alter table BONINTERV
+alter table boninterv
     add constraint FK_BONINTERV_VELO foreign key  (BI_Velo)
-       references VELO (Vel_Num)
+       references velo (Vel_Num)
 ;
 
-alter table BONINTERV
+alter table boninterv
     add constraint FK_BONINTERV_DEMANDEINTER foreign key  (BI_Demande)
-       references DEMANDEINTER (DemI_Num)
+       references demandeinter (DemI_Num)
 ;
 
-alter table BONINTERV
+alter table boninterv
     add constraint FK_BONINTERV_TECHNICIEN foreign key  (BI_Technicien)
-       references TECHNICIEN (Tec_Matricule)
+       references technicien (Tec_Matricule)
 ;
 
-alter table USER
+alter table user
     add constraint FK_USER_TECHNICIEN foreign key  (Use_Technicien)
-       references TECHNICIEN (Tec_Matricule)
+       references technicien (Tec_Matricule)
 ;

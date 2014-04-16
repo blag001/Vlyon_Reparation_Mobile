@@ -13,7 +13,7 @@ class odbEtat{
 		if(!empty($id))
 		{
 			$req = 'SELECT COUNT(*) AS nb
-					FROM ETAT
+					FROM etat
 					WHERE Eta_Code = :id';
 
 			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
@@ -27,7 +27,7 @@ class odbEtat{
 	public function getLesEtats()
 	{
 		$req = 'SELECT *
-				FROM ETAT';
+				FROM etat';
 
 		$lesEtats = $this->oBdd->query($req);
 

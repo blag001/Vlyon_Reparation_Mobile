@@ -13,7 +13,7 @@ class OdbDemandeInter
 		if(!empty($code))
 		{
 			$req = 'SELECT COUNT(*) AS nb
-					FROM DEMANDEINTER
+					FROM demandeinter
 					WHERE DemI_Num = :code';
 
 			$data = $this->oBdd->query($req , array('code'=>$code), Bdd::SINGLE_RES);
@@ -27,7 +27,7 @@ class OdbDemandeInter
 	public function getLesDemandesInter()
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
-				FROM DEMANDEINTER";
+				FROM demandeinter";
 
 		$lesDemandesInter = $this->oBdd->query($req);
 
@@ -37,13 +37,13 @@ class OdbDemandeInter
 	public function getUneDemandeInter($id, $techCode = -2)
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
-				FROM DEMANDEINTER
-				INNER JOIN VELO
-					ON DEMANDEINTER.DemI_Velo = VELO.Vel_Num
-				INNER JOIN STATION
-					ON VELO.Vel_Station = STATION.Sta_Code
-				INNER JOIN TECHNICIEN
-					ON DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule
+				FROM demandeinter
+				INNER JOIN velo
+					ON demandeinter.DemI_Velo = velo.Vel_Num
+				INNER JOIN station
+					ON velo.Vel_Station = station.Sta_Code
+				INNER JOIN technicien
+					ON demandeinter.DemI_Technicien = technicien.Tec_Matricule
 				WHERE DemI_Num = :id
 					AND  (
 						DemI_Traite = 0
@@ -64,7 +64,7 @@ class OdbDemandeInter
 	public function getIdVeloByIdDemandeInter($id)
 	{
 		$req = "SELECT DemI_Velo AS Vel_Num
-				FROM DEMANDEINTER
+				FROM demandeinter
 				WHERE DemI_Num = :id";
 
 		$laDemandeInter = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
@@ -79,11 +79,11 @@ class OdbDemandeInter
 	public function getLesDemandesNT()
 	{
 		$req = "SELECT *, DATE_FORMAT(DemI_Date, '%d/%m/%Y') AS DemI_Date
-				FROM DEMANDEINTER
-				INNER JOIN VELO
-					ON DEMANDEINTER.DemI_Velo = VELO.Vel_Num
-				INNER JOIN STATION
-					ON VELO.Vel_Station = STATION.Sta_Code
+				FROM demandeinter
+				INNER JOIN velo
+					ON demandeinter.DemI_Velo = velo.Vel_Num
+				INNER JOIN station
+					ON velo.Vel_Station = station.Sta_Code
 				WHERE DemI_Traite = 0";
 
 		$lesDemandesInter = $this->oBdd->query($req);
@@ -93,7 +93,7 @@ class OdbDemandeInter
 
 	public function creerUneDemande()
 	{
-		$req = 'INSERT INTO DEMANDEINTER (
+		$req = 'INSERT INTO demandeinter (
 					 `DemI_Velo`,
 					 `DemI_Date`,
 					 `DemI_Technicien`,
@@ -121,13 +121,13 @@ class OdbDemandeInter
 	public function searchLesDemandesInter($valeur, $techCode = -2)
 	{
 		$req = "SELECT *, DATE_FORMAT(`DemI_Date`, '%d/%m/%Y') AS `DemI_Date`
-				FROM DEMANDEINTER
-				INNER JOIN VELO
-					ON DEMANDEINTER.DemI_Velo = VELO.Vel_Num
-				INNER JOIN STATION
-					ON VELO.Vel_Station = STATION.Sta_Code
-				INNER JOIN TECHNICIEN
-					ON DEMANDEINTER.DemI_Technicien = TECHNICIEN.Tec_Matricule
+				FROM demandeinter
+				INNER JOIN velo
+					ON demandeinter.DemI_Velo = velo.Vel_Num
+				INNER JOIN station
+					ON velo.Vel_Station = station.Sta_Code
+				INNER JOIN technicien
+					ON demandeinter.DemI_Technicien = technicien.Tec_Matricule
 				WHERE (
 						`DemI_Num` LIKE :valeur
 						OR DemI_Velo LIKE :valeur

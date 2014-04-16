@@ -13,7 +13,7 @@ class OdbStation
 		if(!empty($nom))
 		{
 			$req = 'SELECT COUNT(*) AS nb
-					FROM STATION
+					FROM station
 					WHERE Sta_Nom = :nom';
 
 			$data = $this->oBdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);
@@ -29,7 +29,7 @@ class OdbStation
 		if(!empty($id))
 		{
 			$req = 'SELECT COUNT(*) AS nb
-					FROM STATION
+					FROM station
 					WHERE Sta_Code = :id';
 
 			$data = $this->oBdd->query($req , array('id'=>$id), Bdd::SINGLE_RES);
@@ -43,7 +43,7 @@ class OdbStation
 	public function getLesStations()
 	{
 		$req = 'SELECT *
-				FROM STATION';
+				FROM station';
 
 		$lesStations = $this->oBdd->query($req);
 
@@ -53,7 +53,7 @@ class OdbStation
 	public function getLesIdStations()
 	{
 		$req = 'SELECT Sta_Code
-				FROM STATION';
+				FROM station';
 
 		$lesStations = $this->oBdd->query($req);
 
@@ -63,7 +63,7 @@ class OdbStation
 	public function searchStations($valeur)
 	{
 		$req = "SELECT *
-				FROM `STATION`
+				FROM `station`
 				WHERE `Sta_Code` LIKE :valeur
 					OR `Sta_Nom` LIKE :valeur
 					OR `Sta_Rue` LIKE :valeur";
@@ -76,7 +76,7 @@ class OdbStation
 	public function getUneStation($id)
 	{
 		$req = 'SELECT *
-				FROM STATION
+				FROM station
 				WHERE Sta_Code = :id';
 
 		$laStation = $this->oBdd->query($req, array('id'=>$id), Bdd::SINGLE_RES);
@@ -87,7 +87,7 @@ class OdbStation
 	public function getNbVelosAttaches($station)
 	{
 		$req = 'SELECT COUNT(Vel_Code) AS nb
-				FROM VELO
+				FROM velo
 				WHERE Vel_Station = :station';
 
 		$nbVelo = $this->oBdd->query($req, array('station'=>$station), Bdd::SINGLE_RES);
@@ -97,7 +97,7 @@ class OdbStation
 
 	public function getNbVeloDispo($station){
 		$req = 'SELECT COUNT(Vel_Code) AS nb
-				FROM VELO
+				FROM velo
 				WHERE Vel_Station = :station
 				AND Vel_Casse = 0';
 

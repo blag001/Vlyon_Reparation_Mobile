@@ -16,7 +16,7 @@ class OdbBonIntervention
 		if(!empty($code))
 		{
 			$req = "SELECT COUNT(*) AS nb
-					FROM BONINTERV
+					FROM boninterv
 					WHERE BI_Num = :code";
 
 			$data = $this->oBdd->query($req , array('code'=>$code), Bdd::SINGLE_RES);
@@ -32,7 +32,7 @@ class OdbBonIntervention
 		if(!empty($code) and !empty($techCode))
 		{
 			$req = "SELECT COUNT(*) AS nb
-					FROM BONINTERV
+					FROM boninterv
 					WHERE BI_Num = :code
 						AND BI_Technicien = :techCode";
 
@@ -49,7 +49,7 @@ class OdbBonIntervention
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
-				FROM BONINTERV";
+				FROM boninterv";
 
 		$lesBonsInter = $this->oBdd->query($req);
 
@@ -61,7 +61,7 @@ class OdbBonIntervention
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
-				FROM BONINTERV
+				FROM boninterv
 				WHERE BI_Num = :code
 					AND BI_Technicien = :techCode";
 
@@ -80,9 +80,9 @@ class OdbBonIntervention
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
-				FROM BONINTERV
-				INNER JOIN VELO
-					ON BONINTERV.BI_Velo = VELO.Vel_Num
+				FROM boninterv
+				INNER JOIN velo
+					ON boninterv.BI_Velo = velo.Vel_Num
 				WHERE BI_Technicien = :techCode";
 
 		$lesBonsInter = $this->oBdd->query($req, array('techCode'=>$techCode));
@@ -95,7 +95,7 @@ class OdbBonIntervention
 	public function getIdLastIntervention()
 	{
 		$req = "SELECT BI_Num
-				FROM BONINTERV
+				FROM boninterv
 				ORDER BY BI_Num DESC
 				LIMIT 1";
 
@@ -110,7 +110,7 @@ class OdbBonIntervention
 	 */
 	public function creerUnBonInter()
 	{
-		$req = 'INSERT INTO BONINTERV (
+		$req = 'INSERT INTO boninterv (
 					 `BI_Velo`,
 					 `BI_DatDebut`,
 					 `BI_DatFin`,
@@ -150,7 +150,7 @@ class OdbBonIntervention
 	public function searchMesBonIntervention($valeur, $techCode)
 	{
 		$req = "SELECT *
-				FROM `BONINTERV`
+				FROM `boninterv`
 				WHERE
 					(
 						`BI_Num` LIKE :valeur

@@ -13,7 +13,7 @@ class OdbVelo{
 		if(!empty($codeVelo))
 		{
 			$req = 'SELECT COUNT(*) AS nb
-					FROM VELO
+					FROM velo
 					WHERE Vel_Num = :codeVelo';
 
 			$data = $this->oBdd->query($req , array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
@@ -27,11 +27,11 @@ class OdbVelo{
 	public function getLesVelosDeStation($codeStation){
 
 		$req = 'SELECT *
-				FROM ETAT
-				INNER JOIN VELO
-					ON ETAT.Eta_Code = VELO.Vel_Etat
-				INNER JOIN PRODUIT
-					ON VELO.Vel_Type = PRODUIT.Pdt_Code
+				FROM etat
+				INNER JOIN velo
+					ON etat.Eta_Code = velo.Vel_Etat
+				INNER JOIN produit
+					ON velo.Vel_Type = produit.Pdt_Code
 				WHERE Vel_Station = :codeStation';
 
 		$lesVelos = $this->oBdd->query($req, array('codeStation'=>$codeStation));
@@ -42,11 +42,11 @@ class OdbVelo{
 	public function getLesVelos(){
 
 		$req = 'SELECT *
-				FROM ETAT
-				INNER JOIN VELO
-					ON ETAT.Eta_Code = VELO.Vel_Etat
-				INNER JOIN PRODUIT
-					ON VELO.Vel_Type = PRODUIT.Pdt_Code';
+				FROM etat
+				INNER JOIN velo
+					ON etat.Eta_Code = velo.Vel_Etat
+				INNER JOIN produit
+					ON velo.Vel_Type = produit.Pdt_Code';
 
 		$lesVelos = $this->oBdd->query($req);
 
@@ -56,11 +56,11 @@ class OdbVelo{
 	public function getLesIdVelos(){
 
 		$req = 'SELECT Vel_Num
-				FROM ETAT
-				INNER JOIN VELO
-					ON ETAT.Eta_Code = VELO.Vel_Etat
-				INNER JOIN PRODUIT
-					ON VELO.Vel_Type = PRODUIT.Pdt_Code
+				FROM etat
+				INNER JOIN velo
+					ON etat.Eta_Code = velo.Vel_Etat
+				INNER JOIN produit
+					ON velo.Vel_Type = produit.Pdt_Code
 				ORDER BY Vel_Num DESC';
 
 		$lesVelos = $this->oBdd->query($req);
@@ -71,11 +71,11 @@ class OdbVelo{
 	public function getNouveauxVelos(){
 
 		$req = 'SELECT *
-				FROM ETAT
-				INNER JOIN VELO
-					ON ETAT.Eta_Code = VELO.Vel_Etat
-				INNER JOIN PRODUIT
-					ON VELO.Vel_Type = PRODUIT.Pdt_Code
+				FROM etat
+				INNER JOIN velo
+					ON etat.Eta_Code = velo.Vel_Etat
+				INNER JOIN produit
+					ON velo.Vel_Type = produit.Pdt_Code
 				ORDER BY Vel_Num DESC
 				LIMIT 50';
 
@@ -87,11 +87,11 @@ class OdbVelo{
 	public function searchVelos($valeur)
 	{
 		$req = "SELECT *
-				FROM ETAT
-				INNER JOIN VELO
-					ON ETAT.Eta_Code = VELO.Vel_Etat
-				INNER JOIN PRODUIT
-					ON VELO.Vel_Type = PRODUIT.Pdt_Code
+				FROM etat
+				INNER JOIN velo
+					ON etat.Eta_Code = velo.Vel_Etat
+				INNER JOIN produit
+					ON velo.Vel_Type = produit.Pdt_Code
 				WHERE
 					Vel_Num LIKE :valeur
 					OR Vel_Station LIKE :valeur";
@@ -103,11 +103,11 @@ class OdbVelo{
 
 	public function getUnVelo($codeVelo){
 		$req = 'SELECT *
-				FROM ETAT
-				INNER JOIN VELO
-					ON ETAT.Eta_Code = VELO.Vel_Etat
-				INNER JOIN PRODUIT
-					ON VELO.Vel_Type = PRODUIT.Pdt_Code
+				FROM etat
+				INNER JOIN velo
+					ON etat.Eta_Code = velo.Vel_Etat
+				INNER JOIN produit
+					ON velo.Vel_Type = produit.Pdt_Code
 				WHERE Vel_Num = :codeVelo';
 
 		$leVelo = $this->oBdd->query($req, array('codeVelo'=>$codeVelo), Bdd::SINGLE_RES);
@@ -121,7 +121,7 @@ class OdbVelo{
 	 */
 	public function modifierUnVelo(){
 
-		$req = 'UPDATE VELO
+		$req = 'UPDATE velo
 				SET Vel_Station     = :stationVelo,
 					Vel_Etat        = :etatVelo,
 					Vel_Accessoire  = :accessoireVelo
