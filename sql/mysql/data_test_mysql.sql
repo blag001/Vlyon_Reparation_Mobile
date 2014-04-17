@@ -2,19 +2,19 @@
 
 -- `Sta_Code`,`Sta_Nom`,`Sta_Rue`,`Sta_NbAttaches`,`Sta_NbVelos`,`Sta_NbAttacDispo`,`Sta_NbTotLoc`,`Sta_NbVols`,`Sta_NbDegrad`
 INSERT INTO station
-	VALUES ('1023', 'Les Palourdes', 'terre de mer', 20, 10, 10, 47, 0, 0);
+	VALUES ('1023', 'Les Palourdes', 'terre de mer', 20, 0, 20, 47, 0, 0);
 INSERT INTO station
-	VALUES ('1024', 'La comptee', 'terre du milieux', 20, 10, 10, 27, 1, 0);
+	VALUES ('1024', 'La comptee', 'terre du milieux', 20, 0, 20, 27, 1, 0);
 INSERT INTO station
-	VALUES ('2001', 'Minastirit', 'rue du Mordor', 30, 25, 5, 484, 0, 1);
+	VALUES ('2001', 'Minastirit', 'rue du Mordor', 30, 0, 30, 484, 0, 1);
 INSERT INTO station
-	VALUES ('2009', 'Bellecour', '1 rue de la Barre', 18, 16, 1, 484, 0, 1);
+	VALUES ('2009', 'Bellecour', '1 rue de la Barre', 30, 0, 30, 484, 0, 1);
 INSERT INTO station
-	VALUES ('3029', 'Confluence les Docks', '40 quai Rambaud', 26, 2, 23, 484, 0, 1);
+	VALUES ('3029', 'Confluence les Docks', '40 quai Rambaud', 15, 0, 15, 484, 0, 1);
 INSERT INTO station
-	VALUES ('3030', 'Drumollet', '8 rue de la cote', 20, 15, 1, 484, 0, 1);
+	VALUES ('3030', 'Drumollet', '8 rue de la cote', 20, 0, 20, 484, 0, 1);
 INSERT INTO station
-	VALUES ('4001', 'Le plaine', '12quater allee des embrumes', 20, 2, 23, 484, 0, 1);
+	VALUES ('4001', 'Le plaine', '12quater allee des embrumes', 20, 0, 20, 484, 0, 1);
 
 -- `Eta_Code`, `Eta_Libelle`
 INSERT INTO etat
@@ -46,7 +46,17 @@ INSERT INTO velo
 INSERT INTO velo
 	VALUES (null, '1024', 1, 'B', 'panier', 0);
 INSERT INTO velo
+	VALUES (null, '1024', 1, 'A', '', 0);
+INSERT INTO velo
+	VALUES (null, '1024', 1, 'A', '', 0);
+INSERT INTO velo
+	VALUES (null, '1024', 1, 'A', '', 0);
+INSERT INTO velo
 	VALUES (null, '1024', 2, 'A', '', 0);
+INSERT INTO velo
+	VALUES (null, '2001', 1, 'A', '', 0);
+INSERT INTO velo
+	VALUES (null, '2001', 1, 'B', '', 0);
 INSERT INTO velo
 	VALUES (null, '2001', 1, 'A', '', 0);
 INSERT INTO velo
@@ -80,5 +90,6 @@ INSERT INTO boninterv
 INSERT INTO boninterv
 	VALUES (null, '2', '2013-02-14', '2013-02-14', 'casse de la pedale', '1', '4', '1', '1', '0');
 
+-- `Use_Num`, `Use_Nom`, `Use_Hash`, `Use_RespAchat`, `Use_Technicien`
 INSERT INTO user
 	VALUES( null, 'root', '6779bcb1f994927795f01178c45b345a36cdabef683618d11e85489441482dd55ad241d920b466418c5b865a4f96aa0fd1cd76a206f66e58de650bb3d16a9806', 0, 1);
