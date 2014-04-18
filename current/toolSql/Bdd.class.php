@@ -39,7 +39,7 @@
 	 * @global boolean SINGLE_RES
 	 * @global int NO_RES
 	 * @author Benoit <benoitelie1@gmail.com>
-	 * @version v.5.0.0
+	 * @version v.5.1.0
 	 * @link https://github.com/blag001/class_easy_pdo depot GitHub
 	 */
 class Bdd
@@ -122,6 +122,39 @@ class Bdd
 	public function __wakeup()
 	{
 		$this->_connexion();
+	}
+
+	//////////////////////////////////////
+	// fonction de gestion de la class //
+	//////////////////////////////////////
+
+		/**
+		 * test le besoin de recharger la class pdo
+		 *
+		 * /!\ si vous changer $_SESSION['bdd'] par autre chose, pas exemple $_SESSION['oSql'],
+		 * vous devez passer 'oSql' comme parametre de cette fonction
+		 *
+		 * @param  string $session_index l'index de $_SESSION ou se trouve l'objet PDO ('bdd' par defaut)
+		 * @return bool                true/false si oui ou non il faut une nouvelle instance
+		 */
+	public static function needInstance($session_index = 'bdd')
+	{
+		if(
+			empty($_SESSION[$session_index])
+			or !is_object($_SESSION[$session_index])
+			or $_SESSION[$session_index]->getCallSource() !== $_SERVER['PHP_SELF']
+			)
+			return true;
+		else
+			return false;
+	}
+
+		/**
+		 * getter de callSource
+		 * @return string url d'instanciation de l'objet bdd en cours
+		 */
+	public function getCallSource(){
+		return $this->callSource;
 	}
 
 	//////////////
@@ -578,30 +611,6 @@ class Bdd
 		catch (Exception $e) {
 			$this->_showError($e);
 		}
-	}
-
-	//////////////////////////////////////
-	// fonction de gestion de la class //
-	//////////////////////////////////////
-
-	public function needReload()
-	{
-		if($this->callSource !== $_SERVER['PHP_SELF'])
-			return true;
-		else
-			return false;
-	}
-
-	public static function needInstance()
-	{
-		if(
-			empty($_SESSION['bdd'])
-			or !is_object($_SESSION['bdd'])
-			or $_SESSION['bdd']->needReload()
-			)
-			return true;
-		else
-			return false;
 	}
 
 }
