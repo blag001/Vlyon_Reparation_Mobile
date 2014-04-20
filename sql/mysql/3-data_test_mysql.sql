@@ -2,19 +2,19 @@
 
 -- `Sta_Code`,`Sta_Nom`,`Sta_Rue`,`Sta_NbAttaches`,`Sta_NbVelos`,`Sta_NbAttacDispo`,`Sta_NbTotLoc`,`Sta_NbVols`,`Sta_NbDegrad`
 INSERT INTO station
-	VALUES ('1023', 'Les Palourdes', 'terre de mer', 20, 0, 20, 47, 0, 0);
+	VALUES ('1023', 'Fondcombe', '15 Avenue des Monts Brumeux', 20, 0, 20, 47, 0, 0);
 INSERT INTO station
-	VALUES ('1024', 'La comptee', 'terre du milieux', 20, 0, 20, 27, 1, 0);
+	VALUES ('1024', 'La Comté', '405 place de la Terre du Milieu', 20, 0, 20, 27, 1, 0);
 INSERT INTO station
-	VALUES ('2001', 'Minastirit', 'rue du Mordor', 30, 0, 30, 484, 0, 1);
+	VALUES ('2001', 'Minas Tirith', 'Avenue du Gondor', 30, 0, 30, 484, 0, 1);
 INSERT INTO station
-	VALUES ('2009', 'Bellecour', '1 rue de la Barre', 30, 0, 30, 484, 0, 1);
+	VALUES ('2009', 'Montagne du Destin', '1 rue du Mordor', 30, 0, 30, 484, 0, 1);
 INSERT INTO station
-	VALUES ('3029', 'Confluence les Docks', '40 quai Rambaud', 15, 0, 15, 484, 0, 1);
+	VALUES ('3029', 'Gouffre de Helm', 'Lieu dit du Rohan', 15, 0, 15, 484, 0, 1);
 INSERT INTO station
-	VALUES ('3030', 'Drumollet', '8 rue de la cote', 20, 0, 20, 484, 0, 1);
+	VALUES ('3030', 'La Moria', '342 Avenue des Monts Brumeux', 20, 0, 20, 484, 0, 1);
 INSERT INTO station
-	VALUES ('4001', 'Le plaine', '12quater allee des embrumes', 20, 0, 20, 484, 0, 1);
+	VALUES ('4001', 'Erebor', 'Lieu dit du Rhovanion', 20, 0, 20, 484, 0, 1);
 
 -- `Eta_Code`, `Eta_Libelle`
 INSERT INTO etat
@@ -92,4 +92,5 @@ INSERT INTO boninterv
 
 -- `Use_Num`, `Use_Nom`, `Use_Hash`, `Use_RespAchat`, `Use_Technicien`
 INSERT INTO user
+		-- id/password : root/root
 	VALUES( null, 'root', '6779bcb1f994927795f01178c45b345a36cdabef683618d11e85489441482dd55ad241d920b466418c5b865a4f96aa0fd1cd76a206f66e58de650bb3d16a9806', 0, 1);
