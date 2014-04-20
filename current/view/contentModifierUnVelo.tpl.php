@@ -22,11 +22,13 @@
 		}
 		?>
 		<div class="form-group">
-			<label for="vel_code">No du v&eacute;lo</label>
-			<input class="form-control" id="vel_code" type="text" name="codeVelo"<?php
-				if (!empty($arg['leVelo']))
-					echo ' value="'.$arg['leVelo']->Vel_Num.'"';
-			?> readonly="readonly">
+			<label >No du v&eacute;lo</label>
+			<p class="form-control-static">
+				<?php
+					if (!empty($arg['leVelo']))
+						echo $arg['leVelo']->Vel_Num;
+				?>
+			</p>
 		</div>
 		<div class="form-group">
 			<label for="vel_station">Station du v&eacute;lo</label>
@@ -71,36 +73,25 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="vel_type">Type du v&eacute;lo</label>
-			<select class="form-control" id="vel_type" name="typeVelo" readonly="readonly">
+			<label >Type du v&eacute;lo</label>
+			<p class="form-control-static">
 				<?php
-				if(
-					!empty($arg['lesTypes'])
-					and is_array($arg['lesTypes'])
-					and !empty($arg['leVelo'])
-					)
-				{
-					foreach ($arg['lesTypes'] as $value)
-					{
-						echo '<option value="' .$value->Pdt_Code. '"';
-						if ($value->Pdt_Code == $arg['leVelo']->Vel_Type)
-							echo ' selected="selected"';
-						echo ' >'.$value->Pdt_Libelle.'</option>';
-					}
+				if(!empty($arg['leVelo'])){
+					echo $arg['leVelo']->Pdt_Libelle;
 				}
 				?>
-			</select>
+			</p>
 		</div>
 		<div class="form-group">
 			<label for="vel_accessoire">Accessoire(s)</label>
 			<input class="form-control" id="vel_accessoire" type="text" name="accessoireVelo"<?php
 				if (!empty($arg['leVelo']))
 					echo ' value="'.$arg['leVelo']->Vel_Accessoire.'"';
-			?> >
+			?> />
 		</div>
 		<div class="checkbox">
 			<label for="vel_casse">
-				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" readonly="readonly">
+				<input type="checkbox" value="1" id="vel_casse" name="veloCasse" disabled />
 				V&eacute;lo Cass&eacute;.
 			</label>
 		</div>

@@ -242,7 +242,6 @@ class Velo
 			$leVelo = $this->odbVelo->getUnVelo($_GET['valeur']);
 			$lesStations = $this->odbStation->getLesIdStations();
 			$lesEtats = $this->odbEtat->getLesEtats();
-			$lesTypes = $this->odbProduit->getLesTypes();
 
 
 			$_SESSION['tampon']['html']['title'] = 'Modifier un V&eacute;lo';
@@ -263,7 +262,6 @@ class Velo
 					'lesStations'=>$lesStations,
 					'leVelo'=>$leVelo,
 					'lesEtats'=>$lesEtats,
-					'lesTypes'=>$lesTypes,
 					'has_error'=>$has_error,
 					));
 			view('htmlFooter');
