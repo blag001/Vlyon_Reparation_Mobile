@@ -1,229 +1,186 @@
--- ============================================================
---   Nom de la base   :  sio_reparation
---   Nom de SGBD      :  MYSQL Version 5.5 ou >
---   Date de creation :  05/11/2013  22:15
--- ============================================================
+-- phpMyAdmin SQL Dump
+-- version 4.0.9
+-- http://www.phpmyadmin.net
+--
+-- Client: localhost
+-- Généré le: Jeu 17 Avril 2014 à 02:20
+-- Version du serveur: 5.5.34
+-- Version de PHP: 5.4.22
 
--- ============================================================
---   Table : station
--- ============================================================
-create table station
-(
-    Sta_Code          CHAR(5)                not null,
-    Sta_Nom           VARCHAR(30)           null    ,
-    Sta_Rue           VARCHAR(50)           null    ,
-    Sta_NbAttaches    DECIMAL(2)              null    ,
-    Sta_NbVelos       DECIMAL(2)              null    ,
-    Sta_NbAttacDispo  DECIMAL(2)              null    ,
-    Sta_NbTotLoc      DECIMAL(10)             null    ,
-    Sta_NbVols        DECIMAL(5)              null    ,
-    Sta_NbDegrad      DECIMAL(5)              null    ,
-    constraint PK_STATION primary key (Sta_Code)
-)
-;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
--- ============================================================
---   Table : etat
--- ============================================================
-create table etat
-(
-    Eta_Code          INT               not null AUTO_INCREMENT,
-    Eta_Libelle       VARCHAR(30)           null    ,
-    constraint PK_ETAT primary key (Eta_Code)
-)
-;
+--
+-- Base de données: `sio_reparation`
+--
 
--- ============================================================
---   Table : produit
--- ============================================================
-create table produit
-(
-    Pdt_Code          CHAR(6)                not null,
-    Pdt_Libelle       VARCHAR(30)            null    ,
-    Pdt_Poids         DECIMAL(10)             null    ,
-    Pdt_PxCMUP        DECIMAL(6,2)            null    ,
-    Pdt_QteStk        DECIMAL(10)             null    ,
-    Pdt_NbVols        DECIMAL(5)              null    ,
-    Pdt_NbCasses      DECIMAL(5)              null    ,
-    constraint PK_PRODUIT primary key (Pdt_Code)
-)
-;
+-- --------------------------------------------------------
 
--- ============================================================
---   Table : technicien
--- ============================================================
-create table technicien
-(
-    Tec_Matricule     INT                not null AUTO_INCREMENT,
-    Tec_Nom           VARCHAR(35)           null    ,
-    Tec_Prenom        VARCHAR(35)           null    ,
-    constraint PK_TECHNICIEN primary key (Tec_Matricule)
-)
-;
+--
+-- Structure de la table `boninterv`
+--
 
--- ============================================================
---   Table : velo
--- ============================================================
-create table velo
-(
-    Vel_Num           INT                    not null AUTO_INCREMENT,
-    Vel_Station       CHAR(5)                null    ,
-    Vel_Etat          INT                    not null,
-    Vel_Type          CHAR(6)                not null,
-    Vel_Accessoire    VARCHAR(20)            null    ,
-    Vel_Casse         BIT(1)                 null    ,
-    constraint PK_VELO primary key (Vel_Num)
-)
-;
+CREATE TABLE IF NOT EXISTS `boninterv` (
+  `BI_Num` int(11) NOT NULL AUTO_INCREMENT,
+  `BI_Velo` int(11) NOT NULL,
+  `BI_DatDebut` date DEFAULT NULL,
+  `BI_DatFin` date DEFAULT NULL,
+  `BI_CpteRendu` varchar(100) DEFAULT NULL,
+  `BI_Reparable` bit(1) DEFAULT NULL,
+  `BI_Demande` int(11) DEFAULT NULL,
+  `BI_Technicien` int(11) NOT NULL,
+  `BI_SurPlace` bit(1) DEFAULT NULL,
+  `BI_Duree` decimal(5,0) DEFAULT NULL,
+  PRIMARY KEY (`BI_Num`),
+  KEY `CONCERNER_FK` (`BI_Velo`),
+  KEY `EXECUTER_FK2` (`BI_Demande`),
+  KEY `realiser_FK` (`BI_Technicien`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
--- ============================================================
---   Index : POSITIONNER_FK
--- ============================================================
-create index POSITIONNER_FK on velo (Vel_Station asc)
-;
+-- --------------------------------------------------------
 
--- ============================================================
---   Index : AVOIR_FK
--- ============================================================
-create index AVOIR_FK on velo (Vel_Etat asc)
-;
+--
+-- Structure de la table `demandeinter`
+--
 
--- ============================================================
---   Index : appartenir_FK
--- ============================================================
-create index appartenir_FK on velo (Vel_Type asc)
-;
+CREATE TABLE IF NOT EXISTS `demandeinter` (
+  `DemI_Num` int(11) NOT NULL AUTO_INCREMENT,
+  `DemI_Velo` int(11) NOT NULL,
+  `DemI_Date` date DEFAULT NULL,
+  `DemI_Technicien` int(11) NOT NULL,
+  `DemI_Motif` varchar(50) DEFAULT NULL,
+  `DemI_Traite` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`DemI_Num`),
+  KEY `CORRESPONDRE_FK` (`DemI_Velo`),
+  KEY `rediger_FK` (`DemI_Technicien`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
--- ============================================================
---   Table : demandeinter
--- ============================================================
-create table demandeinter
-(
-    DemI_Num          INT                    not null AUTO_INCREMENT,
-    DemI_Velo         INT                    not null,
-    DemI_Date         DATE                   null    ,
-    DemI_Technicien   INT                    not null,
-    DemI_Motif        VARCHAR(50)            null    ,
-    DemI_Traite       BIT(1)                 null    ,
-    constraint PK_DEMANDEINTER primary key (DemI_Num)
-)
-;
+-- --------------------------------------------------------
 
--- ============================================================
---   Index : CORRESPONDRE_FK
--- ============================================================
-create index CORRESPONDRE_FK on demandeinter (DemI_Velo asc)
-;
+--
+-- Structure de la table `etat`
+--
 
--- ============================================================
---   Index : rediger_FK
--- ============================================================
-create index rediger_FK on demandeinter (DemI_Technicien asc)
-;
+CREATE TABLE IF NOT EXISTS `etat` (
+  `Eta_Code` int(11) NOT NULL AUTO_INCREMENT,
+  `Eta_Libelle` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`Eta_Code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
--- ============================================================
---   Table : boninterv
--- ============================================================
-create table boninterv
-(
-    BI_Num            INT                    not null AUTO_INCREMENT,
-    BI_Velo           INT                    not null,
-    BI_DatDebut       DATE                   null    ,
-    BI_DatFin         DATE                   null    ,
-    BI_CpteRendu      VARCHAR(100)           null    ,
-    BI_Reparable      BIT(1)                 null    ,
-    BI_Demande        INT                    null    ,
-    BI_Technicien     INT                    not null,
-    BI_SurPlace       BIT(1)                 null    ,
-    BI_Duree          DECIMAL(5)             null    ,
-    constraint PK_BONINTERV primary key (BI_Num)
-)
-;
+-- --------------------------------------------------------
 
--- ============================================================
---   Index : CONCERNER_FK
--- ============================================================
-create index CONCERNER_FK on boninterv (BI_Velo asc)
-;
+--
+-- Structure de la table `produit`
+--
 
--- ============================================================
---   Index : EXECUTER_FK2
--- ============================================================
-create index EXECUTER_FK2 on boninterv (BI_Demande asc)
-;
+CREATE TABLE IF NOT EXISTS `produit` (
+  `Pdt_Code` char(6) NOT NULL,
+  `Pdt_Libelle` varchar(30) DEFAULT NULL,
+  `Pdt_Poids` decimal(10,0) DEFAULT NULL,
+  `Pdt_PxCMUP` decimal(6,2) DEFAULT NULL,
+  `Pdt_QteStk` decimal(10,0) DEFAULT NULL,
+  `Pdt_NbVols` decimal(5,0) DEFAULT NULL,
+  `Pdt_NbCasses` decimal(5,0) DEFAULT NULL,
+  PRIMARY KEY (`Pdt_Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ============================================================
---   Index : realiser_FK
--- ============================================================
-create index realiser_FK on boninterv (BI_Technicien asc)
-;
+-- --------------------------------------------------------
 
--- ============================================================
---   Table : user
--- ============================================================
-create table user
-(
-    Use_Num            INT                    not null AUTO_INCREMENT,
-    Use_Nom            VARCHAR(50)            not null,
-    Use_Hash           CHAR(128)              not null,
-    Use_RespAchat      BIT(1)                 null    ,
-    Use_Technicien     INT                    null    ,
-    constraint PK_USER primary key (Use_Num)
-)
-;
+--
+-- Structure de la table `station`
+--
 
--- ============================================================
---   Index : CONCERNER_FK
--- ============================================================
-create index HASH_FK on user (Use_Hash asc)
-;
+CREATE TABLE IF NOT EXISTS `station` (
+  `Sta_Code` char(5) NOT NULL,
+  `Sta_Nom` varchar(30) DEFAULT NULL,
+  `Sta_Rue` varchar(50) DEFAULT NULL,
+  `Sta_NbAttaches` decimal(2,0) DEFAULT NULL,
+  `Sta_NbVelos` decimal(2,0) DEFAULT NULL,
+  `Sta_NbAttacDispo` decimal(2,0) DEFAULT NULL,
+  `Sta_NbTotLoc` decimal(10,0) DEFAULT NULL,
+  `Sta_NbVols` decimal(5,0) DEFAULT NULL,
+  `Sta_NbDegrad` decimal(5,0) DEFAULT NULL,
+  PRIMARY KEY (`Sta_Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `technicien`
+--
 
--- ============================================================
---   ajout des contraites
--- ============================================================
-alter table velo
-    add constraint FK_VELO_STATION foreign key  (Vel_Station)
-       references station (Sta_Code)
-;
+CREATE TABLE IF NOT EXISTS `technicien` (
+  `Tec_Matricule` int(11) NOT NULL AUTO_INCREMENT,
+  `Tec_Nom` varchar(35) DEFAULT NULL,
+  `Tec_Prenom` varchar(35) DEFAULT NULL,
+  PRIMARY KEY (`Tec_Matricule`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
-alter table velo
-    add constraint FK_VELO_ETAT foreign key  (Vel_Etat)
-       references etat (Eta_Code)
-;
+-- --------------------------------------------------------
 
-alter table velo
-    add constraint FK_VELO_PRODUIT foreign key  (Vel_Type)
-       references produit (Pdt_Code)
-;
+--
+-- Structure de la table `user`
+--
 
-alter table demandeinter
-    add constraint FK_DEMANDEINTER_VELO foreign key  (DemI_Velo)
-       references velo (Vel_Num)
-;
+CREATE TABLE IF NOT EXISTS `user` (
+  `Use_Num` int(11) NOT NULL AUTO_INCREMENT,
+  `Use_Nom` varchar(50) NOT NULL,
+  `Use_Hash` char(128) NOT NULL,
+  `Use_RespAchat` bit(1) DEFAULT NULL,
+  `Use_Technicien` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Use_Num`),
+  KEY `HASH_FK` (`Use_Hash`),
+  KEY `FK_USER_TECHNICIEN` (`Use_Technicien`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
-alter table demandeinter
-    add constraint FK_DEMANDEINTER_TECHNICIEN foreign key  (DemI_Technicien)
-       references technicien (Tec_Matricule)
-;
+-- --------------------------------------------------------
 
-alter table boninterv
-    add constraint FK_BONINTERV_VELO foreign key  (BI_Velo)
-       references velo (Vel_Num)
-;
+--
+-- Structure de la table `velo`
+--
 
-alter table boninterv
-    add constraint FK_BONINTERV_DEMANDEINTER foreign key  (BI_Demande)
-       references demandeinter (DemI_Num)
-;
+CREATE TABLE IF NOT EXISTS `velo` (
+  `Vel_Num` int(11) NOT NULL AUTO_INCREMENT,
+  `Vel_Station` char(5) DEFAULT NULL,
+  `Vel_Etat` int(11) NOT NULL,
+  `Vel_Type` char(6) NOT NULL,
+  `Vel_Accessoire` varchar(20) DEFAULT NULL,
+  `Vel_Casse` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`Vel_Num`),
+  KEY `POSITIONNER_FK` (`Vel_Station`),
+  KEY `AVOIR_FK` (`Vel_Etat`),
+  KEY `appartenir_FK` (`Vel_Type`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
-alter table boninterv
-    add constraint FK_BONINTERV_TECHNICIEN foreign key  (BI_Technicien)
-       references technicien (Tec_Matricule)
-;
+--
+-- Contraintes pour les tables exportées
+--
 
-alter table user
-    add constraint FK_USER_TECHNICIEN foreign key  (Use_Technicien)
-       references technicien (Tec_Matricule)
-;
+--
+-- Contraintes pour la table `boninterv`
+--
+ALTER TABLE `boninterv`
+  ADD CONSTRAINT `FK_BONINTERV_DEMANDEINTER` FOREIGN KEY (`BI_Demande`) REFERENCES `demandeinter` (`DemI_Num`),
+  ADD CONSTRAINT `FK_BONINTERV_TECHNICIEN` FOREIGN KEY (`BI_Technicien`) REFERENCES `technicien` (`Tec_Matricule`),
+  ADD CONSTRAINT `FK_BONINTERV_VELO` FOREIGN KEY (`BI_Velo`) REFERENCES `velo` (`Vel_Num`);
+
+--
+-- Contraintes pour la table `demandeinter`
+--
+ALTER TABLE `demandeinter`
+  ADD CONSTRAINT `FK_DEMANDEINTER_TECHNICIEN` FOREIGN KEY (`DemI_Technicien`) REFERENCES `technicien` (`Tec_Matricule`),
+  ADD CONSTRAINT `FK_DEMANDEINTER_VELO` FOREIGN KEY (`DemI_Velo`) REFERENCES `velo` (`Vel_Num`);
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FK_USER_TECHNICIEN` FOREIGN KEY (`Use_Technicien`) REFERENCES `technicien` (`Tec_Matricule`);
+
+--
+-- Contraintes pour la table `velo`
+--
+ALTER TABLE `velo`
+  ADD CONSTRAINT `FK_VELO_PRODUIT` FOREIGN KEY (`Vel_Type`) REFERENCES `produit` (`Pdt_Code`),
+  ADD CONSTRAINT `FK_VELO_ETAT` FOREIGN KEY (`Vel_Etat`) REFERENCES `etat` (`Eta_Code`),
+  ADD CONSTRAINT `FK_VELO_STATION` FOREIGN KEY (`Vel_Station`) REFERENCES `station` (`Sta_Code`);
