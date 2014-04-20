@@ -1,11 +1,15 @@
+	-- on change le delimiteur de fin d'instruction
 DELIMITER //
 
--- pour les ajout de velo, maj des data calcule de la station
-CREATE TRIGGER trg_clc_velo_insert
-AFTER INSERT ON velo
+	-- pour les ajout de velo, maj des data calcule de la station
+DROP TRIGGER IF EXISTS `trg_clc_velo_insert`;
+//
+
+CREATE TRIGGER `trg_clc_velo_insert`
+AFTER INSERT ON `velo`
 FOR EACH ROW
 BEGIN
-	-- si on fait une insertion avec une station
+		-- si on fait une insertion avec une station
 	IF NEW.Vel_Station > 0 THEN
 		UPDATE station SET
 			Sta_NbVelos = Sta_NbVelos + 1,
@@ -15,12 +19,15 @@ BEGIN
 END;
 //
 
--- pour les modif de velo, maj des data calcule de la station
-CREATE TRIGGER trg_clc_velo_update
-AFTER UPDATE ON velo
+	-- pour les modif de velo, maj des data calcule de la station
+DROP TRIGGER IF EXISTS `trg_clc_velo_update`;
+//
+
+CREATE TRIGGER `trg_clc_velo_update`
+AFTER UPDATE ON `velo`
 FOR EACH ROW
 BEGIN
-	-- si on fait une maj avec une nouvelle station
+		-- si on fait une maj avec une nouvelle station
 	IF NEW.Vel_Station > 0 THEN
 		UPDATE station SET
 			Sta_NbVelos = Sta_NbVelos + 1,
@@ -28,7 +35,7 @@ BEGIN
 		WHERE Sta_Code = NEW.Vel_Station;
 	END IF;
 
-	-- si on fait une maj avec une vielle station
+		-- si on fait une maj avec une vielle station
 	IF OLD.Vel_Station > 0 THEN
 		UPDATE station SET
 			Sta_NbVelos = Sta_NbVelos - 1,
