@@ -62,11 +62,13 @@
 			<label for="cpteRendu">Compte rendu</label>
 			<input type="text" class="form-control"  id="cpteRendu" name="cpteRendu" placeholder="Motif du probleme">
 
-			<label for="dateDebut">Date de d&eacute;but de l'intervention</label>
+			<label for="dateDebut" id="idStartDate" >Date de d&eacute;but de l'intervention</label>
 			<input type="date" class="form-control"  id="dateDebut" name="dateDebut" placeholder="Date de debut">
 
-			<label for="dateFin">Date de fin de l'intervention</label>
-			<input type="date" class="form-control"  id="dateFin" name="dateFin" placeholder="Date de fin">
+			<span id="idEndDate">
+				<label for="dateFin">Date de fin de l'intervention</label>
+				<input type="date" class="form-control"  id="dateFin" name="dateFin" placeholder="Date de fin">
+			</span>
 
 			<div class="checkbox">
 				<label for="vel_reparable">
@@ -78,7 +80,7 @@
 			<div class="checkbox">
 				<label for="vel_surPlace">
 				<input type="checkbox" id="vel_surPlace" name="surPlace" checked="checked"
-					onchange="switcher(this.checked, 'idTitle', 'Cr&eacute;er un bon d\'intervention', 'Cr&eacute;er une demande d\'intervention')"
+					onchange="switchBonEtDemInter(this.checked)"
 					<?php
 					if(!empty($arg['laDemandeInterNum']) or !empty($_POST['code_demande']))
 						echo ' disabled';
@@ -90,7 +92,7 @@
 
 
 
-        	<button type="submit" class="btn btn-lg btn-primary btn-block" name="sbmtMkBon">Ajouter le bon</button>
+        	<button type="submit" class="btn btn-lg btn-primary btn-block" name="sbmtMkBon" id="idSubmit" >Ajouter le bon</button>
 		</div>
 	</form>
 </div>

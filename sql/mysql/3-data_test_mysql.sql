@@ -94,9 +94,9 @@ INSERT INTO demandeinter
 
 -- `BI_Num`, `BI_Velo`, `BI_DatDebut`, `BI_DatFin`, `BI_CpteRendu`, `BI_Reparable`, `BI_Demande`, `BI_Technicien`, `BI_SurPlace`, `BI_Duree`
 INSERT INTO boninterv
-	VALUES (null, '7', '2013-06-18', '2013-06-18', 'usure naturel', '1', '1', '1', '1', '0');
+	VALUES (null, '7', '2013-06-18', '2013-06-18', 'usure naturel', '1', '1', '1', '1', '1');
 INSERT INTO boninterv
-	VALUES (null, '2', '2013-02-14', '2013-02-14', 'casse de la pedale', '1', '4', '1', '1', '0');
+	VALUES (null, '2', '2013-02-14', '2013-02-14', 'casse de la pedale', '1', '4', '1', '1', '1');
 
 -- `Use_Num`, `Use_Nom`, `Use_Hash`, `Use_RespAchat`, `Use_Technicien`
 INSERT INTO user

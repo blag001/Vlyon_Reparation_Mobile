@@ -94,3 +94,23 @@ function switcher(value, idTarget, valOnTrue, valOnFalse) {
 	else
 		document.getElementById(idTarget).innerHTML = valOnFalse;
 }
+
+// function local
+
+function switchBonEtDemInter (value) {
+		// change name title
+	switcher(value, 'idTitle', 'Cr&eacute;er un bon d\'intervention', 'Cr&eacute;er une demande d\'intervention');
+
+		// display or not le 2eme input date
+	if(value)
+		document.getElementById('idEndDate').style.display = 'inline';
+	else
+		document.getElementById('idEndDate').style.display = 'none';
+
+		// change name dateStart
+	switcher(value, 'idStartDate', 'Date de d&eacute;but de l\'intervention', 'Date de la demande');
+
+		// change la value du submit
+	switcher(value, 'idSubmit', 'Ajouter le bon', 'Ajouter la demande');
+
+}
