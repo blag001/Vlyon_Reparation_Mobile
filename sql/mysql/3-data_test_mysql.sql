@@ -18,17 +18,25 @@ INSERT INTO station
 
 -- `Eta_Code`, `Eta_Libelle`
 INSERT INTO etat
-	VALUES (null, 'Fonctionnel');
+	VALUES (null, 'Opérationnel');
 INSERT INTO etat
-	VALUES (null, 'Degard&eacute;');
+	VALUES (null, 'Détérioré');
 INSERT INTO etat
-	VALUES (null, 'Crev&eacute;');
+	VALUES (null, 'Non restitué');
+INSERT INTO etat
+	VALUES (null, 'Volé');
+INSERT INTO etat
+	VALUES (null, 'En circulation');
+INSERT INTO etat
+	VALUES (null, 'En révision');
 
 -- `Pdt_Code`,`Pdt_Libelle`,`Pdt_Poids`,`Pdt_PxCMUP`,`Pdt_QteStk`,`Pdt_NbVols`,`Pdt_NbCasses`
 INSERT INTO produit
-	VALUES ('A', 'VTT', 13, 250, 5, 1, 0);
+	VALUES ('A', 'VTT', 13, 250, 5, 0, 0);
 INSERT INTO produit
-	VALUES ('B', 'VTC', 10, 200, 15, 4, 0);
+	VALUES ('B', 'VTC', 10, 200, 15, 0, 0);
+INSERT INTO produit
+	VALUES ('C', 'VAE', 35, 1500, 20, 0, 0);
 
 -- `Tec_Matricule`, `Tec_Nom`, `Tec_Prenom`
 INSERT INTO technicien
