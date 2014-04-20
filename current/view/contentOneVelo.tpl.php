@@ -4,6 +4,7 @@
 		<thead>
 			<tr>
 				<th>Num</th>
+				<th>Station</th>
 				<th>&Eacute;tat</th>
 				<th>Type</th>
 				<th>Accessoires</th>
@@ -20,6 +21,7 @@
 							<?php echo $arg['unVelo']->Vel_Num;?>
 						</a>
 					</td>
+					<td><?php echo $arg['unVelo']->Vel_Station;?></td>
 					<td><?php echo $arg['unVelo']->Eta_Libelle;?></td>
 					<td><?php echo $arg['unVelo']->Pdt_Libelle;?></td>
 					<td><?php echo $arg['unVelo']->Vel_Accessoire;?></td>

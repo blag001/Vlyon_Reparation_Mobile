@@ -34,6 +34,7 @@ function _getReqHttp()
 
 	/**
 	 * envois le(s) argument(s) sur l'url cible et met le retour dans l'idTarget
+	 *
 	 * @param  {string} methode   POST ou GET
 	 * @param  {string} urlTarget l'url visee par la requete AJAX
 	 * @param  {string} arg       le(s) arguement(s) a passer
@@ -75,4 +76,21 @@ function ajax(methode, urlTarget, arg, idTarget )
 			reqHttp1.send(null);
 		}
 	}
+}
+
+	/**
+	 * change le contenu de idTarget par valOnTrue ou valOnFalse,
+	 * suivant la valeur boolean de value
+	 *
+	 * @param  {boolean} value      la valeur à tester
+	 * @param  {string} idTarget   l'id de reception du retour
+	 * @param  {string} valOnTrue  texte que doit valoir idTarget si value = true
+	 * @param  {string} valOnFalse texte que doit valoir idTarget si value = false
+	 * @return {void}            pas de retour
+	 */
+function switcher(value, idTarget, valOnTrue, valOnFalse) {
+	if(value)
+		document.getElementById(idTarget).innerHTML = valOnTrue;
+	else
+		document.getElementById(idTarget).innerHTML = valOnFalse;
 }

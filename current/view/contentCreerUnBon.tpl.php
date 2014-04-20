@@ -1,24 +1,22 @@
 <div class="container">
 	<form class="form-add" role="form" action="index.php?page=intervention&amp;action=creerbonintervention" method="POST" >
-		<h1 class="form-add-heading">Cr&eacute;er un bon d'intervention</h1>
+		<h1 class="form-add-heading" id="idTitle" >Cr&eacute;er un bon d'intervention</h1>
 
 		<div class="form-group">
 			<?php
 			if(!empty($arg['laDemandeInterNum']) or !empty($_POST['code_demande']))
 			{ ?>
 				<label for="code_demande">Demande concern&eacute;e</label>
-				<select class="form-control" id="code_demande" name="code_demande" readonly="readonly">
+				<p class="form-control-static">
 					<?php
-					if (!empty($arg['laDemandeInterNum'])){
-						echo '<option selected="selected" value="'.$arg['laDemandeInterNum'].'" >';
-						echo $arg['laDemandeInterNum'].'</option>';
-					}
-					if(!empty($_POST['code_demande'])){
-						echo '<option selected="selected" value="'.$_POST['code_demande'].'" >';
-						echo $_POST['code_demande'].'</option>';
-					}
+					if (!empty($arg['laDemandeInterNum']))
+						echo $arg['laDemandeInterNum'];
+
+					if(!empty($_POST['code_demande']))
+						echo $_POST['code_demande'];
 					?>
-				</select>
+				</p>
+
 				<input type="hidden" class="form-control" name="code_demande"
 					<?php
 					if (!empty($arg['laDemandeInterNum']))
@@ -31,18 +29,22 @@
 			}
 			?>
 			<label for="Vel_Num">V&eacute;lo concern&eacute;</label>
-			<select class="form-control" id="Vel_Num" name="Vel_Num"
 				<?php
-				if(!empty($arg['laDemandeInterNum']))
-					echo ' readonly="readonly"';
-				?>
-				>
-				<?php
-				if(
+				if(!empty($arg['laDemandeInterNum'])){
+					?>
+					<p class="form-control-static">
+						<?php echo $arg['laDemandeInterNum']; ?>
+					</p>
+					<?php
+				}
+				elseif(
 					!empty($arg['lesVelos'])
 					and is_array($arg['lesVelos'])
 					)
 				{
+					?>
+					<select class="form-control" id="Vel_Num" name="Vel_Num" >
+					<?php
 					foreach ($arg['lesVelos'] as $unVelo)
 					{
 						echo '<option';
@@ -51,9 +53,11 @@
 							echo ' selected="selected" ';
 						echo '>'.$unVelo->Vel_Num.'</option>';
 					}
+					?>
+					</select>
+					<?php
 				}
 				?>
-			</select>
 
 			<label for="cpteRendu">Compte rendu</label>
 			<input type="text" class="form-control"  id="cpteRendu" name="cpteRendu" placeholder="Motif du probleme">
@@ -73,7 +77,13 @@
 
 			<div class="checkbox">
 				<label for="vel_surPlace">
-				<input type="checkbox" id="vel_surPlace" name="surPlace" checked="checked">
+				<input type="checkbox" id="vel_surPlace" name="surPlace" checked="checked"
+					onchange="switcher(this.checked, 'idTitle', 'Cr&eacute;er un bon d\'intervention', 'Cr&eacute;er une demande d\'intervention')"
+					<?php
+					if(!empty($arg['laDemandeInterNum']) or !empty($_POST['code_demande']))
+						echo ' disabled';
+					?>
+					/>
 				R&eacute;parable sur place
 				</label>
 			</div>
