@@ -30,9 +30,11 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>Nb Attaches</th>
-				<th>Nb Velo Dispo</th>
-				<th>Nb attaches Dispo</th>
+				<th>Attaches</th>
+				<th>Vélo Dispo</th>
+				<th>Attaches Dispo</th>
+				<th>Vole</th>
+				<th>Dégradation</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,6 +46,8 @@
 					<td><?php echo $arg['uneStation']->Sta_NbAttaches;?></td>
 					<td><?php echo $arg['uneStation']->Sta_NbVelos;?></td>
 					<td><?php echo $arg['uneStation']->Sta_NbAttacDispo;?></td>
+					<td><?php echo $arg['uneStation']->Sta_NbVols;?></td>
+					<td><?php echo $arg['uneStation']->Sta_NbDegrad;?></td>
 				</tr>
 				<?php
 			}
@@ -55,7 +59,7 @@
 		<thead>
 			<tr>
 				<th>Num</th>
-				<th>&Eacute;tat</th>
+				<th>État</th>
 				<th>Type</th>
 				<th>Accessoires</th>
 			</tr>

@@ -21,7 +21,11 @@
 							<?php echo $arg['unVelo']->Vel_Num;?>
 						</a>
 					</td>
-					<td><?php echo $arg['unVelo']->Vel_Station;?></td>
+					<td>
+						<a href="index.php?page=station&amp;action=unestation&amp;valeur=<?php echo $arg['unVelo']->Vel_Station;?>">
+							<?php echo $arg['unVelo']->Vel_Station;?>
+						</a>
+					</td>
 					<td><?php echo $arg['unVelo']->Eta_Libelle;?></td>
 					<td><?php echo $arg['unVelo']->Pdt_Libelle;?></td>
 					<td><?php echo $arg['unVelo']->Vel_Accessoire;?></td>
