@@ -42,7 +42,7 @@ INSERT INTO produit
 INSERT INTO technicien
 	VALUES (null, 'dupon', 'paul');
 INSERT INTO technicien
-	VALUES (null, 'dupon', 'pierre');
+	VALUES (null, 'delarive', 'jean');
 
 -- `Vel_Num`, `Vel_Station`, `Vel_Etat`, `Vel_Type`, `Vel_Accessoire`, `Vel_Casse`
 INSERT INTO velo

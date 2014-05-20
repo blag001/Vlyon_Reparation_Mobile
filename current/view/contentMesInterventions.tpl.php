@@ -30,7 +30,11 @@ if(empty($arg['isAjax'])) { ?>
 								<?php echo $value->BI_Velo;?>
 							</a>
 						</td>
-						<td><?php echo $value->BI_Demande;?></td>
+						<td>
+							<a href="index.php?page=intervention&amp;action=unedemandeinter&amp;valeur=<?php echo $value->BI_Demande;?>">
+								<?php echo $value->BI_Demande;?>
+							</a>
+						</td>
 					</tr>
 					<?php
 				}
