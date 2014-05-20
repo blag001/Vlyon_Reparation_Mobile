@@ -2,19 +2,19 @@
 
 -- `Sta_Code`,`Sta_Nom`,`Sta_Rue`,`Sta_NbAttaches`,`Sta_NbVelos`,`Sta_NbAttacDispo`,`Sta_NbTotLoc`,`Sta_NbVols`,`Sta_NbDegrad`
 INSERT INTO station
-	VALUES ('1023', 'Fondcombe', '15 Avenue des Monts Brumeux', 20, 0, 20, 47, 0, 0);
+	VALUES ('1023', 'Fondcombe', '15 Avenue des Monts Brumeux', 20, 0, 20, 0, 0, 0);
 INSERT INTO station
-	VALUES ('1024', 'La Comté', '405 place de la Terre du Milieu', 20, 0, 20, 27, 1, 0);
+	VALUES ('1024', 'La Comté', '405 place de la Terre du Milieu', 20, 0, 20, 0, 0, 0);
 INSERT INTO station
-	VALUES ('2001', 'Minas Tirith', 'Avenue du Gondor', 30, 0, 30, 484, 0, 1);
+	VALUES ('2001', 'Minas Tirith', 'Avenue du Gondor', 30, 0, 30, 0, 0, 0);
 INSERT INTO station
-	VALUES ('2009', 'Montagne du Destin', '1 rue du Mordor', 30, 0, 30, 484, 0, 1);
+	VALUES ('2009', 'Montagne du Destin', '1 rue du Mordor', 30, 0, 30, 0, 0, 0);
 INSERT INTO station
-	VALUES ('3029', 'Gouffre de Helm', 'Lieu dit du Rohan', 15, 0, 15, 484, 0, 1);
+	VALUES ('3029', 'Gouffre de Helm', 'Lieu dit du Rohan', 15, 0, 15, 0, 0, 0);
 INSERT INTO station
-	VALUES ('3030', 'La Moria', '342 Avenue des Monts Brumeux', 20, 0, 20, 484, 0, 1);
+	VALUES ('3030', 'La Moria', '342 Avenue des Monts Brumeux', 20, 0, 20, 0, 0, 0);
 INSERT INTO station
-	VALUES ('4001', 'Erebor', 'Lieu dit du Rhovanion', 20, 0, 20, 484, 0, 1);
+	VALUES ('4001', 'Erebor', 'Lieu dit du Rhovanion', 20, 0, 20, 0, 0, 0);
 
 -- `Eta_Code`, `Eta_Libelle`
 INSERT INTO etat
@@ -81,6 +81,12 @@ INSERT INTO velo
 	VALUES (null, '4001', 2, 'A', 'panier', 0);
 INSERT INTO velo
 	VALUES (null, '4001', 1, 'A', 'panier', 0);
+INSERT INTO velo
+	VALUES (null, '4001', 2, 'A', 'panier', 0);
+INSERT INTO velo
+	VALUES (null, '4001', 4, 'A', 'panier', 0);
+INSERT INTO velo
+	VALUES (null, '4001', 2, 'A', 'panier', 1);
 
 -- `DemI_Num`, `DemI_Velo`, `DemI_Date`, `DemI_Technicien`, `DemI_Motif`, `DemI_Traite`
 INSERT INTO demandeinter
