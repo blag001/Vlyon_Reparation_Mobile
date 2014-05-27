@@ -6,8 +6,10 @@ _Ceci est un fichier Read-me, il résume la structure globale et le rôle des di
 Arborescence principale
 -----------------------
 
-* `/curent/`
+* `/current/`
 	contient le site a l'état actuel, c'est ce dossier qu'il faut copier pour une mise en environnement de test.
+* `/flowchartt/`
+	contient les diagrames de flux des trigger.
 * `/gantt/`
 	contient le gantt du projet, avec les différentes tache, leur réalisation, attribution, ainsi que leur évolution.
 * `/maquettes/`
@@ -17,8 +19,7 @@ Arborescence principale
 * `/procedure/`
 	contient les procédure Oracle réalisé antérieurement
 * `/sql/`
-	contient les scripts SQL de mise en place de la BDD : c'est ici que vous trouverez le `Creer_reparation_mysql.sql` qui installe la BDD sur un environnement MySql.
-	Vous y trouverez aussi un fichier de DATA qui permet de remplir partiellement la BDD afin de réaliser les tests.
+	contient les scripts SQL de mise en place de la BDD, utilisez dans l'ordre les trois (3) fichiers dans `./mysql/` pour une instalation sur Mysql.
 * `/sujet/`
 	le sujet à traiter
 * `/uml/`
@@ -33,12 +34,11 @@ Dans un permier temps, procurez vous le zip/clone de ce Git.
 
 Ensuite, sur un environement MySql :
 * creez une base que vous nommerez `sio_reparation`
-* importez le fichier `/sql/Creer_reparation_mysql.sql`
-* faite de même avec `/sql/data_test_mysql.sql`
+* importez les 3 fichiers de `/sql/mysql/*` dans l'ordre (1, puis 2 et 3)
 * changez les valeurs id/mdp dans `/inc/connexion.inc.php` cf (1)
 
 (1) :
-> si vous avez un compte "root"/"", passez `new Bdd(null, null, null, null)`
+> si vous avez un compte "root"/"", ne rien changer
 > sinon, ajoutez un utilisateur et changez les valeurs en respectent le format
 > `new Bdd($host, $db_name, $user, $mdp)`,
 > passez null ou FALSE pour garder des valeur par defaut
@@ -48,7 +48,7 @@ Normalement vous devriez avoir une Bdd operationnel, il ne vous reste que les pa
 
 ### Web
 
-Simple a realiser :
-* Copiez le contenue de `/curent/` dans votre dossier de test
-* sur un system unix, passez le CHMOD a 777 pour le test (**le dossier racine de l'app doit être écrivable par PHP**)
-* Les identifiants de connexion a l'app via l'interface web sont root / root
+Simple à realiser :
+* Copiez le contenue de `/current/` dans votre dossier de test
+* sur un system unix, passez le CHMOD à 777 pour le test (**le dossier racine de l'app doit être écrivable par PHP**)
+* Les identifiants de connexion à l'app via l'interface web sont "root" / "root" mais représente un compte ustilisateur
