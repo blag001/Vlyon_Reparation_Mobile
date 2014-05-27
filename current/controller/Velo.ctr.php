@@ -1,4 +1,14 @@
 <?php
+/**
+ * fichier de declaration de la class controller des Velo
+ */
+
+	/**
+	 * class controller Velo
+	 *
+	 * controleur pour les Velo
+	 * Charger d'appeller les methodes suivant les demandes
+	 */
 class Velo
 {
 		/** @var OdbVelo model de gestion Velo en Bdd */
@@ -8,6 +18,9 @@ class Velo
 		/** @var odbEtat model de gestion Etat Velo en Bdd */
 	private $odbEtat;
 
+		/**
+		 * constructeur du controller
+		 */
 	public function __construct()
 	{
 			/**
@@ -25,7 +38,7 @@ class Velo
 		$this->odbVelo = new OdbVelo();
 		$this->odbStation = new OdbStation();
 		$this->odbEtat = new OdbEtat();
-		$this->odbProduit = new OdbProduit();
+		// $this->odbProduit = new OdbProduit();
 
 			// page actuelle dans le menu principale
 		$_SESSION['tampon']['menu'][0]['current'] = 'V&eacute;lo';
@@ -98,7 +111,7 @@ class Velo
 	}
 
 		/**
-		 * rechercher un velo via input user
+		 * rechercher un velo via input user depuis une requete AJAX
 		 * @return void
 		 */
 	protected function ajaxRechercherUnVelo()
@@ -168,9 +181,10 @@ class Velo
 		else // par defaut on affiche la page de recherche
 			$this->rechercherUnVelo();
 	}
+
 		/**
 		 * modifer un velo
-		 * @todo  a faire
+		 * appelle les methodes privee pour realiser la modification
 		 * @return void
 		 */
 	protected function modifierUnVelo()

@@ -1,13 +1,29 @@
 <?php
-class OdbVelo{
+/**
+ * fichier de declaration du model des Velos
+ */
 
+	/**
+	 * class de gestion BDD des Velos
+	 */
+class OdbVelo
+{
+		/** @var object objet Bdd */
 	private $oBdd;
 
+		/**
+		 * contruteur du model
+		 */
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
+		/**
+		 * test si le code correspond a un velo
+		 * @param  int $codeVelo code a tester
+		 * @return bool           si est un velo ou non
+		 */
 	public function estVelo($codeVelo)
 	{
 		if(!empty($codeVelo))
@@ -24,6 +40,11 @@ class OdbVelo{
 		return false;
 	}
 
+		/**
+		 * retourne les velo d'une station
+		 * @param  int $codeStation le code de la station recherchee
+		 * @return array              tableau d'object velo
+		 */
 	public function getLesVelosDeStation($codeStation){
 
 		$req = 'SELECT *
@@ -39,6 +60,10 @@ class OdbVelo{
 		return $lesVelos;
 	}
 
+		/**
+		 * retourne tout les velos
+		 * @return array tableau d'object velo
+		 */
 	public function getLesVelos(){
 
 		$req = 'SELECT *
@@ -53,21 +78,10 @@ class OdbVelo{
 		return $lesVelos;
 	}
 
-	public function getLesIdVelos(){
-
-		$req = 'SELECT Vel_Num
-				FROM etat
-				INNER JOIN velo
-					ON etat.Eta_Code = velo.Vel_Etat
-				INNER JOIN produit
-					ON velo.Vel_Type = produit.Pdt_Code
-				ORDER BY Vel_Num DESC';
-
-		$lesVelos = $this->oBdd->query($req);
-
-		return $lesVelos;
-	}
-
+		/**
+		 * retourne les 05 dernier velo ajoutes
+		 * @return array tableau d'object velo
+		 */
 	public function getNouveauxVelos(){
 
 		$req = 'SELECT *
@@ -84,6 +98,11 @@ class OdbVelo{
 		return $lesVelos;
 	}
 
+		/**
+		 * recherche les velo
+		 * @param  string $valeur la string a chercher
+		 * @return array         tableau d'object velo
+		 */
 	public function searchVelos($valeur)
 	{
 		$req = "SELECT *
@@ -101,6 +120,11 @@ class OdbVelo{
 		return $lesStations;
 	}
 
+		/**
+		 * retourne un velo via son code
+		 * @param  int $codeVelo le code du velo
+		 * @return object           le velo
+		 */
 	public function getUnVelo($codeVelo){
 		$req = 'SELECT *
 				FROM etat
@@ -116,7 +140,7 @@ class OdbVelo{
 	}
 
 	/**
-	 * modifier certainens informations d'un velo et l'Etat
+	 * modifier les informations d'un velo et son Etat
 	 * @return int                nombre de ligne affectee
 	 */
 	public function modifierUnVelo(){

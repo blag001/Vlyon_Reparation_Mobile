@@ -1,13 +1,29 @@
 <?php
+/**
+ * fichier de declaration du model des stations
+ */
+
+	/**
+	 * class de gestion BDD des Stations
+	 */
 class OdbStation
 {
+		/** @var object objet Bdd */
 	private $oBdd;
 
+		/**
+		 * contruteur du model
+		 */
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
+		/**
+		 * test si le nom correspond bien a une station
+		 * @param  string $nom le nom a tester
+		 * @return bool      si est oui ou non une station
+		 */
 	public function estStation($nom)
 	{
 		if(!empty($nom))
@@ -24,6 +40,11 @@ class OdbStation
 		return false;
 	}
 
+		/**
+		 * test si l'id correspond bien a une station
+		 * @param  int $id l'id a tester
+		 * @return bool     si est oui ou non une station
+		 */
 	public function estStationById($id)
 	{
 		if(!empty($id))
@@ -40,6 +61,10 @@ class OdbStation
 		return false;
 	}
 
+		/**
+		 * retourne les stations
+		 * @return array tableau d'object station
+		 */
 	public function getLesStations()
 	{
 		$req = 'SELECT *
@@ -50,6 +75,10 @@ class OdbStation
 		return $lesStations;
 	}
 
+		/**
+		 * retourne les ID des differentes stations
+		 * @return array tableau des id
+		 */
 	public function getLesIdStations()
 	{
 		$req = 'SELECT Sta_Code
@@ -60,6 +89,11 @@ class OdbStation
 		return $lesStations;
 	}
 
+		/**
+		 * recheche une station via une string
+		 * @param  string $valeur la string a chercher
+		 * @return array         tableau d'object station
+		 */
 	public function searchStations($valeur)
 	{
 		$req = "SELECT *
@@ -73,6 +107,11 @@ class OdbStation
 		return $lesStations;
 	}
 
+		/**
+		 * retourne une station via son ID
+		 * @param  int $id l'id de la station à retourner
+		 * @return object     la station
+		 */
 	public function getUneStation($id)
 	{
 		$req = 'SELECT *
@@ -84,6 +123,11 @@ class OdbStation
 		return $laStation;
 	}
 
+		/**
+		 * retourne le nombre de velo attache a une station
+		 * @param  int $station le code de la station
+		 * @return int          le nombre de velo
+		 */
 	public function getNbVelosAttaches($station)
 	{
 		$req = 'SELECT COUNT(Vel_Code) AS nb
@@ -95,6 +139,11 @@ class OdbStation
 		return $nbVelo->nb;
 	}
 
+		/**
+		 * retourne le nombre de velo disponible sur une station
+		 * @param  int $station le code de la station
+		 * @return int          le nombre de velo disponible
+		 */
 	public function getNbVeloDispo($station){
 		$req = 'SELECT COUNT(Vel_Code) AS nb
 				FROM velo
@@ -104,14 +153,6 @@ class OdbStation
 		$nbVelo = $this->oBdd->query($req, array('station'=>$station), Bdd::SINGLE_RES);
 
 		return $nbVelo->nb;
-	}
-
-	public function getNbAttachesDispo($station, $nbTotalAttaches){
-
-		$nbVelosAttaches = $this->getNbVelosAttaches($station);
-
-		$nbAttachesDispo = $nbTotalAttaches - $nbVelosAttaches;
-		return $nbAttachesDispo;
 	}
 
 }

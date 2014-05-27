@@ -20,7 +20,7 @@ class OdbDemandeInter
 	}
 
 		/**
-		 * test si un id corespond bien a une demande
+		 * test si un id correspond bien a une demande
 		 * @param  int $code id de la demande à tester
 		 * @return bool       un vrai/faux de l'existance
 		 */

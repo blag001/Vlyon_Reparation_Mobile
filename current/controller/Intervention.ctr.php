@@ -1,4 +1,14 @@
 <?php
+/**
+ * fichier de declaration de la class controller d'interventions/demande
+ */
+
+	/**
+	 * class controller Intervention
+	 *
+	 * controleur pour les Interventions et demandes d'interventions
+	 * Charger d'appeller les methodes suivant les demandes
+	 */
 class Intervention
 {
 		/** @var OdbDemandeInter model de gestion Bdd */
@@ -9,6 +19,9 @@ class Intervention
 		/** @var OdbVelo model de gestion Velo en Bdd */
 	private $odbVelo;
 
+		/**
+		 * contructeur du controller Intervention
+		 */
 	public function __construct()
 	{
 			/**
@@ -164,7 +177,7 @@ class Intervention
 	}
 
 		/**
-		 * affiche ses interv quand on est technicient
+		 * affiche ses interv quand on est technicien
 		 * @return void
 		 */
 	protected function afficherMesInter()
@@ -207,7 +220,7 @@ class Intervention
 	}
 
 		/**
-		 * affiche un bon d'interv quand on est technicient
+		 * affiche un bon d'interv quand on est technicien
 		 * @return void
 		 */
 	protected function afficherMonBonInter()
@@ -399,6 +412,10 @@ class Intervention
 
 	}
 
+		/**
+		 * methode privee charge de formater les data et de sauver l'intervention
+		 * @return void redirection avec message d'error/success charge en _SESSION
+		 */
 	private function _saveSubmitBonI()
 	{
 			// si on a un envois valide, on lance la sauvegarde
@@ -478,11 +495,15 @@ class Intervention
 
 	}
 
+		/**
+		 * methode privee chargee de verifier les donnees
+		 * @return bool si erreur (FALSE) ou non
+		 */
 	private function _checkSubmitBonI()
 	{
 			// var pour la validatation des envois
 		$noError = true;
-			// on traite les dates en Fr pour les avoir un YYYY/MM/DD
+			// on traite les dates en Fr pour les avoir un YYYY-MM-DD
 		if (substr_count($_POST['dateDebut'], '/'))
 			$_POST['dateDebut'] = preg_replace('#([0-9]{1,2})/([0-9]{1,2})/([0-9]{2,4})#', '$3-$2-$1', $_POST['dateDebut']);
 		if (substr_count($_POST['dateFin'], '/'))
@@ -534,6 +555,10 @@ class Intervention
 		return $noError;
 	}
 
+		/**
+		 * permet de creer une demande d'intervention
+		 * @return void afficge des vues
+		 */
 	protected function creerUneDemandeInter()
 	{
 		$error = null;

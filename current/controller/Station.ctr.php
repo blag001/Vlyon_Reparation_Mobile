@@ -1,4 +1,14 @@
 <?php
+/**
+ * fichier de declaration de la class controller des stations
+ */
+
+	/**
+	 * class controller Station
+	 *
+	 * controleur pour les Stations
+	 * Charger d'appeller les methodes suivant les demandes
+	 */
 class Station
 {
 		/** @var OdbStation model de gestion Bdd */
@@ -6,6 +16,9 @@ class Station
 		/** @var OdbVelo model de gestion Bdd */
 	private $odbVelo;
 
+		/**
+		 * constructeur du controlleur de station
+		 */
 	public function __construct()
 	{
 			/**
@@ -132,7 +145,7 @@ class Station
 	}
 
 		/**
-		 * affiche une station et ses velos lies
+		 * recherche une station et ses velos lies
 		 * @return void
 		 */
 	protected function rechercherUneStation()
@@ -159,7 +172,7 @@ class Station
 	}
 
 		/**
-		 * affiche une station et ses velos lies
+		 * recher une station et ses velos lies via AJAX
 		 * @return void
 		 */
 	protected function ajaxRechercherUneStation()

@@ -2,16 +2,31 @@
 /**
  * gestion des utilisateurs et de leurs droit d'accee
  */
+
+	/**
+	 * class controller User
+	 *
+	 * controleur pour les Utilisateurs et leurs droits
+	 * Charger de gerer la connexion
+	 */
 class User
 {
+		/** @var int l'id de l'utilisateur */
 	private $id;
+		/** @var int le matricule si technicien */
 	private $matricule;
+		/** @var string le nom */
 	private $name;
+		/** @var boolean si est responcable d'achat ou non */
 	private $respAchat = false;
 
 		/** @var odbUser model de gestion Bdd */
 	private $odbUser;
 
+		/**
+		 * contrusteur de la class user
+		 * @param boolean $private si la class est appelle par un autre controller (true)
+		 */
 	public function __construct($private = false)
 	{
 			/**
@@ -28,49 +43,19 @@ class User
 		// on instancie les model (lien avec la BDD)
 		$this->odbUser = new OdbUser();
 
-		// // page actuelle
-		// $_SESSION['tampon']['menu'][0]['current'] = 'Utilisateur';
-		// $_SESSION['tampon']['menu'][0]['url'] = 'index.php?page=user&amp;action=adduser';
-		// // liste des sous menus
-		// $_SESSION['tampon']['menu'][1]['list'] =
-		// 	array(
-		// 			array('url'=>'index.php?page=user&amp;action=adduser',
-		// 				'title'=>'Ajouter Utilisateur'),
-		// 			array('url'=>'index.php?page=user&amp;action=unuser',
-		// 				'title'=>'Un Utilisateur'),
-		// 			array('url'=>'index.php?page=user&amp;action=rechercheruser' ,
-		// 				'title'=>'Rechercher utilisateur'),
-		// 		);
-
-		// if (empty($_GET['action']))
-		// 	$_GET['action'] = null;
-
-		// /**
-		//  * Switch de gestion des actions de User
-		//  *
-		//  * @param string $_GET['action'] contient l'action demmandee
-		//  */
-		// switch ($_GET['action']) {
-		// 	case 'rechercheruser':
-		// 		$this->rechercherUneUtilisateur();
-		// 		break;
-		// 	case 'unuser':
-		// 		$this->afficherUnUtilisateur();
-		// 		break;
-
-		// 	case 'adduser':
-
-		// 	default:
-		// 		$this->afficherLesStations();
-		// 		break;
-		// }
 	}
 
+		/**
+		 * methode magic a la serialization de l'object
+		 * @return array variable a concerver
+		 */
 	public function __sleep()
 	{
 		return array('id', 'matricule', 'name', 'respAchat');
 	}
-
+		/**
+		 * methode magic a appeller a la deserialization de l'object
+		 */
 	public function __wakeup()
 	{
 		$this->odbUser = new OdbUser();
@@ -96,9 +81,10 @@ class User
 
 		return false;
 	}
+
 		/**
 		 * affiche le formulaire de login
-		 * @return [type] [description]
+		 * @return void affiche les vues
 		 */
 	public function displayForm()
 	{
@@ -108,9 +94,10 @@ class User
 		view('contentLogin');
 		view('htmlFooter');
 	}
+
 		/**
-		 * check si est technicient (et donc pas resp achat)
-		 * @return [type] [description]
+		 * check si est technicien (et donc pas resp achat)
+		 * @return boot est ou non technicien
 		 */
 	public function estTechnicien()
 	{
@@ -120,6 +107,7 @@ class User
 
 		return false;
 	}
+
 		/**
 		 * va chercher le matricule
 		 * @return int matricule de l'utilisateur
@@ -129,30 +117,6 @@ class User
 		if(!empty($this->matricule))
 				return $this->matricule;
 
-		return false;
-	}
-
-	/////////////////////////////////////////////
-	// Methodes public de gestion des comptes  //
-	/////////////////////////////////////////////
-
-		/**
-		 * @todo a faire
-		 * @return [type] [description]
-		 */
-	public function rechercherUnUtilisateur()
-	{
-		// TODO
-		return false;
-	}
-	public function afficherUnUtilisateur()
-	{
-		// TODO
-		return false;
-	}
-	public function afficherLesUtilissateurs()
-	{
-		// TODO
 		return false;
 	}
 
@@ -240,5 +204,6 @@ class User
 		$this->matricule = null;
 		$this->name = null;
 		$this->respAchat = null;
+		session_destroy();
 	}
 }

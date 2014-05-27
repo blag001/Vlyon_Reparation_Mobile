@@ -1,15 +1,32 @@
 <?php
-class OdbUser{
+/**
+ * fichier de declaration du model des User
+ */
 
+	/**
+	 * class de gestion BDD des Utilisateurs
+	 */
+class OdbUser
+{
+		/** @var object objet noSql */
 	private $oNosql;
+		/** @var object objet Bdd */
 	private $oBdd;
 
+		/**
+		 * contruteur du model
+		 */
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
 		$this->oNosql = $_SESSION['nosql'];
 	}
 
+		/**
+		 * test si l'indentifiant existe dans la base
+		 * @param  string $nom l'identifiant a tester
+		 * @return bool      True/false si il existe ou non
+		 */
 	public function estUser($nom)
 	{
 		if(!empty($nom))
@@ -26,6 +43,11 @@ class OdbUser{
 		return false;
 	}
 
+		/**
+		 * retour les information d'un utilisateur via on identifiant
+		 * @param  string $nom l'identifiant de l'utilisateur a retourner
+		 * @return object      l'utilisateur
+		 */
 	public function getUser($nom)
 	{
 		if(!empty($nom))
@@ -42,17 +64,17 @@ class OdbUser{
 		return false;
 	}
 
-	/**
-	 * verifie que le mot de passe est bon
-	 *
-	 * prend un hash du mot de passe,
-	 * le nom de l'utilisateur,
-	 * et cherche une entree qui valides les deux
-	 *
-	 * @param  string $nom  le nom du user
-	 * @param  string $hash le hash du mdp user
-	 * @return bool       valide ou non l'existance
-	 */
+		/**
+		 * verifie que le mot de passe est bon
+		 *
+		 * prend un hash du mot de passe,
+		 * le nom de l'utilisateur,
+		 * et cherche une entree qui valides les deux
+		 *
+		 * @param  string $nom  le nom du user
+		 * @param  string $hash le hash du mdp user
+		 * @return bool       valide ou non l'existance
+		 */
 	public function checkHashUser($nom, $hash)
 	{
 		if(!empty($nom) and !empty($hash))
@@ -69,6 +91,13 @@ class OdbUser{
 
 		return false;
 	}
+
+		/**
+		 * sauvegarde le jeton de reconnexion automatique (token) pour le "se souvenir de moi"
+		 * @param  string $name  l'identifiant de l'utilisateur
+		 * @param  string $token le token
+		 * @return bool        si l'insertion s'est bien deroulee
+		 */
 	public function saveToken($name, $token)
 	{
 		if($name !== null and !empty($token))
@@ -82,6 +111,12 @@ class OdbUser{
 
 		return false ;
 	}
+
+		/**
+		 * supprime le token de reconnexion automatique
+		 * @param  string $name l'identifiant du compte a deconecter
+		 * @return bool       la reusite de la supression
+		 */
 	public function forgetToken($name)
 	{
 		if($name !== null)
@@ -89,6 +124,12 @@ class OdbUser{
 
 		return false ;
 	}
+
+		/**
+		 * retourne le token de reconnexion automatique
+		 * @param  string $name l'identifiant du compte
+		 * @return string       le token
+		 */
 	public function getToken($name)
 	{
 		if($name !== null)

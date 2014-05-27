@@ -1,13 +1,29 @@
 <?php
-class odbEtat{
+/**
+ * fichier de declaration du model d'Etat
+ */
 
+	/**
+	 * class de gestion BDD des Etats
+	 */
+class odbEtat
+{
+		/** @var object objet Bdd */
 	private $oBdd;
 
+		/**
+		 * contruteur du model
+		 */
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
+		/**
+		 * test si l'id correspond a un etat
+		 * @param  int $id l'id a tester
+		 * @return bool     true/false si est ou non un etat
+		 */
 	public function estEtatById($id)
 	{
 		if(!empty($id))
@@ -24,6 +40,10 @@ class odbEtat{
 		return false;
 	}
 
+		/**
+		 * retour les etat disponible
+		 * @return array tableau d'objet des etats
+		 */
 	public function getLesEtats()
 	{
 		$req = 'SELECT *

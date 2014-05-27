@@ -1,16 +1,29 @@
 <?php
 /**
- * @todo  @method creerUnBonInter => a revoir...
+ * fichier de declaration du model de Bon d'interventions
  */
+
+	/**
+	 * class de gestion BDD des Bons d'intervention
+	 */
 class OdbBonIntervention
 {
+		/** @var object objet Bdd */
 	private $oBdd;
 
+		/**
+		 * contruteur du model
+		 */
 	public function __construct()
 	{
 		$this->oBdd = $_SESSION['bdd'];
 	}
 
+		/**
+		 * test si le code coresponde a un bon d'intervention
+		 * @param  int $code le code a tester
+		 * @return bool       true/false si est ou non un bon Inter
+		 */
 	public function estBonInter($code)
 	{
 		if(!empty($code))
@@ -27,6 +40,12 @@ class OdbBonIntervention
 		return false;
 	}
 
+		/**
+		 * test si est le bon d'intervention de l'utilisateur
+		 * @param  int $code     le code du bon
+		 * @param  int $techCode le code du technicien utilisateur
+		 * @return bool           si est ou non le bon de l'utilisateur
+		 */
 	public function estMonBonInter($code, $techCode)
 	{
 		if(!empty($code) and !empty($techCode))
@@ -44,6 +63,10 @@ class OdbBonIntervention
 		return false;
 	}
 
+		/**
+		 * retourne tous les bon d'interventions
+		 * @return array tableau des bon d'intervention
+		 */
 	public function getLesBonsInter()
 	{
 		$req = "SELECT *,
@@ -56,6 +79,12 @@ class OdbBonIntervention
 		return $lesBonsInter;
 	}
 
+		/**
+		 * retourne le bon demande si il est a l'utilisateur
+		 * @param  int $code     le code de l'interv a retourner
+		 * @param  int $techCode le code du technicien
+		 * @return object           le bon d'intervention
+		 */
 	public function getMonBonInter($code, $techCode)
 	{
 		$req = "SELECT *,
@@ -71,8 +100,8 @@ class OdbBonIntervention
 	}
 
 		/**
-		 * on visualise les interventions effectuees par un technicien gràce à son matricule
-		 * @param  int $techCode matricule du technincient
+		 * on visualise les interventions effectuees par un technicien grace à son matricule
+		 * @param  int $techCode matricule du technincien
 		 * @return array           tableau d'objets
 		 */
 	public function getMesInterventions($techCode)
@@ -91,7 +120,8 @@ class OdbBonIntervention
 	}
 
 		/**
-		 * on va chercher la derniere intervention
+		 * on va chercher l'id de la derniere intervention
+		 * @return int id de la der intervention
 		 */
 	public function getIdLastIntervention()
 	{
@@ -107,7 +137,16 @@ class OdbBonIntervention
 
 		/**
 		 * on cree une intervention
-		 * @return int nb de ligne sauvee
+		 * @param  int $Vel_Num      id du velo
+		 * @param  string $dateDebut    date de debut de l'intervention
+		 * @param  string $dateFin      date de fin de l'inter
+		 * @param  string $cpteRendu    le compte rendus de l'inter
+		 * @param  bool $reparable    0/1 si velo reparable ou non
+		 * @param  int $code_demande le code de la demande si il y en a un
+		 * @param  int $matTech      le matricule du technicien
+		 * @param  bool $surPlace     0/1 si realisee sur place ou non
+		 * @param  int $duree        la duree de l'intervention en jour entier
+		 * @return int               nombre de ligne inseree
 		 */
 	public function creerUnBonInter($Vel_Num, $dateDebut, $dateFin, $cpteRendu, $reparable, $code_demande, $matTech, $surPlace, $duree)
 	{
@@ -148,6 +187,12 @@ class OdbBonIntervention
 		return $out;
 	}
 
+		/**
+		 * recherche les bon d'interv de l'utilisateur technicien
+		 * @param  string $valeur   la string a chercher
+		 * @param  int $techCode le matricule du technicien
+		 * @return array           array d'object interv
+		 */
 	public function searchMesBonIntervention($valeur, $techCode)
 	{
 		$req = "SELECT *
