@@ -40,9 +40,11 @@ INSERT INTO produit
 
 -- `Tec_Matricule`, `Tec_Nom`, `Tec_Prenom`
 INSERT INTO technicien
-	VALUES (null, 'dupon', 'paul');
+	VALUES (null, 'Dupon', 'paul');
 INSERT INTO technicien
-	VALUES (null, 'delarive', 'jean');
+	VALUES (null, 'Delarive', 'jean');
+INSERT INTO technicien
+	VALUES (null, 'Wrong', 'li');
 
 -- `Vel_Num`, `Vel_Station`, `Vel_Etat`, `Vel_Type`, `Vel_Accessoire`, `Vel_Casse`
 INSERT INTO velo
@@ -107,4 +109,6 @@ INSERT INTO boninterv
 -- `Use_Num`, `Use_Nom`, `Use_Hash`, `Use_RespAchat`, `Use_Technicien`
 INSERT INTO user
 		-- id/password : root/root
-	VALUES( null, 'root', '6779bcb1f994927795f01178c45b345a36cdabef683618d11e85489441482dd55ad241d920b466418c5b865a4f96aa0fd1cd76a206f66e58de650bb3d16a9806', 0, 1);
+	VALUES( null, 'tech1', '982a3889dd35194eb495b842e7eecfc9e4e1404621aadc51f68e850782bb791faffd144dd47016a337eb5f5ccc287b15f7af9262f56f3f44b649c038f2e3a40d', 0, 1);
+	VALUES( null, 'tech2', '2352f9faca2f2d2d0fa9036d7bb445096426246419020f8038204e2cb7410d94b62cdcd3893ef3cb04898696e00bdde905e68fe1dad2b3ec214dd0fbd67c1219', 0, 1);
+	VALUES( null, 'tech3', '5903b77dfbd4d78886b2715868d90b1f9821bd33519bf03dcc27f0c2fc7ca5e40dd577162da15f2e2e8956837d89f24859d03a6617ce05d23e2541b042a2a4e1', 0, 1);
