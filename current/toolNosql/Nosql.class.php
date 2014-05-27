@@ -1,4 +1,10 @@
 <?php
+/**
+ * ce fichier contient la déclaration de la class
+ *
+ * Si vous le renommez, pensez aussi à changer son appelle dans `index.php`
+ */
+
 	/**
 	 * class de gestion de donnees en fichier
 	 *
@@ -29,13 +35,17 @@
 	 */
 class Nosql
 {
-
-	private $last_query;
-	private $path_db;
+		/** @var string retour de la dernière query */
+	private $last_query = false;
+		/** @var string le chemain du workspace */
+	private $path_db = 'nosql_db';
 		/** @var integer le CHMOD des fichiers */
 	private $chmod_file = 0666;
 		/** @var integer le CHMOD des dossiers */
 	private $chmod_dir = 0777;
+
+		/** @var string url lors de l'instanciation de la class */
+	private $callSource;
 
 		/**
 		 * constante pour NE PAS chercher la valeur
@@ -66,14 +76,69 @@ class Nosql
 
 		/**
 		 * instancie l'objet de connexion
-		 * le path est le dossier racine des tables
+		 * le workspaceBase est le dossier racine des tables
 		 *
-		 * @param string $path
+		 * @param string $workspaceBase
 		 */
-	public function __construct($path = 'nosql_db')
+	public function __construct($workspaceBase = null)
 	{
-		$this->last_query = false;
-		$this->path_db = $path;
+
+		if(!empty($workspaceBase))
+			$this->path_db = $workspaceBase;
+
+			// on sauve la page d'instanciation
+		$this->callSource = $_SERVER['PHP_SELF'];
+	}
+
+	//////////////////////////////////////
+	// fonction de gestion de la class //
+	//////////////////////////////////////
+
+		/**
+		 * test le besoin de recharger la class nosql
+		 *
+		 * /!\ si vous changer $_SESSION['nosql'] par autre chose, pas exemple $_SESSION['oNoSql'],
+		 * vous devez passer 'oNoSql' comme parametre de cette fonction
+		 *
+		 * @param  string $session_index l'index de $_SESSION ou se trouve l'objet NoSql ('nosql' par defaut)
+		 * @return bool                true/false si oui ou non il faut une nouvelle instance
+		 */
+	public static function needInstance($session_index = 'nosql')
+	{
+		if(
+			empty($_SESSION[$session_index])
+			or !is_object($_SESSION[$session_index])
+			or $_SESSION[$session_index]->getCallSource() !== $_SERVER['PHP_SELF']
+			)
+			return true;
+		else
+			return false;
+	}
+
+		/**
+		 * getter de callSource
+		 * @return string url d'instanciation de l'objet bdd en cours
+		 */
+	public function getCallSource(){
+		return $this->callSource;
+	}
+
+		/**
+		 * encode en base 64 perso ('/' en '-')
+		 * @param  string $string une string a encoder
+		 * @return string         la string encodé en base64
+		 */
+	private function _b64_e($string=''){
+		return str_replace('/', '-', base64_encode($string));
+	}
+
+		/**
+		 * decode depuis la base64 perso ('-' en '/')
+		 * @param  string $string une string en base64
+		 * @return string         la version decodé de la string
+		 */
+	private function _b64_d($string=''){
+		return base64_decode(str_replace('-', '/', $string));
 	}
 
 	//////////////
@@ -99,16 +164,16 @@ class Nosql
 	{
 		if($table != null and $this->is_table($table) and $data !== null and $key != null){
 			if($no_erase)
-				$ressource = @fopen($this->path_db.'/'.$table.'/'.base64_encode($key), 'a');
+				$ressource = @fopen($this->path_db.'/'.$table.'/'.$this->_b64_e($key), 'a');
 			else
-				$ressource = @fopen($this->path_db.'/'.$table.'/'.base64_encode($key), 'w');
+				$ressource = @fopen($this->path_db.'/'.$table.'/'.$this->_b64_e($key), 'w');
 
 			if(!$ressource)
-				die('ERROR : Le script ne peut ecrire le fichier "'.$this->path_db.'/'.$table.'/'.base64_encode($key).'"');
+				die('ERROR : Le script ne peut ecrire le fichier "'.$this->path_db.'/'.$table.'/'.$this->_b64_e($key).'"');
 
 			$output = fwrite($ressource, $data);
 			fclose($ressource);
-			chmod($this->path_db.'/'.$table.'/'.base64_encode($key) , $this->chmod_file);
+			chmod($this->path_db.'/'.$table.'/'.$this->_b64_e($key) , $this->chmod_file);
 
 			return $output;
 		}
@@ -129,9 +194,9 @@ class Nosql
 	public function query($table = null, $key = null, $get_value = true)
 	{
 		if($table != null and $key != null and $this->is_table($table)){
-			if(file_exists($this->path_db.'/'.$table.'/'.base64_encode($key))){
+			if(file_exists($this->path_db.'/'.$table.'/'.$this->_b64_e($key))){
 				if($get_value)
-					return $this->last_query = file_get_contents($this->path_db.'/'.$table.'/'.base64_encode($key));
+					return $this->last_query = file_get_contents($this->path_db.'/'.$table.'/'.$this->_b64_e($key));
 				else
 					return true;
 			}
@@ -157,9 +222,9 @@ class Nosql
 				while($file = readdir($dir)){
 					if($file != '.' and $file != '..' and is_file($this->path_db.'/'.$table.'/'.$file)){
 						if($get_value)
-							$output[base64_decode($file)] = file_get_contents($this->path_db.'/'.$table.'/'.$file);
+							$output[$this->_b64_d($file)] = file_get_contents($this->path_db.'/'.$table.'/'.$file);
 						else
-							$output[base64_decode($file)] = true;
+							$output[$this->_b64_d($file)] = true;
 					}
 				}
 			}
@@ -178,8 +243,8 @@ class Nosql
 	public function delete($table=null, $key=null)
 	{
 		if($table !=null and $this->is_table($table)){
-			if($key != null and file_exists($this->path_db.'/'.$table.'/'.base64_encode($key))){
-				if(unlink($this->path_db.'/'.$table.'/'.base64_encode($key))){
+			if($key != null and file_exists($this->path_db.'/'.$table.'/'.$this->_b64_e($key))){
+				if(unlink($this->path_db.'/'.$table.'/'.$this->_b64_e($key))){
 					clearstatcache();
 
 					return true;
@@ -257,7 +322,7 @@ class Nosql
 	}
 
 		/**
-		 * vide la table et la suprime
+		 * vide une table et la suprime
 		 *
 		 * @param  string $table nom de la table
 		 * @return bool        resultat de l'action
