@@ -96,21 +96,25 @@ function switcher(value, idTarget, valOnTrue, valOnFalse) {
 }
 
 // function local
-
+	/**
+	 * change le formulaire entre une intervention et une demande
+	 * @param  {bool} value valeur a tester TRUE, =>bon
+	 * @return {void}       fait les modif dans le DOM
+	 */
 function switchBonEtDemInter (value) {
 		// change name title
 	switcher(value, 'idTitle', 'Cr&eacute;er un bon d\'intervention', 'Cr&eacute;er une demande d\'intervention');
 
 		// display or not le 2eme input date
 	if(value){
-		document.getElementById('idEndDate').style.display = 'inline';
-		document.getElementById('dateDebut').setAttribute('placeholder', 'Date de debut');
-		document.getElementById('dateDebut').setAttribute('action', 'index.php?page=intervention&amp;action=creerbonintervention');
+		document.getElementById('idBonInter').style.display = 'inline';
+		document.getElementById('idSubmit').setAttribute('name', 'sbmtMkBon');
+		document.getElementById('form_inter').setAttribute('action', 'index.php?page=intervention&action=creerbonintervention');
 	}
 	else{
-		document.getElementById('idEndDate').style.display = 'none';
-		document.getElementById('dateDebut').setAttribute('placeholder', 'Date de demande');
-		document.getElementById('dateDebut').setAttribute('action', 'index.php?page=intervention&amp;action=creerdemandeinter');
+		document.getElementById('idBonInter').style.display = 'none';
+		document.getElementById('idSubmit').setAttribute('name', 'sbmtMkDemande');
+		document.getElementById('form_inter').setAttribute('action', 'index.php?page=intervention&action=creerdemandeinter');
 	}
 
 		// change name dateStart

@@ -60,14 +60,21 @@
 			?>
 		</tbody>
 	</table>
-	<form class="form-add" role="form" action="index.php" method="GET" >
-		<input type="hidden" name="page" class="form-control" value="intervention" />
-		<input type="hidden" name="action" class="form-control" value="creerbonintervention" />
-		<input type="hidden" name="code_demande" class="form-control" <?php
-			if(!empty($arg['uneDemandeInter']))
-				echo 'value="'.$arg['uneDemandeInter']->DemI_Num.'" ';
-			?> />
-        <button type="submit" class="btn btn-lg btn-primary btn-block" >Intervenir</button>
-	</form>
+	<?php
+	if(empty($arg['uneDemandeInter']->DemI_Traite))
+	{
+		?>
+		<form class="form-add" role="form" action="index.php" method="GET" >
+			<input type="hidden" name="page" class="form-control" value="intervention" />
+			<input type="hidden" name="action" class="form-control" value="creerbonintervention" />
+			<input type="hidden" name="code_demande" class="form-control" <?php
+				if(!empty($arg['uneDemandeInter']))
+					echo 'value="'.$arg['uneDemandeInter']->DemI_Num.'" ';
+				?> />
+	        <button type="submit" class="btn btn-lg btn-primary btn-block" >Intervenir</button>
+		</form>
+		<?php
+	}
+	?>
 
 </div><!-- /.container -->

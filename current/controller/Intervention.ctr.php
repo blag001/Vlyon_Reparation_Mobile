@@ -50,7 +50,7 @@ class Intervention
 					'Mes interventions'            => 'index.php?page=intervention&amp;action=mesinterventions' ,
 					'Rechercher intervention'      => 'index.php?page=intervention&amp;action=rechercherbonintervention' ,
 					'Une intervention'             => 'index.php?page=intervention&amp;action=monbonintervention',
-					// 'Demander'                  => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
+					'Demander'                  => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
 					// 'Rechercher demande'        => 'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
 					'Une demande'                  => 'index.php?page=intervention&amp;action=unedemandeinter' ,
 				);
@@ -439,58 +439,30 @@ class Intervention
 			$_POST['veloReparable'] = !empty($_POST['veloNonReparable'])? 0 : 1;
 			$_POST['surPlace'] = !empty($_POST['surPlace'])? 1 : 0;
 
-				/** Si velo Reparable sur-place, on fait un bon */
-			if (!empty($_POST['surPlace']) or !empty($_POST['code_demande'])){
+				/** si on a un nombre de ligne >0 et donc TRUE */
+			$unNouveauBon = $this->odbBonIntervention->creerUnBonInter(
+				$_POST['vel_num'],
+				$_POST['dateDebut'],
+				$_POST['dateFin'],
+				$_POST['cpteRendu'],
+				$_POST['veloReparable'],
+				$_POST['code_demande'],
+				$_SESSION['user']->getMatricule(),
+				$_POST['surPlace'],
+				$_POST['duree']
+				);
 
-					/** si on a un nombre de ligne >0 et donc TRUE */
-				$unNouveauBon = $this->odbBonIntervention->creerUnBonInter(
-					$_POST['vel_num'],
-					$_POST['dateDebut'],
-					$_POST['dateFin'],
-					$_POST['cpteRendu'],
-					$_POST['veloReparable'],
-					$_POST['code_demande'],
-					$_SESSION['user']->getMatricule(),
-					$_POST['surPlace'],
-					$_POST['duree']
-					);
-
-				if ($unNouveauBon)
-				{
-					$idIntervention = $this->odbBonIntervention->getIdLastIntervention();
-					$_SESSION['tampon']['success'][] =
-						'Ajout de l\'intervention n°'.$idIntervention.' r&eacute;ussie !';
-						// on redirige vers la page d'affiche des intervention
-					header('Location:index.php?page=intervention&action=monbonintervention&valeur='.$idIntervention);
-					die; // on stop le chargement de la page
-				}
-				else // sinon on charge une erreur
-					throwError('Erreur avec l\'ajout de l\'intervention sur le v&eacute; n°'.$_POST['vel_num']);
+			if ($unNouveauBon)
+			{
+				$idIntervention = $this->odbBonIntervention->getIdLastIntervention();
+				$_SESSION['tampon']['success'][] =
+					'Ajout de l\'intervention n°'.$idIntervention.' r&eacute;ussie !';
+					// on redirige vers la page d'affiche des intervention
+				header('Location:index.php?page=intervention&action=monbonintervention&valeur='.$idIntervention);
+				die; // on stop le chargement de la page
 			}
-				/** Sinon, on fait une demande d'intervention */
-			else{
-
-				$uneNewDemande = $this->odbDemandeInter->creerUneDemande(
-					$_POST['vel_num'],
-					$_POST['dateDebut'],
-					$_SESSION['user']->getMatricule(),
-					$_POST['cpteRendu']
-					);
-
-					/** si on a un nombre de ligne >0 et donc TRUE */
-				if ($uneNewDemande)
-				{
-					$idDemande = $this->odbDemandeInter->getIdLastDemandeInter();
-					$_SESSION['tampon']['success'][] =
-						'Ajout de la demande n°'.$idDemande.' r&eacute;ussie !';
-						// on redirige vers la page d'affichage des demandes
-					header('Location:index.php?page=intervention&action=unedemandeinter&valeur='.$idDemande);
-					die; // on stop le chargement de la page
-				}
-				else // sinon on charge une erreur
-					throwError('Erreur avec l\'ajout de la demande sur le v&eacute; n°'.$_POST['vel_num']);
-			}
-
+			else // sinon on charge une erreur
+				throwError('Erreur avec l\'ajout de l\'intervention sur le v&eacute; n°'.$_POST['vel_num']);
 		}
 
 	}
@@ -514,43 +486,63 @@ class Intervention
 		{
 				// si la demande n'existe pas
 			if(!$this->odbDemandeInter->estDemandeInter($_POST['code_demande']))
-				$error = throwError('La demande ne semble pas exister...', 'code_demande');
+				$noError = throwError('La demande ne semble pas exister...', 'code_demande');
 				// sinon si elle n'a pas de velo liee
 			elseif ( !($code_velo = $this->odbDemandeInter->getIdVeloByIdDemandeInter($_POST['code_demande'])) )
-				$error = throwError('Pas de velo li&eacute; &agrave; cette demande...', 'code_demande');
+				$noError = throwError('Pas de velo li&eacute; &agrave; cette demande...', 'code_demande');
 				// sinon si le velo liee est introuvable
 			elseif ( !$this->odbVelo->estVelo($code_velo) )
-				$error = throwError('Le velo ne semble pas exister...', 'code_demande');
+				$noError = throwError('Le velo ne semble pas exister...', 'code_demande');
 				// sinon si on a bidouiller pour changer l'idVelo dans le html
 			elseif ( $code_velo != $_POST['vel_num'] )
-				$error = throwError('On ne hack pas l\'application SVP...', 'vel_num');
+				$noError = throwError('On ne hack pas l\'application SVP...', 'vel_num');
 		}
 			// sinon si on a pas de velo
 		elseif (empty($_POST['vel_num']))
-			$error = throwError('Merci de selectionner un v&eacute;lo...', 'vel_num');
+			$noError = throwError('Merci de selectionner un v&eacute;lo...', 'vel_num');
 			// sinon si le velo est introuvable
 		elseif( !$this->odbVelo->estVelo($_POST['vel_num']) )
-			$error = throwError('Le velo ne semble pas exister...', 'vel_num');
+			$noError = throwError('Le velo ne semble pas exister...', 'vel_num');
 
 			// si pas de date debut
 		if (empty($_POST['dateDebut']))
-			$error = throwError('Merci de remplir une date de d&eacute;but...', 'dateDebut');
+			$noError = throwError('Merci de remplir une date de d&eacute;but...', 'dateDebut');
 
 			// si pas de date de fin
-		if (!empty($_POST['surPlace']) and empty($_POST['dateFin']))
-			$error = throwError('Merci de remplir une date de fin...', 'dateFin');
+		if (empty($_POST['dateFin']))
+			$noError = throwError('Merci de remplir une date de fin...', 'dateFin');
 
 			// si on peut pas exploiter la date debut
 		if(!date_create($_POST['dateDebut']))
-			$error = throwError('Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA', 'dateDebut');
+			$noError = throwError('Erreur avec la date, merci d\'utiliser le format JJ/AAAA/MM', 'dateDebut');
+		else
+		{
+			$today = date_create();
+			$dateDebut = date_create($_POST['dateDebut']);
+			$diff = $today->diff($dateDebut);
+			if(intval($diff->format('%R%a')) < -7) // on autorise -7 jours d'antidatage
+				$noError = throwError('La date ne doit pas être plus vielle qu\'une semaine !', 'dateDebut');
+			if(intval($diff->format('%R%a')) > 2) // on autorise +2 jours d'antidatage
+				$noError = throwError('La date ne doit pas être dans le future !', 'dateDebut');
+		}
 
 			// si on peut pas exploiter la date de fin
-		if(!empty($_POST['surPlace']) and !date_create($_POST['dateFin']))
-			$error = throwError('Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA', 'dateFin');
-
+		if(!date_create($_POST['dateFin']))
+			$noError = throwError('Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA', 'dateFin');
+		else
+		{
+			$dateDebut = date_create($_POST['dateDebut']);
+			$dateFin = date_create($_POST['dateFin']);
+			$diff = $dateDebut->diff($dateFin);
+			if(intval($diff->format('%R%a')) < 0) // pas de fin avant debut
+				$noError = throwError('La date de fin ne peut être avant celle de début !', 'dateFin');
+			// if(intval($diff->format('%R%a')) > 30) // on autorise +2 jours d'antidatage
+			// 	$noError = throwError('La date ne doit pas être dans le future !', 'dateFin');
+			// 	non pertient
+		}
 			// si pas de compte rendu
 		if (empty($_POST['cpteRendu']))
-			$error = throwError('Le compte-rendu doit être remplis !', 'cpteRendu');
+			$noError = throwError('Le compte-rendu doit être remplis !', 'cpteRendu');
 
 		return $noError;
 	}
@@ -561,10 +553,9 @@ class Intervention
 		 */
 	protected function creerUneDemandeInter()
 	{
-		$error = null;
 
-		if (isset($_POST['sbmtMkBon']))
-			$error = $this->_saveSubmitBonI();
+		if (isset($_POST['sbmtMkDemande']))
+			$this->_saveSubmitDemI();
 
 			/**
 			 * On regarde si on a deja une valeur pour pre-remplir
@@ -599,12 +590,74 @@ class Intervention
 		view('contentMenu');
 		if(!empty($_SESSION['tampon']['error']))
 			view('contentError');
+		if(!empty($_SESSION['tampon']['success']))
+			view('contentSuccess');
 		view('contentCreerUneDemande', array(
 			'leVeloNum'=>$leVeloNum,
 			'lesVelos'=>$lesVelos,
-			'error'=>$error,
 			));
 		view('htmlFooter');
+	}
+
+		/**
+		 * methode privee charge de formater les data et de sauver la demande
+		 * @return void redirection avec message d'error/success charge en _SESSION
+		 */
+	private function _saveSubmitDemI()
+	{
+			// si on a un envois valide, on lance la sauvegarde
+		if( $this->_checkSubmitDemI())
+		{
+				// on traite la date
+			$dateDemande = date_create();
+
+			$_POST['dateDemande'] = $dateDemande->format('Y-m-d');
+
+			$uneNewDemande = $this->odbDemandeInter->creerUneDemande(
+				$_POST['vel_num'],
+				$_POST['dateDemande'],
+				$_SESSION['user']->getMatricule(),
+				$_POST['cpteRendu']
+				);
+
+				/** si on a un nombre de ligne >0 et donc TRUE */
+			if ($uneNewDemande)
+			{
+				$idDemande = $this->odbDemandeInter->getIdLastDemandeInter();
+				$_SESSION['tampon']['success'][] =
+					'Ajout de la demande n°'.$idDemande.' r&eacute;ussie !';
+					// on redirige vers la page d'affichage des demandes
+				header('Location:index.php?page=intervention&action=unedemandeinter&valeur='.$idDemande);
+				die; // on stop le chargement de la page
+			}
+			else // sinon on charge une erreur
+				throwError('Erreur avec l\'ajout de la demande sur le v&eacute; n°'.$_POST['vel_num']);
+
+		}
+
+	}
+
+		/**
+		 * methode privee chargee de verifier les donnees
+		 * @return bool si erreur (FALSE) ou non
+		 */
+	private function _checkSubmitDemI()
+	{
+			// var pour la validatation des envois
+		$noError = true;
+
+			// si on a pas de velo
+		if (empty($_POST['vel_num']))
+			$noError = throwError('Merci de selectionner un v&eacute;lo...', 'vel_num');
+			// sinon si le velo est introuvable
+		elseif( !$this->odbVelo->estVelo($_POST['vel_num']) )
+			$noError = throwError('Le velo ne semble pas exister...', 'vel_num');
+
+			// si pas de compte rendu
+		if (empty($_POST['cpteRendu']))
+			$noError = throwError('Le compte-rendu doit être remplis !', 'cpteRendu');
+
+		return $noError;
 	}
 
 }
