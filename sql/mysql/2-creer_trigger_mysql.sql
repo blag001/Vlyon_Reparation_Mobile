@@ -6,7 +6,7 @@ DROP TRIGGER IF EXISTS `trg_clc_velo_insert`;
 //
 
 CREATE TRIGGER `trg_clc_velo_insert`
-AFTER INSERT ON `velo`
+BEFORE INSERT ON `velo`
 FOR EACH ROW
 BEGIN
 		-- si on fait une insertion :
@@ -41,7 +41,7 @@ DROP TRIGGER IF EXISTS `trg_clc_velo_update`;
 //
 
 CREATE TRIGGER `trg_clc_velo_update`
-AFTER UPDATE ON `velo`
+BEFORE UPDATE ON `velo`
 FOR EACH ROW
 BEGIN
 		-- si on fait une maj du velo :
@@ -81,6 +81,58 @@ BEGIN
 		UPDATE station SET
 			Sta_NbVols = Sta_NbVols - 1
 		WHERE Sta_Code = OLD.Vel_Station;
+	END IF;
+
+END;
+//
+
+	-- pour les ajout d'intervention
+DROP TRIGGER IF EXISTS `trg_interv_insert`;
+//
+
+CREATE TRIGGER `trg_interv_insert`
+BEFORE INSERT ON `boninterv`
+FOR EACH ROW
+BEGIN
+		-- si on fait une insertion :
+
+		-- avec une demande liee
+	IF NEW.BI_Demande > 0 THEN
+		UPDATE demandeinter SET
+			DemI_Traite = 1
+		WHERE DemI_Num = NEW.BI_Demande;
+	END IF;
+
+		-- avec un velo non casse
+	IF NEW.BI_Reparable > 0 THEN
+		UPDATE velo SET
+			Vel_Etat = 1
+		WHERE Vel_Num = NEW.BI_Velo;
+		-- avec un velo casse
+	ELSE
+		UPDATE velo SET
+			Vel_Casse = 1
+		WHERE Vel_Num = NEW.BI_Velo;
+	END IF;
+
+END;
+//
+
+	-- pour les ajout de demande d'intervention
+DROP TRIGGER IF EXISTS `trg_dem_interv_insert`;
+//
+
+CREATE TRIGGER `trg_dem_interv_insert`
+BEFORE INSERT ON `demandeinter`
+FOR EACH ROW
+BEGIN
+		-- si on fait une insertion :
+
+		-- on passe le velo en deteriore
+	IF NEW.DemI_Velo > 0 THEN
+		UPDATE velo SET
+			Vel_Etat = 2
+		WHERE Vel_Num = NEW.DemI_Velo;
 	END IF;
 
 END;
