@@ -11,8 +11,7 @@
 					<?php
 					if (!empty($arg['laDemandeInterNum']))
 						echo $arg['laDemandeInterNum'];
-
-					if(!empty($_POST['code_demande']))
+					elseif(!empty($_POST['code_demande']))
 						echo $_POST['code_demande'];
 					?>
 				</p>
@@ -21,21 +20,31 @@
 					<?php
 					if (!empty($arg['laDemandeInterNum']))
 						echo ' value="'.$arg['laDemandeInterNum'].'" ';
-					if(!empty($_POST['code_demande']))
+					elseif(!empty($_POST['code_demande']))
 						echo ' value="'.$_POST['code_demande'].'" ';
 					?>
 					/>
 				<?php
 			}
 			?>
-			<label for="Vel_Num">V&eacute;lo concern&eacute;</label>
+			<label for="vel_num">V&eacute;lo concern&eacute;</label>
 				<?php
-				if(!empty($arg['laDemandeInterNum'])){
+				if(!empty($arg['leVeloNum']) or !empty($_POST['code_velo'])){
 					?>
 					<p class="form-control-static">
-						<?php echo $arg['laDemandeInterNum']; ?>
+						<?php
+						if(!empty($arg['leVeloNum']))
+							echo $arg['leVeloNum'];
+						elseif(!empty($_POST['code_velo']))
+							echo $_POST['code_velo'];
+						?>
 					</p>
+					<input type="hidden" class="form-control" name="vel_num"
 					<?php
+						if(!empty($arg['leVeloNum']))
+							echo ' value="'.$arg['leVeloNum'].'" />';
+						elseif(!empty($_POST['code_velo']))
+							echo ' value="'.$_POST['code_velo'].'" />';
 				}
 				elseif(
 					!empty($arg['lesVelos'])
@@ -43,7 +52,7 @@
 					)
 				{
 					?>
-					<select class="form-control" id="Vel_Num" name="Vel_Num" >
+					<select class="form-control" id="vel_num" name="vel_num" >
 					<?php
 					foreach ($arg['lesVelos'] as $unVelo)
 					{
@@ -63,16 +72,16 @@
 			<input type="text" class="form-control"  id="cpteRendu" name="cpteRendu" placeholder="Motif du probleme">
 
 			<label for="dateDebut" id="idStartDate" >Date de d&eacute;but de l'intervention</label>
-			<input type="date" class="form-control"  id="dateDebut" name="dateDebut" placeholder="Date de debut">
+			<input type="date" class="form-control"  id="dateDebut" name="dateDebut" placeholder="Date de debut" value="<?php echo date('d/m/Y');?>" />
 
 			<span id="idEndDate">
 				<label for="dateFin">Date de fin de l'intervention</label>
-				<input type="date" class="form-control"  id="dateFin" name="dateFin" placeholder="Date de fin">
+				<input type="date" class="form-control"  id="dateFin" name="dateFin" placeholder="Date de fin" value="<?php echo date('d/m/Y');?>" />
 			</span>
 
 			<div class="checkbox">
-				<label for="vel_reparable">
-				<input type="checkbox" id="vel_reparable" name="veloReparable">
+				<label for="vel_non_reparable">
+				<input type="checkbox" id="vel_non_reparable" name="veloNonReparable">
 				V&eacute;lo NON r&eacute;parable
 				</label>
 			</div>
@@ -80,10 +89,9 @@
 			<div class="checkbox">
 				<label for="vel_surPlace">
 				<input type="checkbox" id="vel_surPlace" name="surPlace" checked="checked"
-					onchange="switchBonEtDemInter(this.checked)"
 					<?php
-					if(!empty($arg['laDemandeInterNum']) or !empty($_POST['code_demande']))
-						echo ' disabled';
+					if(empty($arg['laDemandeInterNum']) and empty($_POST['code_demande']))
+						echo ' onchange="switchBonEtDemInter(this.checked)"';
 					?>
 					/>
 				R&eacute;parable sur place

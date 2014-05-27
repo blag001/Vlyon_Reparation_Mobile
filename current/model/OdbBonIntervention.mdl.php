@@ -70,11 +70,11 @@ class OdbBonIntervention
 		return $leBonInter;
 	}
 
-	/**
-	 * on visualise les interventions effectuees par un technicien gràce à son matricule
-	 * @param  int $techCode matricule du technincient
-	 * @return array           tableau d'objets
-	 */
+		/**
+		 * on visualise les interventions effectuees par un technicien gràce à son matricule
+		 * @param  int $techCode matricule du technincient
+		 * @return array           tableau d'objets
+		 */
 	public function getMesInterventions($techCode)
 	{
 		$req = "SELECT *,
@@ -89,9 +89,10 @@ class OdbBonIntervention
 
 		return $lesBonsInter;
 	}
-	/**
-	 * on va chercher la derniere intervention
-	 */
+
+		/**
+		 * on va chercher la derniere intervention
+		 */
 	public function getIdLastIntervention()
 	{
 		$req = "SELECT BI_Num
@@ -104,11 +105,11 @@ class OdbBonIntervention
 		return $lesBonsInter->BI_Num;
 	}
 
-	/**
-	 * on cree une intervention
-	 * MAJ : normalement elle est OK, mais faut check...
-	 */
-	public function creerUnBonInter()
+		/**
+		 * on cree une intervention
+		 * @return int nb de ligne sauvee
+		 */
+	public function creerUnBonInter($Vel_Num, $dateDebut, $dateFin, $cpteRendu, $reparable, $code_demande, $matTech, $surPlace, $duree)
 	{
 		$req = 'INSERT INTO boninterv (
 					 `BI_Velo`,
@@ -134,15 +135,15 @@ class OdbBonIntervention
 				 	)';
 
 		$out = $this->oBdd->exec($req, array(
-				 'Vel_Num'=>$_POST['Vel_Num'],
-				 'dateDebut'=>$_POST['dateDebut'],
-				 'dateFin'=>$_POST['dateFin'],
-				 'cpteRendu'=>$_POST['cpteRendu'],
-				 'reparable'=>$_POST['reparable'],
-				 'demande'=>$_POST['code_demande'],
-				 'technicienCode'=>$_SESSION['user']->getMatricule() ,
-				 'surPlace'=>$_POST['surPlace'],
-				 'duree'=>$_POST['duree'],
+				 'Vel_Num'=>$Vel_Num,
+				 'dateDebut'=>$dateDebut,
+				 'dateFin'=>$dateFin,
+				 'cpteRendu'=>$cpteRendu,
+				 'reparable'=>$reparable,
+				 'demande'=>$code_demande,
+				 'technicienCode'=>$matTech,
+				 'surPlace'=>$surPlace,
+				 'duree'=>$duree,
 				));
 		return $out;
 	}

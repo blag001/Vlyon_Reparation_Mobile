@@ -33,7 +33,7 @@
 				<th>Attaches</th>
 				<th>Vélo Dispo</th>
 				<th>Attaches Dispo</th>
-				<th>Vole</th>
+				<th>Volé</th>
 				<th>Dégradation</th>
 			</tr>
 		</thead>

@@ -48,7 +48,7 @@ class Intervention
 			/**
 			 * Switch de gestion des actions de Intervention
 			 *
-			 * @param string $_GET['action'] contient l'action demmandee
+			 * @param string $_GET['action'] contient l'action demandee
 			 */
 		switch ($_GET['action']) {
 			case 'unedemandeinter':
@@ -151,7 +151,7 @@ class Intervention
 			$_SESSION['tampon']['html']['title'] = 'Demande Intervention - ERREUR';
 			$_SESSION['tampon']['menu'][1]['current'] = 'Une demande';
 
-			$_SESSION['tampon']['error'][] = 'La Demande d\'Intervention ne semble pas exister...';
+			throwError('La Demande d\'Intervention ne semble pas exister...');
 
 				/**
 				 * Load des vues
@@ -178,7 +178,7 @@ class Intervention
 			$_SESSION['tampon']['menu'][1]['current'] = 'Mes interventions';
 
 			if (empty($mesInterventions))
-				$_SESSION['tampon']['error'][] = 'Pas d\'Intervention...';
+				throwError('Pas d\'Intervention...');
 
 				/**
 				 * Load des vues
@@ -193,7 +193,7 @@ class Intervention
 			$_SESSION['tampon']['html']['title'] = 'Toutes mes interventions - ERREUR';
 			$_SESSION['tampon']['menu'][1]['current'] = 'Mes interventions';
 
-			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
+			throwError('Vous ne semblez pas &ecirc;tre Technicien...');
 
 				/**
 				 * Load des vues
@@ -239,7 +239,7 @@ class Intervention
 			$_SESSION['tampon']['html']['title'] = 'Bon Intervention - ERREUR';
 			$_SESSION['tampon']['menu'][1]['current'] = 'Une intervention';
 
-			$_SESSION['tampon']['error'][] = 'Le bon d\'Intervention ne semble pas exister...';
+			throwError('Le bon d\'Intervention ne semble pas exister...');
 
 				/**
 				 * Load des vues
@@ -273,7 +273,7 @@ class Intervention
 
 				// rien en retour ? une erreur
 			if (empty($lesBonsInter))
-				$_SESSION['tampon']['error'][] = 'Pas de bon...';
+				throwError('Pas de bon...');
 
 				/**
 				 * Load des vues
@@ -289,7 +289,7 @@ class Intervention
 			$_SESSION['tampon']['html']['title'] = 'Rechercher un bon d\'intervention - ERREUR';
 			$_SESSION['tampon']['menu'][1]['current'] = 'Mes interventions';
 
-			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
+			throwError('Vous ne semblez pas &ecirc;tre Technicien...');
 
 				/**
 				 * Load des vues
@@ -317,7 +317,7 @@ class Intervention
 
 				// rien en retour ? une erreur
 			if (empty($lesBonsInter))
-				$_SESSION['tampon']['error'][] = 'Pas de bon...';
+				throwError('Pas de bon...');
 
 				/**
 				 * Load des vues
@@ -326,7 +326,7 @@ class Intervention
 		}
 		else
 		{
-			$_SESSION['tampon']['error'][] = 'Vous ne semblez pas &ecirc;tre Technicien...';
+			throwError('Vous ne semblez pas &ecirc;tre Technicien...');
 
 				/**
 				 * Load des vues
@@ -341,9 +341,8 @@ class Intervention
 		 */
 	protected function creerUnBonIntervention()
 	{
-		$error = null;
 		if (isset($_POST['sbmtMkBon']))
-			$error = $this->_saveSubmitBonI();
+			$this->_saveSubmitBonI();
 
 			/**
 			 * On regarde si on a deja des valeurs pour pre-remplir
@@ -389,20 +388,100 @@ class Intervention
 		view('contentMenu');
 		if(!empty($_SESSION['tampon']['error']))
 			view('contentError');
+		if(!empty($_SESSION['tampon']['success']))
+			view('contentSuccess');
 		view('contentCreerUnBon', array(
 			'leVeloNum'=>$leVeloNum,
 			'laDemandeInterNum'=>$laDemandeInterNum,
 			'lesVelos'=>$lesVelos,
-			'error'=>$error,
 			));
 		view('htmlFooter');
+
+	}
+
+	private function _saveSubmitBonI()
+	{
+			// si on a un envois valide, on lance la sauvegarde
+		if( $this->_checkSubmitBonI())
+		{
+			if (empty($_POST['code_demande']))
+				$_POST['code_demande'] = null;
+
+				// on traite les dates
+			$dateDebut = date_create($_POST['dateDebut']);
+			if(!empty($_POST['surPlace']) or !empty($_POST['code_demande'])){
+
+				$dateFin = date_create($_POST['dateFin']);
+				$dureeAbs = $dateDebut->diff($dateFin, true);
+				$_POST['duree'] = $dureeAbs->format('%a') + 1;
+				$_POST['dateFin'] = $dateFin->format('Y-m-d');
+			}
+
+			$_POST['dateDebut'] = $dateDebut->format('Y-m-d');
+				// on regarde si reparable ou non
+			$_POST['veloReparable'] = !empty($_POST['veloNonReparable'])? 0 : 1;
+			$_POST['surPlace'] = !empty($_POST['surPlace'])? 1 : 0;
+
+				/** Si velo Reparable sur-place, on fait un bon */
+			if (!empty($_POST['surPlace']) or !empty($_POST['code_demande'])){
+
+					/** si on a un nombre de ligne >0 et donc TRUE */
+				$unNouveauBon = $this->odbBonIntervention->creerUnBonInter(
+					$_POST['vel_num'],
+					$_POST['dateDebut'],
+					$_POST['dateFin'],
+					$_POST['cpteRendu'],
+					$_POST['veloReparable'],
+					$_POST['code_demande'],
+					$_SESSION['user']->getMatricule(),
+					$_POST['surPlace'],
+					$_POST['duree']
+					);
+
+				if ($unNouveauBon)
+				{
+					$idIntervention = $this->odbBonIntervention->getIdLastIntervention();
+					$_SESSION['tampon']['success'][] =
+						'Ajout de l\'intervention n°'.$idIntervention.' r&eacute;ussie !';
+						// on redirige vers la page d'affiche des intervention
+					header('Location:index.php?page=intervention&action=monbonintervention&valeur='.$idIntervention);
+					die; // on stop le chargement de la page
+				}
+				else // sinon on charge une erreur
+					throwError('Erreur avec l\'ajout de l\'intervention sur le v&eacute; n°'.$_POST['vel_num']);
+			}
+				/** Sinon, on fait une demande d'intervention */
+			else{
+
+				$uneNewDemande = $this->odbDemandeInter->creerUneDemande(
+					$_POST['vel_num'],
+					$_POST['dateDebut'],
+					$_SESSION['user']->getMatricule(),
+					$_POST['cpteRendu']
+					);
+
+					/** si on a un nombre de ligne >0 et donc TRUE */
+				if ($uneNewDemande)
+				{
+					$idDemande = $this->odbDemandeInter->getIdLastDemandeInter();
+					$_SESSION['tampon']['success'][] =
+						'Ajout de la demande n°'.$idDemande.' r&eacute;ussie !';
+						// on redirige vers la page d'affichage des demandes
+					header('Location:index.php?page=intervention&action=unedemandeinter&valeur='.$idDemande);
+					die; // on stop le chargement de la page
+				}
+				else // sinon on charge une erreur
+					throwError('Erreur avec l\'ajout de la demande sur le v&eacute; n°'.$_POST['vel_num']);
+			}
+
+		}
 
 	}
 
 	private function _checkSubmitBonI()
 	{
 			// var pour la validatation des envois
-		$error = null;
+		$noError = true;
 			// on traite les dates en Fr pour les avoir un YYYY/MM/DD
 		if (substr_count($_POST['dateDebut'], '/'))
 			$_POST['dateDebut'] = preg_replace('#([0-9]{1,2})/([0-9]{1,2})/([0-9]{2,4})#', '$3-$2-$1', $_POST['dateDebut']);
@@ -414,91 +493,45 @@ class Intervention
 		{
 				// si la demande n'existe pas
 			if(!$this->odbDemandeInter->estDemandeInter($_POST['code_demande']))
-				$error['code_demande'][] = 'La demande ne semble pas exister...';
+				$error = throwError('La demande ne semble pas exister...', 'code_demande');
 				// sinon si elle n'a pas de velo liee
 			elseif ( !($code_velo = $this->odbDemandeInter->getIdVeloByIdDemandeInter($_POST['code_demande'])) )
-				$error['code_demande'][] = 'Pas de velo li&eacute; &agrave; cette demande...';
+				$error = throwError('Pas de velo li&eacute; &agrave; cette demande...', 'code_demande');
 				// sinon si le velo liee est introuvable
 			elseif ( !$this->odbVelo->estVelo($code_velo) )
-				$error['code_demande'][] = 'Le velo ne semble pas exister...';
+				$error = throwError('Le velo ne semble pas exister...', 'code_demande');
 				// sinon si on a bidouiller pour changer l'idVelo dans le html
-			elseif ( $code_velo != $_POST['Vel_Num'] )
-				$error['Vel_Num'][] = 'On ne hack pas l\'application SVP...';
+			elseif ( $code_velo != $_POST['vel_num'] )
+				$error = throwError('On ne hack pas l\'application SVP...', 'vel_num');
 		}
 			// sinon si on a pas de velo
-		elseif (empty($_POST['Vel_Num']))
-			$error['Vel_Num'][] = 'Merci de selectionner un v&eacute;lo...';
+		elseif (empty($_POST['vel_num']))
+			$error = throwError('Merci de selectionner un v&eacute;lo...', 'vel_num');
 			// sinon si le velo est introuvable
-		elseif( !$this->odbVelo->estVelo($_POST['Vel_Num']) )
-			$error['Vel_Num'][] = 'Le velo ne semble pas exister...';
+		elseif( !$this->odbVelo->estVelo($_POST['vel_num']) )
+			$error = throwError('Le velo ne semble pas exister...', 'vel_num');
 
 			// si pas de date debut
 		if (empty($_POST['dateDebut']))
-			$error['dateDebut'][] = 'Merci de remplir une date de d&eacute;but...';
+			$error = throwError('Merci de remplir une date de d&eacute;but...', 'dateDebut');
 
 			// si pas de date de fin
-		if (empty($_POST['dateFin']))
-			$error['dateFin'][] = 'Merci de remplir une date de fin...';
+		if (!empty($_POST['surPlace']) and empty($_POST['dateFin']))
+			$error = throwError('Merci de remplir une date de fin...', 'dateFin');
 
 			// si on peut pas exploiter la date debut
 		if(!date_create($_POST['dateDebut']))
-			$error['dateDebut'][] = 'Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA';
+			$error = throwError('Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA', 'dateDebut');
 
 			// si on peut pas exploiter la date de fin
-		if(!date_create($_POST['dateFin']))
-			$error['dateFin'][] = 'Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA';
+		if(!empty($_POST['surPlace']) and !date_create($_POST['dateFin']))
+			$error = throwError('Erreur avec la date, merci d\'utiliser le format JJ/MM/AAAA', 'dateFin');
 
 			// si pas de compte rendu
 		if (empty($_POST['cpteRendu']))
-			$error['cpteRendu'][] = 'Le compte-rendu doit être remplis !';
+			$error = throwError('Le compte-rendu doit être remplis !', 'cpteRendu');
 
-		return $error;
-	}
-
-	private function _saveSubmitBonI()
-	{
-			// var pour la validatation des envois
-		$error = null;
-			// si on a un envois valide, on lance la sauvegarde
-		if( ($error = $this->_checkSubmitBonI()) == null)
-		{
-				// on traite les dates
-			$dateDebut = date_create($_POST['dateDebut']);
-			$dateFin = date_create($_POST['dateFin']);
-			$dureeAbs = $dateDebut->diff($dateFin, true);
-			$_POST['duree'] = $dureeAbs->format('%a') + 1;
-
-			$_POST['dateDebut'] = $dateDebut->format('Y-m-d');
-			$_POST['dateFin'] = $dateFin->format('Y-m-d');
-
-			if (!empty($_POST['reparable']))
-				$_POST['reparable'] = 1;
-			else
-				$_POST['reparable'] = 0;
-
-			if (empty($_POST['demande']))
-				$_POST['demande'] = null;
-
-			if (!empty($_POST['surPlace']))
-				$_POST['surPlace'] = 1;
-			else
-				$_POST['surPlace'] = 0;
-
-				/** si on a un nombre de ligne >0 et donc TRUE */
-			if ($unNouveauBon = $this->odbBonIntervention->creerUnBonInter())
-			{
-				$idIntervention = $this->odbBonIntervention->getIdLastIntervention();
-				$_SESSION['tampon']['success'][] =
-					'Ajout de l\'intervention n°'.$idIntervention.' r&eacute;ussie !';
-					// on redirige vers la page d'affiche des intervention
-				header('Location:index.php?page=intervention&action=monbonintervention&valeur='.$idIntervention);
-				die; // on stop le chargement de la page
-			}
-			else // sinon on charge une erreur
-				$_SESSION['tampon']['error'][] = 'Erreur avec l\'ajout de l\'intervention sur le v&eacute; n°'.$_POST['Vel_Num'];
-		}
-
-		return $error;
+		return $noError;
 	}
 
 	protected function creerUneDemandeInter()

@@ -105,10 +105,12 @@ function switchBonEtDemInter (value) {
 	if(value){
 		document.getElementById('idEndDate').style.display = 'inline';
 		document.getElementById('dateDebut').setAttribute('placeholder', 'Date de debut');
+		document.getElementById('dateDebut').setAttribute('action', 'index.php?page=intervention&amp;action=creerbonintervention');
 	}
 	else{
 		document.getElementById('idEndDate').style.display = 'none';
 		document.getElementById('dateDebut').setAttribute('placeholder', 'Date de demande');
+		document.getElementById('dateDebut').setAttribute('action', 'index.php?page=intervention&amp;action=creerdemandeinter');
 	}
 
 		// change name dateStart
