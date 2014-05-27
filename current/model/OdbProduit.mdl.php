@@ -7,7 +7,7 @@
 	 * class de gestion BDD des Produits
 	 * @todo  inutilise pour le moment
 	 */
-class odbProduit
+class OdbProduit
 {
 		/** @var object objet Bdd */
 	private $oBdd;

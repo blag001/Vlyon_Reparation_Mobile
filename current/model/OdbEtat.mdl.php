@@ -6,7 +6,7 @@
 	/**
 	 * class de gestion BDD des Etats
 	 */
-class odbEtat
+class OdbEtat
 {
 		/** @var object objet Bdd */
 	private $oBdd;
