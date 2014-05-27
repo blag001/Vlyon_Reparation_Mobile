@@ -1,13 +1,7 @@
 <?php
 	/**
-	 * class de gestion PDO simplifiee
+	 * class de gestion de menu
 	 *
-	 * @method {mixed} query(string $sql[, array $arg[, bool $mono_line]]) lance une recherche
-	 * 	       qui attend un ou plusieurs resultats (retour en objet ou array d'objet)
-	 * @method {int} exec(string $sql[, array $arg]) execute une commande et
-	 * 	       retourne le nombre de lignes affectees
-	 *
-	 * @global boolean SINGLE_RES
 	 * @author Benoit <benoitelie1@gmail.com>
 	 */
 class Menu
@@ -19,12 +13,8 @@ class Menu
 	////////////////////
 
 		/**
-		 * cree une instance PDO avec les valeurs en argument
-		 *
-		 * @param string $host
-		 * @param string $db_name
-		 * @param string $user
-		 * @param string $mdp
+		 * le contruteur
+		 * @param array $menu le tableau des menus
 		 */
 	public function __construct( &$menu)
 	{
@@ -53,6 +43,11 @@ class Menu
 	// PUBLIC //
 	/////////////
 
+		/**
+		 * retourne la list du menu de niveau demande
+		 * @param  integer $level le niveau de menu
+		 * @return array         un tableau de menu
+		 */
 	public function getListMenu($level=0)
 	{
 		if(isset($this->menu[$level]['list']) and is_array($this->menu[$level]['list']))
@@ -61,6 +56,11 @@ class Menu
 			return array();
 	}
 
+		/**
+		 * retourn le menu actuel
+		 * @param  integer $level le niveau a tester
+		 * @return array         le menu actuel
+		 */
 	public function getCurrentMenu($level=0)
 	{
 		if(isset($this->menu[$level]['current'])
@@ -77,6 +77,12 @@ class Menu
 			return array('url' => '','title' => '');
 	}
 
+		/**
+		 * test si est le menu actuel
+		 * @param  integer $level le niveau du menu a tester
+		 * @param  string  $title le titre de menu a tester
+		 * @return boolean        true/false si est ou non le menus actuel
+		 */
 	public function isCurrentMenu($level=0, $title=null)
 	{
 		if(
