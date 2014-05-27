@@ -2,10 +2,10 @@
 DELIMITER //
 
 	-- pour les ajout de velo, maj des data calculees
-DROP TRIGGER IF EXISTS `trg_clc_velo_insert`;
+DROP TRIGGER IF EXISTS `trg_velo_insert`;
 //
 
-CREATE TRIGGER `trg_clc_velo_insert`
+CREATE TRIGGER `trg_velo_insert`
 BEFORE INSERT ON `velo`
 FOR EACH ROW
 BEGIN
@@ -37,10 +37,10 @@ END;
 //
 
 	-- pour les modif de velo, maj des data calculees
-DROP TRIGGER IF EXISTS `trg_clc_velo_update`;
+DROP TRIGGER IF EXISTS `trg_velo_update`;
 //
 
-CREATE TRIGGER `trg_clc_velo_update`
+CREATE TRIGGER `trg_velo_update`
 BEFORE UPDATE ON `velo`
 FOR EACH ROW
 BEGIN
@@ -87,10 +87,10 @@ END;
 //
 
 	-- pour les ajout d'intervention
-DROP TRIGGER IF EXISTS `trg_interv_insert`;
+DROP TRIGGER IF EXISTS `trg_boninterv_insert`;
 //
 
-CREATE TRIGGER `trg_interv_insert`
+CREATE TRIGGER `trg_boninterv_insert`
 BEFORE INSERT ON `boninterv`
 FOR EACH ROW
 BEGIN
@@ -119,10 +119,10 @@ END;
 //
 
 	-- pour les ajout de demande d'intervention
-DROP TRIGGER IF EXISTS `trg_dem_interv_insert`;
+DROP TRIGGER IF EXISTS `trg_demandeinter_insert`;
 //
 
-CREATE TRIGGER `trg_dem_interv_insert`
+CREATE TRIGGER `trg_demandeinter_insert`
 BEFORE INSERT ON `demandeinter`
 FOR EACH ROW
 BEGIN
