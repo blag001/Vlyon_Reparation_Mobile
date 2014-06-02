@@ -24,7 +24,7 @@ class OdbTechnicien
 		 * @param  int $matricule le matricule a tester
 		 * @return bool            si oui ou non et bien un technicien
 		 */
-	public function estTechnicien($matricule)
+	public function estTechnicien($matricule=null)
 	{
 		if(!empty($matricule))
 		{
@@ -59,7 +59,7 @@ class OdbTechnicien
 		 * @param  int $matricule le matricule du technicien a retourner
 		 * @return object            l'objet technicien
 		 */
-	public function getUnTechnicien($matricule)
+	public function getUnTechnicien($matricule=null)
 	{
 		$req = 'SELECT *
 				FROM technicien

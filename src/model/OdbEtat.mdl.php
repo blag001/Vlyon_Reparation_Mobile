@@ -24,7 +24,7 @@ class OdbEtat
 		 * @param  int $id l'id a tester
 		 * @return bool     true/false si est ou non un etat
 		 */
-	public function estEtatById($id)
+	public function estEtatById($id=null)
 	{
 		if(!empty($id))
 		{

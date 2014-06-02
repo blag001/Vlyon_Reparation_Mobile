@@ -24,7 +24,7 @@ class OdbBonIntervention
 		 * @param  int $code le code a tester
 		 * @return bool       true/false si est ou non un bon Inter
 		 */
-	public function estBonInter($code)
+	public function estBonInter($code=null)
 	{
 		if(!empty($code))
 		{
@@ -46,7 +46,7 @@ class OdbBonIntervention
 		 * @param  int $techCode le code du technicien utilisateur
 		 * @return bool           si est ou non le bon de l'utilisateur
 		 */
-	public function estMonBonInter($code, $techCode)
+	public function estMonBonInter($code=null, $techCode=null)
 	{
 		if(!empty($code) and !empty($techCode))
 		{
@@ -85,7 +85,7 @@ class OdbBonIntervention
 		 * @param  int $techCode le code du technicien
 		 * @return object           le bon d'intervention
 		 */
-	public function getMonBonInter($code, $techCode)
+	public function getMonBonInter($code=null, $techCode=null)
 	{
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
@@ -104,7 +104,7 @@ class OdbBonIntervention
 		 * @param  int $techCode matricule du technincien
 		 * @return array           tableau d'objets
 		 */
-	public function getMesInterventions($techCode)
+	public function getMesInterventions($techCode=null)
 	{
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
@@ -148,7 +148,7 @@ class OdbBonIntervention
 		 * @param  int $duree        la duree de l'intervention en jour entier
 		 * @return int               nombre de ligne inseree
 		 */
-	public function creerUnBonInter($Vel_Num, $dateDebut, $dateFin, $cpteRendu, $reparable, $code_demande, $matTech, $surPlace, $duree)
+	public function creerUnBonInter($Vel_Num=null, $dateDebut=null, $dateFin=null, $cpteRendu=null, $reparable=null, $code_demande=null, $matTech=null, $surPlace=null, $duree=null)
 	{
 		$req = 'INSERT INTO boninterv (
 					 `BI_Velo`,
@@ -193,7 +193,7 @@ class OdbBonIntervention
 		 * @param  int $techCode le matricule du technicien
 		 * @return array           array d'object interv
 		 */
-	public function searchMesBonIntervention($valeur, $techCode)
+	public function searchMesBonIntervention($valeur=null $techCode=null)
 	{
 		$req = "SELECT *
 				FROM `boninterv`

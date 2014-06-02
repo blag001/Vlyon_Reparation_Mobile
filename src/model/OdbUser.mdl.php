@@ -27,7 +27,7 @@ class OdbUser
 		 * @param  string $nom l'identifiant a tester
 		 * @return bool      True/false si il existe ou non
 		 */
-	public function estUser($nom)
+	public function estUser($nom=null)
 	{
 		if(!empty($nom))
 		{
@@ -48,7 +48,7 @@ class OdbUser
 		 * @param  string $nom l'identifiant de l'utilisateur a retourner
 		 * @return object      l'utilisateur
 		 */
-	public function getUser($nom)
+	public function getUser($nom=null)
 	{
 		if(!empty($nom))
 		{
@@ -75,7 +75,7 @@ class OdbUser
 		 * @param  string $hash le hash du mdp user
 		 * @return bool       valide ou non l'existance
 		 */
-	public function checkHashUser($nom, $hash)
+	public function checkHashUser($nom=null, $hash=null)
 	{
 		if(!empty($nom) and !empty($hash))
 		{
@@ -98,7 +98,7 @@ class OdbUser
 		 * @param  string $token le token
 		 * @return bool        si l'insertion s'est bien deroulee
 		 */
-	public function saveToken($name, $token)
+	public function saveToken($name=null, $token=null)
 	{
 		if($name !== null and !empty($token))
 		{
@@ -117,7 +117,7 @@ class OdbUser
 		 * @param  string $name l'identifiant du compte a deconecter
 		 * @return bool       la reusite de la supression
 		 */
-	public function forgetToken($name)
+	public function forgetToken($name=null)
 	{
 		if($name !== null)
 			return $this->oNosql->delete('remember_me', $name);
@@ -130,7 +130,7 @@ class OdbUser
 		 * @param  string $name l'identifiant du compte
 		 * @return string       le token
 		 */
-	public function getToken($name)
+	public function getToken($name=null)
 	{
 		if($name !== null)
 			return $this->oNosql->query('remember_me', $name);

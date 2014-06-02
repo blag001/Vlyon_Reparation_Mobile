@@ -24,7 +24,7 @@ class OdbStation
 		 * @param  string $nom le nom a tester
 		 * @return bool      si est oui ou non une station
 		 */
-	public function estStation($nom)
+	public function estStation($nom=null)
 	{
 		if(!empty($nom))
 		{
@@ -45,7 +45,7 @@ class OdbStation
 		 * @param  int $id l'id a tester
 		 * @return bool     si est oui ou non une station
 		 */
-	public function estStationById($id)
+	public function estStationById($id=null)
 	{
 		if(!empty($id))
 		{
@@ -94,7 +94,7 @@ class OdbStation
 		 * @param  string $valeur la string a chercher
 		 * @return array         tableau d'object station
 		 */
-	public function searchStations($valeur)
+	public function searchStations($valeur=null)
 	{
 		$req = "SELECT *
 				FROM `station`
@@ -112,7 +112,7 @@ class OdbStation
 		 * @param  int $id l'id de la station à retourner
 		 * @return object     la station
 		 */
-	public function getUneStation($id)
+	public function getUneStation($id=null)
 	{
 		$req = 'SELECT *
 				FROM station
@@ -128,7 +128,7 @@ class OdbStation
 		 * @param  int $station le code de la station
 		 * @return int          le nombre de velo
 		 */
-	public function getNbVelosAttaches($station)
+	public function getNbVelosAttaches($station=null)
 	{
 		$req = 'SELECT COUNT(Vel_Code) AS nb
 				FROM velo
@@ -144,7 +144,7 @@ class OdbStation
 		 * @param  int $station le code de la station
 		 * @return int          le nombre de velo disponible
 		 */
-	public function getNbVeloDispo($station){
+	public function getNbVeloDispo($station=null){
 		$req = 'SELECT COUNT(Vel_Code) AS nb
 				FROM velo
 				WHERE Vel_Station = :station

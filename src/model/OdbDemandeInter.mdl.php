@@ -24,7 +24,7 @@ class OdbDemandeInter
 		 * @param  int $code id de la demande à tester
 		 * @return bool       un vrai/faux de l'existance
 		 */
-	public function estDemandeInter($code)
+	public function estDemandeInter($code=null)
 	{
 		if(!empty($code))
 		{
@@ -60,7 +60,7 @@ class OdbDemandeInter
 		 * @param  integer $techCode le matricule du technicien ou -1
 		 * @return object            une demande
 		 */
-	public function getUneDemandeInter($id, $techCode = -2)
+	public function getUneDemandeInter($id=null, $techCode = -2)
 	{
 		$req = "SELECT
 					demandeinter.*,
@@ -100,7 +100,7 @@ class OdbDemandeInter
 		 * @param  int $id id de la demande
 		 * @return int     id du velo
 		 */
-	public function getIdVeloByIdDemandeInter($id)
+	public function getIdVeloByIdDemandeInter($id=null)
 	{
 		$req = "SELECT DemI_Velo AS Vel_Num
 				FROM demandeinter
@@ -138,7 +138,7 @@ class OdbDemandeInter
 		 * @param  string $cpteRendu     le compte rendu
 		 * @return int                nombre de ligne inseree
 		 */
-	public function creerUneDemande($Vel_Num, $dateDebut, $techMatricule, $cpteRendu)
+	public function creerUneDemande($Vel_Num=null, $dateDebut=null, $techMatricule=null, $cpteRendu=null)
 	{
 		$req = 'INSERT INTO demandeinter (
 					 `DemI_Velo`,
@@ -186,7 +186,7 @@ class OdbDemandeInter
 		 * @param  integer $techCode l'id du technicien qui recherche ou -1
 		 * @return array            les demande d'inter qui match
 		 */
-	public function searchLesDemandesInter($valeur, $techCode = -2)
+	public function searchLesDemandesInter($valeur=null, $techCode = -2)
 	{
 		$req = "SELECT *, DATE_FORMAT(`DemI_Date`, '%d/%m/%Y') AS `DemI_Date`
 				FROM demandeinter

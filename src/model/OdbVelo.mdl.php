@@ -24,7 +24,7 @@ class OdbVelo
 		 * @param  int $codeVelo code a tester
 		 * @return bool           si est un velo ou non
 		 */
-	public function estVelo($codeVelo)
+	public function estVelo($codeVelo=null)
 	{
 		if(!empty($codeVelo))
 		{
@@ -45,7 +45,7 @@ class OdbVelo
 		 * @param  int $codeStation le code de la station recherchee
 		 * @return array              tableau d'object velo
 		 */
-	public function getLesVelosDeStation($codeStation){
+	public function getLesVelosDeStation($codeStation=null){
 
 		$req = 'SELECT *
 				FROM etat
@@ -103,7 +103,7 @@ class OdbVelo
 		 * @param  string $valeur la string a chercher
 		 * @return array         tableau d'object velo
 		 */
-	public function searchVelos($valeur)
+	public function searchVelos($valeur=null)
 	{
 		$req = "SELECT *
 				FROM etat
@@ -125,7 +125,7 @@ class OdbVelo
 		 * @param  int $codeVelo le code du velo
 		 * @return object           le velo
 		 */
-	public function getUnVelo($codeVelo){
+	public function getUnVelo($codeVelo=null){
 		$req = 'SELECT *
 				FROM etat
 				INNER JOIN velo
@@ -143,7 +143,7 @@ class OdbVelo
 	 * modifier les informations d'un velo et son Etat
 	 * @return int                nombre de ligne affectee
 	 */
-	public function modifierUnVelo($stationVelo, $etatVelo, $accessoireVelo, $codeVelo){
+	public function modifierUnVelo($stationVelo=null, $etatVelo=null, $accessoireVelo=null, $codeVelo=null){
 
 		$req = 'UPDATE velo
 				SET Vel_Station     = :stationVelo,

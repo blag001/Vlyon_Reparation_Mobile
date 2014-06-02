@@ -25,7 +25,7 @@ class OdbProduit
 		 * @param  string $id le code du produit
 		 * @return bool     si oui ou non est bien un produit
 		 */
-	public function estProduit($id)
+	public function estProduit($id=null)
 	{
 		if(!empty($id))
 		{
