@@ -1,0 +1,4 @@
+OdbVelo
+ [x] Connexion bdd ok
+ [x] Fail
+
