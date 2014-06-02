@@ -193,7 +193,7 @@ class OdbBonIntervention
 		 * @param  int $techCode le matricule du technicien
 		 * @return array           array d'object interv
 		 */
-	public function searchMesBonIntervention($valeur=null $techCode=null)
+	public function searchMesBonIntervention($valeur=null, $techCode=null)
 	{
 		$req = "SELECT *
 				FROM `boninterv`
