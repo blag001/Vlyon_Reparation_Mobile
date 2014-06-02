@@ -143,7 +143,7 @@ class OdbVelo
 	 * modifier les informations d'un velo et son Etat
 	 * @return int                nombre de ligne affectee
 	 */
-	public function modifierUnVelo(){
+	public function modifierUnVelo($stationVelo, $etatVelo, $accessoireVelo, $codeVelo){
 
 		$req = 'UPDATE velo
 				SET Vel_Station     = :stationVelo,
@@ -152,10 +152,10 @@ class OdbVelo
 				WHERE Vel_Num = :codeVelo';
 
 		$out = $this->oBdd->exec($req, array(
-				'stationVelo'    =>$_POST['stationVelo'],
-				'etatVelo'       =>$_POST['etatVelo'],
-				'accessoireVelo' =>$_POST['accessoireVelo'],
-				'codeVelo'       =>$_POST['codeVelo'],
+				'stationVelo'    =>$stationVelo,
+				'etatVelo'       =>$etatVelo,
+				'accessoireVelo' =>$accessoireVelo,
+				'codeVelo'       =>$codeVelo,
 				));
 
 		return $out;

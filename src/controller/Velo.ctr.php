@@ -230,7 +230,12 @@ class Velo
 				if (empty($has_error))
 				{
 						// on lance la modif
-					$outModifVelo = $this->odbVelo->modifierUnVelo();
+					$outModifVelo = $this->odbVelo->modifierUnVelo(
+						$_POST['stationVelo'],
+						$_POST['etatVelo'],
+						$_POST['accessoireVelo'],
+						$_POST['codeVelo']
+						);
 						/** si on a un nombre de ligne >0 et donc TRUE */
 					if ($outModifVelo)
 					{
