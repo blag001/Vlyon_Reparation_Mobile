@@ -1,15 +1,5 @@
-FAIT //virer les champ dans le modif velo 
-
-Faire la page de creation d'un bon d'intervention
- > en cours, il faut gerer les trois entrée possible : nature, avec le velo, avec la demande
- > surement changer le "_POST['valeur']" si on veux pas se planter (déjà commence)
-Faire la page de creation d'une demande d'intervention
- > idem, passer avec un velo en arg (add le lien sur le detail velo)
-
 Maj la doc des choix technique &co...
 => tout fusionner dans un seul doc, histoire de pas trop se compliquer
 + ajouter la politique de secu (PDO, check des input, exsistance des var, "requier" & co)
 + add le justificatif NoSQL 
 + add l'explication du cookie de remember-me
-
-Faire la liste des chose à dev pour la v2 (cf le sujet2)

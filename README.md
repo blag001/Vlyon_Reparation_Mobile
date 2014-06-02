@@ -6,24 +6,34 @@ _Ceci est un fichier Read-me, il résume la structure globale et le rôle des di
 Arborescence principale
 -----------------------
 
-* `/current/`
-	contient le site a l'état actuel, c'est ce dossier qu'il faut copier pour une mise en environnement de test.
-* `/flowchartt/`
+* `/doc/`
+	contient la documentation du projet.
+* `/flowchart/`
 	contient les diagrames de flux des trigger.
 * `/gantt/`
 	contient le gantt du projet, avec les différentes tache, leur réalisation, attribution, ainsi que leur évolution.
-* `/maquettes/`
-	regroupe les maquettes de l’application
+* `/maquette/`
+	regroupe les maquettes de l’application.
 * `/modelisation/`
-	MCD et MPD de la base
-* `/procedure/`
-	contient les procédure Oracle réalisé antérieurement
+	MCD et MPD de la base.
+* `/old.doc/`
+	contient les ducuments obsolètes réalisé antérieurement.
+* `/old.procedure/`
+	contient les procédure Oracle réalisé antérieurement..
+* `/phpDoc/`
+	contient la documentation technique (via phpDocumator)
 * `/sql/`
 	contient les scripts SQL de mise en place de la BDD, utilisez dans l'ordre les trois (3) fichiers dans `./mysql/` pour une instalation sur Mysql.
+* `/src/`
+	contient le site a l'état actuel, c'est ce dossier qu'il faut copier pour une mise en environnement de test.
 * `/sujet/`
-	le sujet à traiter
+	le sujet à traiter.
+* `/tests/`
+	le dossier des class de test unitaire de phpUnit.
 * `/uml/`
-	le diagramme UML du projet
+	le diagramme UML des use-case du projet.
+* `/vendor/`
+	le fichier d'autoload des class (via composer; utilisé par phpUnit).
 
 Mettre en place le site
 -----------------------
@@ -49,6 +59,6 @@ Normalement vous devriez avoir une Bdd operationnel, il ne vous reste que les pa
 ### Web
 
 Simple à realiser :
-* Copiez le contenue de `/current/` dans votre dossier de test
+* Copiez le contenue de `/src/` dans votre dossier de test
 * sur un system unix, passez le CHMOD à 777 pour le test (**le dossier racine de l'app doit être écrivable par PHP**)
 * Les identifiants de connexion à l'app via l'interface web sont "root" / "root" mais représente un compte ustilisateur
