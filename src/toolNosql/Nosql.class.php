@@ -333,8 +333,8 @@ class Nosql
 			$no_error = true;
 
 			if(($array = $this->select_all($table)) !== false)
-				foreach($array as $value)
-					$no_error &= $this->delete($table, $value['key']);
+				foreach($array as $key=>$value)
+					$no_error &= $this->delete($table, $key);
 					// And binaire : si un false on reste false
 
 			if($no_error){
