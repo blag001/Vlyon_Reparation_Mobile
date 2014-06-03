@@ -30,9 +30,9 @@ class OdbTechnicien
 		{
 			$req = 'SELECT COUNT(*) AS nb
 					FROM technicien
-					WHERE Tech_Matricule = :matricule';
+					WHERE Tec_Matricule = :matricule';
 
-			$data = $oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
+			$data = $this->oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
 
 			return (bool) $data->nb;
 		}
@@ -49,7 +49,7 @@ class OdbTechnicien
 		$req = 'SELECT *
 				FROM technicien';
 
-		$lesTechniciens = $oBdd->query($req);
+		$lesTechniciens = $this->oBdd->query($req);
 
 		return $lesTechniciens;
 	}
@@ -63,9 +63,9 @@ class OdbTechnicien
 	{
 		$req = 'SELECT *
 				FROM technicien
-				WHERE Tech_Matricule = :matricule';
+				WHERE Tec_Matricule = :matricule';
 
-		$leTechnicien = $oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
+		$leTechnicien = $this->oBdd->query($req, array('matricule'=>$matricule), Bdd::SINGLE_RES);
 
 		return $leTechnicien;
 	}
