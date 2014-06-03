@@ -1,3 +1,47 @@
+OdbEtat
+ [x] Connexion bdd ok
+ [x] Instanciation du model
+ [x] Est etat false si inexistant
+ [x] Est etat true si existant
+ [x] Est etat false si null param
+ [x] Retourne liste de tous les etat
+
+OdbProduit
+ [x] Connexion bdd ok
+ [x] Instanciation du model
+ [x] Est produit false si inexistant
+ [x] Est produit true si existant
+ [x] Est produit false si null param
+ [x] Retourne liste de tous les produit
+
+OdbTechnicien
+ [x] Connexion bdd ok
+ [x] Instanciation du model
+ [x] Est technicien false si inexistant
+ [x] Est technicien true si existant
+ [x] Est technicien false si null param
+ [x] Retourne liste de tous les technicien
+ [x] Retourne un technicien si matricule valide
+ [x] Retour vide si matricule technicien invalide
+
+OdbUser
+ [x] Connexion bdd ok
+ [x] Connexion nosql ok
+ [x] Instanciation du model
+ [x] Est user false si inexistant
+ [x] Est user true si existant
+ [x] Est user false si null param
+ [x] Retourne un user si nom valide
+ [x] Retour vide si nom user invalide
+ [x] Retourne false si identifiant invalide
+ [x] Retourne true si identifiant valide
+ [x] Retourne false si data savetoken invalide
+ [x] Retourne true si data savetoken valide
+ [x] Retour vide si name token invalide
+ [x] Retourne data si name token valide
+ [x] Retourne delete false si name token invalide
+ [x] Retourne delete true si name token valide
+
 OdbVelo
  [x] Connexion bdd ok
  [x] Instanciation du model

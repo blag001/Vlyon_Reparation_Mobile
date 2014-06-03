@@ -8,6 +8,11 @@
 	 */
 class OdbVeloTest extends PHPUnit_Framework_TestCase
 {
+	public function setUp()
+	{
+		$this->odbVelo = new OdbVelo();
+	}
+
 	//////////////
 	// globale //
 	//////////////
@@ -24,11 +29,9 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testInstanciationDuModel()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertTrue(is_object($this->odbVelo));
 
-		$this->assertTrue(is_object($odbVelo));
-
-		$this->assertInstanceOf('OdbVelo', $odbVelo);
+		$this->assertInstanceOf('OdbVelo', $this->odbVelo);
 	}
 
 	////////////////
@@ -41,10 +44,8 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testEstVeloFalseSiInexistant()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertFalse($odbVelo->estVelo('0'));
-		$this->assertFalse($odbVelo->estVelo('AZERTY'));
+		$this->assertFalse($this->odbVelo->estVelo('0'));
+		$this->assertFalse($this->odbVelo->estVelo('AZERTY'));
 	}
 
 		/**
@@ -53,11 +54,9 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testEstVeloTrueSiExistant()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertTrue($this->odbVelo->estVelo('1'));
 
-		$this->assertTrue($odbVelo->estVelo('1'));
-
-		$this->assertTrue($odbVelo->estVelo(1));
+		$this->assertTrue($this->odbVelo->estVelo(1));
 	}
 
 		/**
@@ -66,11 +65,9 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testEstVeloFalseSiNullParam()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertFalse($this->odbVelo->estVelo());
 
-		$this->assertFalse($odbVelo->estVelo());
-
-		$this->assertFalse($odbVelo->estVelo(''));
+		$this->assertFalse($this->odbVelo->estVelo(''));
 	}
 
 	/////////////////////////////
@@ -83,10 +80,8 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeVeloVideSiStationInexistant()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertEmpty($odbVelo->getLesVelosDeStation('0'));
-		$this->assertEmpty($odbVelo->getLesVelosDeStation('AZERTY'));
+		$this->assertEmpty($this->odbVelo->getLesVelosDeStation('0'));
+		$this->assertEmpty($this->odbVelo->getLesVelosDeStation('AZERTY'));
 	}
 		/**
 		 * @depends testConnexionBddOk
@@ -94,9 +89,7 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeVeloVideSiStationExistanteEtVeloAbsent()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertEmpty($odbVelo->getLesVelosDeStation('1023'));
+		$this->assertEmpty($this->odbVelo->getLesVelosDeStation('1023'));
 	}
 
 		/**
@@ -105,11 +98,9 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeVeloSiStationExistanteEtVeloPresent()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertInternalType('array', $this->odbVelo->getLesVelosDeStation('1024'));
 
-		$this->assertInternalType('array', $odbVelo->getLesVelosDeStation('1024'));
-
-		$this->assertInternalType('array', $odbVelo->getLesVelosDeStation(1024));
+		$this->assertInternalType('array', $this->odbVelo->getLesVelosDeStation(1024));
 	}
 
 		/**
@@ -118,11 +109,9 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeVeloVideSiStationNullParam()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertEmpty($this->odbVelo->getLesVelosDeStation());
 
-		$this->assertEmpty($odbVelo->getLesVelosDeStation());
-
-		$this->assertEmpty($odbVelo->getLesVelosDeStation(''));
+		$this->assertEmpty($this->odbVelo->getLesVelosDeStation(''));
 	}
 
 
@@ -136,11 +125,9 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeDeTousLesVelo()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertNotEmpty($this->odbVelo->getLesVelos());
 
-		$this->assertNotEmpty($odbVelo->getLesVelos());
-
-		$this->assertInternalType('array', $odbVelo->getLesVelos());
+		$this->assertInternalType('array', $this->odbVelo->getLesVelos());
 	}
 
 
@@ -154,13 +141,11 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeDes50NouveauxLesVelo()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertNotEmpty($this->odbVelo->getNouveauxVelos());
 
-		$this->assertNotEmpty($odbVelo->getNouveauxVelos());
+		$this->assertInternalType('array', $this->odbVelo->getNouveauxVelos());
 
-		$this->assertInternalType('array', $odbVelo->getNouveauxVelos());
-
-		$this->assertLessThanOrEqual(50, count($odbVelo->getNouveauxVelos()));
+		$this->assertLessThanOrEqual(50, count($this->odbVelo->getNouveauxVelos()));
 	}
 
 
@@ -174,14 +159,13 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeVeloSiRechercheValide()
 	{
-		$odbVelo = new OdbVelo();
 			// vide
-		$this->assertNotEmpty($odbVelo->searchVelos());
-		$this->assertInternalType('array', $odbVelo->searchVelos());
+		$this->assertNotEmpty($this->odbVelo->searchVelos());
+		$this->assertInternalType('array', $this->odbVelo->searchVelos());
 			// un code velo
-		$this->assertNotEmpty($odbVelo->searchVelos('7'));
+		$this->assertNotEmpty($this->odbVelo->searchVelos('7'));
 			// un code station
-		$this->assertNotEmpty($odbVelo->searchVelos('1024'));
+		$this->assertNotEmpty($this->odbVelo->searchVelos('1024'));
 	}
 
 		/**
@@ -190,10 +174,8 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneListeVideSiRechercheInvalide()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertEmpty($odbVelo->searchVelos('azerty'));
-		$this->assertEmpty($odbVelo->searchVelos('99999'));
+		$this->assertEmpty($this->odbVelo->searchVelos('azerty'));
+		$this->assertEmpty($this->odbVelo->searchVelos('99999'));
 	}
 
 
@@ -207,15 +189,13 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourneUnVeloSiCodeValide()
 	{
-		$odbVelo = new OdbVelo();
+		$this->assertNotEmpty($this->odbVelo->getUnVelo(1));
 
-		$this->assertNotEmpty($odbVelo->getUnVelo(1));
+		$this->assertInternalType('object', $this->odbVelo->getUnVelo(1));
 
-		$this->assertInternalType('object', $odbVelo->getUnVelo(1));
-
-		$this->assertObjectHasAttribute('Vel_Num', $odbVelo->getUnVelo(1));
-		$this->assertObjectHasAttribute('Eta_Code', $odbVelo->getUnVelo(1));
-		$this->assertObjectHasAttribute('Pdt_Code', $odbVelo->getUnVelo(1));
+		$this->assertObjectHasAttribute('Vel_Num', $this->odbVelo->getUnVelo(1));
+		$this->assertObjectHasAttribute('Eta_Code', $this->odbVelo->getUnVelo(1));
+		$this->assertObjectHasAttribute('Pdt_Code', $this->odbVelo->getUnVelo(1));
 	}
 
 		/**
@@ -224,10 +204,8 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testRetourVideSiCodeVeloInvalide()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertEmpty($odbVelo->getUnVelo('azerty'));
-		$this->assertEmpty($odbVelo->getUnVelo('0'));
+		$this->assertEmpty($this->odbVelo->getUnVelo('azerty'));
+		$this->assertEmpty($this->odbVelo->getUnVelo('0'));
 	}
 
 
@@ -241,12 +219,10 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testNeModifiePasDeVeloSiParamInvalide()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertEmpty($odbVelo->modifierUnVelo(0));
-		$this->assertEmpty($odbVelo->modifierUnVelo(0, 0, 0));
-		$this->assertEmpty($odbVelo->modifierUnVelo());
-		$this->assertEmpty($odbVelo->modifierUnVelo('AZERTY'));
+		$this->assertEmpty($this->odbVelo->modifierUnVelo(0));
+		$this->assertEmpty($this->odbVelo->modifierUnVelo(0, 0, 0));
+		$this->assertEmpty($this->odbVelo->modifierUnVelo());
+		$this->assertEmpty($this->odbVelo->modifierUnVelo('AZERTY'));
 	}
 
 		/**
@@ -256,14 +232,12 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testModifieUnVeloSiCodeValide()
 	{
-		$odbVelo = new OdbVelo();
-
-		$unVelo = $odbVelo->getUnVelo('1');
+		$unVelo = $this->odbVelo->getUnVelo('1');
 
 		if(empty($unVelo->Vel_Accessoire))
-			$out = $odbVelo->modifierUnVelo( '1024', 1, 'panier', 1);
+			$out = $this->odbVelo->modifierUnVelo( '1024', 1, 'panier', 1);
 		else
-			$out = $odbVelo->modifierUnVelo( '1024', 1, '', 1);
+			$out = $this->odbVelo->modifierUnVelo( '1024', 1, '', 1);
 
 		$this->assertInternalType('integer', $out);
 		$this->assertEquals(1, $out);
@@ -275,10 +249,8 @@ class OdbVeloTest extends PHPUnit_Framework_TestCase
 		 */
 	public function testModificationNonRealiseeSiCodeVeloInvalide()
 	{
-		$odbVelo = new OdbVelo();
-
-		$this->assertEmpty($odbVelo->getUnVelo('azerty', 'azerty', 'azerty', 'azerty'));
-		$this->assertEmpty($odbVelo->getUnVelo('0', '0', '0', '0'));
+		$this->assertEmpty($this->odbVelo->getUnVelo('azerty', 'azerty', 'azerty', 'azerty'));
+		$this->assertEmpty($this->odbVelo->getUnVelo('0', '0', '0', '0'));
 	}
 
 }
