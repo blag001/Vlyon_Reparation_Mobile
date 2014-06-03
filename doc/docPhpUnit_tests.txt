@@ -1,0 +1,20 @@
+OdbVelo
+ [x] Connexion bdd ok
+ [x] Instanciation du model
+ [x] Est velo false si inexistant
+ [x] Est velo true si existant
+ [x] Est velo false si null param
+ [x] Retourne liste velo vide si station inexistant
+ [x] Retourne liste velo vide si station existante et velo absent
+ [x] Retourne liste velo si station existante et velo present
+ [x] Retourne liste velo vide si station null param
+ [x] Retourne liste de tous les velo
+ [x] Retourne liste des 50 nouveaux les velo
+ [x] Retourne liste velo si recherche valide
+ [x] Retourne liste vide si recherche invalide
+ [x] Retourne un velo si code valide
+ [x] Retour vide si code velo invalide
+ [x] Ne modifie pas de velo si param invalide
+ [x] Modifie un velo si code valide
+ [x] Modification non realisee si code velo invalide
+
