@@ -50,7 +50,7 @@ class OdbProduit
 		$req = 'SELECT Pdt_Code, Pdt_Libelle
 				FROM produit';
 
-		$lesTypes = $this->oBdd->query($req);
+		$lesProduit = $this->oBdd->query($req);
 
 		return $lesProduit;
 	}
