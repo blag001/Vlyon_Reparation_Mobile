@@ -38,13 +38,19 @@ INSERT INTO produit
 INSERT INTO produit
 	VALUES ('C', 'VAE', 35, 1500, 20, 0, 0);
 
+-- `Rol_Num`,`Rol_Libelle`
+INSERT INTO role
+	VALUES ('Normal');
+INSERT INTO role
+	VALUES ('Superviseur');
+
 -- `Tec_Matricule`, `Tec_Nom`, `Tec_Prenom`
 INSERT INTO technicien
-	VALUES (null, 'Dupon', 'paul');
+	VALUES (null, 'Dupon', 'paul', 2);
 INSERT INTO technicien
-	VALUES (null, 'Delarive', 'jean');
+	VALUES (null, 'Delarive', 'jean', 1);
 INSERT INTO technicien
-	VALUES (null, 'Wrong', 'li');
+	VALUES (null, 'Wrong', 'li', 1);
 
 -- `Vel_Num`, `Vel_Station`, `Vel_Etat`, `Vel_Type`, `Vel_Accessoire`, `Vel_Casse`
 INSERT INTO velo

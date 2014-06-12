@@ -106,6 +106,18 @@ CREATE TABLE IF NOT EXISTS `station` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `role`
+--
+
+CREATE TABLE IF NOT EXISTS `role` (
+  `Rol_Num` int(11) NOT NULL AUTO_INCREMENT,
+  `Rol_Libelle` varchar(50) NOT NULL,
+  PRIMARY KEY (`Rol_Num`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `technicien`
 --
 
@@ -113,7 +125,9 @@ CREATE TABLE IF NOT EXISTS `technicien` (
   `Tec_Matricule` int(11) NOT NULL AUTO_INCREMENT,
   `Tec_Nom` varchar(35) DEFAULT NULL,
   `Tec_Prenom` varchar(35) DEFAULT NULL,
-  PRIMARY KEY (`Tec_Matricule`)
+  `Tec_Role` int(11) DEFAULT 1,
+  PRIMARY KEY (`Tec_Matricule`),
+  KEY `FK_TECHNICIEN_ROLE` (`Tec_Role`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
@@ -176,6 +190,12 @@ ALTER TABLE `demandeinter`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `FK_USER_TECHNICIEN` FOREIGN KEY (`Use_Technicien`) REFERENCES `technicien` (`Tec_Matricule`);
+
+--
+-- Contraintes pour la table `technicien`
+--
+ALTER TABLE `technicien`
+  ADD CONSTRAINT `FK_TECHNICIEN_ROLE` FOREIGN KEY (`Tec_Role`) REFERENCES `role` (`Rol_Num`);
 
 --
 -- Contraintes pour la table `velo`
