@@ -50,10 +50,13 @@ class Intervention
 					'Mes interventions'            => 'index.php?page=intervention&amp;action=mesinterventions' ,
 					'Rechercher intervention'      => 'index.php?page=intervention&amp;action=rechercherbonintervention' ,
 					'Une intervention'             => 'index.php?page=intervention&amp;action=monbonintervention',
-					'Demander'                  => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
-					// 'Rechercher demande'        => 'index.php?page=intervention&amp;action=rechercherdemandeinter' ,
+					'Demander'                     => 'index.php?page=intervention&amp;action=creerdemandeinter' ,
 					'Une demande'                  => 'index.php?page=intervention&amp;action=unedemandeinter' ,
 				);
+
+			// si on est superviseur, on ajoute "les Interv"
+		if($_SESSION['user']->estSuperviseur())
+			$_SESSION['tampon']['menu'][1]['list']['Les interventions'] = 'index.php?page=intervention&amp;action=lesinterventions';
 
 		if (empty($_GET['action']))
 			$_GET['action'] = null;
@@ -70,6 +73,10 @@ class Intervention
 
 			case 'mesinterventions':
 				$this->afficherMesInter();
+				break;
+
+			case 'lesinterventions':
+				$this->afficherLesInter();
 				break;
 
 			case 'monbonintervention':
@@ -207,6 +214,49 @@ class Intervention
 			$_SESSION['tampon']['menu'][1]['current'] = 'Mes interventions';
 
 			throwError('Vous ne semblez pas &ecirc;tre Technicien...');
+
+				/**
+				 * Load des vues
+				 */
+			view('htmlHeader');
+			view('contentMenu');
+			view('contentError');
+			view('htmlFooter');
+		}
+
+	}
+
+		/**
+		 * affiche les interv quand on est technicien-superviseur
+		 * @return void
+		 */
+	protected function afficherLesInter()
+	{
+			// si le compte est bien celui d'un tech
+		if ($_SESSION['user']->estSuperviseur())
+		{
+			$lesInterventions = $this->odbBonIntervention->getLesBonsInter();
+
+			$_SESSION['tampon']['html']['title'] = 'Toutes les interventions';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Les interventions';
+
+			if (empty($lesInterventions))
+				throwError('Pas d\'Intervention...');
+
+				/**
+				 * Load des vues
+				 */
+			view('htmlHeader');
+			view('contentMenu');
+			view('contentAllInterventions', array('lesInterventions'=>$lesInterventions));
+			view('htmlFooter');
+		}
+		else
+		{
+			$_SESSION['tampon']['html']['title'] = 'Toutes les interventions - ERREUR';
+			$_SESSION['tampon']['menu'][1]['current'] = 'Les interventions';
+
+			throwError('Vous ne semblez pas &ecirc;tre Superviseur...');
 
 				/**
 				 * Load des vues

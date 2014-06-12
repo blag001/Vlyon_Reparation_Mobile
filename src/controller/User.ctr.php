@@ -91,7 +91,7 @@ class User
 	public function estSuperviseur()
 	{
 		if($this->estTechnicien())
-			if($this->role == 1)
+			if($this->role == 2)
 				return true;
 
 		return false;
