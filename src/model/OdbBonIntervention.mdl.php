@@ -72,7 +72,9 @@ class OdbBonIntervention
 		$req = "SELECT *,
 					DATE_FORMAT(BI_DatDebut, '%d/%m/%Y') AS BI_DatDebut,
 					DATE_FORMAT(BI_DatFin, '%d/%m/%Y') AS BI_DatFin
-				FROM boninterv";
+				FROM boninterv
+				INNER JOIN technicien
+					ON boninterv.BI_Technicien = technicien.Tec_Matricule";
 
 		$lesBonsInter = $this->oBdd->query($req);
 
