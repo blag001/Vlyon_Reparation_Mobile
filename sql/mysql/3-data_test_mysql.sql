@@ -40,9 +40,9 @@ INSERT INTO produit
 
 -- `Rol_Num`,`Rol_Libelle`
 INSERT INTO role
-	VALUES ('Normal');
+	VALUES (null, 'Normal');
 INSERT INTO role
-	VALUES ('Superviseur');
+	VALUES (null, 'Superviseur');
 
 -- `Tec_Matricule`, `Tec_Nom`, `Tec_Prenom`
 INSERT INTO technicien
