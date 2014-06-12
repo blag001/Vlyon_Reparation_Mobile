@@ -54,6 +54,8 @@ class OdbUser
 		{
 			$req = 'SELECT *
 					FROM user
+					LEFT OUTER JOIN technicien
+						ON user.DemI_Num = technicien.Tec_Role
 					WHERE Use_Nom = :nom';
 
 			$data = $this->oBdd->query($req , array('nom'=>$nom), Bdd::SINGLE_RES);

@@ -19,6 +19,8 @@ class User
 	private $name;
 		/** @var boolean si est responcable d'achat ou non */
 	private $respAchat = false;
+		/** @var int role des techniciens */
+	private $role = 0;
 
 		/** @var odbUser model de gestion Bdd */
 	private $odbUser;
@@ -51,7 +53,7 @@ class User
 		 */
 	public function __sleep()
 	{
-		return array('id', 'matricule', 'name', 'respAchat');
+		return array('id', 'matricule', 'name', 'respAchat', 'role');
 	}
 		/**
 		 * methode magic a appeller a la deserialization de l'object
@@ -78,6 +80,19 @@ class User
 			return true;
 		elseif ($this->login())
 			return true;
+
+		return false;
+	}
+
+		/**
+		 * check si est un technicien et superviseur
+		 * @return bool true si est superviseur
+		 */
+	public function estSuperviseur()
+	{
+		if($this->estTechnicien())
+			if($this->role == 1)
+				return true;
 
 		return false;
 	}
@@ -148,6 +163,7 @@ class User
 				$this->matricule = $user->Use_Technicien;
 				$this->name = $user->Use_Nom;
 				$this->respAchat = $user->Use_RespAchat;
+				$this->role = $user->Tec_Role;
 
 				if(!empty($_POST['remember_me']))
 				{
@@ -204,6 +220,7 @@ class User
 		$this->matricule = null;
 		$this->name = null;
 		$this->respAchat = null;
+		$this->role = null;
 		session_destroy();
 	}
 }
